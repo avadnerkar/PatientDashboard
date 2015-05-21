@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/holo_orange_dark">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@android:color/background_dark"
+            android:weightSum="3">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_arrow_left"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:onClick="decrementDayClicked"/>
+
+            <TextView
+                android:id="@+id/dayNumberNurse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="26sp"
+                android:textColor="#ffffff"
+                android:text="@string/dayNumber"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_arrow_right"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:onClick="incrementDayClicked"/>
+
+
+        </LinearLayout>
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_orange_light"
+        android:orientation="vertical"
+        android:layout_margin="1dp"
+        android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qPeg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qPeg"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgPeg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_PegYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_PegNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/qNg"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:textSize="26sp"
+                    android:text="@string/qNg"
+                    android:layout_weight="0.5"/>
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/rgNg"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+                    <RadioButton android:id="@+id/radio_NgYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes" />
+
+                    <RadioButton android:id="@+id/radio_NgNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+                </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qO2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qO2"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgO2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_O2Yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes" />
+                <RadioButton android:id="@+id/radio_O2No"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"/>
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qIv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qIv"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgIv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_IvYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_IvNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qFoley"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qFoley"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgFoley"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_FoleyYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_FoleyNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qCpap"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qCpap"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgCpap"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_CpapYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_CpapNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qRestraint"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qRestraint"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgRestraint"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_RestraintYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_RestraintNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qBehavioural"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qBehavioural"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgBehavioural"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_BehaviouralYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_BehaviouralNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qConfusion"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qConfusion"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgConfusion"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_ConfusionYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_ConfusionNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qBladder"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qBladder"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgBladder"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_BladderYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
+                <RadioButton android:id="@+id/radio_BladderPartial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/partial"/>
+                <RadioButton android:id="@+id/radio_BladderNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qHours"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qHours"
+                android:layout_weight="0.5"/>
+
+            <EditText
+                android:id="@+id/aHours"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="26sp"
+                android:hint="@string/hoursHint"
+                android:inputType="number"/>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+
+    </LinearLayout>
+
+</ScrollView>

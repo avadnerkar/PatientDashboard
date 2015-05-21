@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Patient Monitoring</string>
+
+    <string name="title_section1">Nurse</string>
+    <string name="title_section2">OT/SLP</string>
+    <string name="title_section3">PT</string>
+
+    <string name="patient_new">New patient</string>
+    <string name="patient_list">Select patient</string>
+    <string name="patient_save">Save</string>
+    <string name="data_save">Save current day</string>
+    <string name="action_view_history">View history</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="clear_all">Clear all patients</string>
+    <string name="title_activity_new_patient_form">New patient details</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="patient_ID">Patient ID</string>
+
+    <!-- Nurse strings -->
+    <string name="qPeg">PEG</string>
+    <string name="qNg">NG tube</string>
+    <string name="qO2">O2</string>
+    <string name="qIv">IV</string>
+    <string name="qFoley">Foley</string>
+    <string name="qCpap">CPAP</string>
+    <string name="qRestraint">Restraint</string>
+    <string name="qBehavioural">Behavioural issue</string>
+    <string name="qConfusion">Confusion</string>
+    <string name="qBladder">Bladder control</string>
+    <string name="qHours">Estimated hours out of bed</string>
+    <string name="hoursHint">Enter number of hours</string>
+
+
+    <!-- OT strings -->
+    <string name="qNeglect">Neglect</string>
+    <string name="qDigitSpan">Digit span</string>
+    <string name="qMmse">MMSE / MOCA</string>
+    <string name="mmseHint">Enter score</string>
+    <string name="qFollows">Follows commands</string>
+    <string name="qVerbal">Verbal communication</string>
+    <string name="qMotivation">Motivation</string>
+    <string name="qMood">Mood</string>
+    <string name="qPain">Pain</string>
+    <string name="qFatigue">Fatigue</string>
+    <string name="qSwallow">Swallow</string>
+    <string name="qFeeding">Feeding</string>
+    <string name="qDressing">Dressing</string>
+    <string name="qKitchen">Kitchen</string>
+
+    <!-- PT strings -->
+    <string name="qLeftArm">Left arm movement</string>
+    <string name="qRightArm">Right arm movement</string>
+    <string name="qMovementBed">Movement in bed</string>
+    <string name="qLieSit">Lie to Sit</string>
+    <string name="qSitting">Sitting unsupported</string>
+    <string name="qSitStand">Sit to stand</string>
+    <string name="qStand">Stand unsupported</string>
+    <string name="qLiftsUnaffected">Lifts unaffected leg standing</string>
+    <string name="qLiftsAffected">Lifts affected leg standing</string>
+    <string name="qWalking">Walking</string>
+
+    <!-- Answer strings -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="a1">1</string>
+    <string name="a2">2</string>
+    <string name="a3">3</string>
+    <string name="a4">4</string>
+    <string name="a5">5</string>
+    <string name="a6">6</string>
+    <string name="a7">7</string>
+    <string name="none">None</string>
+    <string name="partial">Partial</string>
+    <string name="full">Full</string>
+    <string name="a1step">1 step</string>
+    <string name="a2step">2 step</string>
+
+    <string name="dayNumber">Day 1</string>
+    <string name="title_activity_view_history">ViewHistory</string>
+</resources>
