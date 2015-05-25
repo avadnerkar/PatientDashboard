@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Patient Monitoring</string>
+    <string name="app_name">Patient Dashboard</string>
 
     <string name="title_section1">Nurse</string>
     <string name="title_section2">OT/SLP</string>
@@ -16,11 +16,12 @@
     <string name="clear">Delete patient</string>
     <string name="clear_all">Delete all patients</string>
     <string name="title_activity_new_patient_form">New patient details</string>
+    <string name="select_admission_date">Select date of admission</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
-    <string name="patient_ID">Patient ID</string>
+    <string name="patient_ID">MRN number</string>
 
     <!-- Nurse strings -->
     <string name="qPeg">PEG</string>
