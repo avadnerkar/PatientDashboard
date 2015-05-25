@@ -38,44 +38,44 @@ public class DBAdapter {
 	public static final String KEY_DAY = "day";
 
 	//Nurse
-	public static final String KEY_PEG = "peg";
-	public static final String KEY_NG = "ng";
-	public static final String KEY_O2 = "o2";
-	public static final String KEY_IV = "iv";
-	public static final String KEY_FOLEY = "foley";
-	public static final String KEY_CPAP = "cpap";
-	public static final String KEY_RESTRAINT = "restraint";
-	public static final String KEY_BEHAVIOURAL = "behavioural";
-	public static final String KEY_CONFUSION = "confusion";
-	public static final String KEY_BLADDER = "bladder";
-	public static final String KEY_HOURS = "hours";
+	public static final String KEY_PEG = "PEG";
+	public static final String KEY_NG = "NG";
+	public static final String KEY_O2 = "O2";
+	public static final String KEY_IV = "IV";
+	public static final String KEY_FOLEY = "FOLEY";
+	public static final String KEY_CPAP = "CPAP";
+	public static final String KEY_RESTRAINT = "Restraint";
+	public static final String KEY_BEHAVIOURAL = "BehaviouralIssue";
+	public static final String KEY_CONFUSION = "Confusion";
+	public static final String KEY_BLADDER = "BladderControl";
+	public static final String KEY_HOURS = "EstimatedHoursOutOfBed";
 
 	//OT
-	public static final String KEY_NEGLECT = "neglect";
-	public static final String KEY_DIGITSPAN = "digitspan";
-	public static final String KEY_MMSE = "mmse";
-	public static final String KEY_FOLLOWS = "follows";
-	public static final String KEY_VERBAL = "verbal";
-	public static final String KEY_MOTIVATION = "motivation";
-	public static final String KEY_MOOD = "mood";
-	public static final String KEY_PAIN = "pain";
-	public static final String KEY_FATIGUE = "fatigue";
-	public static final String KEY_SWALLOW = "swallow";
-	public static final String KEY_FEEDING = "feeding";
-	public static final String KEY_DRESSING = "dressing";
-	public static final String KEY_KITCHEN = "kitchen";
+	public static final String KEY_NEGLECT = "Neglect";
+	public static final String KEY_DIGITSPAN = "DigitSpan";
+	public static final String KEY_MMSE = "MMSE";
+	public static final String KEY_FOLLOWS = "FollowsCommands";
+	public static final String KEY_VERBAL = "VerbalCommunication";
+	public static final String KEY_MOTIVATION = "Motivation";
+	public static final String KEY_MOOD = "Mood";
+	public static final String KEY_PAIN = "Pain";
+	public static final String KEY_FATIGUE = "Fatigue";
+	public static final String KEY_SWALLOW = "Swallow";
+	public static final String KEY_FEEDING = "Feeding";
+	public static final String KEY_DRESSING = "Dressing";
+	public static final String KEY_KITCHEN = "Kitchen";
 
 	//PT
-	public static final String KEY_LEFTARM = "leftarm";
-	public static final String KEY_RIGHTARM = "rightarm";
-	public static final String KEY_MOVEMENTBED = "movementbed";
-	public static final String KEY_LIESIT = "liesit";
-	public static final String KEY_SITTING = "sitting";
-	public static final String KEY_SITSTAND = "sitstand";
-	public static final String KEY_STAND = "stand";
-	public static final String KEY_LIFTSUNAFFECTED = "liftsunaffected";
-	public static final String KEY_LIFTSAFFECTED = "liftsaffected";
-	public static final String KEY_WALKING = "walking";
+	public static final String KEY_LEFTARM = "LeftArmMovement";
+	public static final String KEY_RIGHTARM = "RightArmMovement";
+	public static final String KEY_MOVEMENTBED = "MovementInBed";
+	public static final String KEY_LIESIT = "LieToSit";
+	public static final String KEY_SITTING = "SittingUnsupported";
+	public static final String KEY_SITSTAND = "SitToStand";
+	public static final String KEY_STAND = "StandUnsupported";
+	public static final String KEY_LIFTSUNAFFECTED = "LiftsUnaffectedLegStanding";
+	public static final String KEY_LIFTSAFFECTED = "LiftsAffectedLegStanding";
+	public static final String KEY_WALKING = "Walking";
 	
 	// TODO: Setup your patient field numbers here (0 = KEY_ROWID, 1=...)
 	public static final int COL_FIRSTNAME = 1;
@@ -142,7 +142,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 7;
+	public static final int DATABASE_VERSION = 10;
 
 
 	//Table Create Statements
@@ -277,6 +277,22 @@ public class DBAdapter {
 	public boolean deleteRowPatient(long rowId) {
 		String where = KEY_ROWID + "=" + rowId;
 		return db.delete(PATIENT_TABLE, where, null) != 0;
+	}
+
+	public void deleteCurrentPatient(int currentPatientId){
+		String deleteQuery = "DELETE FROM " + PATIENT_TABLE + " WHERE " + KEY_ROWID + " = " + currentPatientId;
+		Cursor c =  db.rawQuery(deleteQuery, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		c.close();
+
+		deleteQuery = "DELETE FROM " + DATA_TABLE + " WHERE " + KEY_PARENTID + " = " + currentPatientId;
+		c =  db.rawQuery(deleteQuery, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		c.close();
 	}
 	
 	public void deleteAllPatients() {

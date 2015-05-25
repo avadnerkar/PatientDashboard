@@ -10,9 +10,11 @@
     <string name="patient_save">Save</string>
     <string name="data_save">Save current day</string>
     <string name="action_view_history">View history</string>
+    <string name="action_export_csv">Export to CSV</string>
 
     <string name="action_settings">Settings</string>
-    <string name="clear_all">Clear all patients</string>
+    <string name="clear">Delete patient</string>
+    <string name="clear_all">Delete all patients</string>
     <string name="title_activity_new_patient_form">New patient details</string>
 
     <string name="hello_world">Hello world!</string>

@@ -1,5 +1,13 @@
 package com.physiotherapy.mcgill.patientmonitoring_v2;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -7,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -25,6 +34,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+
 
 //TEST FOR GIIIIIT
 
@@ -196,6 +209,24 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             return true;
         }
+
+        if (id == R.id.clear) {
+            myDb.deleteCurrentPatient(currentPatientId);
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(R.string.app_name);
+            currentDay = 1;
+            currentPatientId = -1;
+            TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
+            textView.setText("Day " + currentDay);
+            textView = (TextView) findViewById(R.id.dayNumberOt);
+            textView.setText("Day " + currentDay);
+            textView = (TextView) findViewById(R.id.dayNumberPt);
+            textView.setText("Day " + currentDay);
+            loadPatientData();
+
+            return true;
+        }
+
         if (item.getItemId() == R.id.patient_new) {
             //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NewPatientFormActivity.class);
@@ -209,10 +240,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             return true;
         }
 
+        if (item.getItemId() == R.id.action_export_csv) {
+            exportToCSV();
+            return true;
+        }
+
         if (id == R.id.patient_list) {
             showPatientList();
-
-
 
             return true;
         }
@@ -369,6 +403,30 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         loadPatientData();
 
+    }
+
+    public void exportToCSV() {
+        File path = Environment.getExternalStorageDirectory();
+        File filename = new File(path, "/exportFile.csv");
+
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
+            Cursor c = myDb.getAllRowData();
+            writer.writeNext(c.getColumnNames());
+            do {
+                String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_PARENTID),c.getString(myDb.COL_DAY),
+                        c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_FOLEY), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
+                        c.getString(myDb.COL_NEGLECT), c.getString(myDb.COL_DIGITSPAN), c.getString(myDb.COL_MMSE), c.getString(myDb.COL_FOLLOWS), c.getString(myDb.COL_VERBAL), c.getString(myDb.COL_MOTIVATION), c.getString(myDb.COL_MOOD), c.getString(myDb.COL_PAIN), c.getString(myDb.COL_FATIGUE), c.getString(myDb.COL_SWALLOW), c.getString(myDb.COL_FEEDING), c.getString(myDb.COL_DRESSING), c.getString(myDb.COL_KITCHEN),
+                        c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING)};
+                writer.writeNext(arrStr);
+            } while(c.moveToNext());
+            writer.close();
+            c.close();
+
+
+        } catch (IOException e){
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
     }
 
     public void savePatientData(){

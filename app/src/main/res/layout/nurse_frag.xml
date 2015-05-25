@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/holo_orange_dark">
+        android:background="@android:color/darker_gray">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@android:color/white"
         android:orientation="vertical"
         android:layout_margin="1dp"
         android:weightSum="1">
@@ -97,7 +97,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -141,7 +141,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -184,7 +184,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -227,7 +227,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -270,7 +270,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -313,7 +313,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -356,7 +356,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -399,7 +399,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -442,7 +442,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
@@ -489,7 +489,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_margin="1dp"
             android:weightSum="1">
