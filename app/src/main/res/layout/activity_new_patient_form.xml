@@ -46,7 +46,524 @@
             android:datePickerMode="calendar"
             />
 
+        <TextView android:text="@string/patient_age" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <EditText android:id="@+id/edit_patient_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/patient_age"
+            android:inputType="number"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="0dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/patient_gender"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_GenderFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"/>
+                <RadioButton android:id="@+id/radio_GenderMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <TextView android:text="@string/stroke_type" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/edit_stroke_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/stroke_type"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/first_stroke"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgFirstStroke"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_firstStrokeYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_firstStrokeNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/legion_side"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgLegionSide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_LegionSideLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left"/>
+            <RadioButton android:id="@+id/radio_LegionSideRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/right" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/hemiplegia_side"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgHemiplegiaSide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_HemiplegiaSideLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left"/>
+            <RadioButton android:id="@+id/radio_HemiplegiaSideNone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/none"/>
+            <RadioButton android:id="@+id/radio_HemiplegiaSideRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/right" />
+        </RadioGroup>
+
+        <TextView android:text="@string/consciousness" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/edit_consciousness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/consciousness" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/orientation"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgOrientation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_OrientationOriented"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oriented"/>
+            <RadioButton android:id="@+id/radio_OrientationDisoriented"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/disoriented" />
+        </RadioGroup>
+
+        <TextView android:text="@string/language" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/edit_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/language" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/visual"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgVisual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_VisualYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_VisualNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/hearing_aid"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgHearingAid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_HearingAidYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_HearingAidNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/hearing_assessed"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgHearingAssessed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_HearingAssessedYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_HearingAssessedNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView android:text="@string/aphasia" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/edit_aphasia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aphasia" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/qPeg"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgPegAdmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_PegAdmitYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_PegAdmitNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/qNg"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgNgAdmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_NgAdmitYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_NgAdmitNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/qFoley"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgFoleyAdmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_FoleyAdmitYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_FoleyAdmitNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/fall_risk"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgFallRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_FallRiskYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_FallRiskNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/limitation"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgLimitation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_LimitationYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_LimitationNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/qMotivation"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgMotivationAdmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_MotivationAdmitYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"/>
+            <RadioButton android:id="@+id/radio_MotivationAdmitNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+
+        <TextView android:text="@string/other" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/edit_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/other" />
+
+        <TextView android:text="@string/cognition" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/cognition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cognition" />
+
+        <TextView android:text="@string/dateFirstOT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnDateFirstOT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_date"
+                android:layout_weight="0.5"
+                android:onClick="selectDateOTFunc"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDateFirstOT"
+                android:layout_weight="0.5"
+                android:text="yyyy-mm-dd"
+                android:gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+        <TextView android:text="@string/totalOT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/totalOT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/totalOT" />
+
+
+        <TextView android:text="@string/dateFirstSwallow" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnDateFirstSwallow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_date"
+                android:layout_weight="0.5"
+                android:onClick="selectDateSwallowFunc"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDateFirstSwallow"
+                android:layout_weight="0.5"
+                android:text="yyyy-mm-dd"
+                android:gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+
+        <TextView android:text="@string/dateFirstPT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnDateFirstPT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_date"
+                android:layout_weight="0.5"
+                android:onClick="selectDatePTFunc"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDateFirstPT"
+                android:layout_weight="0.5"
+                android:text="yyyy-mm-dd"
+                android:gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+        <TextView android:text="@string/totalPT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/totalPT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/totalPT" />
+
+        <TextView android:text="@string/dateFirstSLT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnDateFirstSLT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_date"
+                android:layout_weight="0.5"
+                android:onClick="selectDateSLTFunc"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDateFirstSLT"
+                android:layout_weight="0.5"
+                android:text="yyyy-mm-dd"
+                android:gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+        <TextView android:text="@string/totalSLT" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/totalSLT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/totalSLT" />
 
     </LinearLayout>
 

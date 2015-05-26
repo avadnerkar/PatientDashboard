@@ -22,6 +22,32 @@
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="patient_ID">MRN number</string>
+    <string name="patient_age">Patient age</string>
+    <string name="patient_gender">Patient gender</string>
+    <string name="stroke_type">Stroke type</string>
+    <string name="first_stroke">Is this a first stroke?</string>
+    <string name="legion_side">Side of legion</string>
+    <string name="hemiplegia_side">Side of hemiplegia</string>
+    <string name="consciousness">Level of consciousness</string>
+    <string name="orientation">Patient orientation</string>
+    <string name="language">Language and speech</string>
+    <string name="visual">Visual impairment</string>
+    <string name="hearing_aid">Hearing aid</string>
+    <string name="hearing_assessed">Hearing assessed</string>
+    <string name="aphasia">Aphasia</string>
+    <string name="fall_risk">Fall risk</string>
+    <string name="limitation">Limitation</string>
+    <string name="other">Other history</string>
+    <string name="cognition">Cognition</string>
+    <string name="dateFirstOT">Date of first OT assessment</string>
+    <string name="dateFirstSwallow">Date of first Swallowing assessment</string>
+    <string name="dateFirstPT">Date of first PT assessment</string>
+    <string name="dateFirstSLT">Date of first SLT assessment</string>
+    <string name="select_date">Select</string>
+    <string name="totalOT">Total OT sessions received</string>
+    <string name="totalPT">Total PT sessions received</string>
+    <string name="totalSLT">Total SLT sessions received</string>
+
 
     <!-- Nurse strings -->
     <string name="qPeg">PEG</string>
@@ -81,6 +107,12 @@
     <string name="full">Full</string>
     <string name="a1step">1 step</string>
     <string name="a2step">2 step</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="oriented">Oriented</string>
+    <string name="disoriented">Disoriented</string>
 
     <string name="dayNumber">Day 1</string>
     <string name="title_activity_view_history">ViewHistory</string>
