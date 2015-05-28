@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -54,22 +56,237 @@ public class NewPatientFormActivity extends ActionBarActivity {
         }
 
         if (id == R.id.patient_save) {
-            EditText editText_first = (EditText) findViewById(R.id.edit_first_name);
-            String firstName = editText_first.getText().toString();
 
-            EditText editText_last = (EditText) findViewById(R.id.edit_last_name);
-            String lastName = editText_last.getText().toString();
+            RadioGroup rg;
+            int idButton;
+            View radioButton;
+            int radioId;
+            RadioButton btn;
+            DatePicker datePicker;
+            int day, month, year;
+            EditText editText;
+            TextView textView;
+            String firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender, 
+                    strokeType, firstStroke, legionSide, hemiplegiaSide, 
+                    consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia, 
+                    peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition, 
+                    dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT;
 
-            EditText editText_ID = (EditText) findViewById(R.id.edit_hospital_ID);
-            String hospitalId = editText_ID.getText().toString();
+            editText = (EditText) findViewById(R.id.edit_first_name);
+            firstName = editText.getText().toString();
 
-            DatePicker datePicker = (DatePicker) findViewById(R.id.date_picker);
-            int day = datePicker.getDayOfMonth();
-            int month = datePicker.getMonth();
-            int year = datePicker.getYear();
-            String admissionDate = year + "-" + (month+1) + "-" + day;
+            editText = (EditText) findViewById(R.id.edit_last_name);
+            lastName = editText.getText().toString();
 
-            long newID = MainActivity.myDb.insertRowPatient(firstName, lastName, hospitalId, admissionDate);
+            editText = (EditText) findViewById(R.id.edit_hospital_ID);
+            hospitalId = editText.getText().toString();
+
+            datePicker = (DatePicker) findViewById(R.id.date_picker);
+            day = datePicker.getDayOfMonth();
+            month = datePicker.getMonth();
+            year = datePicker.getYear();
+            admissionDate = year + "-" + (month+1) + "-" + day;
+
+            editText = (EditText) findViewById(R.id.edit_patient_age);
+            patientAge = editText.getText().toString();
+
+            rg=(RadioGroup)findViewById(R.id.rgGender);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                patientGender = (String) btn.getText();
+            } else{
+                patientGender = "";
+            }
+
+            editText = (EditText) findViewById(R.id.edit_stroke_type);
+            strokeType = editText.getText().toString();
+
+            rg=(RadioGroup)findViewById(R.id.rgFirstStroke);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                firstStroke = (String) btn.getText();
+            } else{
+                firstStroke = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgLegionSide);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                legionSide = (String) btn.getText();
+            } else{
+                legionSide = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgHemiplegiaSide);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                hemiplegiaSide = (String) btn.getText();
+            } else{
+                hemiplegiaSide = "";
+            }
+
+            editText = (EditText) findViewById(R.id.edit_consciousness);
+            consciousness = editText.getText().toString();
+
+            rg=(RadioGroup)findViewById(R.id.rgOrientation);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                orientation = (String) btn.getText();
+            } else{
+                orientation = "";
+            }
+
+            editText = (EditText) findViewById(R.id.edit_language);
+            language = editText.getText().toString();
+
+            rg=(RadioGroup)findViewById(R.id.rgVisual);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                visualImpairment = (String) btn.getText();
+            } else{
+                visualImpairment = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgHearingAid);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                hearingAid = (String) btn.getText();
+            } else{
+                hearingAid = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgHearingAssessed);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                hearingAssessed = (String) btn.getText();
+            } else{
+                hearingAssessed = "";
+            }
+
+            editText = (EditText) findViewById(R.id.edit_aphasia);
+            aphasia = editText.getText().toString();
+
+            rg=(RadioGroup)findViewById(R.id.rgPegAdmit);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                peg = (String) btn.getText();
+            } else{
+                peg = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgNgAdmit);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                ng = (String) btn.getText();
+            } else{
+                ng = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgFoleyAdmit);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                foley = (String) btn.getText();
+            } else{
+                foley = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgFallRisk);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                fallRisk = (String) btn.getText();
+            } else{
+                fallRisk = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgLimitation);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                limitation = (String) btn.getText();
+            } else{
+                limitation = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgMotivationAdmit);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                motivation = (String) btn.getText();
+            } else{
+                motivation = "";
+            }
+
+            editText = (EditText) findViewById(R.id.edit_other);
+            otherHistory = editText.getText().toString();
+
+            editText = (EditText) findViewById(R.id.edit_cognition);
+            cognition = editText.getText().toString();
+            
+            textView = (TextView) findViewById(R.id.textDateFirstOT);
+            dateFirstOT = textView.getText().toString();
+
+            textView = (TextView) findViewById(R.id.textDateFirstSwallow);
+            dateFirstSwallow = textView.getText().toString();
+
+            textView = (TextView) findViewById(R.id.textDateFirstPT);
+            dateFirstPT = textView.getText().toString();
+
+            textView = (TextView) findViewById(R.id.textDateFirstSLT);
+            dateFirstSLT = textView.getText().toString();
+            
+            
+            discharged = "No";
+            dischargeDate = "";
+            totalOT = "";
+            totalPT = "";
+            totalSLT = "";
+
+
+            long newID = MainActivity.myDb.insertRowPatient(firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender,
+                    strokeType, firstStroke, legionSide, hemiplegiaSide,
+                    consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
+                    peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition,
+                    dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT);
 
 
 

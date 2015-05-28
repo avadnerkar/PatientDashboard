@@ -33,6 +33,39 @@ public class DBAdapter {
 	public static final String KEY_LASTNAME = "LastName";
 	public static final String KEY_HOSPITALID = "MRN";
 	public static final String KEY_ADMISSIONDATE = "AdmissionDate";
+	public static final String KEY_DISCHARGED = "Discharged";
+	public static final String KEY_DISCHARGEDATE = "DischargeDate";
+	public static final String KEY_PATIENTAGE = "PatientAge";
+	public static final String KEY_PATIENTGENDER = "PatientGender";
+
+	public static final String KEY_STROKETYPE = "StrokeType";
+	public static final String KEY_FIRSTSTROKE = "FirstStroke";
+	public static final String KEY_LEGIONSIDE = "LegionSide";
+	public static final String KEY_HEMIPLEGIASIDE = "HemiplegiaSide";
+	public static final String KEY_CONSCIOUSNESS = "Consciousness";
+	public static final String KEY_ORIENTATION = "Orientation";
+	public static final String KEY_LANGUAGE = "Language";
+	public static final String KEY_VISUAL = "VisualImpairment";
+	public static final String KEY_HEARINGAID = "HearingAid";
+	public static final String KEY_HEARINGASSESSED = "HearingAssessed";
+	public static final String KEY_APHASIA = "Aphasia";
+
+	public static final String KEY_PEGADMIT = "PegAdmission";
+	public static final String KEY_NGADMIT = "NgAdmission";
+	public static final String KEY_FOLEYADMIT = "FoleyAdmission";
+	public static final String KEY_FALLRISK = "FallRisk";
+	public static final String KEY_LIMITATION = "Limitation";
+	public static final String KEY_MOTIVATIONADMIT = "MotivationAdmission";
+	public static final String KEY_OTHER = "OtherHistory";
+	public static final String KEY_COGNITION = "Cognition";
+
+	public static final String KEY_FIRSTOT = "FirstOTAssessment";
+	public static final String KEY_TOTALOT = "TotalOTSessions";
+	public static final String KEY_FIRSTSWALLOW = "FirstSwallowAssessment";
+	public static final String KEY_FIRSTPT = "FirstPTAssessment";
+	public static final String KEY_TOTALPT = "TotalPTSessions";
+	public static final String KEY_FIRSTSLT = "FirstSLTAssessment";
+	public static final String KEY_TOTALSLT = "TotalSLTSessions";
 
 	// TODO: Setup your data fields here:
 	public static final String KEY_PARENTID = "ParentID";
@@ -84,6 +117,39 @@ public class DBAdapter {
 	public static final int COL_LASTNAME = 2;
 	public static final int COL_HOSPITALID = 3;
 	public static final int COL_ADMISSIONDATE = 4;
+	public static final int COL_DISCHARGED = 5;
+	public static final int COL_DISCHARGEDATE = 6;
+	public static final int COL_PATIENTAGE = 7;
+	public static final int COL_PATIENTGENDER = 8;
+
+	public static final int COL_STROKETYPE = 9;
+	public static final int COL_FIRSTSTROKE = 10;
+	public static final int COL_LEGIONSIDE = 11;
+	public static final int COL_HEMIPLEGIASIDE = 12;
+	public static final int COL_CONSCIOUSNESS = 13;
+	public static final int COL_ORIENTATION = 14;
+	public static final int COL_LANGUAGE = 15;
+	public static final int COL_VISUAL = 16;
+	public static final int COL_HEARINGAID = 17;
+	public static final int COL_HEARINGASSESSED = 18;
+	public static final int COL_APHASIA = 19;
+
+	public static final int COL_PEGADMIT = 20;
+	public static final int COL_NGADMIT = 21;
+	public static final int COL_FOLEYADMIT = 22;
+	public static final int COL_FALLRISK = 23;
+	public static final int COL_LIMITATION = 24;
+	public static final int COL_MOTIVATIONADMIT = 25;
+	public static final int COL_OTHER = 26;
+	public static final int COL_COGNITION = 27;
+
+	public static final int COL_FIRSTOT = 28;
+	public static final int COL_TOTALOT = 29;
+	public static final int COL_FIRSTSWALLOW = 30;
+	public static final int COL_FIRSTPT = 31;
+	public static final int COL_TOTALPT = 32;
+	public static final int COL_FIRSTSLT = 33;
+	public static final int COL_TOTALSLT = 34;
 
 	// TODO: Setup your data field numbers here (0 = KEY_ROWID, 1=...)
 	public static final int COL_PARENTID = 1;
@@ -132,7 +198,10 @@ public class DBAdapter {
 
 
 	// TODO: Set all keys for patient table
-	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE};
+	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE, KEY_DISCHARGED, KEY_DISCHARGEDATE, KEY_PATIENTAGE, KEY_PATIENTGENDER,
+			KEY_STROKETYPE, KEY_FIRSTSTROKE, KEY_LEGIONSIDE, KEY_HEMIPLEGIASIDE, KEY_CONSCIOUSNESS, KEY_ORIENTATION, KEY_LANGUAGE, KEY_VISUAL, KEY_HEARINGAID, KEY_HEARINGASSESSED, KEY_APHASIA,
+			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_LIMITATION, KEY_MOTIVATION, KEY_OTHER, KEY_COGNITION,
+			KEY_FIRSTOT, KEY_TOTALOT, KEY_FIRSTSWALLOW, KEY_FIRSTPT, KEY_TOTALPT, KEY_FIRSTSLT, KEY_TOTALSLT};
 
 	//TODO: Set all keys for data table
 	public static final String[] ALL_DATA_KEYS = new String[] {KEY_ROWID, KEY_PARENTID, KEY_MRN, KEY_DAY,
@@ -169,8 +238,40 @@ public class DBAdapter {
 			+ KEY_FIRSTNAME + " text not null, "
 			+ KEY_LASTNAME + " text not null, "
 			+ KEY_HOSPITALID + " text not null, "
-			+ KEY_ADMISSIONDATE + " text not null"
-			
+			+ KEY_ADMISSIONDATE + " text not null, "
+			+ KEY_DISCHARGED + " text not null, "
+			+ KEY_DISCHARGEDATE + " text not null, "
+			+ KEY_PATIENTAGE + " text not null, "
+			+ KEY_PATIENTGENDER + " text not null, "
+
+			+ KEY_STROKETYPE + " text not null, "
+			+ KEY_FIRSTSTROKE + " text not null, "
+			+ KEY_LEGIONSIDE + " text not null, "
+			+ KEY_HEMIPLEGIASIDE + " text not null, "
+			+ KEY_CONSCIOUSNESS + " text not null, "
+			+ KEY_ORIENTATION + " text not null, "
+			+ KEY_LANGUAGE + " text not null, "
+			+ KEY_VISUAL + " text not null, "
+			+ KEY_HEARINGAID + " text not null, "
+			+ KEY_HEARINGASSESSED + " text not null, "
+			+ KEY_APHASIA + " text not null, "
+
+			+ KEY_PEGADMIT + " text not null, "
+			+ KEY_NGADMIT + " text not null, "
+			+ KEY_FOLEYADMIT + " text not null, "
+			+ KEY_FALLRISK + " text not null, "
+			+ KEY_LIMITATION + " text not null, "
+			+ KEY_MOTIVATIONADMIT + " text not null, "
+			+ KEY_OTHER + " text not null, "
+			+ KEY_COGNITION + " text not null, "
+
+			+ KEY_FIRSTOT + " text not null, "
+			+ KEY_TOTALOT + " text not null, "
+			+ KEY_FIRSTSWALLOW + " text not null, "
+			+ KEY_FIRSTPT + " text not null, "
+			+ KEY_TOTALPT + " text not null, "
+			+ KEY_FIRSTSLT + " text not null, "
+			+ KEY_TOTALSLT + " text not null"
 			// Rest  of creation:
 			+ ");";
 
