@@ -481,9 +481,12 @@ public class DBAdapter {
 		return c;
 	}
 
-	// TODO: WORK ON UPDATE PATIENT
+
 	// Change an existing row to be equal to new data.
-	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate) {
+	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender,
+									String strokeType, String firstStroke, String legionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
+									String peg, String ng, String foley, String fallRisk, String limitation, String motivation, String otherHistory, String cognition,
+									String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
 		String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -497,6 +500,39 @@ public class DBAdapter {
 		newValues.put(KEY_LASTNAME, lastName);
 		newValues.put(KEY_HOSPITALID, hospitalId);
 		newValues.put(KEY_ADMISSIONDATE, admissionDate);
+		newValues.put(KEY_DISCHARGED, discharged);
+		newValues.put(KEY_DISCHARGEDATE, dischargeDate);
+		newValues.put(KEY_PATIENTAGE, patientAge);
+		newValues.put(KEY_PATIENTGENDER, patientGender);
+
+		newValues.put(KEY_STROKETYPE, strokeType);
+		newValues.put(KEY_FIRSTSTROKE, firstStroke);
+		newValues.put(KEY_LEGIONSIDE, legionSide);
+		newValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
+		newValues.put(KEY_CONSCIOUSNESS, consciousness);
+		newValues.put(KEY_ORIENTATION, orientation);
+		newValues.put(KEY_LANGUAGE, language);
+		newValues.put(KEY_VISUAL, visualImpairment);
+		newValues.put(KEY_HEARINGAID, hearingAid);
+		newValues.put(KEY_HEARINGASSESSED, hearingAssessed);
+		newValues.put(KEY_APHASIA, aphasia);
+
+		newValues.put(KEY_PEGADMIT, peg);
+		newValues.put(KEY_NGADMIT, ng);
+		newValues.put(KEY_FOLEYADMIT, foley);
+		newValues.put(KEY_FALLRISK, fallRisk);
+		newValues.put(KEY_LIMITATION, limitation);
+		newValues.put(KEY_MOTIVATIONADMIT, motivation);
+		newValues.put(KEY_OTHER, otherHistory);
+		newValues.put(KEY_COGNITION, cognition);
+
+		newValues.put(KEY_FIRSTOT, dateFirstOT);
+		newValues.put(KEY_TOTALOT, totalOT);
+		newValues.put(KEY_FIRSTSWALLOW, dateFirstSwallow);
+		newValues.put(KEY_FIRSTPT, dateFirstPT);
+		newValues.put(KEY_TOTALPT, totalPT);
+		newValues.put(KEY_FIRSTSLT, dateFirstSLT);
+		newValues.put(KEY_TOTALSLT, totalSLT);
 		
 		// Insert it into the database.
 		return db.update(PATIENT_TABLE, newValues, where, null) != 0;
@@ -505,11 +541,10 @@ public class DBAdapter {
 
 	public Cursor dischargeRowPatient(int rowId, String dischargeDate, String totalOT, String totalPT, String totalSLT){
 		String dischargedString = "Yes";
-		String updateQuery = "UPDATE " + PATIENT_TABLE + " SET " + KEY_DISCHARGED + " = ?, " + KEY_DISCHARGEDATE + " = " + dischargeDate + ", "
-				+ KEY_TOTALOT + " = " + totalOT + ", " + KEY_TOTALPT + " = " + totalPT + ", " + KEY_TOTALSLT + " = " + totalSLT
-				+ " WHERE " + KEY_ROWID + " = " + rowId;
+		String updateQuery = "UPDATE " + PATIENT_TABLE + " SET " + KEY_DISCHARGED + " = ?, " + KEY_DISCHARGEDATE + " = ?, "
+				+ KEY_TOTALOT + " = ?, " + KEY_TOTALPT + " = ?, " + KEY_TOTALSLT + " = ? WHERE " + KEY_ROWID + " = " + rowId;
 
-		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString});
+		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString,dischargeDate,totalOT,totalPT,totalSLT});
 		if (c != null) {
 			c.moveToFirst();
 		}

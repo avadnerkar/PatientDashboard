@@ -53,6 +53,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public int currentDay;
     public static String currentMrn;
     public String[] patientListString;
+    //public boolean existingPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,7 +223,18 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (item.getItemId() == R.id.patient_new) {
             //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            //existingPatient = false;
             Intent intent = new Intent(this, NewPatientFormActivity.class);
+            //intent.putExtra("EXISTING_PATIENT",existingPatient);
+            startActivity(intent);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_update_patient) {
+            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            //existingPatient = true;
+            Intent intent = new Intent(this, NewPatientFormActivity.class);
+            //intent.putExtra("EXISTING_PATIENT",existingPatient);
             startActivity(intent);
             return true;
         }
