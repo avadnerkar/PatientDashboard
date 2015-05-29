@@ -200,7 +200,7 @@ public class DBAdapter {
 	// TODO: Set all keys for patient table
 	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE, KEY_DISCHARGED, KEY_DISCHARGEDATE, KEY_PATIENTAGE, KEY_PATIENTGENDER,
 			KEY_STROKETYPE, KEY_FIRSTSTROKE, KEY_LEGIONSIDE, KEY_HEMIPLEGIASIDE, KEY_CONSCIOUSNESS, KEY_ORIENTATION, KEY_LANGUAGE, KEY_VISUAL, KEY_HEARINGAID, KEY_HEARINGASSESSED, KEY_APHASIA,
-			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_LIMITATION, KEY_MOTIVATION, KEY_OTHER, KEY_COGNITION,
+			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_LIMITATION, KEY_MOTIVATIONADMIT, KEY_OTHER, KEY_COGNITION,
 			KEY_FIRSTOT, KEY_TOTALOT, KEY_FIRSTSWALLOW, KEY_FIRSTPT, KEY_TOTALPT, KEY_FIRSTSLT, KEY_TOTALSLT};
 
 	//TODO: Set all keys for data table
@@ -215,7 +215,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 14;
+	public static final int DATABASE_VERSION = 16;
 
 
 	//Table Create Statements
@@ -364,7 +364,10 @@ public class DBAdapter {
 	/////////////////////////////////////////////////////////////////////
 	
 	// Add a new set of values to the database.
-	public long insertRowPatient(String firstName, String lastName, String hospitalId, String admissionDate) {
+	public long insertRowPatient(String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender,
+								 String strokeType, String firstStroke, String legionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
+								 String peg, String ng, String foley, String fallRisk, String limitation, String motivation, String otherHistory, String cognition,
+								 String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
 		/*
 		 * CHANGE 3:
 		 */		
@@ -376,6 +379,39 @@ public class DBAdapter {
 		initialValues.put(KEY_LASTNAME, lastName);
 		initialValues.put(KEY_HOSPITALID, hospitalId);
 		initialValues.put(KEY_ADMISSIONDATE, admissionDate);
+		initialValues.put(KEY_DISCHARGED, discharged);
+		initialValues.put(KEY_DISCHARGEDATE, dischargeDate);
+		initialValues.put(KEY_PATIENTAGE, patientAge);
+		initialValues.put(KEY_PATIENTGENDER, patientGender);
+
+		initialValues.put(KEY_STROKETYPE, strokeType);
+		initialValues.put(KEY_FIRSTSTROKE, firstStroke);
+		initialValues.put(KEY_LEGIONSIDE, legionSide);
+		initialValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
+		initialValues.put(KEY_CONSCIOUSNESS, consciousness);
+		initialValues.put(KEY_ORIENTATION, orientation);
+		initialValues.put(KEY_LANGUAGE, language);
+		initialValues.put(KEY_VISUAL, visualImpairment);
+		initialValues.put(KEY_HEARINGAID, hearingAid);
+		initialValues.put(KEY_HEARINGASSESSED, hearingAssessed);
+		initialValues.put(KEY_APHASIA, aphasia);
+
+		initialValues.put(KEY_PEGADMIT, peg);
+		initialValues.put(KEY_NGADMIT, ng);
+		initialValues.put(KEY_FOLEYADMIT, foley);
+		initialValues.put(KEY_FALLRISK, fallRisk);
+		initialValues.put(KEY_LIMITATION, limitation);
+		initialValues.put(KEY_MOTIVATIONADMIT, motivation);
+		initialValues.put(KEY_OTHER, otherHistory);
+		initialValues.put(KEY_COGNITION, cognition);
+
+		initialValues.put(KEY_FIRSTOT, dateFirstOT);
+		initialValues.put(KEY_TOTALOT, totalOT);
+		initialValues.put(KEY_FIRSTSWALLOW, dateFirstSwallow);
+		initialValues.put(KEY_FIRSTPT, dateFirstPT);
+		initialValues.put(KEY_TOTALPT, totalPT);
+		initialValues.put(KEY_FIRSTSLT, dateFirstSLT);
+		initialValues.put(KEY_TOTALSLT, totalSLT);
 		
 		// Insert it into the database.
 		return db.insert(PATIENT_TABLE, null, initialValues);
@@ -427,7 +463,7 @@ public class DBAdapter {
 	public Cursor getAllRowPatients() {
 		String where = null;
 		Cursor c = 	db.query(true, PATIENT_TABLE, ALL_PATIENT_KEYS,
-							where, null, null, null, null, null);
+				where, null, null, null, null, null);
 		if (c != null) {
 			c.moveToFirst();
 		}
@@ -444,7 +480,8 @@ public class DBAdapter {
 		}
 		return c;
 	}
-	
+
+	// TODO: WORK ON UPDATE PATIENT
 	// Change an existing row to be equal to new data.
 	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate) {
 		String where = KEY_ROWID + "=" + rowId;
@@ -463,6 +500,20 @@ public class DBAdapter {
 		
 		// Insert it into the database.
 		return db.update(PATIENT_TABLE, newValues, where, null) != 0;
+	}
+
+
+	public Cursor dischargeRowPatient(int rowId, String dischargeDate, String totalOT, String totalPT, String totalSLT){
+		String dischargedString = "Yes";
+		String updateQuery = "UPDATE " + PATIENT_TABLE + " SET " + KEY_DISCHARGED + " = ?, " + KEY_DISCHARGEDATE + " = " + dischargeDate + ", "
+				+ KEY_TOTALOT + " = " + totalOT + ", " + KEY_TOTALPT + " = " + totalPT + ", " + KEY_TOTALSLT + " = " + totalSLT
+				+ " WHERE " + KEY_ROWID + " = " + rowId;
+
+		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString});
+		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
 	}
 
 	/////////////////////////////////////////////////////////////////////

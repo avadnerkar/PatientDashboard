@@ -283,8 +283,7 @@ public class NewPatientFormActivity extends ActionBarActivity {
 
 
             long newID = MainActivity.myDb.insertRowPatient(firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender,
-                    strokeType, firstStroke, legionSide, hemiplegiaSide,
-                    consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
+                    strokeType, firstStroke, legionSide, hemiplegiaSide, consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
                     peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition,
                     dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT);
 

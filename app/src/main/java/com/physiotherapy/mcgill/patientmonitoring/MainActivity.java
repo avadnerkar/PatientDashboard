@@ -227,6 +227,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             return true;
         }
 
+        if (item.getItemId() == R.id.action_discharge) {
+            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DischargePatientForm.class);
+            startActivity(intent);
+            return true;
+        }
+
+
         if (item.getItemId() == R.id.action_view_history) {
             Intent intent = new Intent(this, ViewHistory.class);
             startActivity(intent);
@@ -432,7 +440,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             Cursor c = myDb.getAllRowPatients();
             writer.writeNext(c.getColumnNames());
             do {
-                String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE)};
+                String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER),
+                        c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LEGIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
+                        c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_LIMITATION), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
+                        c.getString(myDb.COL_FIRSTOT), c.getString(myDb.COL_TOTALOT), c.getString(myDb.COL_FIRSTSWALLOW), c.getString(myDb.COL_FIRSTPT), c.getString(myDb.COL_TOTALPT), c.getString(myDb.COL_FIRSTSLT), c.getString(myDb.COL_TOTALSLT)};
                 writer.writeNext(arrStr);
             } while(c.moveToNext());
             writer.close();

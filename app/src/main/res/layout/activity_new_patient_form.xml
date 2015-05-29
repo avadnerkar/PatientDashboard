@@ -17,7 +17,7 @@
         <EditText android:id="@+id/edit_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/first_name" />
+            />
 
         <TextView android:text="@string/last_name" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
         <EditText android:id="@+id/edit_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/last_name" />
+            />
 
         <TextView android:text="@string/patient_ID" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -33,7 +33,7 @@
         <EditText android:id="@+id/edit_hospital_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/patient_ID" />
+            />
 
         <TextView android:text="@string/select_admission_date" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -52,7 +52,6 @@
         <EditText android:id="@+id/edit_patient_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/patient_age"
             android:inputType="number"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -95,7 +94,7 @@
         <EditText android:id="@+id/edit_stroke_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/stroke_type"/>
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -173,7 +172,7 @@
         <EditText android:id="@+id/edit_consciousness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/consciousness" />
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -203,7 +202,7 @@
         <EditText android:id="@+id/edit_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/language" />
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -277,7 +276,7 @@
         <EditText android:id="@+id/edit_aphasia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/aphasia" />
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -417,7 +416,7 @@
         <EditText android:id="@+id/edit_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/other" />
+            />
 
         <TextView android:text="@string/cognition" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -425,7 +424,7 @@
         <EditText android:id="@+id/edit_cognition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/cognition" />
+            />
 
         <TextView android:text="@string/dateFirstOT" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -454,14 +453,6 @@
 
 
         </LinearLayout>
-
-        <TextView android:text="@string/totalOT" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText android:id="@+id/totalOT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/totalOT" />
 
 
         <TextView android:text="@string/dateFirstSwallow" android:layout_width="wrap_content"
@@ -520,14 +511,6 @@
 
 
         </LinearLayout>
-
-        <TextView android:text="@string/totalPT" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText android:id="@+id/totalPT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/totalPT" />
 
         <TextView android:text="@string/dateFirstSLT" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
