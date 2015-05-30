@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -49,7 +50,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     ViewPager mViewPager;
     public static DBAdapter myDb;
     public int currentPatientIndex;
-    public static int currentPatientId;
+    public static int currentPatientId = -1;
     public int currentDay;
     public static String currentMrn;
     public String[] patientListString;
@@ -97,11 +98,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
+
+
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
 
     }
 
@@ -170,7 +176,30 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        if(currentPatientId==-1){
+            menu.findItem(R.id.data_save).setVisible(false);
+            menu.findItem(R.id.action_discharge).setVisible(false);
+            menu.findItem(R.id.action_update_patient).setVisible(false);
+            menu.findItem(R.id.action_update_patient).setVisible(false);
+            menu.findItem(R.id.action_view_history).setVisible(false);
+        }
+        else{
+            menu.findItem(R.id.data_save).setVisible(true);
+            menu.findItem(R.id.action_discharge).setVisible(true);
+            menu.findItem(R.id.action_update_patient).setVisible(true);
+            menu.findItem(R.id.action_update_patient).setVisible(true);
+            menu.findItem(R.id.action_view_history).setVisible(true);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -191,6 +220,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             actionBar.setTitle(R.string.app_name);
             currentDay = 1;
             currentPatientId = -1;
+            LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
+            nurseLayout.setVisibility(View.INVISIBLE);
+            LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
+            otLayout.setVisibility(View.INVISIBLE);
+            LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+            ptLayout.setVisibility(View.INVISIBLE);
+
+            invalidateOptionsMenu();
+
             currentMrn = null;
             TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
             textView.setText("Day " + currentDay);
@@ -209,6 +247,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             actionBar.setTitle(R.string.app_name);
             currentDay = 1;
             currentPatientId = -1;
+            LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
+            nurseLayout.setVisibility(View.INVISIBLE);
+            LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
+            otLayout.setVisibility(View.INVISIBLE);
+            LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+            ptLayout.setVisibility(View.INVISIBLE);
+
+            invalidateOptionsMenu();
+
             currentMrn = null;
             TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
             textView.setText("Day " + currentDay);
@@ -377,6 +424,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         textView.setText("Day " + currentDay);
                         loadPatientData();
 
+                        LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
+                        nurseLayout.setVisibility(View.VISIBLE);
+                        LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
+                        otLayout.setVisibility(View.VISIBLE);
+                        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+                        ptLayout.setVisibility(View.VISIBLE);
+
+                        invalidateOptionsMenu();
+
+
                     }
                 }
         );
@@ -386,6 +443,20 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
 
 
+
+    }
+
+    public void selectPatientWarning(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Please select a patient first!")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
 
     }
 
