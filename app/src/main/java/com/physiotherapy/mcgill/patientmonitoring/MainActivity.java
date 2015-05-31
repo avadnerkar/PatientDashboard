@@ -3,6 +3,9 @@ package com.physiotherapy.mcgill.patientmonitoring;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -54,6 +57,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public int currentDay;
     public static String currentMrn;
     public String[] patientListString;
+    public int elapsedDays;
     //public boolean existingPatient;
 
     @Override
@@ -130,10 +134,42 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onResume() {
         super.onResume();
 
-        //updatePatientList();
+    }
 
-        //updateTextField();
+    public void getCurrentDay(){
+        Calendar calendar = Calendar.getInstance();
+        Date today = calendar.getTime();
 
+        if (currentPatientId != -1){
+            Cursor cursor = myDb.getRowPatient(currentPatientId);
+            String dateString = cursor.getString(DBAdapter.COL_ADMISSIONDATE);
+            SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+            Date admissionDate = today;
+            try{
+                admissionDate = form.parse(dateString);
+            } catch (java.text.ParseException e){
+                e.printStackTrace();
+
+            }
+
+            elapsedDays = getElapsedTimeInDays(admissionDate,today) + 1;
+
+            currentDay = elapsedDays;
+            TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
+            textView.setText("Day " + currentDay);
+            textView = (TextView) findViewById(R.id.dayNumberOt);
+            textView.setText("Day " + currentDay);
+            textView = (TextView) findViewById(R.id.dayNumberPt);
+            textView.setText("Day " + currentDay);
+
+
+        }
+    }
+
+    public int getElapsedTimeInDays(Date start,Date end){
+        int days=(int)(end.getTime()-start.getTime())/(1000*60*60*24);
+        return days;
     }
 
     public void updatePatientList() {
@@ -216,26 +252,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (id == R.id.clear_all) {
             myDb.deleteAllPatients();
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle(R.string.app_name);
-            currentDay = 1;
-            currentPatientId = -1;
-            LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
-            nurseLayout.setVisibility(View.INVISIBLE);
-            LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
-            otLayout.setVisibility(View.INVISIBLE);
-            LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
-            ptLayout.setVisibility(View.INVISIBLE);
-
-            invalidateOptionsMenu();
-
-            currentMrn = null;
-            TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberOt);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberPt);
-            textView.setText("Day " + currentDay);
+            clearPatientSelection();
             loadPatientData();
 
             return true;
@@ -243,34 +260,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (id == R.id.clear) {
             myDb.deleteCurrentPatient(currentPatientId);
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle(R.string.app_name);
-            currentDay = 1;
-            currentPatientId = -1;
-            LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
-            nurseLayout.setVisibility(View.INVISIBLE);
-            LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
-            otLayout.setVisibility(View.INVISIBLE);
-            LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
-            ptLayout.setVisibility(View.INVISIBLE);
-
-            invalidateOptionsMenu();
-
-            currentMrn = null;
-            TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberOt);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberPt);
-            textView.setText("Day " + currentDay);
+            clearPatientSelection();
             loadPatientData();
-
             return true;
         }
 
         if (item.getItemId() == R.id.patient_new) {
             //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             //existingPatient = false;
+            clearPatientSelection();
+
             Intent intent = new Intent(this, NewPatientFormActivity.class);
             //intent.putExtra("EXISTING_PATIENT",existingPatient);
             startActivity(intent);
@@ -317,6 +316,30 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearPatientSelection(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.app_name);
+        currentDay = 1;
+        currentPatientId = -1;
+        LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
+        nurseLayout.setVisibility(View.INVISIBLE);
+        LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
+        otLayout.setVisibility(View.INVISIBLE);
+        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+        ptLayout.setVisibility(View.INVISIBLE);
+
+        invalidateOptionsMenu();
+
+        currentMrn = null;
+        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
+        textView.setText("Day " + currentDay);
+        textView = (TextView) findViewById(R.id.dayNumberOt);
+        textView.setText("Day " + currentDay);
+        textView = (TextView) findViewById(R.id.dayNumberPt);
+        textView.setText("Day " + currentDay);
+        loadPatientData();
     }
 
     @Override
@@ -433,6 +456,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
                         invalidateOptionsMenu();
 
+                        getCurrentDay();
+
 
                     }
                 }
@@ -479,7 +504,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     public void incrementDayClicked(View view){
 
-        currentDay = Math.min(10, currentDay + 1);
+        currentDay = Math.min(99, currentDay + 1);
         TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
         textView.setText("Day " + currentDay);
 
