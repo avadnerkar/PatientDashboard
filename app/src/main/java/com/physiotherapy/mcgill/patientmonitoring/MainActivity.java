@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -28,7 +29,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opencsv.CSVWriter;
 
@@ -133,6 +136,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onResume() {
         super.onResume();
+        getCurrentDay();
 
     }
 
@@ -156,55 +160,35 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             elapsedDays = getElapsedTimeInDays(admissionDate,today) + 1;
 
             currentDay = elapsedDays;
-            TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberOt);
-            textView.setText("Day " + currentDay);
-            textView = (TextView) findViewById(R.id.dayNumberPt);
-            textView.setText("Day " + currentDay);
-
-
+            updateDayView();
+            loadPatientData();
+            cursor.close();
         }
+    }
+
+    public void updateDayView(){
+        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
+        textView.setText("Day " + currentDay);
+        textView = (TextView) findViewById(R.id.dayNumberOt);
+        textView.setText("Day " + currentDay);
+        textView = (TextView) findViewById(R.id.dayNumberPt);
+        textView.setText("Day " + currentDay);
+    }
+
+    public void scrollToTop(){
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollViewNurse);
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
+
+        scrollView = (ScrollView) findViewById(R.id.scrollViewOt);
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
+
+        scrollView = (ScrollView) findViewById(R.id.scrollViewPt);
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
     }
 
     public int getElapsedTimeInDays(Date start,Date end){
         int days=(int)(end.getTime()-start.getTime())/(1000*60*60*24);
         return days;
-    }
-
-    public void updatePatientList() {
-        Cursor cursor = myDb.getAllRowPatients();
-
-        patientListString = new String[cursor.getCount()];
-
-        if (cursor.moveToFirst()) {
-            do {
-                // Process the data:
-                int id = cursor.getInt(DBAdapter.COL_ROWID);
-                String firstName = cursor.getString(DBAdapter.COL_FIRSTNAME);
-                String lastName = cursor.getString(DBAdapter.COL_LASTNAME);
-
-                patientListString[cursor.getPosition()] = firstName + " " + lastName;
-
-            } while(cursor.moveToNext());
-        }
-
-
-
-        if (patientListString!=null) {
-
-            cursor.moveToLast();
-            currentPatientIndex = cursor.getPosition();
-
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle(patientListString[currentPatientIndex]);
-        }
-
-
-        // Close the cursor to avoid a resource leak.
-        cursor.close();
-        //TextView textView = (TextView) findViewById(R.id.tvFragNurse);
-        //textView.setText(message);
     }
 
 
@@ -333,12 +317,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         invalidateOptionsMenu();
 
         currentMrn = null;
-        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-        textView.setText("Day " + currentDay);
-        textView = (TextView) findViewById(R.id.dayNumberOt);
-        textView.setText("Day " + currentDay);
-        textView = (TextView) findViewById(R.id.dayNumberPt);
-        textView.setText("Day " + currentDay);
+        updateDayView();
         loadPatientData();
     }
 
@@ -432,20 +411,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         currentPatientIndex = which;
-                        //TextView textView = (TextView) findViewById(R.id.tvFragNurse);
-                        //textView.setText(patientListString[which]);
                         ActionBar actionBar = getSupportActionBar();
                         actionBar.setTitle(patientListString[which]);
                         currentPatientId = IDarray[which];
                         currentMrn = MRNarray[which];
-                        currentDay = 1;
-                        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-                        textView.setText("Day " + currentDay);
-                        textView = (TextView) findViewById(R.id.dayNumberOt);
-                        textView.setText("Day " + currentDay);
-                        textView = (TextView) findViewById(R.id.dayNumberPt);
-                        textView.setText("Day " + currentDay);
-                        loadPatientData();
 
                         LinearLayout nurseLayout = (LinearLayout) findViewById(R.id.nurseLinearLayout);
                         nurseLayout.setVisibility(View.VISIBLE);
@@ -457,7 +426,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         invalidateOptionsMenu();
 
                         getCurrentDay();
-
+                        updateDayView();
 
                     }
                 }
@@ -465,10 +434,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         builder.show();
 
-
-
-
-
+        cursor.close();
     }
 
     public void selectPatientWarning(){
@@ -488,15 +454,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void decrementDayClicked(View view){
 
         currentDay = Math.max(1, currentDay - 1);
-        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-        textView.setText("Day " + currentDay);
-
-        textView = (TextView) findViewById(R.id.dayNumberOt);
-        textView.setText("Day " + currentDay);
-
-        textView = (TextView) findViewById(R.id.dayNumberPt);
-        textView.setText("Day " + currentDay);
-
+        updateDayView();
         loadPatientData();
 
     }
@@ -505,15 +463,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void incrementDayClicked(View view){
 
         currentDay = Math.min(99, currentDay + 1);
-        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
-        textView.setText("Day " + currentDay);
-
-        textView = (TextView) findViewById(R.id.dayNumberOt);
-        textView.setText("Day " + currentDay);
-
-        textView = (TextView) findViewById(R.id.dayNumberPt);
-        textView.setText("Day " + currentDay);
-
+        updateDayView();
         loadPatientData();
 
     }
@@ -526,13 +476,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
             Cursor c = myDb.getAllRowData();
             writer.writeNext(c.getColumnNames());
-            do {
-                String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_PARENTID), c.getString(myDb.COL_MRN), c.getString(myDb.COL_DAY),
-                        c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_FOLEY), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
-                        c.getString(myDb.COL_NEGLECT), c.getString(myDb.COL_DIGITSPAN), c.getString(myDb.COL_MMSE), c.getString(myDb.COL_FOLLOWS), c.getString(myDb.COL_VERBAL), c.getString(myDb.COL_MOTIVATION), c.getString(myDb.COL_MOOD), c.getString(myDb.COL_PAIN), c.getString(myDb.COL_FATIGUE), c.getString(myDb.COL_SWALLOW), c.getString(myDb.COL_FEEDING), c.getString(myDb.COL_DRESSING), c.getString(myDb.COL_KITCHEN),
-                        c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING)};
-                writer.writeNext(arrStr);
-            } while(c.moveToNext());
+            if (c.moveToFirst()){
+                do {
+                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_PARENTID), c.getString(myDb.COL_MRN), c.getString(myDb.COL_DAY),
+                            c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_FOLEY), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
+                            c.getString(myDb.COL_NEGLECT), c.getString(myDb.COL_DIGITSPAN), c.getString(myDb.COL_MMSE), c.getString(myDb.COL_FOLLOWS), c.getString(myDb.COL_VERBAL), c.getString(myDb.COL_MOTIVATION), c.getString(myDb.COL_MOOD), c.getString(myDb.COL_PAIN), c.getString(myDb.COL_FATIGUE), c.getString(myDb.COL_SWALLOW), c.getString(myDb.COL_FEEDING), c.getString(myDb.COL_DRESSING), c.getString(myDb.COL_KITCHEN),
+                            c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING)};
+                    writer.writeNext(arrStr);
+                } while(c.moveToNext());
+            }
+
             writer.close();
             c.close();
 
@@ -547,19 +500,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
             Cursor c = myDb.getAllRowPatients();
             writer.writeNext(c.getColumnNames());
-            do {
-                String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER),
-                        c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LEGIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
-                        c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_LIMITATION), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
-                        c.getString(myDb.COL_FIRSTOT), c.getString(myDb.COL_TOTALOT), c.getString(myDb.COL_FIRSTSWALLOW), c.getString(myDb.COL_FIRSTPT), c.getString(myDb.COL_TOTALPT), c.getString(myDb.COL_FIRSTSLT), c.getString(myDb.COL_TOTALSLT)};
-                writer.writeNext(arrStr);
-            } while(c.moveToNext());
+            if (c.moveToFirst()){
+                do {
+                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER),
+                            c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LEGIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
+                            c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_LIMITATION), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
+                            c.getString(myDb.COL_FIRSTOT), c.getString(myDb.COL_TOTALOT), c.getString(myDb.COL_FIRSTSWALLOW), c.getString(myDb.COL_FIRSTPT), c.getString(myDb.COL_TOTALPT), c.getString(myDb.COL_FIRSTSLT), c.getString(myDb.COL_TOTALSLT)};
+                    writer.writeNext(arrStr);
+                } while(c.moveToNext());
+            }
+
             writer.close();
             c.close();
+
+            Context context = getApplicationContext();
+            CharSequence toastMessage = "Export successful";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, toastMessage, duration);
+            toast.show();
 
 
         } catch (IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
+            Context context = getApplicationContext();
+            CharSequence toastMessage = "Export failed";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, toastMessage, duration);
+            toast.show();
         }
     }
 
@@ -951,6 +918,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking);
         }
 
+        cursor.close();
     }
 
     public void loadPatientData(){
@@ -1055,6 +1023,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             EditText editText = (EditText) findViewById(R.id.aHours);
             editText.setText(cursor.getString(myDb.COL_HOURS));
+            editText.clearFocus();
 
             //OT
 
@@ -1088,6 +1057,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             editText = (EditText) findViewById(R.id.aMmse);
             editText.setText(cursor.getString(myDb.COL_MMSE));
+            editText.clearFocus();
 
             rg=(RadioGroup)findViewById(R.id.rgFollows);
             if (cursor.getString(myDb.COL_FOLLOWS).equals("None")){
@@ -1380,6 +1350,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             EditText editText = (EditText) findViewById(R.id.aHours);
             editText.setText("");
             editText.setHint(R.string.hoursHint);
+            editText.clearFocus();
 
 
             //OT
@@ -1392,6 +1363,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             editText = (EditText) findViewById(R.id.aMmse);
             editText.setText("");
             editText.setHint(R.string.mmseHint);
+            editText.clearFocus();
 
             rg=(RadioGroup)findViewById(R.id.rgFollows);
             rg.clearCheck();
@@ -1457,7 +1429,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         }
 
+        cursor.close();
 
+        scrollToTop();
     }
 
 }

@@ -246,6 +246,7 @@ public class NewPatientFormActivity extends ActionBarActivity {
             existingPatient = false;
         }
 
+        cursor.close();
 
         //}
     }
