@@ -193,7 +193,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public int getElapsedTimeInDays(Date start,Date end){
-        int days=(int)(end.getTime()-start.getTime())/(1000*60*60*24);
+        long daysLong=(long)(end.getTime()-start.getTime())/(1000*60*60*24);
+        int days = (int) (long) daysLong;
         return days;
     }
 
@@ -216,14 +217,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             menu.findItem(R.id.action_discharge).setVisible(false);
             menu.findItem(R.id.action_update_patient).setVisible(false);
             menu.findItem(R.id.action_update_patient).setVisible(false);
-            menu.findItem(R.id.action_view_history).setVisible(false);
+            //menu.findItem(R.id.action_view_history).setVisible(false);
         }
         else{
             menu.findItem(R.id.data_save).setVisible(true);
             menu.findItem(R.id.action_discharge).setVisible(true);
             menu.findItem(R.id.action_update_patient).setVisible(true);
             menu.findItem(R.id.action_update_patient).setVisible(true);
-            menu.findItem(R.id.action_view_history).setVisible(true);
+            //menu.findItem(R.id.action_view_history).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -320,81 +321,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         if (item.getItemId() == R.id.patient_new) {
-            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            //existingPatient = false;
-
-
-            if (saveToggle){
-                clearPatientSelection();
-
-                Intent intent = new Intent(this, NewPatientFormActivity.class);
-                //intent.putExtra("EXISTING_PATIENT",existingPatient);
-                startActivity(intent);
-            } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Save current day?");
-                builder.setMessage("The current day has not been saved.  Do you wish to save?");
-                builder.setCancelable(true);
-
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, close
-                        // current activity
-
-                        savePatientData();
-
-                        Context context = getApplicationContext();
-                        CharSequence toastMessage = "Day saved";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, toastMessage, duration);
-                        toast.show();
-
-                        clearPatientSelection();
-
-                        Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
-                        //intent.putExtra("EXISTING_PATIENT",existingPatient);
-                        startActivity(intent);
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        clearPatientSelection();
-
-                        Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
-                        //intent.putExtra("EXISTING_PATIENT",existingPatient);
-                        startActivity(intent);
-                        saveToggle = true;
-                    }
-                });
-
-                // create alert dialog
-                AlertDialog alertDialog = builder.create();
-
-                // show it
-                alertDialog.show();
-            }
-
+            saveCurrentDay(newPatientRunnable);
             return true;
-
-
         }
 
         if (item.getItemId() == R.id.action_update_patient) {
-            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            //existingPatient = true;
-            Intent intent = new Intent(this, NewPatientFormActivity.class);
-            //intent.putExtra("EXISTING_PATIENT",existingPatient);
-            startActivity(intent);
+            saveCurrentDay(updatePatientRunnable);
             return true;
         }
 
         if (item.getItemId() == R.id.action_discharge) {
-            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, DischargePatientForm.class);
-            startActivity(intent);
+            saveCurrentDay(dischargePatientRunnable);
             return true;
         }
 
@@ -406,7 +343,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         if (item.getItemId() == R.id.action_export_csv) {
-            exportToCSV();
+            saveCurrentDay(exportRunnable);
             return true;
         }
 
@@ -563,12 +500,55 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         cursor.close();
     }
 
-
-    public void decrementDayClicked(View view){
-        if (saveToggle){
+    Runnable decrementRunnable = new Runnable(){
+        public void run(){
             currentDay = Math.max(1, currentDay - 1);
             updateDayView();
             loadPatientData();
+        }
+    };
+
+    Runnable incrementRunnable = new Runnable(){
+        public void run(){
+            currentDay = Math.min(99, currentDay + 1);
+            updateDayView();
+            loadPatientData();
+        }
+    };
+
+    Runnable newPatientRunnable = new Runnable(){
+        public void run(){
+            clearPatientSelection();
+
+            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    Runnable updatePatientRunnable = new Runnable(){
+        public void run(){
+            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    Runnable dischargePatientRunnable = new Runnable(){
+        public void run(){
+            Intent intent = new Intent(MainActivity.this, DischargePatientForm.class);
+            startActivity(intent);
+        }
+    };
+
+    Runnable exportRunnable = new Runnable(){
+        public void run(){
+            exportToCSV();
+        }
+    };
+
+    public void saveCurrentDay(final Runnable r){
+
+        if (saveToggle){
+            r.run();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Save current day?");
@@ -588,9 +568,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     Toast toast = Toast.makeText(context, toastMessage, duration);
                     toast.show();
 
-                    currentDay = Math.max(1, currentDay - 1);
-                    updateDayView();
-                    loadPatientData();
+                    r.run();
                 }
             });
 
@@ -598,9 +576,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 public void onClick(DialogInterface dialog, int id) {
                     // if this button is clicked, just close
                     // the dialog box and do nothing
-                    currentDay = Math.max(1, currentDay - 1);
-                    updateDayView();
-                    loadPatientData();
+                    r.run();
                     saveToggle = true;
                 }
             });
@@ -611,60 +587,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             // show it
             alertDialog.show();
         }
+    }
 
-
+    public void decrementDayClicked(View view){
+        saveCurrentDay(decrementRunnable);
     }
 
 
     public void incrementDayClicked(View view){
-
-        if (saveToggle){
-            currentDay = Math.min(99, currentDay + 1);
-            updateDayView();
-            loadPatientData();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Save current day?");
-            builder.setMessage("The current day has not been saved.  Do you wish to save?");
-            builder.setCancelable(true);
-
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // if this button is clicked, close
-                    // current activity
-
-                    savePatientData();
-
-                    Context context = getApplicationContext();
-                    CharSequence toastMessage = "Day saved";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, toastMessage, duration);
-                    toast.show();
-
-                    currentDay = Math.min(99, currentDay + 1);
-                    updateDayView();
-                    loadPatientData();
-                }
-            });
-
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // if this button is clicked, just close
-                    // the dialog box and do nothing
-                    currentDay = Math.min(99, currentDay + 1);
-                    updateDayView();
-                    loadPatientData();
-                    saveToggle = true;
-                }
-            });
-
-            // create alert dialog
-            AlertDialog alertDialog = builder.create();
-
-            // show it
-            alertDialog.show();
-        }
-
+        saveCurrentDay(incrementRunnable);
     }
 
     public void exportToCSV() {
