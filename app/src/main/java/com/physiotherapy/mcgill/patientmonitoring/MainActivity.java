@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public static String currentMrn;
     public String[] patientListString;
     public int elapsedDays;
+    public boolean saveToggle = true;
     //public boolean existingPatient;
 
     @Override
@@ -138,6 +139,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onResume();
         getCurrentDay();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     public void getCurrentDay(){
@@ -235,29 +241,145 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         if (id == R.id.clear_all) {
-            myDb.deleteAllPatients();
-            clearPatientSelection();
-            loadPatientData();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Delete all patients?");
+            builder.setMessage("This cannot be undone");
+            builder.setCancelable(true);
+
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, close
+                    // current activity
+                    myDb.deleteAllPatients();
+                    clearPatientSelection();
+                    loadPatientData();
+                    Context context = getApplicationContext();
+                    CharSequence toastMessage = "All patients deleted";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, toastMessage, duration);
+                    toast.show();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, just close
+                    // the dialog box and do nothing
+                    dialog.cancel();
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = builder.create();
+
+            // show it
+            alertDialog.show();
 
             return true;
         }
 
         if (id == R.id.clear) {
-            myDb.deleteCurrentPatient(currentPatientId);
-            clearPatientSelection();
-            loadPatientData();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Delete current patient?");
+            builder.setMessage("This cannot be undone");
+            builder.setCancelable(true);
+
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, close
+                    // current activity
+                    myDb.deleteCurrentPatient(currentPatientId);
+                    clearPatientSelection();
+                    loadPatientData();
+                    Context context = getApplicationContext();
+                    CharSequence toastMessage = "Patient deleted";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, toastMessage, duration);
+                    toast.show();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, just close
+                    // the dialog box and do nothing
+                    dialog.cancel();
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = builder.create();
+
+            // show it
+            alertDialog.show();
+
+
             return true;
         }
 
         if (item.getItemId() == R.id.patient_new) {
             //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             //existingPatient = false;
-            clearPatientSelection();
 
-            Intent intent = new Intent(this, NewPatientFormActivity.class);
-            //intent.putExtra("EXISTING_PATIENT",existingPatient);
-            startActivity(intent);
+
+            if (saveToggle){
+                clearPatientSelection();
+
+                Intent intent = new Intent(this, NewPatientFormActivity.class);
+                //intent.putExtra("EXISTING_PATIENT",existingPatient);
+                startActivity(intent);
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Save current day?");
+                builder.setMessage("The current day has not been saved.  Do you wish to save?");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, close
+                        // current activity
+
+                        savePatientData();
+
+                        Context context = getApplicationContext();
+                        CharSequence toastMessage = "Day saved";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, toastMessage, duration);
+                        toast.show();
+
+                        clearPatientSelection();
+
+                        Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+                        //intent.putExtra("EXISTING_PATIENT",existingPatient);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        clearPatientSelection();
+
+                        Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+                        //intent.putExtra("EXISTING_PATIENT",existingPatient);
+                        startActivity(intent);
+                        saveToggle = true;
+                    }
+                });
+
+                // create alert dialog
+                AlertDialog alertDialog = builder.create();
+
+                // show it
+                alertDialog.show();
+            }
+
             return true;
+
+
         }
 
         if (item.getItemId() == R.id.action_update_patient) {
@@ -300,6 +422,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void switchSaveToggle(View view){
+        saveToggle = false;
     }
 
     public void clearPatientSelection(){
@@ -402,7 +528,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 String lastName = cursor.getString(DBAdapter.COL_LASTNAME);
                 IDarray[cursor.getPosition()] = id;
                 MRNarray[cursor.getPosition()] = mrn;
-                patientListString[cursor.getPosition()] = firstName + " " + lastName;
+                patientListString[cursor.getPosition()] = mrn + " " + firstName + " " + lastName;
 
             } while(cursor.moveToNext());
         }
@@ -437,34 +563,107 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         cursor.close();
     }
 
-    public void selectPatientWarning(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Please select a patient first!")
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //do things
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-
-    }
 
     public void decrementDayClicked(View view){
+        if (saveToggle){
+            currentDay = Math.max(1, currentDay - 1);
+            updateDayView();
+            loadPatientData();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save current day?");
+            builder.setMessage("The current day has not been saved.  Do you wish to save?");
+            builder.setCancelable(true);
 
-        currentDay = Math.max(1, currentDay - 1);
-        updateDayView();
-        loadPatientData();
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, close
+                    // current activity
+
+                    savePatientData();
+
+                    Context context = getApplicationContext();
+                    CharSequence toastMessage = "Day saved";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, toastMessage, duration);
+                    toast.show();
+
+                    currentDay = Math.max(1, currentDay - 1);
+                    updateDayView();
+                    loadPatientData();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, just close
+                    // the dialog box and do nothing
+                    currentDay = Math.max(1, currentDay - 1);
+                    updateDayView();
+                    loadPatientData();
+                    saveToggle = true;
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = builder.create();
+
+            // show it
+            alertDialog.show();
+        }
+
 
     }
 
 
     public void incrementDayClicked(View view){
 
-        currentDay = Math.min(99, currentDay + 1);
-        updateDayView();
-        loadPatientData();
+        if (saveToggle){
+            currentDay = Math.min(99, currentDay + 1);
+            updateDayView();
+            loadPatientData();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save current day?");
+            builder.setMessage("The current day has not been saved.  Do you wish to save?");
+            builder.setCancelable(true);
+
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, close
+                    // current activity
+
+                    savePatientData();
+
+                    Context context = getApplicationContext();
+                    CharSequence toastMessage = "Day saved";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, toastMessage, duration);
+                    toast.show();
+
+                    currentDay = Math.min(99, currentDay + 1);
+                    updateDayView();
+                    loadPatientData();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // if this button is clicked, just close
+                    // the dialog box and do nothing
+                    currentDay = Math.min(99, currentDay + 1);
+                    updateDayView();
+                    loadPatientData();
+                    saveToggle = true;
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = builder.create();
+
+            // show it
+            alertDialog.show();
+        }
 
     }
 
@@ -531,6 +730,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public void savePatientData(){
+        saveToggle = true;
         RadioGroup rg;
         int id;
         View radioButton;

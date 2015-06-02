@@ -89,11 +89,13 @@
                 <RadioButton android:id="@+id/radio_PegYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_PegNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -132,12 +134,14 @@
                     <RadioButton android:id="@+id/radio_NgYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/yes" />
+                        android:text="@string/yes"
+                        android:onClick="switchSaveToggle"/>
 
                     <RadioButton android:id="@+id/radio_NgNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/no" />
+                        android:text="@string/no"
+                        android:onClick="switchSaveToggle"/>
                 </RadioGroup>
 
 
@@ -176,11 +180,13 @@
                 <RadioButton android:id="@+id/radio_O2Yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes" />
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_O2No"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"/>
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -219,11 +225,13 @@
                 <RadioButton android:id="@+id/radio_IvYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_IvNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -262,11 +270,13 @@
                 <RadioButton android:id="@+id/radio_FoleyYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_FoleyNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
             </RadioGroup>
 
 
@@ -305,11 +315,13 @@
                 <RadioButton android:id="@+id/radio_CpapYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_CpapNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
             </RadioGroup>
 
 
@@ -348,11 +360,13 @@
                 <RadioButton android:id="@+id/radio_RestraintYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_RestraintNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
             </RadioGroup>
 
 
@@ -391,11 +405,13 @@
                 <RadioButton android:id="@+id/radio_BehaviouralYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_BehaviouralNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
             </RadioGroup>
 
 
@@ -434,11 +450,13 @@
                 <RadioButton android:id="@+id/radio_ConfusionYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_ConfusionNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
             </RadioGroup>
 
 
@@ -477,15 +495,18 @@
                 <RadioButton android:id="@+id/radio_BladderYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_BladderPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial"/>
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_BladderNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -522,7 +543,9 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:textSize="26sp"
                 android:hint="@string/hoursHint"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:onClick="switchSaveToggle"
+                />
 
 
 

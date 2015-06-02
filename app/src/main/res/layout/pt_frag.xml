@@ -88,15 +88,18 @@
                 <RadioButton android:id="@+id/radio_LeftArmNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LeftArmPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LeftArmFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -135,15 +138,18 @@
                 <RadioButton android:id="@+id/radio_RightArmNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_RightArmPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_RightArmFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -182,15 +188,18 @@
                 <RadioButton android:id="@+id/radio_MovementBedNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_MovementBedPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_MovementBedFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -229,15 +238,18 @@
                 <RadioButton android:id="@+id/radio_LieSitNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LieSitPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LieSitFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -276,15 +288,18 @@
                 <RadioButton android:id="@+id/radio_SittingNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_SittingPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_SittingFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -323,15 +338,18 @@
                 <RadioButton android:id="@+id/radio_SitStandNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_SitStandPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_SitStandFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -370,15 +388,18 @@
                 <RadioButton android:id="@+id/radio_StandNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_StandPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_StandFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -417,15 +438,18 @@
                 <RadioButton android:id="@+id/radio_LiftsUnaffectedNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LiftsUnaffectedPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LiftsUnaffectedFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -464,15 +488,18 @@
                 <RadioButton android:id="@+id/radio_LiftsAffectedNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LiftsAffectedPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_LiftsAffectedFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
@@ -511,15 +538,18 @@
                 <RadioButton android:id="@+id/radio_WalkingNone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/none"/>
+                    android:text="@string/none"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_WalkingPartial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial" />
+                    android:text="@string/partial"
+                    android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_WalkingFull"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/full" />
+                    android:text="@string/full"
+                    android:onClick="switchSaveToggle"/>
             </RadioGroup>
 
 
