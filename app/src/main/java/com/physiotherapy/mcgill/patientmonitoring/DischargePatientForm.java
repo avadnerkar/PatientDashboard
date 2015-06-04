@@ -37,8 +37,16 @@ public class DischargePatientForm extends ActionBarActivity {
             DatePicker datePicker;
             int day, month, year;
             EditText editText;
-            String dischargeDate, totalOT, totalPT, totalSLT;
+            String dischargeDate, totalOT, totalPT, totalSLT, mocaScore, customScore, customMax;
 
+            editText = (EditText) findViewById(R.id.mocaScore);
+            mocaScore = editText.getText().toString();
+
+            editText = (EditText) findViewById(R.id.customScore);
+            customScore = editText.getText().toString();
+
+            editText = (EditText) findViewById(R.id.customMax);
+            customMax = editText.getText().toString();
 
             datePicker = (DatePicker) findViewById(R.id.discharge_date_picker);
             day = datePicker.getDayOfMonth();
@@ -55,7 +63,7 @@ public class DischargePatientForm extends ActionBarActivity {
             editText = (EditText) findViewById(R.id.edit_totalSLT);
             totalSLT = editText.getText().toString();
 
-            MainActivity.myDb.dischargeRowPatient(MainActivity.currentPatientId, dischargeDate, totalOT, totalPT, totalSLT);
+            MainActivity.myDb.dischargeRowPatient(MainActivity.currentPatientId, dischargeDate, mocaScore, customScore, customMax, totalOT, totalPT, totalSLT);
 
             finish();
             return true;

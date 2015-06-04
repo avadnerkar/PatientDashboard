@@ -97,8 +97,29 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 rg.clearCheck();
             }
 
-            editText = (EditText) findViewById(R.id.edit_stroke_type);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_STROKETYPE));
+            rg=(RadioGroup)findViewById(R.id.rgFirstLanguage);
+            if (cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("French")){
+                rg.check(R.id.radio_FirstLanguageFrench);
+            } else if(cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("English")){
+                rg.check(R.id.radio_FirstLanguageEnglish);
+            } else if(cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("Other")){
+                rg.check(R.id.radio_FirstLanguageOther);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgStrokeType);
+            if (cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Ischemic")){
+                rg.check(R.id.radio_strokeTypeIschemic);
+            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic")){
+                rg.check(R.id.radio_strokeTypeHemorrhagic);
+            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic2")){
+                rg.check(R.id.radio_strokeTypeHemorrhagic2);
+            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic3")){
+                rg.check(R.id.radio_strokeTypeHemorrhagic3);
+            } else{
+                rg.clearCheck();
+            }
 
             rg=(RadioGroup)findViewById(R.id.rgFirstStroke);
             if (cursor.getString(MainActivity.myDb.COL_FIRSTSTROKE).equals("Yes")){
@@ -109,11 +130,11 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 rg.clearCheck();
             }
 
-            rg=(RadioGroup)findViewById(R.id.rgLegionSide);
-            if (cursor.getString(MainActivity.myDb.COL_LEGIONSIDE).equals("Left")){
-                rg.check(R.id.radio_LegionSideLeft);
-            } else if(cursor.getString(MainActivity.myDb.COL_LEGIONSIDE).equals("Right")){
-                rg.check(R.id.radio_LegionSideRight);
+            rg=(RadioGroup)findViewById(R.id.rgLesionSide);
+            if (cursor.getString(MainActivity.myDb.COL_LESIONSIDE).equals("Left")){
+                rg.check(R.id.radio_LesionSideLeft);
+            } else if(cursor.getString(MainActivity.myDb.COL_LESIONSIDE).equals("Right")){
+                rg.check(R.id.radio_LesionSideRight);
             } else{
                 rg.clearCheck();
             }
@@ -129,8 +150,16 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 rg.clearCheck();
             }
 
-            editText = (EditText) findViewById(R.id.edit_consciousness);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS));
+            rg=(RadioGroup)findViewById(R.id.rgConsciousness);
+            if (cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Alert")){
+                rg.check(R.id.radio_ConsciousnessAlert);
+            } else if(cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Drowsy")){
+                rg.check(R.id.radio_ConsciousnessDrowsy);
+            } else if(cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Normal")) {
+                rg.check(R.id.radio_ConsciousnessNormal);
+            } else{
+                rg.clearCheck();
+            }
 
             rg=(RadioGroup)findViewById(R.id.rgOrientation);
             if (cursor.getString(MainActivity.myDb.COL_ORIENTATION).equals("Oriented")){
@@ -204,14 +233,6 @@ public class NewPatientFormActivity extends ActionBarActivity {
             } else{
                 rg.clearCheck();
             }
-            rg=(RadioGroup)findViewById(R.id.rgLimitation);
-            if (cursor.getString(MainActivity.myDb.COL_LIMITATION).equals("Yes")){
-                rg.check(R.id.radio_LimitationYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_LIMITATION).equals("No")){
-                rg.check(R.id.radio_LimitationNo);
-            } else{
-                rg.clearCheck();
-            }
             rg=(RadioGroup)findViewById(R.id.rgMotivationAdmit);
             if (cursor.getString(MainActivity.myDb.COL_MOTIVATIONADMIT).equals("Yes")){
                 rg.check(R.id.radio_MotivationAdmitYes);
@@ -281,10 +302,11 @@ public class NewPatientFormActivity extends ActionBarActivity {
             int day, month, year;
             EditText editText;
             TextView textView;
-            String firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender, 
-                    strokeType, firstStroke, legionSide, hemiplegiaSide, 
+            String firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender, firstLanguage,
+                    mocaScore, customScore, customMax,
+                    strokeType, firstStroke, lesionSide, hemiplegiaSide,
                     consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia, 
-                    peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition, 
+                    peg, ng, foley, fallRisk, motivation, otherHistory, cognition,
                     dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT;
 
             editText = (EditText) findViewById(R.id.edit_first_name);
@@ -316,8 +338,27 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 patientGender = "";
             }
 
-            editText = (EditText) findViewById(R.id.edit_stroke_type);
-            strokeType = editText.getText().toString();
+            rg=(RadioGroup)findViewById(R.id.rgFirstLanguage);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                firstLanguage = (String) btn.getText();
+            } else{
+                firstLanguage = "";
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgStrokeType);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                strokeType = (String) btn.getText();
+            } else{
+                strokeType = "";
+            }
 
             rg=(RadioGroup)findViewById(R.id.rgFirstStroke);
             idButton = rg.getCheckedRadioButtonId();
@@ -330,15 +371,15 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 firstStroke = "";
             }
 
-            rg=(RadioGroup)findViewById(R.id.rgLegionSide);
+            rg=(RadioGroup)findViewById(R.id.rgLesionSide);
             idButton = rg.getCheckedRadioButtonId();
             if (idButton!=-1) {
                 radioButton = rg.findViewById(idButton);
                 radioId = rg.indexOfChild(radioButton);
                 btn = (RadioButton) rg.getChildAt(radioId);
-                legionSide = (String) btn.getText();
+                lesionSide = (String) btn.getText();
             } else{
-                legionSide = "";
+                lesionSide = "";
             }
 
             rg=(RadioGroup)findViewById(R.id.rgHemiplegiaSide);
@@ -352,8 +393,16 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 hemiplegiaSide = "";
             }
 
-            editText = (EditText) findViewById(R.id.edit_consciousness);
-            consciousness = editText.getText().toString();
+            rg=(RadioGroup)findViewById(R.id.rgConsciousness);
+            idButton = rg.getCheckedRadioButtonId();
+            if (idButton!=-1) {
+                radioButton = rg.findViewById(idButton);
+                radioId = rg.indexOfChild(radioButton);
+                btn = (RadioButton) rg.getChildAt(radioId);
+                consciousness = (String) btn.getText();
+            } else{
+                consciousness = "";
+            }
 
             rg=(RadioGroup)findViewById(R.id.rgOrientation);
             idButton = rg.getCheckedRadioButtonId();
@@ -449,16 +498,6 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 fallRisk = "";
             }
 
-            rg=(RadioGroup)findViewById(R.id.rgLimitation);
-            idButton = rg.getCheckedRadioButtonId();
-            if (idButton!=-1) {
-                radioButton = rg.findViewById(idButton);
-                radioId = rg.indexOfChild(radioButton);
-                btn = (RadioButton) rg.getChildAt(radioId);
-                limitation = (String) btn.getText();
-            } else{
-                limitation = "";
-            }
 
             rg=(RadioGroup)findViewById(R.id.rgMotivationAdmit);
             idButton = rg.getCheckedRadioButtonId();
@@ -492,20 +531,25 @@ public class NewPatientFormActivity extends ActionBarActivity {
             
             discharged = "No";
             dischargeDate = "";
+            mocaScore = "";
+            customScore = "";
+            customMax = "";
             totalOT = "";
             totalPT = "";
             totalSLT = "";
 
             if (existingPatient){
-                MainActivity.myDb.updateRowPatient(MainActivity.currentPatientId, firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender,
-                        strokeType, firstStroke, legionSide, hemiplegiaSide, consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
-                        peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition,
+                MainActivity.myDb.updateRowPatient(MainActivity.currentPatientId, firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender, firstLanguage,
+                        mocaScore, customScore, customMax,
+                        strokeType, firstStroke, lesionSide, hemiplegiaSide, consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
+                        peg, ng, foley, fallRisk, motivation, otherHistory, cognition,
                         dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT);
 
             } else{
-                MainActivity.myDb.insertRowPatient(firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender,
-                        strokeType, firstStroke, legionSide, hemiplegiaSide, consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
-                        peg, ng, foley, fallRisk, limitation, motivation, otherHistory, cognition,
+                MainActivity.myDb.insertRowPatient(firstName, lastName, hospitalId, admissionDate, discharged, dischargeDate, patientAge, patientGender, firstLanguage,
+                        mocaScore, customScore, customMax,
+                        strokeType, firstStroke, lesionSide, hemiplegiaSide, consciousness, orientation, language, visualImpairment, hearingAid, hearingAssessed, aphasia,
+                        peg, ng, foley, fallRisk, motivation, otherHistory, cognition,
                         dateFirstOT, totalOT, dateFirstSwallow, dateFirstPT, totalPT, dateFirstSLT, totalSLT);
 
             }

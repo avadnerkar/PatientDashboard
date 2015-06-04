@@ -203,8 +203,7 @@
                 android:textSize="26sp"
                 android:hint="@string/mmseHint"
                 android:inputType="number"
-                android:onClick="switchSaveToggle"
-                android:focusableInTouchMode="false"/>
+                android:onClick="switchSaveToggle"/>
 
 
 

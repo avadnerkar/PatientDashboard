@@ -28,9 +28,10 @@
     <string name="patient_ID">MRN number</string>
     <string name="patient_age">Patient age</string>
     <string name="patient_gender">Patient gender</string>
+    <string name="first_language">First language</string>
     <string name="stroke_type">Stroke type</string>
     <string name="first_stroke">Is this a first stroke?</string>
-    <string name="legion_side">Side of legion</string>
+    <string name="lesion_side">Side of lesion</string>
     <string name="hemiplegia_side">Side of hemiplegia</string>
     <string name="consciousness">Level of consciousness</string>
     <string name="orientation">Patient orientation</string>
@@ -40,7 +41,6 @@
     <string name="hearing_assessed">Hearing assessed</string>
     <string name="aphasia">Aphasia</string>
     <string name="fall_risk">Fall risk</string>
-    <string name="limitation">Limitation</string>
     <string name="other">Other history</string>
     <string name="cognition">Cognition</string>
     <string name="dateFirstOT">Date of first OT assessment</string>
@@ -52,19 +52,25 @@
     <string name="totalPT">Total PT sessions received</string>
     <string name="totalSLT">Total SLT sessions received</string>
 
+    <string name="text_moca">MOCA</string>
+    <string name="text_score">Score:</string>
+    <string name="text_out_of">Out of:</string>
+    <string name="text_custom">Custom assessment</string>
+
+
 
     <!-- Nurse strings -->
-    <string name="qPeg">PEG</string>
+    <string name="qPeg">PEG/RIG</string>
     <string name="qNg">NG tube</string>
     <string name="qO2">O2</string>
-    <string name="qIv">IV</string>
-    <string name="qFoley">Foley</string>
+    <string name="qIv">Venous line</string>
     <string name="qCpap">CPAP</string>
     <string name="qRestraint">Restraint</string>
+    <string name="qBedbars">Bed bars</string>
     <string name="qBehavioural">Behavioural issue</string>
     <string name="qConfusion">Confusion</string>
-    <string name="qBladder">Bladder control</string>
-    <string name="qHours">Estimated hours out of bed</string>
+    <string name="qBladder">Bladder</string>
+    <string name="qHours">Hours out of bed (day shift)</string>
     <string name="hoursHint">Enter number of hours</string>
 
 
@@ -117,6 +123,22 @@
     <string name="right">Right</string>
     <string name="oriented">Oriented</string>
     <string name="disoriented">Disoriented</string>
+    <string name="ischemic">Ischemic</string>
+    <string name="hemorrhagic">Hemorrhagic</string>
+    <string name="hemorrhagic2">Hemorrhagic2</string>
+    <string name="hemorrhagic3">Hemorrhagic3</string>
+    <string name="alert">Alert</string>
+    <string name="drowsy">Drowsy</string>
+    <string name="normal">Normal</string>
+    <string name="french">French</string>
+    <string name="english">English</string>
+    <string name="otherAnswer">Other</string>
+    <string name="foley">Foley</string>
+    <string name="diaper">Diaper</string>
+    <string name="bedpan">Bedpan</string>
+    <string name="toilet">Toilet</string>
+
+
 
     <string name="dayNumber">Day 1</string>
     <string name="title_activity_view_history">ViewHistory</string>

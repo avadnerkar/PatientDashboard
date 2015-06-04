@@ -54,47 +54,80 @@
             android:layout_height="wrap_content"
             android:inputType="number"/>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="0dp"
-            android:weightSum="1">
+            android:gravity="center_vertical"
+            android:text="@string/patient_gender"/>
 
-
-            <TextView
-                android:layout_width="match_parent"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_GenderFemale"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="@string/patient_gender"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgGender"
-                android:layout_width="match_parent"
+                android:text="@string/female"/>
+            <RadioButton android:id="@+id/radio_GenderMale"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_GenderFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/female"/>
-                <RadioButton android:id="@+id/radio_GenderMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/male" />
-            </RadioGroup>
+                android:text="@string/male" />
+        </RadioGroup>
 
+        <TextView android:text="@string/first_language" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgFirstLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_FirstLanguageFrench"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/french"/>
+            <RadioButton android:id="@+id/radio_FirstLanguageEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/english"/>
+            <RadioButton android:id="@+id/radio_FirstLanguageOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/otherAnswer" />
+        </RadioGroup>
 
-        </LinearLayout>
 
         <TextView android:text="@string/stroke_type" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/edit_stroke_type"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgStrokeType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_strokeTypeIschemic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ischemic"/>
+            <RadioButton android:id="@+id/radio_strokeTypeHemorrhagic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hemorrhagic" />
+            <RadioButton android:id="@+id/radio_strokeTypeHemorrhagic2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hemorrhagic2" />
+            <RadioButton android:id="@+id/radio_strokeTypeHemorrhagic3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hemorrhagic3" />
+        </RadioGroup>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -122,19 +155,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="@string/legion_side"/>
+            android:text="@string/lesion_side"/>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/rgLegionSide"
+            android:id="@+id/rgLesionSide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_LegionSideLeft"
+            <RadioButton android:id="@+id/radio_LesionSideLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/left"/>
-            <RadioButton android:id="@+id/radio_LegionSideRight"
+            <RadioButton android:id="@+id/radio_LesionSideRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/right" />
@@ -169,10 +202,25 @@
         <TextView android:text="@string/consciousness" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/edit_consciousness"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rgConsciousness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_ConsciousnessAlert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alert"/>
+            <RadioButton android:id="@+id/radio_ConsciousnessDrowsy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/drowsy"/>
+            <RadioButton android:id="@+id/radio_ConsciousnessNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/normal" />
+        </RadioGroup>
 
         <TextView
             android:layout_width="match_parent"
@@ -326,7 +374,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="@string/qFoley"/>
+            android:text="@string/foley"/>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/rgFoleyAdmit"
@@ -366,27 +414,6 @@
                 android:text="@string/no" />
         </RadioGroup>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/limitation"/>
-
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/rgLimitation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_LimitationYes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/yes"/>
-            <RadioButton android:id="@+id/radio_LimitationNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no" />
-        </RadioGroup>
 
         <TextView
             android:layout_width="match_parent"

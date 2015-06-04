@@ -240,50 +240,6 @@
 
         <!-- End question block -->
 
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qFoley"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qFoley"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgFoley"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_FoleyYes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yes"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_FoleyNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no"
-                    android:onClick="switchSaveToggle" />
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
 
         <!-- Question block -->
 
@@ -363,6 +319,51 @@
                     android:text="@string/yes"
                     android:onClick="switchSaveToggle"/>
                 <RadioButton android:id="@+id/radio_RestraintNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    android:onClick="switchSaveToggle" />
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <!-- End question block -->
+
+        <!-- Question block -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:layout_margin="1dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/qBedbars"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="26sp"
+                android:text="@string/qBedbars"
+                android:layout_weight="0.5"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgBedbars"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_BedbarsYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    android:onClick="switchSaveToggle"/>
+                <RadioButton android:id="@+id/radio_BedbarsNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
@@ -492,20 +493,25 @@
                 android:layout_weight="0.5"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_BladderYes"
+                <RadioButton android:id="@+id/radio_BladderFoley"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"
+                    android:text="@string/foley"
                     android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_BladderPartial"
+                <RadioButton android:id="@+id/radio_BladderDiaper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/partial"
+                    android:text="@string/diaper"
                     android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_BladderNo"
+                <RadioButton android:id="@+id/radio_BladderBedpan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"
+                    android:text="@string/bedpan"
+                    android:onClick="switchSaveToggle"/>
+                <RadioButton android:id="@+id/radio_BladderToilet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/toilet"
                     android:onClick="switchSaveToggle"/>
             </RadioGroup>
 

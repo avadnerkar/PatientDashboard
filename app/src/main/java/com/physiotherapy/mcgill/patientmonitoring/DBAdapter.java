@@ -37,10 +37,15 @@ public class DBAdapter {
 	public static final String KEY_DISCHARGEDATE = "DischargeDate";
 	public static final String KEY_PATIENTAGE = "PatientAge";
 	public static final String KEY_PATIENTGENDER = "PatientGender";
+	public static final String KEY_FIRSTLANGUAGE = "FirstLanguage";
+
+	public static final String KEY_MOCASCORE = "MOCAscore";
+	public static final String KEY_CUSTOMSCORE = "CustomScore";
+	public static final String KEY_CUSTOMMAX = "CustomMaxScore";
 
 	public static final String KEY_STROKETYPE = "StrokeType";
 	public static final String KEY_FIRSTSTROKE = "FirstStroke";
-	public static final String KEY_LEGIONSIDE = "LegionSide";
+	public static final String KEY_LESIONSIDE = "LesionSide";
 	public static final String KEY_HEMIPLEGIASIDE = "HemiplegiaSide";
 	public static final String KEY_CONSCIOUSNESS = "Consciousness";
 	public static final String KEY_ORIENTATION = "Orientation";
@@ -54,7 +59,6 @@ public class DBAdapter {
 	public static final String KEY_NGADMIT = "NgAdmission";
 	public static final String KEY_FOLEYADMIT = "FoleyAdmission";
 	public static final String KEY_FALLRISK = "FallRisk";
-	public static final String KEY_LIMITATION = "Limitation";
 	public static final String KEY_MOTIVATIONADMIT = "MotivationAdmission";
 	public static final String KEY_OTHER = "OtherHistory";
 	public static final String KEY_COGNITION = "Cognition";
@@ -77,9 +81,9 @@ public class DBAdapter {
 	public static final String KEY_NG = "NG";
 	public static final String KEY_O2 = "O2";
 	public static final String KEY_IV = "IV";
-	public static final String KEY_FOLEY = "FOLEY";
 	public static final String KEY_CPAP = "CPAP";
 	public static final String KEY_RESTRAINT = "Restraint";
+	public static final String KEY_BEDBARS = "BedBars";
 	public static final String KEY_BEHAVIOURAL = "BehaviouralIssue";
 	public static final String KEY_CONFUSION = "Confusion";
 	public static final String KEY_BLADDER = "BladderControl";
@@ -111,7 +115,12 @@ public class DBAdapter {
 	public static final String KEY_LIFTSUNAFFECTED = "LiftsUnaffectedLegStanding";
 	public static final String KEY_LIFTSAFFECTED = "LiftsAffectedLegStanding";
 	public static final String KEY_WALKING = "Walking";
-	
+
+	//Scores
+	public static final String KEY_BARTHEL = "EstBarthelScore";
+	public static final String KEY_BERG = "EstBergScore";
+
+
 	// TODO: Setup your patient field numbers here (0 = KEY_ROWID, 1=...)
 	public static final int COL_FIRSTNAME = 1;
 	public static final int COL_LASTNAME = 2;
@@ -121,35 +130,39 @@ public class DBAdapter {
 	public static final int COL_DISCHARGEDATE = 6;
 	public static final int COL_PATIENTAGE = 7;
 	public static final int COL_PATIENTGENDER = 8;
+	public static final int COL_FIRSTLANGUAGE = 9;
 
-	public static final int COL_STROKETYPE = 9;
-	public static final int COL_FIRSTSTROKE = 10;
-	public static final int COL_LEGIONSIDE = 11;
-	public static final int COL_HEMIPLEGIASIDE = 12;
-	public static final int COL_CONSCIOUSNESS = 13;
-	public static final int COL_ORIENTATION = 14;
-	public static final int COL_LANGUAGE = 15;
-	public static final int COL_VISUAL = 16;
-	public static final int COL_HEARINGAID = 17;
-	public static final int COL_HEARINGASSESSED = 18;
-	public static final int COL_APHASIA = 19;
+	public static final int COL_MOCASCORE = 10;
+	public static final int COL_CUSTOMSCORE = 11;
+	public static final int COL_CUSTOMMAX = 12;
 
-	public static final int COL_PEGADMIT = 20;
-	public static final int COL_NGADMIT = 21;
-	public static final int COL_FOLEYADMIT = 22;
-	public static final int COL_FALLRISK = 23;
-	public static final int COL_LIMITATION = 24;
-	public static final int COL_MOTIVATIONADMIT = 25;
-	public static final int COL_OTHER = 26;
-	public static final int COL_COGNITION = 27;
+	public static final int COL_STROKETYPE = 13;
+	public static final int COL_FIRSTSTROKE = 14;
+	public static final int COL_LESIONSIDE = 15;
+	public static final int COL_HEMIPLEGIASIDE = 16;
+	public static final int COL_CONSCIOUSNESS = 17;
+	public static final int COL_ORIENTATION = 18;
+	public static final int COL_LANGUAGE = 19;
+	public static final int COL_VISUAL = 20;
+	public static final int COL_HEARINGAID = 21;
+	public static final int COL_HEARINGASSESSED = 22;
+	public static final int COL_APHASIA = 23;
 
-	public static final int COL_FIRSTOT = 28;
-	public static final int COL_TOTALOT = 29;
-	public static final int COL_FIRSTSWALLOW = 30;
-	public static final int COL_FIRSTPT = 31;
-	public static final int COL_TOTALPT = 32;
-	public static final int COL_FIRSTSLT = 33;
-	public static final int COL_TOTALSLT = 34;
+	public static final int COL_PEGADMIT = 24;
+	public static final int COL_NGADMIT = 25;
+	public static final int COL_FOLEYADMIT = 26;
+	public static final int COL_FALLRISK = 27;
+	public static final int COL_MOTIVATIONADMIT = 28;
+	public static final int COL_OTHER = 29;
+	public static final int COL_COGNITION = 30;
+
+	public static final int COL_FIRSTOT = 31;
+	public static final int COL_TOTALOT = 32;
+	public static final int COL_FIRSTSWALLOW = 33;
+	public static final int COL_FIRSTPT = 34;
+	public static final int COL_TOTALPT = 35;
+	public static final int COL_FIRSTSLT = 36;
+	public static final int COL_TOTALSLT = 37;
 
 	// TODO: Setup your data field numbers here (0 = KEY_ROWID, 1=...)
 	public static final int COL_PARENTID = 1;
@@ -161,9 +174,9 @@ public class DBAdapter {
 	public static final int COL_NG = 5;
 	public static final int COL_O2 = 6;
 	public static final int COL_IV = 7;
-	public static final int COL_FOLEY = 8;
-	public static final int COL_CPAP = 9;
-	public static final int COL_RESTRAINT = 10;
+	public static final int COL_CPAP = 8;
+	public static final int COL_RESTRAINT = 9;
+	public static final int COL_BEDBARS = 10;
 	public static final int COL_BEHAVIOURAL = 11;
 	public static final int COL_CONFUSION = 12;
 	public static final int COL_BLADDER = 13;
@@ -196,18 +209,24 @@ public class DBAdapter {
 	public static final int COL_LIFTSAFFECTED = 36;
 	public static final int COL_WALKING = 37;
 
+	//Score
+	public static final int COL_BARTHEL = 38;
+	public static final int COL_BERG = 39;
+
 
 	// TODO: Set all keys for patient table
-	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE, KEY_DISCHARGED, KEY_DISCHARGEDATE, KEY_PATIENTAGE, KEY_PATIENTGENDER,
-			KEY_STROKETYPE, KEY_FIRSTSTROKE, KEY_LEGIONSIDE, KEY_HEMIPLEGIASIDE, KEY_CONSCIOUSNESS, KEY_ORIENTATION, KEY_LANGUAGE, KEY_VISUAL, KEY_HEARINGAID, KEY_HEARINGASSESSED, KEY_APHASIA,
-			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_LIMITATION, KEY_MOTIVATIONADMIT, KEY_OTHER, KEY_COGNITION,
+	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE, KEY_DISCHARGED, KEY_DISCHARGEDATE, KEY_PATIENTAGE, KEY_PATIENTGENDER, KEY_FIRSTLANGUAGE,
+			KEY_MOCASCORE, KEY_CUSTOMSCORE, KEY_CUSTOMMAX,
+			KEY_STROKETYPE, KEY_FIRSTSTROKE, KEY_LESIONSIDE, KEY_HEMIPLEGIASIDE, KEY_CONSCIOUSNESS, KEY_ORIENTATION, KEY_LANGUAGE, KEY_VISUAL, KEY_HEARINGAID, KEY_HEARINGASSESSED, KEY_APHASIA,
+			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_MOTIVATIONADMIT, KEY_OTHER, KEY_COGNITION,
 			KEY_FIRSTOT, KEY_TOTALOT, KEY_FIRSTSWALLOW, KEY_FIRSTPT, KEY_TOTALPT, KEY_FIRSTSLT, KEY_TOTALSLT};
 
 	//TODO: Set all keys for data table
 	public static final String[] ALL_DATA_KEYS = new String[] {KEY_ROWID, KEY_PARENTID, KEY_MRN, KEY_DAY,
-			KEY_PEG, KEY_NG, KEY_O2, KEY_IV, KEY_FOLEY, KEY_CPAP, KEY_RESTRAINT, KEY_BEHAVIOURAL, KEY_CONFUSION, KEY_BLADDER, KEY_HOURS,
+			KEY_PEG, KEY_NG, KEY_O2, KEY_IV, KEY_CPAP, KEY_RESTRAINT, KEY_BEDBARS, KEY_BEHAVIOURAL, KEY_CONFUSION, KEY_BLADDER, KEY_HOURS,
 			KEY_NEGLECT, KEY_DIGITSPAN, KEY_MMSE, KEY_FOLLOWS, KEY_VERBAL, KEY_MOTIVATION, KEY_MOOD, KEY_PAIN, KEY_FATIGUE, KEY_SWALLOW, KEY_FEEDING, KEY_DRESSING, KEY_KITCHEN,
-			KEY_LEFTARM, KEY_RIGHTARM, KEY_MOVEMENTBED, KEY_LIESIT, KEY_SITTING, KEY_SITSTAND, KEY_STAND, KEY_LIFTSUNAFFECTED, KEY_LIFTSAFFECTED, KEY_WALKING};
+			KEY_LEFTARM, KEY_RIGHTARM, KEY_MOVEMENTBED, KEY_LIESIT, KEY_SITTING, KEY_SITSTAND, KEY_STAND, KEY_LIFTSUNAFFECTED, KEY_LIFTSAFFECTED, KEY_WALKING,
+			KEY_BARTHEL, KEY_BERG};
 	
 	// DB info: its name, and the tables we are using
 	public static final String DATABASE_NAME = "PatientMonitoringDb";
@@ -215,7 +234,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 16;
+	public static final int DATABASE_VERSION = 18;
 
 
 	//Table Create Statements
@@ -243,10 +262,15 @@ public class DBAdapter {
 			+ KEY_DISCHARGEDATE + " text not null, "
 			+ KEY_PATIENTAGE + " text not null, "
 			+ KEY_PATIENTGENDER + " text not null, "
+			+ KEY_FIRSTLANGUAGE + " text not null, "
+
+			+ KEY_MOCASCORE + " text not null, "
+			+ KEY_CUSTOMSCORE + " text not null, "
+			+ KEY_CUSTOMMAX + " text not null, "
 
 			+ KEY_STROKETYPE + " text not null, "
 			+ KEY_FIRSTSTROKE + " text not null, "
-			+ KEY_LEGIONSIDE + " text not null, "
+			+ KEY_LESIONSIDE + " text not null, "
 			+ KEY_HEMIPLEGIASIDE + " text not null, "
 			+ KEY_CONSCIOUSNESS + " text not null, "
 			+ KEY_ORIENTATION + " text not null, "
@@ -260,7 +284,6 @@ public class DBAdapter {
 			+ KEY_NGADMIT + " text not null, "
 			+ KEY_FOLEYADMIT + " text not null, "
 			+ KEY_FALLRISK + " text not null, "
-			+ KEY_LIMITATION + " text not null, "
 			+ KEY_MOTIVATIONADMIT + " text not null, "
 			+ KEY_OTHER + " text not null, "
 			+ KEY_COGNITION + " text not null, "
@@ -297,9 +320,9 @@ public class DBAdapter {
 			+ KEY_NG + " text not null, "
 			+ KEY_O2 + " text not null, "
 			+ KEY_IV + " text not null, "
-			+ KEY_FOLEY + " text not null, "
 			+ KEY_CPAP + " text not null, "
 			+ KEY_RESTRAINT + " text not null, "
+			+ KEY_BEDBARS + " text not null, "
 			+ KEY_BEHAVIOURAL + " text not null, "
 			+ KEY_CONFUSION + " text not null, "
 			+ KEY_BLADDER + " text not null, "
@@ -328,7 +351,10 @@ public class DBAdapter {
 			+ KEY_STAND + " text not null, "
 			+ KEY_LIFTSUNAFFECTED + " text not null, "
 			+ KEY_LIFTSAFFECTED + " text not null, "
-			+ KEY_WALKING + " text not null"
+			+ KEY_WALKING + " text not null, "
+
+			+ KEY_BARTHEL + " text not null, "
+			+ KEY_BERG + " text not null"
 
 					// Rest  of creation:
 			+ ");";
@@ -364,9 +390,10 @@ public class DBAdapter {
 	/////////////////////////////////////////////////////////////////////
 	
 	// Add a new set of values to the database.
-	public long insertRowPatient(String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender,
-								 String strokeType, String firstStroke, String legionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
-								 String peg, String ng, String foley, String fallRisk, String limitation, String motivation, String otherHistory, String cognition,
+	public long insertRowPatient(String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender, String firstLanguage,
+								 String mocaScore, String customScore, String customMax,
+								 String strokeType, String firstStroke, String lesionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
+								 String peg, String ng, String foley, String fallRisk, String motivation, String otherHistory, String cognition,
 								 String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
 		/*
 		 * CHANGE 3:
@@ -383,10 +410,15 @@ public class DBAdapter {
 		initialValues.put(KEY_DISCHARGEDATE, dischargeDate);
 		initialValues.put(KEY_PATIENTAGE, patientAge);
 		initialValues.put(KEY_PATIENTGENDER, patientGender);
+		initialValues.put(KEY_FIRSTLANGUAGE, firstLanguage);
+
+		initialValues.put(KEY_MOCASCORE, mocaScore);
+		initialValues.put(KEY_CUSTOMSCORE, customScore);
+		initialValues.put(KEY_CUSTOMMAX, customMax);
 
 		initialValues.put(KEY_STROKETYPE, strokeType);
 		initialValues.put(KEY_FIRSTSTROKE, firstStroke);
-		initialValues.put(KEY_LEGIONSIDE, legionSide);
+		initialValues.put(KEY_LESIONSIDE, lesionSide);
 		initialValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
 		initialValues.put(KEY_CONSCIOUSNESS, consciousness);
 		initialValues.put(KEY_ORIENTATION, orientation);
@@ -400,7 +432,6 @@ public class DBAdapter {
 		initialValues.put(KEY_NGADMIT, ng);
 		initialValues.put(KEY_FOLEYADMIT, foley);
 		initialValues.put(KEY_FALLRISK, fallRisk);
-		initialValues.put(KEY_LIMITATION, limitation);
 		initialValues.put(KEY_MOTIVATIONADMIT, motivation);
 		initialValues.put(KEY_OTHER, otherHistory);
 		initialValues.put(KEY_COGNITION, cognition);
@@ -483,9 +514,10 @@ public class DBAdapter {
 
 
 	// Change an existing row to be equal to new data.
-	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender,
-									String strokeType, String firstStroke, String legionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
-									String peg, String ng, String foley, String fallRisk, String limitation, String motivation, String otherHistory, String cognition,
+	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender, String firstLanguage,
+									String mocaScore, String customScore, String customMax,
+									String strokeType, String firstStroke, String lesionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
+									String peg, String ng, String foley, String fallRisk, String motivation, String otherHistory, String cognition,
 									String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
 		String where = KEY_ROWID + "=" + rowId;
 
@@ -504,10 +536,15 @@ public class DBAdapter {
 		newValues.put(KEY_DISCHARGEDATE, dischargeDate);
 		newValues.put(KEY_PATIENTAGE, patientAge);
 		newValues.put(KEY_PATIENTGENDER, patientGender);
+		newValues.put(KEY_FIRSTLANGUAGE, firstLanguage);
+
+		newValues.put(KEY_MOCASCORE, mocaScore);
+		newValues.put(KEY_CUSTOMSCORE, customScore);
+		newValues.put(KEY_CUSTOMMAX, customMax);
 
 		newValues.put(KEY_STROKETYPE, strokeType);
 		newValues.put(KEY_FIRSTSTROKE, firstStroke);
-		newValues.put(KEY_LEGIONSIDE, legionSide);
+		newValues.put(KEY_LESIONSIDE, lesionSide);
 		newValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
 		newValues.put(KEY_CONSCIOUSNESS, consciousness);
 		newValues.put(KEY_ORIENTATION, orientation);
@@ -521,7 +558,6 @@ public class DBAdapter {
 		newValues.put(KEY_NGADMIT, ng);
 		newValues.put(KEY_FOLEYADMIT, foley);
 		newValues.put(KEY_FALLRISK, fallRisk);
-		newValues.put(KEY_LIMITATION, limitation);
 		newValues.put(KEY_MOTIVATIONADMIT, motivation);
 		newValues.put(KEY_OTHER, otherHistory);
 		newValues.put(KEY_COGNITION, cognition);
@@ -539,12 +575,13 @@ public class DBAdapter {
 	}
 
 
-	public Cursor dischargeRowPatient(int rowId, String dischargeDate, String totalOT, String totalPT, String totalSLT){
+	public Cursor dischargeRowPatient(int rowId, String dischargeDate, String mocaScore, String customScore, String customMax, String totalOT, String totalPT, String totalSLT){
 		String dischargedString = "Yes";
 		String updateQuery = "UPDATE " + PATIENT_TABLE + " SET " + KEY_DISCHARGED + " = ?, " + KEY_DISCHARGEDATE + " = ?, "
+				+ KEY_MOCASCORE + " = ?, " + KEY_CUSTOMSCORE + " = ?, " + KEY_CUSTOMMAX + " = ?, "
 				+ KEY_TOTALOT + " = ?, " + KEY_TOTALPT + " = ?, " + KEY_TOTALSLT + " = ? WHERE " + KEY_ROWID + " = " + rowId;
 
-		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString,dischargeDate,totalOT,totalPT,totalSLT});
+		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString,dischargeDate,mocaScore,customScore,customMax,totalOT,totalPT,totalSLT});
 		if (c != null) {
 			c.moveToFirst();
 		}
@@ -557,9 +594,10 @@ public class DBAdapter {
 
 	// Add a new set of values to the database.
 	public long insertRowData(int parentId, String mrnNumber, int day,
-							  String peg, String ng, String o2, String iv, String foley, String cpap, String restraint, String behavioural, String confusion, String bladder, String hours,
+							  String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
 							  String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
-							  String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking) {
+							  String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
+							  String barthel, String berg) {
 		/*
 		 * CHANGE 3:
 		 */
@@ -575,9 +613,9 @@ public class DBAdapter {
 		initialValues.put(KEY_NG, ng);
 		initialValues.put(KEY_O2, o2);
 		initialValues.put(KEY_IV, iv);
-		initialValues.put(KEY_FOLEY, foley);
 		initialValues.put(KEY_CPAP, cpap);
 		initialValues.put(KEY_RESTRAINT, restraint);
+		initialValues.put(KEY_BEDBARS, bedbars);
 		initialValues.put(KEY_BEHAVIOURAL, behavioural);
 		initialValues.put(KEY_CONFUSION, confusion);
 		initialValues.put(KEY_BLADDER, bladder);
@@ -607,6 +645,9 @@ public class DBAdapter {
 		initialValues.put(KEY_LIFTSUNAFFECTED, liftsunaffected);
 		initialValues.put(KEY_LIFTSAFFECTED, liftsaffected);
 		initialValues.put(KEY_WALKING, walking);
+
+		initialValues.put(KEY_BARTHEL, barthel);
+		initialValues.put(KEY_BERG, berg);
 
 
 		// Insert it into the database.
@@ -654,32 +695,26 @@ public class DBAdapter {
 
 	// Change an existing row to be equal to new data.
 	public Cursor updateRowData(int parentId, int day,
-								String peg, String ng, String o2, String iv, String foley, String cpap, String restraint, String behavioural, String confusion, String bladder, String hours,
+								String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
 								String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
-								String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking) {
-		//String where = KEY_ROWID + "=" + rowId;
+								String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
+								String barthel, String berg) {
 
 		/*
 		 * CHANGE 4:
 		 */
 		// TODO: Update data in the row with new fields.
 		// TODO: Also change the function's arguments to be what you need!
-		// Create row's data:
-		//ContentValues newValues = new ContentValues();
-		//newValues.put(KEY_PARENTID, parentId);
-		//newValues.put(KEY_DAY, day);
-		//newValues.put(KEY_PEG, peg);
-		//newValues.put(KEY_NG, ng);
-		//newValues.put(KEY_O2, o2);
+
 
 		String updateQuery = "UPDATE " + DATA_TABLE + " SET " +
 				KEY_PEG + " = '" + peg + "', " +
 				KEY_NG + " = '" + ng + "', " +
 				KEY_O2 + " = '" + o2 + "', " +
 				KEY_IV + " = '" + iv + "', " +
-				KEY_FOLEY + " = '" + foley + "', " +
 				KEY_CPAP + " = '" + cpap + "', " +
 				KEY_RESTRAINT + " = '" + restraint + "', " +
+				KEY_BEDBARS + " = '" + bedbars + "', " +
 				KEY_BEHAVIOURAL + " = '" + behavioural + "', " +
 				KEY_CONFUSION + " = '" + confusion + "', " +
 				KEY_BLADDER + " = '" + bladder + "', " +
@@ -708,7 +743,10 @@ public class DBAdapter {
 				KEY_STAND + " = '" + stand + "', " +
 				KEY_LIFTSUNAFFECTED + " = '" + liftsunaffected + "', " +
 				KEY_LIFTSAFFECTED + " = '" + liftsaffected + "', " +
-				KEY_WALKING + " = '" + walking +
+				KEY_WALKING + " = '" + walking + "', " +
+
+				KEY_BARTHEL + " = '" + barthel + "', " +
+				KEY_BERG + " = '" + berg +
 				"' WHERE " + KEY_PARENTID + " = " + parentId + " AND " + KEY_DAY + " = " + day;
 
 		// Insert it into the database.

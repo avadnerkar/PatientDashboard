@@ -22,6 +22,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -137,13 +138,57 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onResume() {
         super.onResume();
-        getCurrentDay();
+        //getCurrentDay();
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //Handle the back button
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!saveToggle){
+                //Ask the user if they want to quit
+                new AlertDialog.Builder(this)
+                        .setTitle("Save?")
+                        .setCancelable(true)
+                        .setMessage("Do you wish to save before quitting?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                savePatientData();
+                                //Stop the activity
+                                MainActivity.this.finish();
+                            }
+
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                //Stop the activity
+                                MainActivity.this.finish();
+                            }
+
+                        })
+                        .show();
+
+            } else{
+                MainActivity.this.finish();
+            }
+            return true;
+
+
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+
     }
 
     public void getCurrentDay(){
@@ -609,9 +654,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             if (c.moveToFirst()){
                 do {
                     String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_PARENTID), c.getString(myDb.COL_MRN), c.getString(myDb.COL_DAY),
-                            c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_FOLEY), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
+                            c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEDBARS), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
                             c.getString(myDb.COL_NEGLECT), c.getString(myDb.COL_DIGITSPAN), c.getString(myDb.COL_MMSE), c.getString(myDb.COL_FOLLOWS), c.getString(myDb.COL_VERBAL), c.getString(myDb.COL_MOTIVATION), c.getString(myDb.COL_MOOD), c.getString(myDb.COL_PAIN), c.getString(myDb.COL_FATIGUE), c.getString(myDb.COL_SWALLOW), c.getString(myDb.COL_FEEDING), c.getString(myDb.COL_DRESSING), c.getString(myDb.COL_KITCHEN),
-                            c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING)};
+                            c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING),
+                            c.getString(myDb.COL_BARTHEL), c.getString(myDb.COL_BERG)};
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
             }
@@ -632,9 +678,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
                 do {
-                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER),
-                            c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LEGIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
-                            c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_LIMITATION), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
+                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER), c.getString(myDb.COL_FIRSTLANGUAGE),
+                            c.getString(myDb.COL_MOCASCORE), c.getString(myDb.COL_CUSTOMSCORE), c.getString(myDb.COL_CUSTOMMAX),
+                            c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LESIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
+                            c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
                             c.getString(myDb.COL_FIRSTOT), c.getString(myDb.COL_TOTALOT), c.getString(myDb.COL_FIRSTSWALLOW), c.getString(myDb.COL_FIRSTPT), c.getString(myDb.COL_TOTALPT), c.getString(myDb.COL_FIRSTSLT), c.getString(myDb.COL_TOTALSLT)};
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
@@ -667,9 +714,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         View radioButton;
         int radioId;
         RadioButton btn;
-        String currentPeg, currentNg, currentO2, currentIv, currentFoley, currentCpap, currentRestraint, currentBehavioural, currentConfusion, currentBladder, currentHours,
+        String currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
             currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
-            currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking;
+            currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
+            currentBarthel, currentBerg;
 
         //Nurse
         rg=(RadioGroup)findViewById(R.id.rgPeg);
@@ -716,17 +764,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             currentIv = "";
         }
 
-        rg=(RadioGroup)findViewById(R.id.rgFoley);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentFoley = (String) btn.getText();
-        } else{
-            currentFoley = "";
-        }
-
         rg=(RadioGroup)findViewById(R.id.rgCpap);
         id = rg.getCheckedRadioButtonId();
         if (id!=-1) {
@@ -747,6 +784,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             currentRestraint = (String) btn.getText();
         } else{
             currentRestraint = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgBedbars);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentBedbars = (String) btn.getText();
+        } else{
+            currentBedbars = "";
         }
 
         rg=(RadioGroup)findViewById(R.id.rgBehavioural);
@@ -1033,20 +1081,25 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             currentWalking = "";
         }
 
+        currentBarthel = "placeholder";
+        currentBerg = "placeholder";
+
         ///////////////////////////////////
 
         Cursor cursor = myDb.getRowData(currentPatientId, currentDay);
         if (cursor.moveToFirst()){
             myDb.updateRowData(currentPatientId, currentDay,
-                    currentPeg, currentNg, currentO2, currentIv, currentFoley, currentCpap, currentRestraint, currentBehavioural, currentConfusion, currentBladder, currentHours,
+                    currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
                     currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
-                    currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking);
+                    currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
+                    currentBarthel, currentBerg);
 
         }else{
             myDb.insertRowData(currentPatientId, currentMrn, currentDay,
-                    currentPeg, currentNg, currentO2, currentIv, currentFoley, currentCpap, currentRestraint, currentBehavioural, currentConfusion, currentBladder, currentHours,
+                    currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
                     currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
-                    currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking);
+                    currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
+                    currentBarthel, currentBerg);
         }
 
         cursor.close();
@@ -1096,15 +1149,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 rg.clearCheck();
             }
 
-            rg=(RadioGroup)findViewById(R.id.rgFoley);
-            if (cursor.getString(myDb.COL_FOLEY).equals("Yes")){
-                rg.check(R.id.radio_FoleyYes);
-            } else if(cursor.getString(myDb.COL_FOLEY).equals("No")){
-                rg.check(R.id.radio_FoleyNo);
-            } else{
-                rg.clearCheck();
-            }
-
             rg=(RadioGroup)findViewById(R.id.rgCpap);
             if (cursor.getString(myDb.COL_CPAP).equals("Yes")){
                 rg.check(R.id.radio_CpapYes);
@@ -1119,6 +1163,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 rg.check(R.id.radio_RestraintYes);
             } else if(cursor.getString(myDb.COL_RESTRAINT).equals("No")){
                 rg.check(R.id.radio_RestraintNo);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgBedbars);
+            if (cursor.getString(myDb.COL_BEDBARS).equals("Yes")){
+                rg.check(R.id.radio_BedbarsYes);
+            } else if(cursor.getString(myDb.COL_BEDBARS).equals("No")){
+                rg.check(R.id.radio_BedbarsNo);
             } else{
                 rg.clearCheck();
             }
@@ -1142,13 +1195,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBladder);
-            if (cursor.getString(myDb.COL_BLADDER).equals("Yes")){
-                rg.check(R.id.radio_BladderYes);
-            } else if(cursor.getString(myDb.COL_BLADDER).equals("Partial")){
-                rg.check(R.id.radio_BladderPartial);
-            } else if(cursor.getString(myDb.COL_BLADDER).equals("No")){
-                rg.check(R.id.radio_BladderNo);
-            } else{
+            if (cursor.getString(myDb.COL_BLADDER).equals("Foley")){
+                rg.check(R.id.radio_BladderFoley);
+            } else if(cursor.getString(myDb.COL_BLADDER).equals("Diaper")){
+                rg.check(R.id.radio_BladderDiaper);
+            } else if(cursor.getString(myDb.COL_BLADDER).equals("Bedpan")){
+                rg.check(R.id.radio_BladderBedpan);
+            } else if(cursor.getString(myDb.COL_BLADDER).equals("Toilet")){
+                rg.check(R.id.radio_BladderToilet);
+            }else{
                 rg.clearCheck();
             }
 
@@ -1460,13 +1515,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             rg=(RadioGroup)findViewById(R.id.rgIv);
             rg.clearCheck();
 
-            rg=(RadioGroup)findViewById(R.id.rgFoley);
-            rg.clearCheck();
-
             rg=(RadioGroup)findViewById(R.id.rgCpap);
             rg.clearCheck();
 
             rg=(RadioGroup)findViewById(R.id.rgRestraint);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgBedbars);
             rg.clearCheck();
 
             rg=(RadioGroup)findViewById(R.id.rgBehavioural);
