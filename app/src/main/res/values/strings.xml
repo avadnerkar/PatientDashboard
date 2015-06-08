@@ -1,28 +1,26 @@
 <resources>
     <string name="app_name">Patient Dashboard</string>
 
+
+    <!-- MainActivity strings -->
     <string name="title_section1">Nurse</string>
     <string name="title_section2">OT/SLP</string>
     <string name="title_section3">PT</string>
-
     <string name="patient_new">New patient</string>
     <string name="patient_list">Select patient</string>
     <string name="patient_save">Save</string>
     <string name="data_save">Save current day</string>
-    <string name="action_view_history">View history</string>
     <string name="action_export_csv">Export to CSV</string>
     <string name="action_discharge">Discharge current patient</string>
     <string name="action_update_patient">Update current patient</string>
-
     <string name="action_settings">Settings</string>
-    <string name="discharge_save">Save</string>
-    <string name="text_discharge">Select date of discharge</string>
     <string name="clear">Delete patient</string>
     <string name="clear_all">Delete all patients</string>
+    <string name="dayNumber">Day 1</string>
+
+    <!-- NewPatientFormActivity strings -->
     <string name="title_activity_new_patient_form">New patient details</string>
     <string name="select_admission_date">Select date of admission</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="patient_ID">MRN number</string>
@@ -48,15 +46,49 @@
     <string name="dateFirstPT">Date of first PT assessment</string>
     <string name="dateFirstSLT">Date of first SLT assessment</string>
     <string name="select_date">Select</string>
+
+
+    <!-- DischargePatientForm strings -->
+    <string name="title_activity_discharge_patient_form">DischargePatientForm</string>
+    <string name="discharge_save">Save</string>
+    <string name="text_discharge">Select date of discharge</string>
     <string name="totalOT">Total OT sessions received</string>
     <string name="totalPT">Total PT sessions received</string>
     <string name="totalSLT">Total SLT sessions received</string>
-
     <string name="text_moca">MOCA</string>
     <string name="text_score">Score:</string>
     <string name="text_out_of">Out of:</string>
     <string name="text_custom">Custom assessment</string>
 
+    <!-- ScoreHistory strings -->
+    <string name="title_activity_score_history">ScoreHistory</string>
+    <string name="text_select_score_type">Select score type:</string>
+    <string name="text_total_score">Total score</string>
+    <string name="text_line1">If there was no one to help you with your feeding, could you do it alone?\n(unable = 0; needs assistance = 5; fully independent = 10)</string>
+    <string name="text_line2">If there was no one to help you with your personal hygiene, could you do it alone?\n(unable = 0; needs assistance = 0; fully independent = 5)</string>
+    <string name="text_line3">If there was no one to help you, would you be able to bathe or shower without anyone present?\n(unable = 0; needs assistance = 0; fully independent = 5)</string>
+    <string name="text_line4">If there was no one to help you, would you be able to dress yourself?\n(unable = 0; needs assistance = 5; fully independent = 10)</string>
+    <string name="text_line5">If there was no one to help you, would you be able to get to the toilet on your own?\n(unable = 0; needs assistance = 5; fully independent = 10)</string>
+    <string name="text_line6">Do you have any trouble with bowel incontinence?\n(complete = 0; occasional accident = 5; complete control day and night = 10)</string>
+    <string name="text_line7">Do you have any trouble with bladder control?\n(complete = 0; occasional accident = 5; complete control day and night = 10)</string>
+    <string name="text_line8">Can you transfer from bed to chair independently?\n(unable = 0; needs assistance = 10; fully independent = 15)</string>
+    <string name="text_line9">Can you walk 50 yards without help or supervision?\n(unable = 0; needs assistance = 10; fully independent = 15)</string>
+    <string name="text_line10">Can you go up and down stairs independently?\n(unable = 0; needs assistance = 5; fully independent = 10)</string>
+
+    <string name="score_total"> </string>
+    <string name="score_line1"> </string>
+    <string name="score_line2"> </string>
+    <string name="score_line3"> </string>
+    <string name="score_line4"> </string>
+    <string name="score_line5"> </string>
+    <string name="score_line6"> </string>
+    <string name="score_line7"> </string>
+    <string name="score_line8"> </string>
+    <string name="score_line9"> </string>
+    <string name="score_line10"> </string>
+
+    <string name="text_barthel">Barthel</string>
+    <string name="text_berg">Berg</string>
 
 
     <!-- Nurse strings -->
@@ -140,7 +172,4 @@
 
 
 
-    <string name="dayNumber">Day 1</string>
-    <string name="title_activity_view_history">ViewHistory</string>
-    <string name="title_activity_discharge_patient_form">DischargePatientForm</string>
 </resources>

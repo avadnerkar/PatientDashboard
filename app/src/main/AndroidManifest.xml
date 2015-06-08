@@ -23,16 +23,16 @@
             android:label="@string/title_activity_new_patient_form" >
         </activity>
         <activity
-            android:name=".ViewHistory"
-            android:label="@string/title_activity_view_history"
+            android:name=".DischargePatientForm"
+            android:label="@string/title_activity_discharge_patient_form"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.physiotherapy.mcgill.patientmonitoring.MainActivity" />
         </activity>
         <activity
-            android:name=".DischargePatientForm"
-            android:label="@string/title_activity_discharge_patient_form"
+            android:name=".ScoreHistory"
+            android:label="@string/title_activity_score_history"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

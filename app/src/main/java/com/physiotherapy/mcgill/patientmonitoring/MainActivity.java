@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public static DBAdapter myDb;
     public int currentPatientIndex;
     public static int currentPatientId = -1;
-    public int currentDay;
+    public static int currentDay;
     public static String currentMrn;
     public String[] patientListString;
     public int elapsedDays;
@@ -377,13 +377,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (item.getItemId() == R.id.action_discharge) {
             saveCurrentDay(dischargePatientRunnable);
-            return true;
-        }
-
-
-        if (item.getItemId() == R.id.action_view_history) {
-            Intent intent = new Intent(this, ViewHistory.class);
-            startActivity(intent);
             return true;
         }
 

@@ -40,10 +40,6 @@ public class NewPatientFormActivity extends ActionBarActivity {
         txtDatePT = (TextView) findViewById(R.id.textDateFirstPT);
         txtDateSLT = (TextView) findViewById(R.id.textDateFirstSLT);
 
-        //Bundle extras = getIntent().getExtras();
-        //existingPatient = extras.getBoolean("EXISTING_PATIENT");
-
-        //if (existingPatient){
         Cursor cursor = MainActivity.myDb.getRowPatient(MainActivity.currentPatientId);
 
         if (cursor.moveToFirst()){
