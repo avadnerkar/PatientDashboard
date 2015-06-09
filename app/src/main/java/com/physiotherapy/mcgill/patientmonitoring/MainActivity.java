@@ -1110,6 +1110,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         cursor.close();
+
+        int[] scoreArrayBarthel = calculateScores(currentDay, "Barthel");
+        currentBarthel = String.valueOf(scoreArrayBarthel[0]);
+        int[] scoreArrayBerg = calculateScores(currentDay, "Berg");
+        currentBerg = String.valueOf(scoreArrayBerg[0]);
+
+        myDb.updateRowData(currentPatientId, currentDay,
+                currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
+                currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
+                currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
+                currentBarthel, currentBerg);
     }
 
     public void loadPatientData(){
@@ -1846,6 +1857,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             score = -1;
             scoreArray = new int[]{score};
         }
+        cursor.close();
         return scoreArray;
     }
 
