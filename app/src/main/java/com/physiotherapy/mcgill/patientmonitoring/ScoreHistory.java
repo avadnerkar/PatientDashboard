@@ -16,6 +16,8 @@ public class ScoreHistory extends ActionBarActivity {
 
     public static int scoreDay;
 
+    //Test for git
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
