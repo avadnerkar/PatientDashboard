@@ -17,6 +17,7 @@ public class ScoreHistory extends ActionBarActivity {
     public static int scoreDay;
 
     //Test for git
+    //Test number 2
 
 
     @Override
