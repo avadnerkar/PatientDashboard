@@ -57,12 +57,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     ViewPager mViewPager;
     public static DBAdapter myDb;
     public int currentPatientIndex;
-    public static int currentPatientId = -1;
+    public static int currentPatientId;
     public static int currentDay;
     public static String currentMrn;
     public String[] patientListString;
     public int elapsedDays;
-    public boolean saveToggle = true;
+    public boolean saveToggle;
     //public boolean existingPatient;
 
     @Override
@@ -70,6 +70,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         openDB();
+        currentPatientId = -1;
+        saveToggle = true;
 
 
         // Set up the action bar.
@@ -138,8 +140,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onResume() {
         super.onResume();
-        //getCurrentDay();
-
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -261,15 +262,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             menu.findItem(R.id.data_save).setVisible(false);
             menu.findItem(R.id.action_discharge).setVisible(false);
             menu.findItem(R.id.action_update_patient).setVisible(false);
-            menu.findItem(R.id.action_update_patient).setVisible(false);
-            //menu.findItem(R.id.action_view_history).setVisible(false);
+            menu.findItem(R.id.clear).setVisible(false);
+            menu.findItem(R.id.action_score_report).setVisible(false);
         }
         else{
             menu.findItem(R.id.data_save).setVisible(true);
             menu.findItem(R.id.action_discharge).setVisible(true);
             menu.findItem(R.id.action_update_patient).setVisible(true);
-            menu.findItem(R.id.action_update_patient).setVisible(true);
-            //menu.findItem(R.id.action_view_history).setVisible(true);
+            menu.findItem(R.id.clear).setVisible(true);
+            menu.findItem(R.id.action_score_report).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -367,6 +368,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (item.getItemId() == R.id.patient_new) {
             saveCurrentDay(newPatientRunnable);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_score_report) {
+            saveCurrentDay(scoreReportRunnable);
             return true;
         }
 
@@ -559,6 +565,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             clearPatientSelection();
 
             Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    Runnable scoreReportRunnable = new Runnable(){
+        public void run(){
+
+            Intent intent = new Intent(MainActivity.this, ScoreHistory.class);
             startActivity(intent);
         }
     };

@@ -22,6 +22,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
+                android:onClick="scoreDecrementDay"
                 />
 
             <TextView
@@ -40,327 +41,347 @@
                 android:src="@drawable/ic_action_arrow_right"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:onClick="scoreIncrementDay"
+                />
 
         </LinearLayout>
 
-        <TextView android:text="@string/text_select_score_type" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"/>
-
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/rgScoreType"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_ScoreTypeBarthel"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:orientation="vertical">
+
+            <TextView android:text="@string/text_select_score_type" android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_barthel"
-                android:checked="true"/>
-            <RadioButton android:id="@+id/radio_ScoreTypeBerg"
-                android:layout_width="wrap_content"
+                android:textSize="20sp"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rgScoreType"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_ScoreTypeBarthel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_barthel"
+                    android:checked="true"
+                    android:onClick="selectBarthel"/>
+                <RadioButton android:id="@+id/radio_ScoreTypeBerg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_berg"
+                    android:onClick="selectBerg"/>
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView android:text="@string/text_total_score"
+                    android:id="@+id/text_total_score"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="match_parent"
+                    android:textSize="22sp"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView android:text="@string/score_total"
+                    android:id="@+id/score_total"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:textSize="22sp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_berg"/>
-        </RadioGroup>
+                android:orientation="vertical"
+                android:id="@+id/scoreLinesLayout"
+                android:visibility="visible">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+                    <TextView android:text="@string/text_line1"
+                        android:id="@+id/text_line1"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/text_total_score"
-                android:id="@+id/text_total_score"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="22sp"
-                android:gravity="center_vertical"
-                android:textStyle="bold"
-                />
+                    <TextView android:text="@string/score_line1"
+                        android:id="@+id/score_line1"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-            <TextView android:text="@string/score_total"
-                android:id="@+id/score_total"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="22sp"
-                android:gravity="center_vertical|end"
-                android:textStyle="bold"
-                />
-            
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line1"
-                android:id="@+id/text_line1"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line2"
+                        android:id="@+id/text_line2"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line1"
-                android:id="@+id/score_line1"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line2"
+                        android:id="@+id/score_line2"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line2"
-                android:id="@+id/text_line2"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line3"
+                        android:id="@+id/text_line3"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line2"
-                android:id="@+id/score_line2"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line3"
+                        android:id="@+id/score_line3"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line3"
-                android:id="@+id/text_line3"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line4"
+                        android:id="@+id/text_line4"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line3"
-                android:id="@+id/score_line3"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line4"
+                        android:id="@+id/score_line4"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line4"
-                android:id="@+id/text_line4"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line5"
+                        android:id="@+id/text_line5"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line4"
-                android:id="@+id/score_line4"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line5"
+                        android:id="@+id/score_line5"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line5"
-                android:id="@+id/text_line5"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line6"
+                        android:id="@+id/text_line6"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line5"
-                android:id="@+id/score_line5"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line6"
+                        android:id="@+id/score_line6"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line6"
-                android:id="@+id/text_line6"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line7"
+                        android:id="@+id/text_line7"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line6"
-                android:id="@+id/score_line6"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line7"
+                        android:id="@+id/score_line7"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line7"
-                android:id="@+id/text_line7"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line8"
+                        android:id="@+id/text_line8"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line7"
-                android:id="@+id/score_line7"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line8"
+                        android:id="@+id/score_line8"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line8"
-                android:id="@+id/text_line8"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line9"
+                        android:id="@+id/text_line9"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line8"
-                android:id="@+id/score_line8"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line9"
+                        android:id="@+id/score_line9"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp"
+                    android:weightSum="1">
 
-            <TextView android:text="@string/text_line9"
-                android:id="@+id/text_line9"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
+                    <TextView android:text="@string/text_line10"
+                        android:id="@+id/text_line10"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        />
 
-            <TextView android:text="@string/score_line9"
-                android:id="@+id/score_line9"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+                    <TextView android:text="@string/score_line10"
+                        android:id="@+id/score_line10"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
-            android:weightSum="1">
-
-            <TextView android:text="@string/text_line10"
-                android:id="@+id/text_line10"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                />
-
-            <TextView android:text="@string/score_line10"
-                android:id="@+id/score_line10"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center_vertical|end"
-                />
+            </LinearLayout>
 
         </LinearLayout>
 
