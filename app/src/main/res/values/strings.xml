@@ -14,6 +14,7 @@
     <string name="action_discharge">Discharge current patient</string>
     <string name="action_update_patient">Update current patient</string>
     <string name="action_score_report">View score report</string>
+    <string name="action_score_graphs">View score graphs</string>
     <string name="action_settings">Settings</string>
     <string name="clear">Delete patient</string>
     <string name="clear_all">Delete all patients</string>
@@ -50,7 +51,7 @@
 
 
     <!-- DischargePatientForm strings -->
-    <string name="title_activity_discharge_patient_form">DischargePatientForm</string>
+    <string name="title_activity_discharge_patient_form">Discharge patient</string>
     <string name="discharge_save">Save</string>
     <string name="text_discharge">Select date of discharge</string>
     <string name="totalOT">Total OT sessions received</string>
@@ -62,7 +63,7 @@
     <string name="text_custom">Custom assessment</string>
 
     <!-- ScoreHistory strings -->
-    <string name="title_activity_score_history">ScoreHistory</string>
+    <string name="title_activity_score_history">Score reports</string>
     <string name="text_select_score_type">Select score type:</string>
     <string name="text_total_score">Total score</string>
     <string name="text_line1">If there was no one to help you with your feeding, could you do it alone?\n(unable = 0; needs assistance = 5; fully independent = 10)</string>
@@ -90,6 +91,10 @@
 
     <string name="text_barthel">Barthel</string>
     <string name="text_berg">Berg</string>
+
+
+    <!-- Score graphs strings -->
+    <string name="title_activity_score_graphs">Score graphs</string>
 
 
     <!-- Nurse strings -->
@@ -170,6 +175,10 @@
     <string name="diaper">Diaper</string>
     <string name="bedpan">Bedpan</string>
     <string name="toilet">Toilet</string>
+
+
+
+    <string name="hello_world">Hello world!</string>
 
 
 

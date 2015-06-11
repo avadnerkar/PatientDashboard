@@ -38,6 +38,7 @@ import com.opencsv.CSVWriter;
 
 
 //TEST FOR GIIIIIT
+//Test Again
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -376,6 +377,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             return true;
         }
 
+        if (item.getItemId() == R.id.action_score_graphs) {
+            saveCurrentDay(scoreGraphsRunnable);
+            return true;
+        }
+
         if (item.getItemId() == R.id.action_update_patient) {
             saveCurrentDay(updatePatientRunnable);
             return true;
@@ -573,6 +579,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public void run(){
 
             Intent intent = new Intent(MainActivity.this, ScoreHistory.class);
+            startActivity(intent);
+        }
+    };
+
+    Runnable scoreGraphsRunnable = new Runnable(){
+        public void run(){
+
+            Intent intent = new Intent(MainActivity.this, ScoreGraphs.class);
             startActivity(intent);
         }
     };
