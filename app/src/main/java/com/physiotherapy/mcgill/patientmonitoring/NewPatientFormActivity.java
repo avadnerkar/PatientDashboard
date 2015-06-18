@@ -109,10 +109,8 @@ public class NewPatientFormActivity extends ActionBarActivity {
                 rg.check(R.id.radio_strokeTypeIschemic);
             } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic")){
                 rg.check(R.id.radio_strokeTypeHemorrhagic);
-            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic2")){
-                rg.check(R.id.radio_strokeTypeHemorrhagic2);
-            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic3")){
-                rg.check(R.id.radio_strokeTypeHemorrhagic3);
+            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("TIA")){
+                rg.check(R.id.radio_strokeTypeTia);
             } else{
                 rg.clearCheck();
             }

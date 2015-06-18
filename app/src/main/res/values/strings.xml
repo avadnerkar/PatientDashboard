@@ -163,8 +163,7 @@
     <string name="disoriented">Disoriented</string>
     <string name="ischemic">Ischemic</string>
     <string name="hemorrhagic">Hemorrhagic</string>
-    <string name="hemorrhagic2">Hemorrhagic2</string>
-    <string name="hemorrhagic3">Hemorrhagic3</string>
+    <string name="tia">TIA</string>
     <string name="alert">Alert</string>
     <string name="drowsy">Drowsy</string>
     <string name="normal">Normal</string>

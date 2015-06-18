@@ -299,14 +299,47 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 public void onClick(DialogInterface dialog, int id) {
                     // if this button is clicked, close
                     // current activity
-                    myDb.deleteAllPatients();
-                    clearPatientSelection();
-                    loadPatientData();
-                    Context context = getApplicationContext();
-                    CharSequence toastMessage = "All patients deleted";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, toastMessage, duration);
-                    toast.show();
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("Delete...");
+                    alert.setMessage("Enter Pin :");
+
+                    // Set an EditText view to get user input
+                    final EditText input = new EditText(MainActivity.this);
+                    alert.setView(input);
+
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String value = input.getText().toString();
+                            if (value.equals("1379")){
+                                myDb.deleteAllPatients();
+                                clearPatientSelection();
+                                loadPatientData();
+                                Context context = getApplicationContext();
+                                CharSequence toastMessage = "All patients deleted";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, toastMessage, duration);
+                                toast.show();
+                            } else{
+                                Context context = getApplicationContext();
+                                CharSequence toastMessage = "Incorrect PIN";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, toastMessage, duration);
+                                toast.show();
+                            }
+                            return;
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO Auto-generated method stub
+                            return;
+                        }
+                    });
+                    alert.show();
+
                 }
             });
 
@@ -338,14 +371,37 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 public void onClick(DialogInterface dialog, int id) {
                     // if this button is clicked, close
                     // current activity
-                    myDb.deleteCurrentPatient(currentPatientId);
-                    clearPatientSelection();
-                    loadPatientData();
-                    Context context = getApplicationContext();
-                    CharSequence toastMessage = "Patient deleted";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, toastMessage, duration);
-                    toast.show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("Delete...");
+                    alert.setMessage("Enter Pin :");
+
+                    // Set an EditText view to get user input
+                    final EditText input = new EditText(MainActivity.this);
+                    alert.setView(input);
+
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String value = input.getText().toString();
+                            if (value.equals("1379")) {
+                                myDb.deleteCurrentPatient(currentPatientId);
+                                clearPatientSelection();
+                                loadPatientData();
+                                Context context = getApplicationContext();
+                                CharSequence toastMessage = "Patient deleted";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, toastMessage, duration);
+                                toast.show();
+                            } else {
+                                Context context = getApplicationContext();
+                                CharSequence toastMessage = "Incorrect PIN";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, toastMessage, duration);
+                                toast.show();
+                            }
+                            return;
+                        }
+                    });
+                    alert.show();
                 }
             });
 

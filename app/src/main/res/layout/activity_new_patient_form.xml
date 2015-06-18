@@ -118,14 +118,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hemorrhagic" />
-            <RadioButton android:id="@+id/radio_strokeTypeHemorrhagic2"
+            <RadioButton android:id="@+id/radio_strokeTypeTia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hemorrhagic2" />
-            <RadioButton android:id="@+id/radio_strokeTypeHemorrhagic3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hemorrhagic3" />
+                android:text="@string/tia" />
         </RadioGroup>
 
 
