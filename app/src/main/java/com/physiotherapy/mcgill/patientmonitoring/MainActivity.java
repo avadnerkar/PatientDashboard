@@ -199,20 +199,28 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (currentPatientId != -1){
             Cursor cursor = myDb.getRowPatient(currentPatientId);
-            String dateString = cursor.getString(DBAdapter.COL_ADMISSIONDATE);
-            SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
-            Date admissionDate = today;
-            try{
-                admissionDate = form.parse(dateString);
-            } catch (java.text.ParseException e){
-                e.printStackTrace();
+            String discharged = cursor.getString(DBAdapter.COL_DISCHARGED);
 
+            if (discharged.equals("Yes")){
+                currentDay = 1;
+            } else {
+                String dateString = cursor.getString(DBAdapter.COL_ADMISSIONDATE);
+                SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+                Date admissionDate = today;
+                try{
+                    admissionDate = form.parse(dateString);
+                } catch (java.text.ParseException e){
+                    e.printStackTrace();
+
+                }
+
+                elapsedDays = getElapsedTimeInDays(admissionDate,today) + 1;
+
+                currentDay = elapsedDays;
             }
 
-            elapsedDays = getElapsedTimeInDays(admissionDate,today) + 1;
-
-            currentDay = elapsedDays;
             updateDayView();
             loadPatientData();
             cursor.close();

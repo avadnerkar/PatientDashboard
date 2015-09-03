@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             />
 
+
         <TextView android:text="@string/last_name" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -77,6 +78,15 @@
                 android:text="@string/male" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView android:text="@string/first_language" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -99,6 +109,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/otherAnswer" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
 
         <TextView android:text="@string/stroke_type" android:layout_width="wrap_content"
@@ -124,6 +143,15 @@
                 android:text="@string/tia" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -147,6 +175,15 @@
                 android:text="@string/no" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,6 +205,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/right" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
         <TextView
             android:layout_width="match_parent"
@@ -195,6 +241,15 @@
                 android:text="@string/right" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView android:text="@string/consciousness" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -218,6 +273,15 @@
                 android:text="@string/normal" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -239,6 +303,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/disoriented" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
         <TextView android:text="@string/language" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -270,6 +343,15 @@
                 android:text="@string/no" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -292,6 +374,15 @@
                 android:text="@string/no" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -313,6 +404,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/no" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
         <TextView android:text="@string/aphasia" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -344,6 +444,15 @@
                 android:text="@string/no" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -365,6 +474,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/no" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
         <TextView
             android:layout_width="match_parent"
@@ -388,6 +506,15 @@
                 android:text="@string/no" />
         </RadioGroup>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -409,6 +536,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/no" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
 
         <TextView
@@ -432,6 +568,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/no" />
         </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
 
         <TextView android:text="@string/other" android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
