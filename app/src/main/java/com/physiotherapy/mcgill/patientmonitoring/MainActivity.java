@@ -37,8 +37,6 @@ import android.widget.Toast;
 import com.opencsv.CSVWriter;
 
 
-//TEST FOR GIIIIIT
-//Test Again
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -86,7 +84,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(3);
 
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -234,6 +232,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         textView.setText("Day " + currentDay);
         textView = (TextView) findViewById(R.id.dayNumberPt);
         textView.setText("Day " + currentDay);
+        textView = (TextView) findViewById(R.id.dayNumberCns);
+        textView.setText("Day " + currentDay);
     }
 
     public void scrollToTop(){
@@ -244,6 +244,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         scrollView.fullScroll(ScrollView.FOCUS_UP);
 
         scrollView = (ScrollView) findViewById(R.id.scrollViewPt);
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
+
+        scrollView = (ScrollView) findViewById(R.id.scrollViewCns);
         scrollView.fullScroll(ScrollView.FOCUS_UP);
     }
 
@@ -490,6 +493,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         otLayout.setVisibility(View.INVISIBLE);
         LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
         ptLayout.setVisibility(View.INVISIBLE);
+        LinearLayout cnsLayout = (LinearLayout) findViewById(R.id.cnsLinearLayout);
+        cnsLayout.setVisibility(View.INVISIBLE);
 
         invalidateOptionsMenu();
 
@@ -532,6 +537,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 case 0: return NurseFragment.newInstance(position + 1);
                 case 1: return OtFragment.newInstance(position + 1);
                 case 2: return PtFragment.newInstance(position + 1);
+                case 3: return CnsFragment.newInstance(position + 1);
                 default: return NurseFragment.newInstance(position + 1);
             }
 
@@ -540,8 +546,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
@@ -554,6 +560,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
+                case 3:
+                    return getString(R.string.title_section4).toUpperCase(l);
             }
             return null;
         }
@@ -599,6 +607,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         otLayout.setVisibility(View.VISIBLE);
                         LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
                         ptLayout.setVisibility(View.VISIBLE);
+                        LinearLayout cnsLayout = (LinearLayout) findViewById(R.id.cnsLinearLayout);
+                        cnsLayout.setVisibility(View.VISIBLE);
 
                         invalidateOptionsMenu();
 
@@ -738,11 +748,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
                 do {
-                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_PARENTID), c.getString(myDb.COL_MRN), c.getString(myDb.COL_DAY),
-                            c.getString(myDb.COL_PEG), c.getString(myDb.COL_NG), c.getString(myDb.COL_O2), c.getString(myDb.COL_IV), c.getString(myDb.COL_CPAP), c.getString(myDb.COL_RESTRAINT), c.getString(myDb.COL_BEDBARS), c.getString(myDb.COL_BEHAVIOURAL), c.getString(myDb.COL_CONFUSION), c.getString(myDb.COL_BLADDER), c.getString(myDb.COL_HOURS),
-                            c.getString(myDb.COL_NEGLECT), c.getString(myDb.COL_DIGITSPAN), c.getString(myDb.COL_MMSE), c.getString(myDb.COL_FOLLOWS), c.getString(myDb.COL_VERBAL), c.getString(myDb.COL_MOTIVATION), c.getString(myDb.COL_MOOD), c.getString(myDb.COL_PAIN), c.getString(myDb.COL_FATIGUE), c.getString(myDb.COL_SWALLOW), c.getString(myDb.COL_FEEDING), c.getString(myDb.COL_DRESSING), c.getString(myDb.COL_KITCHEN),
-                            c.getString(myDb.COL_LEFTARM), c.getString(myDb.COL_RIGHTARM), c.getString(myDb.COL_MOVEMENTBED), c.getString(myDb.COL_LIESIT), c.getString(myDb.COL_SITTING), c.getString(myDb.COL_SITSTAND), c.getString(myDb.COL_STAND), c.getString(myDb.COL_LIFTSUNAFFECTED), c.getString(myDb.COL_LIFTSAFFECTED), c.getString(myDb.COL_WALKING),
-                            c.getString(myDb.COL_BARTHEL), c.getString(myDb.COL_BERG)};
+                    String arrStr[] ={c.getString(DBAdapter.COL_ROWID), c.getString(DBAdapter.COL_PARENTID), c.getString(DBAdapter.COL_MRN), c.getString(DBAdapter.COL_DAY),
+                            c.getString(DBAdapter.COL_PEG), c.getString(DBAdapter.COL_NG), c.getString(DBAdapter.COL_O2), c.getString(DBAdapter.COL_IV), c.getString(DBAdapter.COL_CPAP), c.getString(DBAdapter.COL_RESTRAINT), c.getString(DBAdapter.COL_BEDBARS), c.getString(DBAdapter.COL_BEHAVIOURAL), c.getString(DBAdapter.COL_CONFUSION), c.getString(DBAdapter.COL_BLADDER), c.getString(DBAdapter.COL_HOURS),
+                            c.getString(DBAdapter.COL_NEGLECT), c.getString(DBAdapter.COL_DIGITSPAN), c.getString(DBAdapter.COL_MMSE), c.getString(DBAdapter.COL_FOLLOWS), c.getString(DBAdapter.COL_VERBAL), c.getString(DBAdapter.COL_MOTIVATION), c.getString(DBAdapter.COL_MOOD), c.getString(DBAdapter.COL_PAIN), c.getString(DBAdapter.COL_FATIGUE), c.getString(DBAdapter.COL_SWALLOW), c.getString(DBAdapter.COL_FEEDING), c.getString(DBAdapter.COL_DRESSING), c.getString(DBAdapter.COL_KITCHEN),
+                            c.getString(DBAdapter.COL_LEFTARM), c.getString(DBAdapter.COL_RIGHTARM), c.getString(DBAdapter.COL_MOVEMENTBED), c.getString(DBAdapter.COL_LIESIT), c.getString(DBAdapter.COL_SITTING), c.getString(DBAdapter.COL_SITSTAND), c.getString(DBAdapter.COL_STAND), c.getString(DBAdapter.COL_LIFTSUNAFFECTED), c.getString(DBAdapter.COL_LIFTSAFFECTED), c.getString(DBAdapter.COL_WALKING),
+                            c.getString(DBAdapter.COL_BARTHEL), c.getString(DBAdapter.COL_BERG),
+                            c.getString(DBAdapter.COL_CNS_CONSCIOUSNESS), c.getString(DBAdapter.COL_CNS_ORIENTATION), c.getString(DBAdapter.COL_CNS_SPEECH), c.getString(DBAdapter.COL_CNS_FACE1), c.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL), c.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL), c.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL), c.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL), c.getString(DBAdapter.COL_CNS_FACE2), c.getString(DBAdapter.COL_CNS_UPPER_LIMBS), c.getString(DBAdapter.COL_CNS_LOWER_LIMBS),
+                            c.getString(DBAdapter.COL_CNS), c.getString(DBAdapter.COL_NIHSS)};
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
             }
@@ -763,11 +775,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
                 do {
-                    String arrStr[] ={c.getString(myDb.COL_ROWID), c.getString(myDb.COL_FIRSTNAME), c.getString(myDb.COL_LASTNAME), c.getString(myDb.COL_HOSPITALID), c.getString(myDb.COL_ADMISSIONDATE), c.getString(myDb.COL_DISCHARGED), c.getString(myDb.COL_DISCHARGEDATE), c.getString(myDb.COL_PATIENTAGE), c.getString(myDb.COL_PATIENTGENDER), c.getString(myDb.COL_FIRSTLANGUAGE),
-                            c.getString(myDb.COL_MOCASCORE), c.getString(myDb.COL_CUSTOMSCORE), c.getString(myDb.COL_CUSTOMMAX),
-                            c.getString(myDb.COL_STROKETYPE), c.getString(myDb.COL_FIRSTSTROKE), c.getString(myDb.COL_LESIONSIDE), c.getString(myDb.COL_HEMIPLEGIASIDE), c.getString(myDb.COL_CONSCIOUSNESS), c.getString(myDb.COL_ORIENTATION), c.getString(myDb.COL_LANGUAGE), c.getString(myDb.COL_VISUAL), c.getString(myDb.COL_HEARINGAID), c.getString(myDb.COL_HEARINGASSESSED), c.getString(myDb.COL_APHASIA),
-                            c.getString(myDb.COL_PEGADMIT), c.getString(myDb.COL_NGADMIT), c.getString(myDb.COL_FOLEYADMIT), c.getString(myDb.COL_FALLRISK), c.getString(myDb.COL_MOTIVATIONADMIT), c.getString(myDb.COL_OTHER), c.getString(myDb.COL_COGNITION),
-                            c.getString(myDb.COL_FIRSTOT), c.getString(myDb.COL_TOTALOT), c.getString(myDb.COL_FIRSTSWALLOW), c.getString(myDb.COL_FIRSTPT), c.getString(myDb.COL_TOTALPT), c.getString(myDb.COL_FIRSTSLT), c.getString(myDb.COL_TOTALSLT)};
+                    String arrStr[] ={c.getString(DBAdapter.COL_ROWID), c.getString(DBAdapter.COL_FIRSTNAME), c.getString(DBAdapter.COL_LASTNAME), c.getString(DBAdapter.COL_HOSPITALID), c.getString(DBAdapter.COL_ADMISSIONDATE), c.getString(DBAdapter.COL_DISCHARGED), c.getString(DBAdapter.COL_DISCHARGEDATE), c.getString(DBAdapter.COL_PATIENTAGE), c.getString(DBAdapter.COL_PATIENTGENDER), c.getString(DBAdapter.COL_FIRSTLANGUAGE),
+                            c.getString(DBAdapter.COL_MOCASCORE), c.getString(DBAdapter.COL_CUSTOMSCORE), c.getString(DBAdapter.COL_CUSTOMMAX),
+                            c.getString(DBAdapter.COL_STROKETYPE), c.getString(DBAdapter.COL_FIRSTSTROKE), c.getString(DBAdapter.COL_LESIONSIDE), c.getString(DBAdapter.COL_HEMIPLEGIASIDE), c.getString(DBAdapter.COL_CONSCIOUSNESS), c.getString(DBAdapter.COL_ORIENTATION), c.getString(DBAdapter.COL_LANGUAGE), c.getString(DBAdapter.COL_VISUAL), c.getString(DBAdapter.COL_HEARINGAID), c.getString(DBAdapter.COL_HEARINGASSESSED), c.getString(DBAdapter.COL_APHASIA),
+                            c.getString(DBAdapter.COL_PEGADMIT), c.getString(DBAdapter.COL_NGADMIT), c.getString(DBAdapter.COL_FOLEYADMIT), c.getString(DBAdapter.COL_FALLRISK), c.getString(DBAdapter.COL_MOTIVATIONADMIT), c.getString(DBAdapter.COL_OTHER), c.getString(DBAdapter.COL_COGNITION),
+                            c.getString(DBAdapter.COL_FIRSTOT), c.getString(DBAdapter.COL_TOTALOT), c.getString(DBAdapter.COL_FIRSTSWALLOW), c.getString(DBAdapter.COL_FIRSTPT), c.getString(DBAdapter.COL_TOTALPT), c.getString(DBAdapter.COL_FIRSTSLT), c.getString(DBAdapter.COL_TOTALSLT)
+                            };
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
             }
@@ -802,7 +815,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         String currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
             currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
             currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
-            currentBarthel, currentBerg;
+            currentBarthel, currentBerg,
+            currentCnsConsciousness, currentCnsOrientation, currentCnsSpeech, currentCnsFace1, currentCnsUpperLimbProximal, currentCnsUpperLimbDistal, currentCnsLowerLimbProximal, currentCnsLowerLimbDistal, currentCnsUpperLimbs, currentCnsLowerLimbs, currentCnsFace2,
+            currentCnsScore, currentNihssScore;
 
         //Nurse
         rg=(RadioGroup)findViewById(R.id.rgPeg);
@@ -1169,6 +1184,136 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         currentBarthel = "placeholder";
         currentBerg = "placeholder";
 
+
+        //////////////////////////////////
+
+
+        rg=(RadioGroup)findViewById(R.id.rgCns1);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsConsciousness = (String) btn.getText();
+        } else {
+            currentCnsConsciousness = "";
+        }
+
+
+        rg=(RadioGroup)findViewById(R.id.rgCns2);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsOrientation = (String) btn.getText();
+        } else {
+            currentCnsOrientation = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCns3);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsSpeech = (String) btn.getText();
+        } else {
+            currentCnsSpeech = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsFace1 = (String) btn.getText();
+        } else {
+            currentCnsFace1 = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsUpperLimbProximal = (String) btn.getText();
+        } else {
+            currentCnsUpperLimbProximal = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsUpperLimbDistal = (String) btn.getText();
+        } else {
+            currentCnsUpperLimbDistal = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsLowerLimbProximal = (String) btn.getText();
+        } else {
+            currentCnsLowerLimbProximal = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsLowerLimbDistal = (String) btn.getText();
+        } else {
+            currentCnsLowerLimbDistal = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsFace2 = (String) btn.getText();
+        } else {
+            currentCnsFace2 = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsUpperLimbs = (String) btn.getText();
+        } else {
+            currentCnsUpperLimbs = "";
+        }
+
+        rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
+        id = rg.getCheckedRadioButtonId();
+        if (id!=-1) {
+            radioButton = rg.findViewById(id);
+            radioId = rg.indexOfChild(radioButton);
+            btn = (RadioButton) rg.getChildAt(radioId);
+            currentCnsLowerLimbs = (String) btn.getText();
+        } else {
+            currentCnsLowerLimbs = "";
+        }
+
+
+        currentCnsScore = "placeholder";
+        currentNihssScore = "placeholder";
+
         ///////////////////////////////////
 
         Cursor cursor = myDb.getRowData(currentPatientId, currentDay);
@@ -1177,14 +1322,18 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
                     currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
                     currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
-                    currentBarthel, currentBerg);
+                    currentBarthel, currentBerg,
+                    currentCnsConsciousness, currentCnsOrientation, currentCnsSpeech, currentCnsFace1, currentCnsUpperLimbProximal, currentCnsUpperLimbDistal, currentCnsLowerLimbProximal, currentCnsLowerLimbDistal, currentCnsUpperLimbs, currentCnsLowerLimbs, currentCnsFace2,
+                    currentCnsScore, currentNihssScore);
 
         }else{
             myDb.insertRowData(currentPatientId, currentMrn, currentDay,
                     currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
                     currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
                     currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
-                    currentBarthel, currentBerg);
+                    currentBarthel, currentBerg,
+                    currentCnsConsciousness, currentCnsOrientation, currentCnsSpeech, currentCnsFace1, currentCnsUpperLimbProximal, currentCnsUpperLimbDistal, currentCnsLowerLimbProximal, currentCnsLowerLimbDistal, currentCnsUpperLimbs, currentCnsLowerLimbs, currentCnsFace2,
+                    currentCnsScore, currentNihssScore);
         }
 
         cursor.close();
@@ -1198,7 +1347,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
                 currentNeglect, currentDigitSpan, currentMmse, currentFollows, currentVerbal, currentMotivation, currentMood, currentPain, currentFatigue, currentSwallow, currentFeeding, currentDressing, currentKitchen,
                 currentLeftArm, currentRightArm, currentMovementBed, currentLieSit, currentSitting, currentSitStand, currentStand, currentLiftsUnaffected, currentLiftsAffected, currentWalking,
-                currentBarthel, currentBerg);
+                currentBarthel, currentBerg,
+                currentCnsConsciousness, currentCnsOrientation, currentCnsSpeech, currentCnsFace1, currentCnsUpperLimbProximal, currentCnsUpperLimbDistal, currentCnsLowerLimbProximal, currentCnsLowerLimbDistal, currentCnsUpperLimbs, currentCnsLowerLimbs, currentCnsFace2,
+                currentCnsScore, currentNihssScore);
     }
 
     public void loadPatientData(){
@@ -1210,274 +1361,274 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //Nurse
 
             RadioGroup rg=(RadioGroup)findViewById(R.id.rgPeg);
-            if (cursor.getString(myDb.COL_PEG).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_PEG).equals("Yes")){
                 rg.check(R.id.radio_PegYes);
-            } else if(cursor.getString(myDb.COL_PEG).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_PEG).equals("No")){
                 rg.check(R.id.radio_PegNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgNg);
-            if (cursor.getString(myDb.COL_NG).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_NG).equals("Yes")){
                 rg.check(R.id.radio_NgYes);
-            } else if(cursor.getString(myDb.COL_NG).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_NG).equals("No")){
                 rg.check(R.id.radio_NgNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgO2);
-            if (cursor.getString(myDb.COL_O2).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_O2).equals("Yes")){
                 rg.check(R.id.radio_O2Yes);
-            } else if(cursor.getString(myDb.COL_O2).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_O2).equals("No")){
                 rg.check(R.id.radio_O2No);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgIv);
-            if (cursor.getString(myDb.COL_IV).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_IV).equals("Yes")){
                 rg.check(R.id.radio_IvYes);
-            } else if(cursor.getString(myDb.COL_IV).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_IV).equals("No")){
                 rg.check(R.id.radio_IvNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCpap);
-            if (cursor.getString(myDb.COL_CPAP).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_CPAP).equals("Yes")){
                 rg.check(R.id.radio_CpapYes);
-            } else if(cursor.getString(myDb.COL_CPAP).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_CPAP).equals("No")){
                 rg.check(R.id.radio_CpapNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgRestraint);
-            if (cursor.getString(myDb.COL_RESTRAINT).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_RESTRAINT).equals("Yes")){
                 rg.check(R.id.radio_RestraintYes);
-            } else if(cursor.getString(myDb.COL_RESTRAINT).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_RESTRAINT).equals("No")){
                 rg.check(R.id.radio_RestraintNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBedbars);
-            if (cursor.getString(myDb.COL_BEDBARS).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_BEDBARS).equals("Yes")){
                 rg.check(R.id.radio_BedbarsYes);
-            } else if(cursor.getString(myDb.COL_BEDBARS).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_BEDBARS).equals("No")){
                 rg.check(R.id.radio_BedbarsNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBehavioural);
-            if (cursor.getString(myDb.COL_BEHAVIOURAL).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_BEHAVIOURAL).equals("Yes")){
                 rg.check(R.id.radio_BehaviouralYes);
-            } else if(cursor.getString(myDb.COL_BEHAVIOURAL).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_BEHAVIOURAL).equals("No")){
                 rg.check(R.id.radio_BehaviouralNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgConfusion);
-            if (cursor.getString(myDb.COL_CONFUSION).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_CONFUSION).equals("Yes")){
                 rg.check(R.id.radio_ConfusionYes);
-            } else if(cursor.getString(myDb.COL_CONFUSION).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_CONFUSION).equals("No")){
                 rg.check(R.id.radio_ConfusionNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBladder);
-            if (cursor.getString(myDb.COL_BLADDER).equals("Foley")){
+            if (cursor.getString(DBAdapter.COL_BLADDER).equals("Foley")){
                 rg.check(R.id.radio_BladderFoley);
-            } else if(cursor.getString(myDb.COL_BLADDER).equals("Diaper")){
+            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Diaper")){
                 rg.check(R.id.radio_BladderDiaper);
-            } else if(cursor.getString(myDb.COL_BLADDER).equals("Bedpan")){
+            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Bedpan")){
                 rg.check(R.id.radio_BladderBedpan);
-            } else if(cursor.getString(myDb.COL_BLADDER).equals("Toilet")){
+            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Toilet")){
                 rg.check(R.id.radio_BladderToilet);
             }else{
                 rg.clearCheck();
             }
 
             EditText editText = (EditText) findViewById(R.id.aHours);
-            editText.setText(cursor.getString(myDb.COL_HOURS));
+            editText.setText(cursor.getString(DBAdapter.COL_HOURS));
             editText.clearFocus();
 
             //OT
 
             rg=(RadioGroup)findViewById(R.id.rgNeglect);
-            if (cursor.getString(myDb.COL_NEGLECT).equals("Yes")){
+            if (cursor.getString(DBAdapter.COL_NEGLECT).equals("Yes")){
                 rg.check(R.id.radio_NeglectYes);
-            } else if(cursor.getString(myDb.COL_NEGLECT).equals("No")){
+            } else if(cursor.getString(DBAdapter.COL_NEGLECT).equals("No")){
                 rg.check(R.id.radio_NeglectNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgDigitSpan);
-            if (cursor.getString(myDb.COL_DIGITSPAN).equals("1")){
+            if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("1")){
                 rg.check(R.id.radio_DigitSpan1);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("2")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("2")){
                 rg.check(R.id.radio_DigitSpan2);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("3")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("3")){
                 rg.check(R.id.radio_DigitSpan3);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("4")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("4")){
                 rg.check(R.id.radio_DigitSpan4);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("5")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("5")){
                 rg.check(R.id.radio_DigitSpan5);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("6")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("6")){
                 rg.check(R.id.radio_DigitSpan6);
-            } else if (cursor.getString(myDb.COL_DIGITSPAN).equals("7")){
+            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("7")){
                 rg.check(R.id.radio_DigitSpan7);
             } else{
                 rg.clearCheck();
             }
 
             editText = (EditText) findViewById(R.id.aMmse);
-            editText.setText(cursor.getString(myDb.COL_MMSE));
+            editText.setText(cursor.getString(DBAdapter.COL_MMSE));
             editText.clearFocus();
 
             rg=(RadioGroup)findViewById(R.id.rgFollows);
-            if (cursor.getString(myDb.COL_FOLLOWS).equals("None")){
+            if (cursor.getString(DBAdapter.COL_FOLLOWS).equals("None")){
                 rg.check(R.id.radio_Follows0);
-            } else if(cursor.getString(myDb.COL_FOLLOWS).equals("1 step")){
+            } else if(cursor.getString(DBAdapter.COL_FOLLOWS).equals("1 step")){
                 rg.check(R.id.radio_Follows1);
-            } else if(cursor.getString(myDb.COL_FOLLOWS).equals("2 step")){
+            } else if(cursor.getString(DBAdapter.COL_FOLLOWS).equals("2 step")){
                 rg.check(R.id.radio_Follows2);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgVerbal);
-            if (cursor.getString(myDb.COL_VERBAL).equals("None")){
+            if (cursor.getString(DBAdapter.COL_VERBAL).equals("None")){
                 rg.check(R.id.radio_VerbalNone);
-            } else if(cursor.getString(myDb.COL_VERBAL).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_VERBAL).equals("Partial")){
                 rg.check(R.id.radio_VerbalPartial);
-            } else if(cursor.getString(myDb.COL_VERBAL).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_VERBAL).equals("Full")){
                 rg.check(R.id.radio_VerbalFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMotivation);
-            if (cursor.getString(myDb.COL_MOTIVATION).equals("1")){
+            if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("1")){
                 rg.check(R.id.radio_Motivation1);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("2")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("2")){
                 rg.check(R.id.radio_Motivation2);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("3")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("3")){
                 rg.check(R.id.radio_Motivation3);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("4")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("4")){
                 rg.check(R.id.radio_Motivation4);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("5")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("5")){
                 rg.check(R.id.radio_Motivation5);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("6")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("6")){
                 rg.check(R.id.radio_Motivation6);
-            } else if (cursor.getString(myDb.COL_MOTIVATION).equals("7")){
+            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("7")){
                 rg.check(R.id.radio_Motivation7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMood);
-            if (cursor.getString(myDb.COL_MOOD).equals("1")){
+            if (cursor.getString(DBAdapter.COL_MOOD).equals("1")){
                 rg.check(R.id.radio_Mood1);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("2")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("2")){
                 rg.check(R.id.radio_Mood2);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("3")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("3")){
                 rg.check(R.id.radio_Mood3);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("4")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("4")){
                 rg.check(R.id.radio_Mood4);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("5")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("5")){
                 rg.check(R.id.radio_Mood5);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("6")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("6")){
                 rg.check(R.id.radio_Mood6);
-            } else if (cursor.getString(myDb.COL_MOOD).equals("7")){
+            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("7")){
                 rg.check(R.id.radio_Mood7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgPain);
-            if (cursor.getString(myDb.COL_PAIN).equals("1")){
+            if (cursor.getString(DBAdapter.COL_PAIN).equals("1")){
                 rg.check(R.id.radio_Pain1);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("2")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("2")){
                 rg.check(R.id.radio_Pain2);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("3")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("3")){
                 rg.check(R.id.radio_Pain3);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("4")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("4")){
                 rg.check(R.id.radio_Pain4);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("5")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("5")){
                 rg.check(R.id.radio_Pain5);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("6")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("6")){
                 rg.check(R.id.radio_Pain6);
-            } else if (cursor.getString(myDb.COL_PAIN).equals("7")){
+            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("7")){
                 rg.check(R.id.radio_Pain7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFatigue);
-            if (cursor.getString(myDb.COL_FATIGUE).equals("1")){
+            if (cursor.getString(DBAdapter.COL_FATIGUE).equals("1")){
                 rg.check(R.id.radio_Fatigue1);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("2")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("2")){
                 rg.check(R.id.radio_Fatigue2);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("3")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("3")){
                 rg.check(R.id.radio_Fatigue3);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("4")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("4")){
                 rg.check(R.id.radio_Fatigue4);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("5")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("5")){
                 rg.check(R.id.radio_Fatigue5);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("6")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("6")){
                 rg.check(R.id.radio_Fatigue6);
-            } else if (cursor.getString(myDb.COL_FATIGUE).equals("7")){
+            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("7")){
                 rg.check(R.id.radio_Fatigue7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSwallow);
-            if (cursor.getString(myDb.COL_SWALLOW).equals("None")){
+            if (cursor.getString(DBAdapter.COL_SWALLOW).equals("None")){
                 rg.check(R.id.radio_SwallowNone);
-            } else if(cursor.getString(myDb.COL_SWALLOW).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_SWALLOW).equals("Partial")){
                 rg.check(R.id.radio_SwallowPartial);
-            } else if(cursor.getString(myDb.COL_SWALLOW).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_SWALLOW).equals("Full")){
                 rg.check(R.id.radio_SwallowFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFeeding);
-            if (cursor.getString(myDb.COL_FEEDING).equals("None")){
+            if (cursor.getString(DBAdapter.COL_FEEDING).equals("None")){
                 rg.check(R.id.radio_FeedingNone);
-            } else if(cursor.getString(myDb.COL_FEEDING).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_FEEDING).equals("Partial")){
                 rg.check(R.id.radio_FeedingPartial);
-            } else if(cursor.getString(myDb.COL_FEEDING).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_FEEDING).equals("Full")){
                 rg.check(R.id.radio_FeedingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgDressing);
-            if (cursor.getString(myDb.COL_DRESSING).equals("None")){
+            if (cursor.getString(DBAdapter.COL_DRESSING).equals("None")){
                 rg.check(R.id.radio_DressingNone);
-            } else if(cursor.getString(myDb.COL_DRESSING).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_DRESSING).equals("Partial")){
                 rg.check(R.id.radio_DressingPartial);
-            } else if(cursor.getString(myDb.COL_DRESSING).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_DRESSING).equals("Full")){
                 rg.check(R.id.radio_DressingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgKitchen);
-            if (cursor.getString(myDb.COL_KITCHEN).equals("None")){
+            if (cursor.getString(DBAdapter.COL_KITCHEN).equals("None")){
                 rg.check(R.id.radio_KitchenNone);
-            } else if(cursor.getString(myDb.COL_KITCHEN).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_KITCHEN).equals("Partial")){
                 rg.check(R.id.radio_KitchenPartial);
-            } else if(cursor.getString(myDb.COL_KITCHEN).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_KITCHEN).equals("Full")){
                 rg.check(R.id.radio_KitchenFull);
             } else{
                 rg.clearCheck();
@@ -1486,111 +1637,235 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //PT
 
             rg=(RadioGroup)findViewById(R.id.rgLeftArm);
-            if (cursor.getString(myDb.COL_LEFTARM).equals("None")){
+            if (cursor.getString(DBAdapter.COL_LEFTARM).equals("None")){
                 rg.check(R.id.radio_LeftArmNone);
-            } else if (cursor.getString(myDb.COL_LEFTARM).equals("Partial")){
+            } else if (cursor.getString(DBAdapter.COL_LEFTARM).equals("Partial")){
                 rg.check(R.id.radio_LeftArmPartial);
-            } else if (cursor.getString(myDb.COL_LEFTARM).equals("Full")){
+            } else if (cursor.getString(DBAdapter.COL_LEFTARM).equals("Full")){
                 rg.check(R.id.radio_LeftArmFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgRightArm);
-            if (cursor.getString(myDb.COL_RIGHTARM).equals("None")){
+            if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("None")){
                 rg.check(R.id.radio_RightArmNone);
-            } else if (cursor.getString(myDb.COL_RIGHTARM).equals("Partial")){
+            } else if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("Partial")){
                 rg.check(R.id.radio_RightArmPartial);
-            } else if (cursor.getString(myDb.COL_RIGHTARM).equals("Full")){
+            } else if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("Full")){
                 rg.check(R.id.radio_RightArmFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMovementBed);
-            if (cursor.getString(myDb.COL_MOVEMENTBED).equals("None")){
+            if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("None")){
                 rg.check(R.id.radio_MovementBedNone);
-            } else if (cursor.getString(myDb.COL_MOVEMENTBED).equals("Partial")){
+            } else if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("Partial")){
                 rg.check(R.id.radio_MovementBedPartial);
-            } else if (cursor.getString(myDb.COL_MOVEMENTBED).equals("Full")){
+            } else if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("Full")){
                 rg.check(R.id.radio_MovementBedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLieSit);
-            if (cursor.getString(myDb.COL_LIESIT).equals("None")){
+            if (cursor.getString(DBAdapter.COL_LIESIT).equals("None")){
                 rg.check(R.id.radio_LieSitNone);
-            } else if(cursor.getString(myDb.COL_LIESIT).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_LIESIT).equals("Partial")){
                 rg.check(R.id.radio_LieSitPartial);
-            } else if(cursor.getString(myDb.COL_LIESIT).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_LIESIT).equals("Full")){
                 rg.check(R.id.radio_LieSitFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSitting);
-            if (cursor.getString(myDb.COL_SITTING).equals("None")){
+            if (cursor.getString(DBAdapter.COL_SITTING).equals("None")){
                 rg.check(R.id.radio_SittingNone);
-            } else if(cursor.getString(myDb.COL_SITTING).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_SITTING).equals("Partial")){
                 rg.check(R.id.radio_SittingPartial);
-            } else if(cursor.getString(myDb.COL_SITTING).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_SITTING).equals("Full")){
                 rg.check(R.id.radio_SittingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSitStand);
-            if (cursor.getString(myDb.COL_SITSTAND).equals("None")){
+            if (cursor.getString(DBAdapter.COL_SITSTAND).equals("None")){
                 rg.check(R.id.radio_SitStandNone);
-            } else if(cursor.getString(myDb.COL_SITSTAND).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_SITSTAND).equals("Partial")){
                 rg.check(R.id.radio_SitStandPartial);
-            } else if(cursor.getString(myDb.COL_SITSTAND).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_SITSTAND).equals("Full")){
                 rg.check(R.id.radio_SitStandFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgStand);
-            if (cursor.getString(myDb.COL_STAND).equals("None")){
+            if (cursor.getString(DBAdapter.COL_STAND).equals("None")){
                 rg.check(R.id.radio_StandNone);
-            } else if(cursor.getString(myDb.COL_STAND).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_STAND).equals("Partial")){
                 rg.check(R.id.radio_StandPartial);
-            } else if(cursor.getString(myDb.COL_STAND).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_STAND).equals("Full")){
                 rg.check(R.id.radio_StandFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
-            if (cursor.getString(myDb.COL_LIFTSUNAFFECTED).equals("None")){
+            if (cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("None")){
                 rg.check(R.id.radio_LiftsUnaffectedNone);
-            } else if(cursor.getString(myDb.COL_LIFTSUNAFFECTED).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("Partial")){
                 rg.check(R.id.radio_LiftsUnaffectedPartial);
-            } else if(cursor.getString(myDb.COL_LIFTSUNAFFECTED).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("Full")){
                 rg.check(R.id.radio_LiftsUnaffectedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
-            if (cursor.getString(myDb.COL_LIFTSAFFECTED).equals("None")){
+            if (cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("None")){
                 rg.check(R.id.radio_LiftsAffectedNone);
-            } else if(cursor.getString(myDb.COL_LIFTSAFFECTED).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("Partial")){
                 rg.check(R.id.radio_LiftsAffectedPartial);
-            } else if(cursor.getString(myDb.COL_LIFTSAFFECTED).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("Full")){
                 rg.check(R.id.radio_LiftsAffectedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgWalking);
-            if (cursor.getString(myDb.COL_WALKING).equals("None")){
+            if (cursor.getString(DBAdapter.COL_WALKING).equals("None")){
                 rg.check(R.id.radio_WalkingNone);
-            } else if(cursor.getString(myDb.COL_WALKING).equals("Partial")){
+            } else if(cursor.getString(DBAdapter.COL_WALKING).equals("Partial")){
                 rg.check(R.id.radio_WalkingPartial);
-            } else if(cursor.getString(myDb.COL_WALKING).equals("Full")){
+            } else if(cursor.getString(DBAdapter.COL_WALKING).equals("Full")){
                 rg.check(R.id.radio_WalkingFull);
+            } else{
+                rg.clearCheck();
+            }
+
+
+
+
+
+
+            //CNS
+
+            rg=(RadioGroup)findViewById(R.id.rgCns1);
+            if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Alert")){
+                rg.check(R.id.radio_Cns1Alert);
+            } else if(cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Drowsy")){
+                rg.check(R.id.radio_Cns1Drowsy);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCns2);
+            if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Oriented")){
+                rg.check(R.id.radio_Cns2Oriented);
+            } else if(cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Disoriented")){
+                rg.check(R.id.radio_Cns2Disoriented);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCns3);
+            if (cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Receptive deficit")){
+                rg.check(R.id.radio_Cns2ReceptiveDeficit);
+            } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Expressive deficit")){
+                rg.check(R.id.radio_Cns3ExpressiveDeficit);
+            } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Normal")){
+                rg.check(R.id.radio_Cns3Normal);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
+            if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("No weakness")){
+                rg.check(R.id.radio_CnsA1_4NoWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Weakness")){
+                rg.check(R.id.radio_CnsA1_4Weakness);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("No weakness")){
+                rg.check(R.id.radio_CnsA1_5NoWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Mild weakness")){
+                rg.check(R.id.radio_CnsA1_5MildWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Significant weakness")){
+                rg.check(R.id.radio_CnsA1_5SignificantWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Total weakness")){
+                rg.check(R.id.radio_CnsA1_5TotalWeakness);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("No weakness")){
+                rg.check(R.id.radio_CnsA1_6NoWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Mild weakness")){
+                rg.check(R.id.radio_CnsA1_6MildWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Significant weakness")){
+                rg.check(R.id.radio_CnsA1_6SignificantWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Total weakness")){
+                rg.check(R.id.radio_CnsA1_6TotalWeakness);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("No weakness")){
+                rg.check(R.id.radio_CnsA1_7NoWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Mild weakness")){
+                rg.check(R.id.radio_CnsA1_7MildWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Significant weakness")){
+                rg.check(R.id.radio_CnsA1_7SignificantWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Total weakness")){
+                rg.check(R.id.radio_CnsA1_7TotalWeakness);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("No weakness")){
+                rg.check(R.id.radio_CnsA1_8NoWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Mild weakness")){
+                rg.check(R.id.radio_CnsA1_8MildWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Significant weakness")){
+                rg.check(R.id.radio_CnsA1_8SignificantWeakness);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Total weakness")){
+                rg.check(R.id.radio_CnsA1_8TotalWeakness);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
+            if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Symmetrical")){
+                rg.check(R.id.radio_CnsA2_4Symmetrical);
+            } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Asymmetrical")){
+                rg.check(R.id.radio_CnsA2_4Asymmetrical);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Equal")){
+                rg.check(R.id.radio_CnsA2_5Equal);
+            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Unequal")){
+                rg.check(R.id.radio_CnsA2_5Unequal);
+            } else{
+                rg.clearCheck();
+            }
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Equal")){
+                rg.check(R.id.radio_CnsA2_6Equal);
+            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Unequal")){
+                rg.check(R.id.radio_CnsA2_6Unequal);
             } else{
                 rg.clearCheck();
             }
@@ -1709,6 +1984,42 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             rg=(RadioGroup)findViewById(R.id.rgWalking);
             rg.clearCheck();
 
+
+
+            //CNS
+            rg=(RadioGroup)findViewById(R.id.rgCns1);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCns2);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCns3);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
+            rg.clearCheck();
+
+            rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
+            rg.clearCheck();
+
         }
 
         cursor.close();
@@ -1726,13 +2037,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (cursor.moveToFirst()){
 
             if (selectedScoreType.equals("Barthel")){
-                String feedingString = cursor.getString(MainActivity.myDb.COL_FEEDING);
-                String dressingString = cursor.getString(MainActivity.myDb.COL_DRESSING);
-                String sitStandString = cursor.getString(MainActivity.myDb.COL_SITSTAND);
-                String walkingString = cursor.getString(MainActivity.myDb.COL_WALKING);
-                String bladderString = cursor.getString(MainActivity.myDb.COL_BLADDER);
-                String liftsAffectedString = cursor.getString(MainActivity.myDb.COL_LIFTSAFFECTED);
-                String liftsUnaffectedString = cursor.getString(MainActivity.myDb.COL_LIFTSUNAFFECTED);
+                String feedingString = cursor.getString(DBAdapter.COL_FEEDING);
+                String dressingString = cursor.getString(DBAdapter.COL_DRESSING);
+                String sitStandString = cursor.getString(DBAdapter.COL_SITSTAND);
+                String walkingString = cursor.getString(DBAdapter.COL_WALKING);
+                String bladderString = cursor.getString(DBAdapter.COL_BLADDER);
+                String liftsAffectedString = cursor.getString(DBAdapter.COL_LIFTSAFFECTED);
+                String liftsUnaffectedString = cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED);
                 int feedingInt = 0;
                 int dressingInt = 0;
                 int sitStandInt = 0;
@@ -1839,11 +2150,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             } else{
                 //Berg score
-                String liftsAffectedString = cursor.getString(MainActivity.myDb.COL_LIFTSAFFECTED);
-                String liftsUnaffectedString = cursor.getString(MainActivity.myDb.COL_LIFTSUNAFFECTED);
-                String sitStandString = cursor.getString(MainActivity.myDb.COL_SITSTAND);
-                String standString = cursor.getString(MainActivity.myDb.COL_STAND);
-                String sittingString = cursor.getString(MainActivity.myDb.COL_SITTING);
+                String liftsAffectedString = cursor.getString(DBAdapter.COL_LIFTSAFFECTED);
+                String liftsUnaffectedString = cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED);
+                String sitStandString = cursor.getString(DBAdapter.COL_SITSTAND);
+                String standString = cursor.getString(DBAdapter.COL_STAND);
+                String sittingString = cursor.getString(DBAdapter.COL_SITTING);
 
                 int liftsAffectedInt = 0;
                 int liftsUnaffectedInt = 0;

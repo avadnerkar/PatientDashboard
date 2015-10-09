@@ -116,9 +116,26 @@ public class DBAdapter {
 	public static final String KEY_LIFTSAFFECTED = "LiftsAffectedLegStanding";
 	public static final String KEY_WALKING = "Walking";
 
+	//CNS
+	public static final String KEY_CNS_CONSCIOUSNESS = "CnsConsciousness";
+	public static final String KEY_CNS_ORIENTATION = "CnsOrientation";
+	public static final String KEY_CNS_SPEECH = "CnsSpeech";
+	public static final String KEY_CNS_FACE1 = "CnsFace1";
+	public static final String KEY_CNS_UPPER_LIMB_PROXIMAL = "CnsUpperLimbProximal";
+	public static final String KEY_CNS_UPPER_LIMB_DISTAL = "CnsUpperLimbDistal";
+	public static final String KEY_CNS_LOWER_LIMB_PROXIMAL = "CnsLowerLimbProximal";
+	public static final String KEY_CNS_LOWER_LIMB_DISTAL = "CnsLowerLimbDistal";
+	public static final String KEY_CNS_UPPER_LIMBS = "CnsUpperLimbs";
+	public static final String KEY_CNS_LOWER_LIMBS = "CnsLowerLimbs";
+	public static final String KEY_CNS_FACE2 = "CNSFace2";
+
+
+
 	//Scores
 	public static final String KEY_BARTHEL = "EstBarthelScore";
 	public static final String KEY_BERG = "EstBergScore";
+	public static final String KEY_CNS = "CnsScore";
+	public static final String KEY_NIHSS = "NihssScore";
 
 
 	// TODO: Setup your patient field numbers here (0 = KEY_ROWID, 1=...)
@@ -209,9 +226,24 @@ public class DBAdapter {
 	public static final int COL_LIFTSAFFECTED = 36;
 	public static final int COL_WALKING = 37;
 
+	//CNS
+	public static final int COL_CNS_CONSCIOUSNESS = 40;
+	public static final int COL_CNS_ORIENTATION = 41;
+	public static final int COL_CNS_SPEECH = 42;
+	public static final int COL_CNS_FACE1 = 43;
+	public static final int COL_CNS_UPPER_LIMB_PROXIMAL = 44;
+	public static final int COL_CNS_UPPER_LIMB_DISTAL = 45;
+	public static final int COL_CNS_LOWER_LIMB_PROXIMAL = 46;
+	public static final int COL_CNS_LOWER_LIMB_DISTAL = 47;
+	public static final int COL_CNS_UPPER_LIMBS = 48;
+	public static final int COL_CNS_LOWER_LIMBS = 49;
+	public static final int COL_CNS_FACE2 = 50;
+
 	//Score
 	public static final int COL_BARTHEL = 38;
 	public static final int COL_BERG = 39;
+	public static final int COL_CNS = 51;
+	public static final int COL_NIHSS = 52;
 
 
 	// TODO: Set all keys for patient table
@@ -226,7 +258,11 @@ public class DBAdapter {
 			KEY_PEG, KEY_NG, KEY_O2, KEY_IV, KEY_CPAP, KEY_RESTRAINT, KEY_BEDBARS, KEY_BEHAVIOURAL, KEY_CONFUSION, KEY_BLADDER, KEY_HOURS,
 			KEY_NEGLECT, KEY_DIGITSPAN, KEY_MMSE, KEY_FOLLOWS, KEY_VERBAL, KEY_MOTIVATION, KEY_MOOD, KEY_PAIN, KEY_FATIGUE, KEY_SWALLOW, KEY_FEEDING, KEY_DRESSING, KEY_KITCHEN,
 			KEY_LEFTARM, KEY_RIGHTARM, KEY_MOVEMENTBED, KEY_LIESIT, KEY_SITTING, KEY_SITSTAND, KEY_STAND, KEY_LIFTSUNAFFECTED, KEY_LIFTSAFFECTED, KEY_WALKING,
-			KEY_BARTHEL, KEY_BERG};
+			KEY_BARTHEL, KEY_BERG,
+			KEY_CNS_CONSCIOUSNESS, KEY_CNS_ORIENTATION, KEY_CNS_SPEECH, KEY_CNS_FACE1, KEY_CNS_UPPER_LIMB_PROXIMAL, KEY_CNS_UPPER_LIMB_DISTAL, KEY_CNS_LOWER_LIMB_PROXIMAL, KEY_CNS_LOWER_LIMB_DISTAL, KEY_CNS_UPPER_LIMBS, KEY_CNS_LOWER_LIMBS, KEY_CNS_FACE2,
+			KEY_CNS, KEY_NIHSS
+
+	};
 	
 	// DB info: its name, and the tables we are using
 	public static final String DATABASE_NAME = "PatientMonitoringDb";
@@ -234,7 +270,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 18;
+	public static final int DATABASE_VERSION = 22;
 
 
 	//Table Create Statements
@@ -354,7 +390,22 @@ public class DBAdapter {
 			+ KEY_WALKING + " text not null, "
 
 			+ KEY_BARTHEL + " text not null, "
-			+ KEY_BERG + " text not null"
+			+ KEY_BERG + " text not null, "
+
+			+ KEY_CNS_CONSCIOUSNESS + " text, "
+			+ KEY_CNS_ORIENTATION + " text, "
+			+ KEY_CNS_SPEECH + " text, "
+			+ KEY_CNS_FACE1 + " text, "
+			+ KEY_CNS_UPPER_LIMB_PROXIMAL + " text, "
+			+ KEY_CNS_UPPER_LIMB_DISTAL + " text, "
+			+ KEY_CNS_LOWER_LIMB_PROXIMAL + " text, "
+			+ KEY_CNS_LOWER_LIMB_DISTAL + " text, "
+			+ KEY_CNS_UPPER_LIMBS + " text, "
+			+ KEY_CNS_LOWER_LIMBS + " text, "
+			+ KEY_CNS_FACE2 + " text, "
+
+			+ KEY_CNS + " text, "
+			+ KEY_NIHSS + " text"
 
 					// Rest  of creation:
 			+ ");";
@@ -597,7 +648,9 @@ public class DBAdapter {
 							  String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
 							  String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
 							  String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
-							  String barthel, String berg) {
+							  String barthel, String berg,
+							  String cnsConsciousness, String cnsOrientation, String cnsSpeech, String cnsFace1, String cnsUpperLimbProximal, String cnsUpperLimbDistal, String cnsLowerLimbProximal, String cnsLowerLimbDistal, String cnsUpperLimbs, String cnsLowerLimbs, String cnsFace2,
+							  String cnsScore, String nihssScore) {
 		/*
 		 * CHANGE 3:
 		 */
@@ -649,6 +702,21 @@ public class DBAdapter {
 		initialValues.put(KEY_BARTHEL, barthel);
 		initialValues.put(KEY_BERG, berg);
 
+		initialValues.put(KEY_CNS_CONSCIOUSNESS, cnsConsciousness);
+		initialValues.put(KEY_CNS_ORIENTATION, cnsOrientation);
+		initialValues.put(KEY_CNS_SPEECH, cnsSpeech);
+		initialValues.put(KEY_CNS_FACE1, cnsFace1);
+		initialValues.put(KEY_CNS_UPPER_LIMB_PROXIMAL, cnsUpperLimbProximal);
+		initialValues.put(KEY_CNS_UPPER_LIMB_DISTAL, cnsUpperLimbDistal);
+		initialValues.put(KEY_CNS_LOWER_LIMB_PROXIMAL, cnsLowerLimbProximal);
+		initialValues.put(KEY_CNS_LOWER_LIMB_DISTAL, cnsLowerLimbDistal);
+		initialValues.put(KEY_CNS_UPPER_LIMBS, cnsUpperLimbs);
+		initialValues.put(KEY_CNS_LOWER_LIMBS, cnsLowerLimbs);
+		initialValues.put(KEY_CNS_FACE2, cnsFace2);
+
+		initialValues.put(KEY_CNS, cnsScore);
+		initialValues.put(KEY_NIHSS, nihssScore);
+
 
 		// Insert it into the database.
 		return db.insert(DATA_TABLE, null, initialValues);
@@ -698,7 +766,9 @@ public class DBAdapter {
 								String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
 								String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
 								String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
-								String barthel, String berg) {
+								String barthel, String berg,
+								String cnsConsciousness, String cnsOrientation, String cnsSpeech, String cnsFace1, String cnsUpperLimbProximal, String cnsUpperLimbDistal, String cnsLowerLimbProximal, String cnsLowerLimbDistal, String cnsUpperLimbs, String cnsLowerLimbs, String cnsFace2,
+								String cnsScore, String nihssScore) {
 
 		/*
 		 * CHANGE 4:
@@ -746,7 +816,22 @@ public class DBAdapter {
 				KEY_WALKING + " = '" + walking + "', " +
 
 				KEY_BARTHEL + " = '" + barthel + "', " +
-				KEY_BERG + " = '" + berg +
+				KEY_BERG + " = '" + berg + "', " +
+
+				KEY_CNS_CONSCIOUSNESS + " = '" + cnsConsciousness + "', " +
+				KEY_CNS_ORIENTATION + " = '" + cnsOrientation + "', " +
+				KEY_CNS_SPEECH + " = '" + cnsSpeech + "', " +
+				KEY_CNS_FACE1 + " = '" + cnsFace1 + "', " +
+				KEY_CNS_UPPER_LIMB_PROXIMAL + " = '" + cnsUpperLimbProximal + "', " +
+				KEY_CNS_UPPER_LIMB_DISTAL + " = '" + cnsUpperLimbDistal + "', " +
+				KEY_CNS_LOWER_LIMB_PROXIMAL + " = '" + cnsLowerLimbProximal + "', " +
+				KEY_CNS_LOWER_LIMB_DISTAL + " = '" + cnsLowerLimbDistal + "', " +
+				KEY_CNS_UPPER_LIMBS + " = '" + cnsUpperLimbs + "', " +
+				KEY_CNS_LOWER_LIMBS + " = '" + cnsLowerLimbs + "', " +
+				KEY_CNS_FACE2 + " = '" + cnsFace2 + "', " +
+
+				KEY_CNS + " = '" + cnsScore + "', " +
+				KEY_NIHSS + " = '" + nihssScore +
 				"' WHERE " + KEY_PARENTID + " = " + parentId + " AND " + KEY_DAY + " = " + day;
 
 		// Insert it into the database.
@@ -796,14 +881,29 @@ public class DBAdapter {
 		@Override
 		public void onUpgrade(SQLiteDatabase _db, int oldVersion, int newVersion) {
 			Log.w(TAG, "Upgrading application's database from version " + oldVersion
-					+ " to " + newVersion + ", which will destroy all old data!");
+					+ " to " + newVersion + ", attempting to keep old data");
 			
 			// Destroy old database:
-			_db.execSQL("DROP TABLE IF EXISTS " + PATIENT_TABLE);
-			_db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE);
+			//_db.execSQL("DROP TABLE IF EXISTS " + PATIENT_TABLE);
+			//_db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE);
+
+			//_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_CONSCIOUSNESS + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_ORIENTATION + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_SPEECH + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_FACE1 + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_UPPER_LIMB_PROXIMAL + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_UPPER_LIMB_DISTAL + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_LOWER_LIMB_PROXIMAL + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_LOWER_LIMB_DISTAL + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_UPPER_LIMBS + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_LOWER_LIMBS + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_FACE2 + " text");
+//
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS + " text");
+//			_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_NIHSS + " text");
 			
 			// Recreate new database:
-			onCreate(_db);
+			//onCreate(_db);
 		}
 	}
 }

@@ -6,6 +6,7 @@
     <string name="title_section1">Nurse</string>
     <string name="title_section2">OT/SLP</string>
     <string name="title_section3">PT</string>
+    <string name="title_section4">CNS</string>
     <string name="patient_new">New patient</string>
     <string name="patient_list">Select patient</string>
     <string name="patient_save">Save</string>
@@ -140,6 +141,20 @@
     <string name="qLiftsAffected">Lifts affected leg standing</string>
     <string name="qWalking">Walking</string>
 
+
+    <!-- CNS strings -->
+    <string name="qCns1">Consciousness </string>
+    <string name="qCns2">Orientation</string>
+    <string name="qCns3">Speech</string>
+    <string name="qCnsA1_4">Face</string>
+    <string name="qCnsA1_5">Upper Limb (proximal)</string>
+    <string name="qCnsA1_6">Upper Limb (distal)</string>
+    <string name="qCnsA1_7">Lower Limb (proximal)</string>
+    <string name="qCnsA1_8">Lower Limb (distal)</string>
+    <string name="qCnsA2_4">Face</string>
+    <string name="qCnsA2_5">Upper Limbs</string>
+    <string name="qCnsA2_6">Lower Limbs</string>
+
     <!-- Answer strings -->
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -174,6 +189,24 @@
     <string name="diaper">Diaper</string>
     <string name="bedpan">Bedpan</string>
     <string name="toilet">Toilet</string>
+
+    <string name="aCns1alert">Alert</string>
+    <string name="aCns1drowsy">Drowsy</string>
+    <string name="aCns2oriented">Oriented</string>
+    <string name="aCns2disoriented">Disoriented</string>
+    <string name="aCns3receptiveDeficit">Receptive deficit</string>
+    <string name="aCns3expressiveDeficit">Expressive deficit</string>
+    <string name="aCns3normal">Normal</string>
+    <string name="aCnsA1_4noWeakness">No weakness</string>
+    <string name="aCnsA1_4Weakness">Weakness</string>
+    <string name="aCnsA1_noWeakness">No weakness</string>
+    <string name="aCnsA1_mildWeakness">Mild weakness</string>
+    <string name="aCnsA1_significantWeakness">Significant weakness</string>
+    <string name="aCnsA1_totalWeakness">Total weakness</string>
+    <string name="aCnsA2_4symmetrical">Symmetrical</string>
+    <string name="aCnsA2_4asymmetrical">Asymmetrical</string>
+    <string name="aCnsA2_equal">Equal</string>
+    <string name="aCnsA2_unequal">Unequal</string>
 
 
 
