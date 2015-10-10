@@ -251,9 +251,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public int getElapsedTimeInDays(Date start,Date end){
-        long daysLong=(long)(end.getTime()-start.getTime())/(1000*60*60*24);
-        int days = (int) (long) daysLong;
-        return days;
+        long daysLong= (end.getTime()-start.getTime()) /(1000*60*60*24);
+        return (int) (long) daysLong;
     }
 
 
@@ -338,7 +337,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                                 Toast toast = Toast.makeText(context, toastMessage, duration);
                                 toast.show();
                             }
-                            return;
                         }
                     });
 
@@ -346,7 +344,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO Auto-generated method stub
-                            return;
                         }
                     });
                     alert.show();
@@ -480,6 +477,68 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     public void switchSaveToggle(View view){
         saveToggle = false;
+    }
+
+
+    public void showA1(View view){
+        switchSaveToggle(view);
+        LinearLayout a1layout = (LinearLayout) findViewById(R.id.cnsA1);
+        a1layout.setVisibility(View.VISIBLE);
+
+        LinearLayout a2layout = (LinearLayout) findViewById(R.id.cnsA2);
+        a2layout.setVisibility(View.GONE);
+
+        clearA1Selections();
+        clearA2Selections();
+    }
+
+
+    public void showA2(View view){
+        switchSaveToggle(view);
+        LinearLayout a2layout = (LinearLayout) findViewById(R.id.cnsA2);
+        a2layout.setVisibility(View.VISIBLE);
+
+        LinearLayout a1layout = (LinearLayout) findViewById(R.id.cnsA1);
+        a1layout.setVisibility(View.GONE);
+
+        clearA1Selections();
+        clearA2Selections();
+
+    }
+
+
+    public void clearA1Selections(){
+        RadioGroup rg;
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA1_4);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA1_5);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA1_6);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA1_7);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA1_8);
+        rg.clearCheck();
+    }
+
+
+    public void clearA2Selections(){
+
+        RadioGroup rg;
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA2_4);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA2_5);
+        rg.clearCheck();
+
+        rg = (RadioGroup) findViewById(R.id.rgCnsA2_6);
+        rg.clearCheck();
     }
 
     public void clearPatientSelection(){
@@ -744,6 +803,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
+            writer.writeNext(new String[]{"sep=\t"});
             Cursor c = myDb.getAllRowData();
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
@@ -771,6 +831,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
+            writer.writeNext(new String[]{"sep=\t"});
             Cursor c = myDb.getAllRowPatients();
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
@@ -1338,10 +1399,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         cursor.close();
 
-        int[] scoreArrayBarthel = calculateScores(currentDay, "Barthel");
+        float[] scoreArrayBarthel = calculateScores(currentDay, "Barthel");
         currentBarthel = String.valueOf(scoreArrayBarthel[0]);
-        int[] scoreArrayBerg = calculateScores(currentDay, "Berg");
+        float[] scoreArrayBerg = calculateScores(currentDay, "Berg");
         currentBerg = String.valueOf(scoreArrayBerg[0]);
+        float[] scoreArrayCns = calculateScores(currentDay, "Cns");
+        currentCnsScore = String.valueOf(scoreArrayCns[0]);
+        float[] scoreArrayNihss = calculateScores(currentDay, "Nihss");
+        currentNihssScore = String.valueOf(scoreArrayNihss[0]);
 
         myDb.updateRowData(currentPatientId, currentDay,
                 currentPeg, currentNg, currentO2, currentIv, currentCpap, currentRestraint, currentBedbars, currentBehavioural, currentConfusion, currentBladder, currentHours,
@@ -1996,29 +2061,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             rg=(RadioGroup)findViewById(R.id.rgCns3);
             rg.clearCheck();
 
-            rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
-            rg.clearCheck();
+            clearA1Selections();
+            clearA1Selections();
 
         }
 
@@ -2027,227 +2071,32 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         scrollToTop();
     }
 
-    public static int[] calculateScores(int scoreDay, String selectedScoreType){
+    public static float[] calculateScores(int scoreDay, String selectedScoreType){
 
-        int score = 0;
-        int[] scoreArray;
 
         Cursor cursor = myDb.getRowData(MainActivity.currentPatientId, scoreDay);
 
         if (cursor.moveToFirst()){
 
-            if (selectedScoreType.equals("Barthel")){
-                String feedingString = cursor.getString(DBAdapter.COL_FEEDING);
-                String dressingString = cursor.getString(DBAdapter.COL_DRESSING);
-                String sitStandString = cursor.getString(DBAdapter.COL_SITSTAND);
-                String walkingString = cursor.getString(DBAdapter.COL_WALKING);
-                String bladderString = cursor.getString(DBAdapter.COL_BLADDER);
-                String liftsAffectedString = cursor.getString(DBAdapter.COL_LIFTSAFFECTED);
-                String liftsUnaffectedString = cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED);
-                int feedingInt = 0;
-                int dressingInt = 0;
-                int sitStandInt = 0;
-                int walkingInt = 0;
-                int bladderInt = 0;
-                int liftsAffectedInt = 0;
-                int liftsUnaffectedInt = 0;
-                boolean scoreToggle = true;
+            switch (selectedScoreType) {
+                case "Barthel":
+                    return ScoreCalculators.barthelScore(cursor);
 
+                case "Berg":
+                    return ScoreCalculators.bergScore(cursor);
 
-                if (feedingString.equals("None")){
-                    feedingInt = 0;
-                } else if (feedingString.equals("Partial")){
-                    feedingInt = 1;
-                } else if (feedingString.equals("Full")){
-                    feedingInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
+                case "Cns":
 
-                if (dressingString.equals("None")){
-                    dressingInt = 0;
-                } else if (dressingString.equals("Partial")){
-                    dressingInt = 1;
-                } else if (dressingString.equals("Full")){
-                    dressingInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
+                    return ScoreCalculators.cnsScore(cursor);
 
-                if (sitStandString.equals("None")){
-                    sitStandInt = 0;
-                } else if (sitStandString.equals("Partial")){
-                    sitStandInt = 1;
-                } else if (sitStandString.equals("Full")){
-                    sitStandInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (walkingString.equals("None")){
-                    walkingInt = 0;
-                } else if (walkingString.equals("Partial")){
-                    walkingInt = 1;
-                } else if (walkingString.equals("Full")){
-                    walkingInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (bladderString.equals("Foley")){
-                    bladderInt = 0;
-                } else if (bladderString.equals("Diaper")){
-                    bladderInt = 0;
-                } else if (bladderString.equals("Bedpan")){
-                    bladderInt = 1;
-                } else if (bladderString.equals("Toilet")){
-                    bladderInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (liftsAffectedString.equals("None")){
-                    liftsAffectedInt = 0;
-                } else if (liftsAffectedString.equals("Partial")){
-                    liftsAffectedInt = 1;
-                } else if (liftsAffectedString.equals("Full")){
-                    liftsAffectedInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (liftsUnaffectedString.equals("None")){
-                    liftsUnaffectedInt = 0;
-                } else if (liftsUnaffectedString.equals("Partial")){
-                    liftsUnaffectedInt = 1;
-                } else if (liftsUnaffectedString.equals("Full")){
-                    liftsUnaffectedInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (scoreToggle){
-                    int barthel1 = 5*feedingInt;
-                    int barthel2 = Math.max(0,5*feedingInt-5);
-                    int barthel3 = Math.max(0,5*feedingInt-5);
-                    int barthel4 = 5*dressingInt;
-                    int barthel5 = Math.min(sitStandInt,walkingInt)*5;
-                    int barthel6 = 5*bladderInt;
-                    int barthel7 = 5*bladderInt;
-                    int barthel8 = 5*sitStandInt;
-                    int barthel9 = 5*walkingInt;
-                    int barthel10 = Math.min(liftsAffectedInt,liftsUnaffectedInt)*5;
-                    score = barthel1 + barthel2 + barthel3 + barthel4 + barthel5 + barthel6 + barthel7 + barthel8 + barthel9 + barthel10;
-                    scoreArray = new int[] {score, barthel1, barthel2, barthel3, barthel4, barthel5, barthel6, barthel7, barthel8, barthel9, barthel10};
-
-
-                } else{
-                    score = -1;
-                    scoreArray = new int[] {score};
-                }
-
-
-
-            } else{
-                //Berg score
-                String liftsAffectedString = cursor.getString(DBAdapter.COL_LIFTSAFFECTED);
-                String liftsUnaffectedString = cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED);
-                String sitStandString = cursor.getString(DBAdapter.COL_SITSTAND);
-                String standString = cursor.getString(DBAdapter.COL_STAND);
-                String sittingString = cursor.getString(DBAdapter.COL_SITTING);
-
-                int liftsAffectedInt = 0;
-                int liftsUnaffectedInt = 0;
-                int sitStandInt = 0;
-                int standInt = 0;
-                int sittingInt = 0;
-                boolean scoreToggle = true;
-
-                if (liftsAffectedString.equals("None")){
-                    liftsAffectedInt = 0;
-                } else if (liftsAffectedString.equals("Partial")){
-                    liftsAffectedInt = 1;
-                } else if (liftsAffectedString.equals("Full")){
-                    liftsAffectedInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (liftsUnaffectedString.equals("None")){
-                    liftsUnaffectedInt = 0;
-                } else if (liftsUnaffectedString.equals("Partial")){
-                    liftsUnaffectedInt = 1;
-                } else if (liftsUnaffectedString.equals("Full")){
-                    liftsUnaffectedInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (sitStandString.equals("None")){
-                    sitStandInt = 0;
-                } else if (sitStandString.equals("Partial")){
-                    sitStandInt = 1;
-                } else if (sitStandString.equals("Full")){
-                    sitStandInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (standString.equals("None")){
-                    standInt = 0;
-                } else if (standString.equals("Partial")){
-                    standInt = 1;
-                } else if (standString.equals("Full")){
-                    standInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (sittingString.equals("None")){
-                    sittingInt = 0;
-                } else if (sittingString.equals("Partial")){
-                    sittingInt = 1;
-                } else if (sittingString.equals("Full")){
-                    sittingInt = 2;
-                } else {
-                    scoreToggle = false;
-                }
-
-                if (scoreToggle){
-                    if(liftsAffectedInt*liftsUnaffectedInt==4){
-                        score = 51;
-                    } else if (liftsAffectedInt*liftsUnaffectedInt==2){
-                        score = 44;
-                    } else if (sitStandInt==2){
-                        score = 20;
-                    } else if (sitStandInt==1){
-                        score = 18;
-                    } else if (standInt==2){
-                        score = 8;
-                    } else if (standInt==1){
-                        score = 6;
-                    } else if (sittingInt==2){
-                        score = 4;
-                    } else if (sittingInt==1){
-                        score = 2;
-                    } else {
-                        score = 0;
-                    }
-
-                    scoreArray = new int[]{score};
-
-                } else {
-                    score = -1;
-                    scoreArray = new int[]{score};
-                }
-
+                default:
+                    return ScoreCalculators.nihssScore(cursor);
             }
         } else{
-            score = -1;
-            scoreArray = new int[]{score};
+            float score = -1;
+            return new float[]{score};
         }
-        cursor.close();
-        return scoreArray;
+
     }
 
 }

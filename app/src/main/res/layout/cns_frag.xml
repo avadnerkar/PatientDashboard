@@ -184,17 +184,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/aCns3receptiveDeficit"
-                    android:onClick="switchSaveToggle"/>
+                    android:onClick="showA2"/>
                 <RadioButton android:id="@+id/radio_Cns3ExpressiveDeficit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/aCns3expressiveDeficit"
-                    android:onClick="switchSaveToggle"/>
+                    android:onClick="showA1"/>
                 <RadioButton android:id="@+id/radio_Cns3Normal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/aCns3normal"
-                    android:onClick="switchSaveToggle"/>
+                    android:onClick="showA1"/>
             </RadioGroup>
 
 

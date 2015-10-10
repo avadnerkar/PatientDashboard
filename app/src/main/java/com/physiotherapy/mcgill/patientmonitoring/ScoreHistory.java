@@ -1,6 +1,5 @@
 package com.physiotherapy.mcgill.patientmonitoring;
 
-import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -96,23 +95,23 @@ public class ScoreHistory extends ActionBarActivity {
         RadioButton btn = (RadioButton) rg.getChildAt(radioId);
         String selectedScoreType = (String) btn.getText();
 
-        int[] scoreArray = MainActivity.calculateScores(scoreDay, selectedScoreType);
+        float[] scoreArray = MainActivity.calculateScores(scoreDay, selectedScoreType);
 
         if (selectedScoreType.equals("Barthel")){
             if (scoreArray[0] == -1){
                 clearReportFields();
             } else {
-                int score = scoreArray[0];
-                int barthel1 = scoreArray[1];
-                int barthel2 = scoreArray[2];
-                int barthel3 = scoreArray[3];
-                int barthel4 = scoreArray[4];
-                int barthel5 = scoreArray[5];
-                int barthel6 = scoreArray[6];
-                int barthel7 = scoreArray[7];
-                int barthel8 = scoreArray[8];
-                int barthel9 = scoreArray[9];
-                int barthel10 = scoreArray[10];
+                float score = scoreArray[0];
+                float barthel1 = scoreArray[1];
+                float barthel2 = scoreArray[2];
+                float barthel3 = scoreArray[3];
+                float barthel4 = scoreArray[4];
+                float barthel5 = scoreArray[5];
+                float barthel6 = scoreArray[6];
+                float barthel7 = scoreArray[7];
+                float barthel8 = scoreArray[8];
+                float barthel9 = scoreArray[9];
+                float barthel10 = scoreArray[10];
 
                 text_total.setText(score + "/100");
                 text_line1.setText(String.valueOf(barthel1));
@@ -131,7 +130,7 @@ public class ScoreHistory extends ActionBarActivity {
             if (scoreArray[0] == -1){
                 clearReportFields();
             } else {
-                int score = scoreArray[0];
+                float score = scoreArray[0];
                 text_total.setText(score + "/56");
             }
         }
