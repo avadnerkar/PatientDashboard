@@ -28,6 +28,16 @@
             android:layout_height="wrap_content"
             android:text="@string/text_berg"
             android:onClick="selectBerg"/>
+        <RadioButton android:id="@+id/radio_ScoreTypeGraphsCns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_cns"
+            android:onClick="selectCns"/>
+        <RadioButton android:id="@+id/radio_ScoreTypeGraphsNihss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_nihss"
+            android:onClick="selectNihss"/>
     </RadioGroup>
 
 

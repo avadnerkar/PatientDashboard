@@ -1403,9 +1403,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         currentBarthel = String.valueOf(scoreArrayBarthel[0]);
         float[] scoreArrayBerg = calculateScores(currentDay, "Berg");
         currentBerg = String.valueOf(scoreArrayBerg[0]);
-        float[] scoreArrayCns = calculateScores(currentDay, "Cns");
+        float[] scoreArrayCns = calculateScores(currentDay, "CNS");
         currentCnsScore = String.valueOf(scoreArrayCns[0]);
-        float[] scoreArrayNihss = calculateScores(currentDay, "Nihss");
+        float[] scoreArrayNihss = calculateScores(currentDay, "NIHSS");
         currentNihssScore = String.valueOf(scoreArrayNihss[0]);
 
         myDb.updateRowData(currentPatientId, currentDay,
@@ -1819,7 +1819,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //CNS
 
             rg=(RadioGroup)findViewById(R.id.rgCns1);
-            if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Alert")){
+            if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Alert")){
                 rg.check(R.id.radio_Cns1Alert);
             } else if(cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Drowsy")){
                 rg.check(R.id.radio_Cns1Drowsy);
@@ -1828,7 +1830,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCns2);
-            if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Oriented")){
+            if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Oriented")){
                 rg.check(R.id.radio_Cns2Oriented);
             } else if(cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Disoriented")){
                 rg.check(R.id.radio_Cns2Disoriented);
@@ -1836,19 +1840,35 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 rg.clearCheck();
             }
 
+            LinearLayout a1Layout = (LinearLayout) findViewById(R.id.cnsA1);
+            LinearLayout a2Layout = (LinearLayout) findViewById(R.id.cnsA2);
             rg=(RadioGroup)findViewById(R.id.rgCns3);
-            if (cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Receptive deficit")){
+            if (cursor.getString(DBAdapter.COL_CNS_SPEECH) == null){
+                rg.clearCheck();
+                a1Layout.setVisibility(View.GONE);
+                a2Layout.setVisibility(View.GONE);
+            } else if (cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Receptive deficit")){
                 rg.check(R.id.radio_Cns2ReceptiveDeficit);
+                a1Layout.setVisibility(View.GONE);
+                a2Layout.setVisibility(View.VISIBLE);
             } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Expressive deficit")){
                 rg.check(R.id.radio_Cns3ExpressiveDeficit);
+                a1Layout.setVisibility(View.VISIBLE);
+                a2Layout.setVisibility(View.GONE);
             } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Normal")){
                 rg.check(R.id.radio_Cns3Normal);
+                a1Layout.setVisibility(View.VISIBLE);
+                a2Layout.setVisibility(View.GONE);
             } else{
                 rg.clearCheck();
+                a1Layout.setVisibility(View.GONE);
+                a2Layout.setVisibility(View.GONE);
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
-            if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("No weakness")){
+            if (cursor.getString(DBAdapter.COL_CNS_FACE1) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_4NoWeakness);
             } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Weakness")){
                 rg.check(R.id.radio_CnsA1_4Weakness);
@@ -1857,7 +1877,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("No weakness")){
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_5NoWeakness);
             } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_5MildWeakness);
@@ -1870,7 +1892,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("No weakness")){
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_6NoWeakness);
             } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_6MildWeakness);
@@ -1883,7 +1907,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("No weakness")){
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_7NoWeakness);
             } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_7MildWeakness);
@@ -1896,7 +1922,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("No weakness")){
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_8NoWeakness);
             } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_8MildWeakness);
@@ -1909,7 +1937,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
-            if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Symmetrical")){
+            if (cursor.getString(DBAdapter.COL_CNS_FACE1) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Symmetrical")){
                 rg.check(R.id.radio_CnsA2_4Symmetrical);
             } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Asymmetrical")){
                 rg.check(R.id.radio_CnsA2_4Asymmetrical);
@@ -1918,7 +1948,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Equal")){
+            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Equal")){
                 rg.check(R.id.radio_CnsA2_5Equal);
             } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Unequal")){
                 rg.check(R.id.radio_CnsA2_5Unequal);
@@ -1927,7 +1959,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Equal")){
+            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS) == null){
+                rg.clearCheck();
+            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Equal")){
                 rg.check(R.id.radio_CnsA2_6Equal);
             } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Unequal")){
                 rg.check(R.id.radio_CnsA2_6Unequal);
@@ -2061,6 +2095,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             rg=(RadioGroup)findViewById(R.id.rgCns3);
             rg.clearCheck();
 
+            LinearLayout a1layout = (LinearLayout) findViewById(R.id.cnsA1);
+            a1layout.setVisibility(View.GONE);
+
+            LinearLayout a2layout = (LinearLayout) findViewById(R.id.cnsA2);
+            a2layout.setVisibility(View.GONE);
+
             clearA1Selections();
             clearA1Selections();
 
@@ -2085,7 +2125,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 case "Berg":
                     return ScoreCalculators.bergScore(cursor);
 
-                case "Cns":
+                case "CNS":
 
                     return ScoreCalculators.cnsScore(cursor);
 

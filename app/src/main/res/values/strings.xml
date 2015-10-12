@@ -92,6 +92,8 @@
 
     <string name="text_barthel">Barthel</string>
     <string name="text_berg">Berg</string>
+    <string name="text_cns">CNS</string>
+    <string name="text_nihss">NIHSS</string>
 
 
     <!-- Score graphs strings -->

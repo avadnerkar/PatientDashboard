@@ -37,7 +37,7 @@ public class ScoreGraphs extends ActionBarActivity {
         renderer.setHorizontalAxisTitle("Days since admission");
         renderer.setPadding(50);
 
-        Cursor cursor = MainActivity.myDb.getAllPatientData(MainActivity.currentPatientId);
+        Cursor cursor = MainActivity.myDb.getAllPatientDataSorted(MainActivity.currentPatientId);
         LineGraphSeries series = new LineGraphSeries();
         DataPoint dataPoint;
         RadioGroup rg=(RadioGroup)findViewById(R.id.rgScoreTypeGraphs);
@@ -49,38 +49,76 @@ public class ScoreGraphs extends ActionBarActivity {
         int day;
         if (selectedScoreType.equals("Barthel")){
             renderer.setVerticalAxisTitle("Barthel");
-            viewport.setMinY(0);
-            viewport.setMaxY(100);
-            int barthel;
+
+            float barthel;
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(MainActivity.myDb.COL_BARTHEL).equals("-1")){
-                        day = Integer.parseInt(cursor.getString(MainActivity.myDb.COL_DAY));
-                        barthel = Integer.parseInt(cursor.getString(MainActivity.myDb.COL_BARTHEL));
+                    if (!cursor.getString(DBAdapter.COL_BARTHEL).equals("-1") && !cursor.getString(DBAdapter.COL_BARTHEL).equals("-1.0")){
+                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
+                        barthel = Float.parseFloat(cursor.getString(DBAdapter.COL_BARTHEL));
                         dataPoint = new DataPoint(day,barthel);
                         series.appendData(dataPoint,true,1000);
                     }
 
                 } while(cursor.moveToNext());
             }
+            viewport.setMinY(0);
+            viewport.setMaxY(100);
         } else if (selectedScoreType.equals("Berg")){
             renderer.setVerticalAxisTitle("Berg");
-            viewport.setMinY(0);
-            viewport.setMaxY(60);
-            int berg;
+
+            float berg;
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(MainActivity.myDb.COL_BERG).equals("-1")){
-                        day = Integer.parseInt(cursor.getString(MainActivity.myDb.COL_DAY));
-                        berg = Integer.parseInt(cursor.getString(MainActivity.myDb.COL_BERG));
+                    if (!cursor.getString(DBAdapter.COL_BERG).equals("-1") && !cursor.getString(DBAdapter.COL_BERG).equals("-1.0")){
+                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
+                        berg = Float.parseFloat(cursor.getString(DBAdapter.COL_BERG));
                         dataPoint = new DataPoint(day,berg);
                         series.appendData(dataPoint,true,1000);
                     }
 
                 } while(cursor.moveToNext());
             }
+            viewport.setMinY(0);
+            viewport.setMaxY(60);
+        } else if (selectedScoreType.equals("CNS")){
+            renderer.setVerticalAxisTitle("CNS");
+
+            float cns;
+            if (cursor.moveToFirst()) {
+                do {
+
+                    if (!cursor.getString(DBAdapter.COL_CNS).equals("-1") && !cursor.getString(DBAdapter.COL_CNS).equals("-1.0") && !cursor.getString(DBAdapter.COL_CNS).equals("")){
+                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
+                        cns = Float.parseFloat(cursor.getString(DBAdapter.COL_CNS));
+                        dataPoint = new DataPoint(day,cns);
+                        series.appendData(dataPoint,true,1000);
+                    }
+
+                } while(cursor.moveToNext());
+            }
+            viewport.setMinY(0);
+            viewport.setMaxY(11.5);
+        } else if (selectedScoreType.equals("NIHSS")){
+            renderer.setVerticalAxisTitle("NIHSS");
+
+            float nihss;
+            if (cursor.moveToFirst()) {
+                do {
+
+                    if (!cursor.getString(DBAdapter.COL_NIHSS).equals("-1") && !cursor.getString(DBAdapter.COL_NIHSS).equals("-1.0") && !cursor.getString(DBAdapter.COL_NIHSS).equals("")){
+                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
+                        nihss = Float.parseFloat(cursor.getString(DBAdapter.COL_NIHSS));
+                        dataPoint = new DataPoint(day,nihss);
+                        series.appendData(dataPoint,true,1000);
+                    }
+
+                } while(cursor.moveToNext());
+            }
+            viewport.setMinY(0);
+            viewport.setMaxY(23);
         }
 
 
@@ -95,6 +133,14 @@ public class ScoreGraphs extends ActionBarActivity {
     }
 
     public void selectBerg(View view){
+        plotGraphs();
+    }
+
+    public void selectCns(View view){
+        plotGraphs();
+    }
+
+    public void selectNihss(View view){
         plotGraphs();
     }
 

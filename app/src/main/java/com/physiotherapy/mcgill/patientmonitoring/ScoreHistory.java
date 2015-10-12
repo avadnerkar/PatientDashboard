@@ -37,6 +37,18 @@ public class ScoreHistory extends ActionBarActivity {
         generateScoreReport();
     }
 
+    public void selectCns(View view){
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scoreLinesLayout);
+        linearLayout.setVisibility(View.INVISIBLE);
+        generateScoreReport();
+    }
+
+    public void selectNihss(View view){
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scoreLinesLayout);
+        linearLayout.setVisibility(View.INVISIBLE);
+        generateScoreReport();
+    }
+
     public void scoreDecrementDay(View view){
         scoreDay = Math.max(1, scoreDay - 1);
         generateScoreReport();
@@ -126,12 +138,26 @@ public class ScoreHistory extends ActionBarActivity {
                 text_line10.setText(String.valueOf(barthel10));
             }
 
-        } else{
+        } else if (selectedScoreType.equals("Berg")){
             if (scoreArray[0] == -1){
                 clearReportFields();
             } else {
                 float score = scoreArray[0];
                 text_total.setText(score + "/56");
+            }
+        } else if (selectedScoreType.equals("CNS")){
+            if (scoreArray[0] == -1){
+                clearReportFields();
+            } else {
+                float score = scoreArray[0];
+                text_total.setText(score + "/11.5");
+            }
+        } else if (selectedScoreType.equals("NIHSS")){
+            if (scoreArray[0] == -1){
+                clearReportFields();
+            } else {
+                float score = scoreArray[0];
+                text_total.setText(score + "/23");
             }
         }
 

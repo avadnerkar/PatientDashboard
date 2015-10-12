@@ -856,6 +856,14 @@ public class DBAdapter {
 		return c;
 	}
 
+	public Cursor getAllPatientDataSorted(int patientId){
+		Cursor c = db.query(DATA_TABLE, ALL_DATA_KEYS, null, null, null, null, KEY_DAY+" ASC");
+		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
+	}
+
 
 	
 	/////////////////////////////////////////////////////////////////////

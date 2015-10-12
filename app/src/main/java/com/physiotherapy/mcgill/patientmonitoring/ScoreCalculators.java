@@ -499,7 +499,14 @@ public class ScoreCalculators {
         float cns = cnsScore(cursor)[0];
 
         cursor.close();
-        float score = 23-2*cns;
+
+        float score;
+        if (cns == -1){
+            score = -1;
+        } else {
+            score = 23-2*cns;
+        }
+
         return new float[]{score};
     }
 
