@@ -49,12 +49,12 @@ public class ScoreHistory extends ActionBarActivity {
         generateScoreReport();
     }
 
-    public void scoreDecrementDay(View view){
+    public void decrementDayClicked(View view){
         scoreDay = Math.max(1, scoreDay - 1);
         generateScoreReport();
     }
 
-    public void scoreIncrementDay(View view){
+    public void incrementDayClicked(View view){
         scoreDay = Math.min(99, scoreDay + 1);
         generateScoreReport();
     }
@@ -86,7 +86,7 @@ public class ScoreHistory extends ActionBarActivity {
     }
 
     public void generateScoreReport(){
-        TextView textView = (TextView) findViewById(R.id.dayNumberScore);
+        TextView textView = (TextView) findViewById(R.id.dayNumber);
         TextView text_total = (TextView) findViewById(R.id.score_total);
         TextView text_line1 = (TextView) findViewById(R.id.score_line1);
         TextView text_line2 = (TextView) findViewById(R.id.score_line2);

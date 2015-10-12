@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -76,6 +77,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Indigo)));
+        actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Indigo)));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -107,6 +110,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
 
 
 
@@ -226,14 +230,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public void updateDayView(){
-        TextView textView = (TextView) findViewById(R.id.dayNumberNurse);
+        TextView textView = (TextView) findViewById(R.id.dayNumber);
         textView.setText("Day " + currentDay);
-        textView = (TextView) findViewById(R.id.dayNumberOt);
-        textView.setText("Day " + currentDay);
-        textView = (TextView) findViewById(R.id.dayNumberPt);
-        textView.setText("Day " + currentDay);
-        textView = (TextView) findViewById(R.id.dayNumberCns);
-        textView.setText("Day " + currentDay);
+
     }
 
     public void scrollToTop(){
