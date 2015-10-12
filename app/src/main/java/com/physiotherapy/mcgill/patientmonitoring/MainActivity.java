@@ -198,12 +198,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (currentPatientId != -1){
             Cursor cursor = myDb.getRowPatient(currentPatientId);
 
-            String discharged = cursor.getString(DBAdapter.COL_DISCHARGED);
+            String discharged = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DISCHARGED));
 
             if (discharged.equals("Yes")){
                 currentDay = 1;
             } else {
-                String dateString = cursor.getString(DBAdapter.COL_ADMISSIONDATE);
+                String dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ADMISSIONDATE));
                 SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
                 Date admissionDate = today;
@@ -640,10 +640,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (cursor.moveToFirst()) {
             do {
                 // Process the data:
-                int id = cursor.getInt(DBAdapter.COL_ROWID);
-                String mrn = cursor.getString(DBAdapter.COL_HOSPITALID);
-                String firstName = cursor.getString(DBAdapter.COL_FIRSTNAME);
-                String lastName = cursor.getString(DBAdapter.COL_LASTNAME);
+                int id = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_ROWID));
+                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HOSPITALID));
+                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTNAME));
+                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LASTNAME));
                 IDarray[cursor.getPosition()] = id;
                 MRNarray[cursor.getPosition()] = mrn;
                 patientListString[cursor.getPosition()] = mrn + " " + firstName + " " + lastName;
@@ -808,13 +808,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
                 do {
-                    String arrStr[] ={c.getString(DBAdapter.COL_ROWID), c.getString(DBAdapter.COL_PARENTID), c.getString(DBAdapter.COL_MRN), c.getString(DBAdapter.COL_DAY),
-                            c.getString(DBAdapter.COL_PEG), c.getString(DBAdapter.COL_NG), c.getString(DBAdapter.COL_O2), c.getString(DBAdapter.COL_IV), c.getString(DBAdapter.COL_CPAP), c.getString(DBAdapter.COL_RESTRAINT), c.getString(DBAdapter.COL_BEDBARS), c.getString(DBAdapter.COL_BEHAVIOURAL), c.getString(DBAdapter.COL_CONFUSION), c.getString(DBAdapter.COL_BLADDER), c.getString(DBAdapter.COL_HOURS),
-                            c.getString(DBAdapter.COL_NEGLECT), c.getString(DBAdapter.COL_DIGITSPAN), c.getString(DBAdapter.COL_MMSE), c.getString(DBAdapter.COL_FOLLOWS), c.getString(DBAdapter.COL_VERBAL), c.getString(DBAdapter.COL_MOTIVATION), c.getString(DBAdapter.COL_MOOD), c.getString(DBAdapter.COL_PAIN), c.getString(DBAdapter.COL_FATIGUE), c.getString(DBAdapter.COL_SWALLOW), c.getString(DBAdapter.COL_FEEDING), c.getString(DBAdapter.COL_DRESSING), c.getString(DBAdapter.COL_KITCHEN),
-                            c.getString(DBAdapter.COL_LEFTARM), c.getString(DBAdapter.COL_RIGHTARM), c.getString(DBAdapter.COL_MOVEMENTBED), c.getString(DBAdapter.COL_LIESIT), c.getString(DBAdapter.COL_SITTING), c.getString(DBAdapter.COL_SITSTAND), c.getString(DBAdapter.COL_STAND), c.getString(DBAdapter.COL_LIFTSUNAFFECTED), c.getString(DBAdapter.COL_LIFTSAFFECTED), c.getString(DBAdapter.COL_WALKING),
-                            c.getString(DBAdapter.COL_BARTHEL), c.getString(DBAdapter.COL_BERG),
-                            c.getString(DBAdapter.COL_CNS_CONSCIOUSNESS), c.getString(DBAdapter.COL_CNS_ORIENTATION), c.getString(DBAdapter.COL_CNS_SPEECH), c.getString(DBAdapter.COL_CNS_FACE1), c.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL), c.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL), c.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL), c.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL), c.getString(DBAdapter.COL_CNS_FACE2), c.getString(DBAdapter.COL_CNS_UPPER_LIMBS), c.getString(DBAdapter.COL_CNS_LOWER_LIMBS),
-                            c.getString(DBAdapter.COL_CNS), c.getString(DBAdapter.COL_NIHSS)};
+                    String arrStr[] ={c.getString(c.getColumnIndex(DBAdapter.KEY_ROWID)), c.getString(c.getColumnIndex(DBAdapter.KEY_PARENTID)), c.getString(c.getColumnIndex(DBAdapter.KEY_MRN)), c.getString(c.getColumnIndex(DBAdapter.KEY_DAY)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_PEG)), c.getString(c.getColumnIndex(DBAdapter.KEY_NG)), c.getString(c.getColumnIndex(DBAdapter.KEY_O2)), c.getString(c.getColumnIndex(DBAdapter.KEY_IV)), c.getString(c.getColumnIndex(DBAdapter.KEY_CPAP)), c.getString(c.getColumnIndex(DBAdapter.KEY_RESTRAINT)), c.getString(c.getColumnIndex(DBAdapter.KEY_BEDBARS)), c.getString(c.getColumnIndex(DBAdapter.KEY_BEHAVIOURAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_CONFUSION)), c.getString(c.getColumnIndex(DBAdapter.KEY_BLADDER)), c.getString(c.getColumnIndex(DBAdapter.KEY_HOURS)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_NEGLECT)), c.getString(c.getColumnIndex(DBAdapter.KEY_DIGITSPAN)), c.getString(c.getColumnIndex(DBAdapter.KEY_MMSE)), c.getString(c.getColumnIndex(DBAdapter.KEY_FOLLOWS)), c.getString(c.getColumnIndex(DBAdapter.KEY_VERBAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_MOTIVATION)), c.getString(c.getColumnIndex(DBAdapter.KEY_MOOD)), c.getString(c.getColumnIndex(DBAdapter.KEY_PAIN)), c.getString(c.getColumnIndex(DBAdapter.KEY_FATIGUE)), c.getString(c.getColumnIndex(DBAdapter.KEY_SWALLOW)), c.getString(c.getColumnIndex(DBAdapter.KEY_FEEDING)), c.getString(c.getColumnIndex(DBAdapter.KEY_DRESSING)), c.getString(c.getColumnIndex(DBAdapter.KEY_KITCHEN)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_LEFTARM)), c.getString(c.getColumnIndex(DBAdapter.KEY_RIGHTARM)), c.getString(c.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)), c.getString(c.getColumnIndex(DBAdapter.KEY_LIESIT)), c.getString(c.getColumnIndex(DBAdapter.KEY_SITTING)), c.getString(c.getColumnIndex(DBAdapter.KEY_SITSTAND)), c.getString(c.getColumnIndex(DBAdapter.KEY_STAND)), c.getString(c.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)), c.getString(c.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)), c.getString(c.getColumnIndex(DBAdapter.KEY_WALKING)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_BARTHEL)), c.getString(c.getColumnIndex(DBAdapter.KEY_BERG)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_CONSCIOUSNESS)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_ORIENTATION)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_SPEECH)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_FACE1)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_FACE2)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMBS)), c.getString(c.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_CNS)), c.getString(c.getColumnIndex(DBAdapter.KEY_NIHSS))};
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
             }
@@ -836,11 +836,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             writer.writeNext(c.getColumnNames());
             if (c.moveToFirst()){
                 do {
-                    String arrStr[] ={c.getString(DBAdapter.COL_ROWID), c.getString(DBAdapter.COL_FIRSTNAME), c.getString(DBAdapter.COL_LASTNAME), c.getString(DBAdapter.COL_HOSPITALID), c.getString(DBAdapter.COL_ADMISSIONDATE), c.getString(DBAdapter.COL_DISCHARGED), c.getString(DBAdapter.COL_DISCHARGEDATE), c.getString(DBAdapter.COL_PATIENTAGE), c.getString(DBAdapter.COL_PATIENTGENDER), c.getString(DBAdapter.COL_FIRSTLANGUAGE),
-                            c.getString(DBAdapter.COL_MOCASCORE), c.getString(DBAdapter.COL_CUSTOMSCORE), c.getString(DBAdapter.COL_CUSTOMMAX),
-                            c.getString(DBAdapter.COL_STROKETYPE), c.getString(DBAdapter.COL_FIRSTSTROKE), c.getString(DBAdapter.COL_LESIONSIDE), c.getString(DBAdapter.COL_HEMIPLEGIASIDE), c.getString(DBAdapter.COL_CONSCIOUSNESS), c.getString(DBAdapter.COL_ORIENTATION), c.getString(DBAdapter.COL_LANGUAGE), c.getString(DBAdapter.COL_VISUAL), c.getString(DBAdapter.COL_HEARINGAID), c.getString(DBAdapter.COL_HEARINGASSESSED), c.getString(DBAdapter.COL_APHASIA),
-                            c.getString(DBAdapter.COL_PEGADMIT), c.getString(DBAdapter.COL_NGADMIT), c.getString(DBAdapter.COL_FOLEYADMIT), c.getString(DBAdapter.COL_FALLRISK), c.getString(DBAdapter.COL_MOTIVATIONADMIT), c.getString(DBAdapter.COL_OTHER), c.getString(DBAdapter.COL_COGNITION),
-                            c.getString(DBAdapter.COL_FIRSTOT), c.getString(DBAdapter.COL_TOTALOT), c.getString(DBAdapter.COL_FIRSTSWALLOW), c.getString(DBAdapter.COL_FIRSTPT), c.getString(DBAdapter.COL_TOTALPT), c.getString(DBAdapter.COL_FIRSTSLT), c.getString(DBAdapter.COL_TOTALSLT)
+                    String arrStr[] ={c.getString(c.getColumnIndex(DBAdapter.KEY_ROWID)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTNAME)), c.getString(c.getColumnIndex(DBAdapter.KEY_LASTNAME)), c.getString(c.getColumnIndex(DBAdapter.KEY_HOSPITALID)), c.getString(c.getColumnIndex(DBAdapter.KEY_ADMISSIONDATE)), c.getString(c.getColumnIndex(DBAdapter.KEY_DISCHARGED)), c.getString(c.getColumnIndex(DBAdapter.KEY_DISCHARGEDATE)), c.getString(c.getColumnIndex(DBAdapter.KEY_PATIENTAGE)), c.getString(c.getColumnIndex(DBAdapter.KEY_PATIENTGENDER)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTLANGUAGE)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_MOCASCORE)), c.getString(c.getColumnIndex(DBAdapter.KEY_CUSTOMSCORE)), c.getString(c.getColumnIndex(DBAdapter.KEY_CUSTOMMAX)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_STROKETYPE)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTSTROKE)), c.getString(c.getColumnIndex(DBAdapter.KEY_LESIONSIDE)), c.getString(c.getColumnIndex(DBAdapter.KEY_HEMIPLEGIASIDE)), c.getString(c.getColumnIndex(DBAdapter.KEY_CONSCIOUSNESS)), c.getString(c.getColumnIndex(DBAdapter.KEY_ORIENTATION)), c.getString(c.getColumnIndex(DBAdapter.KEY_LANGUAGE)), c.getString(c.getColumnIndex(DBAdapter.KEY_VISUAL)), c.getString(c.getColumnIndex(DBAdapter.KEY_HEARINGAID)), c.getString(c.getColumnIndex(DBAdapter.KEY_HEARINGASSESSED)), c.getString(c.getColumnIndex(DBAdapter.KEY_APHASIA)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_PEGADMIT)), c.getString(c.getColumnIndex(DBAdapter.KEY_NGADMIT)), c.getString(c.getColumnIndex(DBAdapter.KEY_FOLEYADMIT)), c.getString(c.getColumnIndex(DBAdapter.KEY_FALLRISK)), c.getString(c.getColumnIndex(DBAdapter.KEY_MOTIVATIONADMIT)), c.getString(c.getColumnIndex(DBAdapter.KEY_OTHER)), c.getString(c.getColumnIndex(DBAdapter.KEY_COGNITION)),
+                            c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTOT)), c.getString(c.getColumnIndex(DBAdapter.KEY_TOTALOT)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTSWALLOW)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTPT)), c.getString(c.getColumnIndex(DBAdapter.KEY_TOTALPT)), c.getString(c.getColumnIndex(DBAdapter.KEY_FIRSTSLT)), c.getString(c.getColumnIndex(DBAdapter.KEY_TOTALSLT))
                             };
                     writer.writeNext(arrStr);
                 } while(c.moveToNext());
@@ -1426,274 +1426,274 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //Nurse
 
             RadioGroup rg=(RadioGroup)findViewById(R.id.rgPeg);
-            if (cursor.getString(DBAdapter.COL_PEG).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PEG)).equals("Yes")){
                 rg.check(R.id.radio_PegYes);
-            } else if(cursor.getString(DBAdapter.COL_PEG).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PEG)).equals("No")){
                 rg.check(R.id.radio_PegNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgNg);
-            if (cursor.getString(DBAdapter.COL_NG).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NG)).equals("Yes")){
                 rg.check(R.id.radio_NgYes);
-            } else if(cursor.getString(DBAdapter.COL_NG).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NG)).equals("No")){
                 rg.check(R.id.radio_NgNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgO2);
-            if (cursor.getString(DBAdapter.COL_O2).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_O2)).equals("Yes")){
                 rg.check(R.id.radio_O2Yes);
-            } else if(cursor.getString(DBAdapter.COL_O2).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_O2)).equals("No")){
                 rg.check(R.id.radio_O2No);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgIv);
-            if (cursor.getString(DBAdapter.COL_IV).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_IV)).equals("Yes")){
                 rg.check(R.id.radio_IvYes);
-            } else if(cursor.getString(DBAdapter.COL_IV).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_IV)).equals("No")){
                 rg.check(R.id.radio_IvNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCpap);
-            if (cursor.getString(DBAdapter.COL_CPAP).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CPAP)).equals("Yes")){
                 rg.check(R.id.radio_CpapYes);
-            } else if(cursor.getString(DBAdapter.COL_CPAP).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CPAP)).equals("No")){
                 rg.check(R.id.radio_CpapNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgRestraint);
-            if (cursor.getString(DBAdapter.COL_RESTRAINT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RESTRAINT)).equals("Yes")){
                 rg.check(R.id.radio_RestraintYes);
-            } else if(cursor.getString(DBAdapter.COL_RESTRAINT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RESTRAINT)).equals("No")){
                 rg.check(R.id.radio_RestraintNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBedbars);
-            if (cursor.getString(DBAdapter.COL_BEDBARS).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BEDBARS)).equals("Yes")){
                 rg.check(R.id.radio_BedbarsYes);
-            } else if(cursor.getString(DBAdapter.COL_BEDBARS).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BEDBARS)).equals("No")){
                 rg.check(R.id.radio_BedbarsNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBehavioural);
-            if (cursor.getString(DBAdapter.COL_BEHAVIOURAL).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BEHAVIOURAL)).equals("Yes")){
                 rg.check(R.id.radio_BehaviouralYes);
-            } else if(cursor.getString(DBAdapter.COL_BEHAVIOURAL).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BEHAVIOURAL)).equals("No")){
                 rg.check(R.id.radio_BehaviouralNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgConfusion);
-            if (cursor.getString(DBAdapter.COL_CONFUSION).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CONFUSION)).equals("Yes")){
                 rg.check(R.id.radio_ConfusionYes);
-            } else if(cursor.getString(DBAdapter.COL_CONFUSION).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CONFUSION)).equals("No")){
                 rg.check(R.id.radio_ConfusionNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgBladder);
-            if (cursor.getString(DBAdapter.COL_BLADDER).equals("Foley")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BLADDER)).equals("Foley")){
                 rg.check(R.id.radio_BladderFoley);
-            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Diaper")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BLADDER)).equals("Diaper")){
                 rg.check(R.id.radio_BladderDiaper);
-            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Bedpan")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BLADDER)).equals("Bedpan")){
                 rg.check(R.id.radio_BladderBedpan);
-            } else if(cursor.getString(DBAdapter.COL_BLADDER).equals("Toilet")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BLADDER)).equals("Toilet")){
                 rg.check(R.id.radio_BladderToilet);
             }else{
                 rg.clearCheck();
             }
 
             EditText editText = (EditText) findViewById(R.id.aHours);
-            editText.setText(cursor.getString(DBAdapter.COL_HOURS));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HOURS)));
             editText.clearFocus();
 
             //OT
 
             rg=(RadioGroup)findViewById(R.id.rgNeglect);
-            if (cursor.getString(DBAdapter.COL_NEGLECT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NEGLECT)).equals("Yes")){
                 rg.check(R.id.radio_NeglectYes);
-            } else if(cursor.getString(DBAdapter.COL_NEGLECT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NEGLECT)).equals("No")){
                 rg.check(R.id.radio_NeglectNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgDigitSpan);
-            if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("1")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("1")){
                 rg.check(R.id.radio_DigitSpan1);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("2")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("2")){
                 rg.check(R.id.radio_DigitSpan2);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("3")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("3")){
                 rg.check(R.id.radio_DigitSpan3);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("4")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("4")){
                 rg.check(R.id.radio_DigitSpan4);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("5")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("5")){
                 rg.check(R.id.radio_DigitSpan5);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("6")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("6")){
                 rg.check(R.id.radio_DigitSpan6);
-            } else if (cursor.getString(DBAdapter.COL_DIGITSPAN).equals("7")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DIGITSPAN)).equals("7")){
                 rg.check(R.id.radio_DigitSpan7);
             } else{
                 rg.clearCheck();
             }
 
             editText = (EditText) findViewById(R.id.aMmse);
-            editText.setText(cursor.getString(DBAdapter.COL_MMSE));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MMSE)));
             editText.clearFocus();
 
             rg=(RadioGroup)findViewById(R.id.rgFollows);
-            if (cursor.getString(DBAdapter.COL_FOLLOWS).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FOLLOWS)).equals("None")){
                 rg.check(R.id.radio_Follows0);
-            } else if(cursor.getString(DBAdapter.COL_FOLLOWS).equals("1 step")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FOLLOWS)).equals("1 step")){
                 rg.check(R.id.radio_Follows1);
-            } else if(cursor.getString(DBAdapter.COL_FOLLOWS).equals("2 step")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FOLLOWS)).equals("2 step")){
                 rg.check(R.id.radio_Follows2);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgVerbal);
-            if (cursor.getString(DBAdapter.COL_VERBAL).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_VERBAL)).equals("None")){
                 rg.check(R.id.radio_VerbalNone);
-            } else if(cursor.getString(DBAdapter.COL_VERBAL).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_VERBAL)).equals("Partial")){
                 rg.check(R.id.radio_VerbalPartial);
-            } else if(cursor.getString(DBAdapter.COL_VERBAL).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_VERBAL)).equals("Full")){
                 rg.check(R.id.radio_VerbalFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMotivation);
-            if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("1")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("1")){
                 rg.check(R.id.radio_Motivation1);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("2")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("2")){
                 rg.check(R.id.radio_Motivation2);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("3")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("3")){
                 rg.check(R.id.radio_Motivation3);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("4")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("4")){
                 rg.check(R.id.radio_Motivation4);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("5")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("5")){
                 rg.check(R.id.radio_Motivation5);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("6")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("6")){
                 rg.check(R.id.radio_Motivation6);
-            } else if (cursor.getString(DBAdapter.COL_MOTIVATION).equals("7")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATION)).equals("7")){
                 rg.check(R.id.radio_Motivation7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMood);
-            if (cursor.getString(DBAdapter.COL_MOOD).equals("1")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("1")){
                 rg.check(R.id.radio_Mood1);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("2")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("2")){
                 rg.check(R.id.radio_Mood2);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("3")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("3")){
                 rg.check(R.id.radio_Mood3);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("4")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("4")){
                 rg.check(R.id.radio_Mood4);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("5")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("5")){
                 rg.check(R.id.radio_Mood5);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("6")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("6")){
                 rg.check(R.id.radio_Mood6);
-            } else if (cursor.getString(DBAdapter.COL_MOOD).equals("7")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOOD)).equals("7")){
                 rg.check(R.id.radio_Mood7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgPain);
-            if (cursor.getString(DBAdapter.COL_PAIN).equals("1")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("1")){
                 rg.check(R.id.radio_Pain1);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("2")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("2")){
                 rg.check(R.id.radio_Pain2);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("3")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("3")){
                 rg.check(R.id.radio_Pain3);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("4")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("4")){
                 rg.check(R.id.radio_Pain4);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("5")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("5")){
                 rg.check(R.id.radio_Pain5);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("6")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("6")){
                 rg.check(R.id.radio_Pain6);
-            } else if (cursor.getString(DBAdapter.COL_PAIN).equals("7")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PAIN)).equals("7")){
                 rg.check(R.id.radio_Pain7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFatigue);
-            if (cursor.getString(DBAdapter.COL_FATIGUE).equals("1")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("1")){
                 rg.check(R.id.radio_Fatigue1);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("2")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("2")){
                 rg.check(R.id.radio_Fatigue2);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("3")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("3")){
                 rg.check(R.id.radio_Fatigue3);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("4")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("4")){
                 rg.check(R.id.radio_Fatigue4);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("5")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("5")){
                 rg.check(R.id.radio_Fatigue5);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("6")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("6")){
                 rg.check(R.id.radio_Fatigue6);
-            } else if (cursor.getString(DBAdapter.COL_FATIGUE).equals("7")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FATIGUE)).equals("7")){
                 rg.check(R.id.radio_Fatigue7);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSwallow);
-            if (cursor.getString(DBAdapter.COL_SWALLOW).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SWALLOW)).equals("None")){
                 rg.check(R.id.radio_SwallowNone);
-            } else if(cursor.getString(DBAdapter.COL_SWALLOW).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SWALLOW)).equals("Partial")){
                 rg.check(R.id.radio_SwallowPartial);
-            } else if(cursor.getString(DBAdapter.COL_SWALLOW).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SWALLOW)).equals("Full")){
                 rg.check(R.id.radio_SwallowFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFeeding);
-            if (cursor.getString(DBAdapter.COL_FEEDING).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FEEDING)).equals("None")){
                 rg.check(R.id.radio_FeedingNone);
-            } else if(cursor.getString(DBAdapter.COL_FEEDING).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FEEDING)).equals("Partial")){
                 rg.check(R.id.radio_FeedingPartial);
-            } else if(cursor.getString(DBAdapter.COL_FEEDING).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FEEDING)).equals("Full")){
                 rg.check(R.id.radio_FeedingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgDressing);
-            if (cursor.getString(DBAdapter.COL_DRESSING).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DRESSING)).equals("None")){
                 rg.check(R.id.radio_DressingNone);
-            } else if(cursor.getString(DBAdapter.COL_DRESSING).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DRESSING)).equals("Partial")){
                 rg.check(R.id.radio_DressingPartial);
-            } else if(cursor.getString(DBAdapter.COL_DRESSING).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DRESSING)).equals("Full")){
                 rg.check(R.id.radio_DressingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgKitchen);
-            if (cursor.getString(DBAdapter.COL_KITCHEN).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_KITCHEN)).equals("None")){
                 rg.check(R.id.radio_KitchenNone);
-            } else if(cursor.getString(DBAdapter.COL_KITCHEN).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_KITCHEN)).equals("Partial")){
                 rg.check(R.id.radio_KitchenPartial);
-            } else if(cursor.getString(DBAdapter.COL_KITCHEN).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_KITCHEN)).equals("Full")){
                 rg.check(R.id.radio_KitchenFull);
             } else{
                 rg.clearCheck();
@@ -1702,110 +1702,110 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //PT
 
             rg=(RadioGroup)findViewById(R.id.rgLeftArm);
-            if (cursor.getString(DBAdapter.COL_LEFTARM).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("None")){
                 rg.check(R.id.radio_LeftArmNone);
-            } else if (cursor.getString(DBAdapter.COL_LEFTARM).equals("Partial")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Partial")){
                 rg.check(R.id.radio_LeftArmPartial);
-            } else if (cursor.getString(DBAdapter.COL_LEFTARM).equals("Full")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Full")){
                 rg.check(R.id.radio_LeftArmFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgRightArm);
-            if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("None")){
                 rg.check(R.id.radio_RightArmNone);
-            } else if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("Partial")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Partial")){
                 rg.check(R.id.radio_RightArmPartial);
-            } else if (cursor.getString(DBAdapter.COL_RIGHTARM).equals("Full")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Full")){
                 rg.check(R.id.radio_RightArmFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgMovementBed);
-            if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("None")){
                 rg.check(R.id.radio_MovementBedNone);
-            } else if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("Partial")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Partial")){
                 rg.check(R.id.radio_MovementBedPartial);
-            } else if (cursor.getString(DBAdapter.COL_MOVEMENTBED).equals("Full")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Full")){
                 rg.check(R.id.radio_MovementBedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLieSit);
-            if (cursor.getString(DBAdapter.COL_LIESIT).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("None")){
                 rg.check(R.id.radio_LieSitNone);
-            } else if(cursor.getString(DBAdapter.COL_LIESIT).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Partial")){
                 rg.check(R.id.radio_LieSitPartial);
-            } else if(cursor.getString(DBAdapter.COL_LIESIT).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Full")){
                 rg.check(R.id.radio_LieSitFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSitting);
-            if (cursor.getString(DBAdapter.COL_SITTING).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("None")){
                 rg.check(R.id.radio_SittingNone);
-            } else if(cursor.getString(DBAdapter.COL_SITTING).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Partial")){
                 rg.check(R.id.radio_SittingPartial);
-            } else if(cursor.getString(DBAdapter.COL_SITTING).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Full")){
                 rg.check(R.id.radio_SittingFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgSitStand);
-            if (cursor.getString(DBAdapter.COL_SITSTAND).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("None")){
                 rg.check(R.id.radio_SitStandNone);
-            } else if(cursor.getString(DBAdapter.COL_SITSTAND).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Partial")){
                 rg.check(R.id.radio_SitStandPartial);
-            } else if(cursor.getString(DBAdapter.COL_SITSTAND).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Full")){
                 rg.check(R.id.radio_SitStandFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgStand);
-            if (cursor.getString(DBAdapter.COL_STAND).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("None")){
                 rg.check(R.id.radio_StandNone);
-            } else if(cursor.getString(DBAdapter.COL_STAND).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Partial")){
                 rg.check(R.id.radio_StandPartial);
-            } else if(cursor.getString(DBAdapter.COL_STAND).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Full")){
                 rg.check(R.id.radio_StandFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
-            if (cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("None")){
                 rg.check(R.id.radio_LiftsUnaffectedNone);
-            } else if(cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Partial")){
                 rg.check(R.id.radio_LiftsUnaffectedPartial);
-            } else if(cursor.getString(DBAdapter.COL_LIFTSUNAFFECTED).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Full")){
                 rg.check(R.id.radio_LiftsUnaffectedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
-            if (cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("None")){
                 rg.check(R.id.radio_LiftsAffectedNone);
-            } else if(cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Partial")){
                 rg.check(R.id.radio_LiftsAffectedPartial);
-            } else if(cursor.getString(DBAdapter.COL_LIFTSAFFECTED).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Full")){
                 rg.check(R.id.radio_LiftsAffectedFull);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgWalking);
-            if (cursor.getString(DBAdapter.COL_WALKING).equals("None")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("None")){
                 rg.check(R.id.radio_WalkingNone);
-            } else if(cursor.getString(DBAdapter.COL_WALKING).equals("Partial")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Partial")){
                 rg.check(R.id.radio_WalkingPartial);
-            } else if(cursor.getString(DBAdapter.COL_WALKING).equals("Full")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Full")){
                 rg.check(R.id.radio_WalkingFull);
             } else{
                 rg.clearCheck();
@@ -1819,22 +1819,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             //CNS
 
             rg=(RadioGroup)findViewById(R.id.rgCns1);
-            if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_CONSCIOUSNESS)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Alert")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_CONSCIOUSNESS)).equals("Alert")){
                 rg.check(R.id.radio_Cns1Alert);
-            } else if(cursor.getString(DBAdapter.COL_CNS_CONSCIOUSNESS).equals("Drowsy")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_CONSCIOUSNESS)).equals("Drowsy")){
                 rg.check(R.id.radio_Cns1Drowsy);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCns2);
-            if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_ORIENTATION)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Oriented")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_ORIENTATION)).equals("Oriented")){
                 rg.check(R.id.radio_Cns2Oriented);
-            } else if(cursor.getString(DBAdapter.COL_CNS_ORIENTATION).equals("Disoriented")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_ORIENTATION)).equals("Disoriented")){
                 rg.check(R.id.radio_Cns2Disoriented);
             } else{
                 rg.clearCheck();
@@ -1843,19 +1843,19 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             LinearLayout a1Layout = (LinearLayout) findViewById(R.id.cnsA1);
             LinearLayout a2Layout = (LinearLayout) findViewById(R.id.cnsA2);
             rg=(RadioGroup)findViewById(R.id.rgCns3);
-            if (cursor.getString(DBAdapter.COL_CNS_SPEECH) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_SPEECH)) == null){
                 rg.clearCheck();
                 a1Layout.setVisibility(View.GONE);
                 a2Layout.setVisibility(View.GONE);
-            } else if (cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Receptive deficit")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_SPEECH)).equals("Receptive deficit")){
                 rg.check(R.id.radio_Cns2ReceptiveDeficit);
                 a1Layout.setVisibility(View.GONE);
                 a2Layout.setVisibility(View.VISIBLE);
-            } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Expressive deficit")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_SPEECH)).equals("Expressive deficit")){
                 rg.check(R.id.radio_Cns3ExpressiveDeficit);
                 a1Layout.setVisibility(View.VISIBLE);
                 a2Layout.setVisibility(View.GONE);
-            } else if(cursor.getString(DBAdapter.COL_CNS_SPEECH).equals("Normal")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_SPEECH)).equals("Normal")){
                 rg.check(R.id.radio_Cns3Normal);
                 a1Layout.setVisibility(View.VISIBLE);
                 a2Layout.setVisibility(View.GONE);
@@ -1866,104 +1866,104 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_4);
-            if (cursor.getString(DBAdapter.COL_CNS_FACE1) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("No weakness")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_4NoWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)).equals("Weakness")){
                 rg.check(R.id.radio_CnsA1_4Weakness);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_5);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("No weakness")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_5NoWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Mild weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_5MildWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Significant weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)).equals("Significant weakness")){
                 rg.check(R.id.radio_CnsA1_5SignificantWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_PROXIMAL).equals("Total weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL)).equals("Total weakness")){
                 rg.check(R.id.radio_CnsA1_5TotalWeakness);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_6);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("No weakness")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_6NoWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Mild weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_6MildWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Significant weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)).equals("Significant weakness")){
                 rg.check(R.id.radio_CnsA1_6SignificantWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMB_DISTAL).equals("Total weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL)).equals("Total weakness")){
                 rg.check(R.id.radio_CnsA1_6TotalWeakness);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_7);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("No weakness")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_7NoWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Mild weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_7MildWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Significant weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)).equals("Significant weakness")){
                 rg.check(R.id.radio_CnsA1_7SignificantWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_PROXIMAL).equals("Total weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL)).equals("Total weakness")){
                 rg.check(R.id.radio_CnsA1_7TotalWeakness);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA1_8);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("No weakness")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)).equals("No weakness")){
                 rg.check(R.id.radio_CnsA1_8NoWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Mild weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)).equals("Mild weakness")){
                 rg.check(R.id.radio_CnsA1_8MildWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Significant weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)).equals("Significant weakness")){
                 rg.check(R.id.radio_CnsA1_8SignificantWeakness);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMB_DISTAL).equals("Total weakness")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL)).equals("Total weakness")){
                 rg.check(R.id.radio_CnsA1_8TotalWeakness);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_4);
-            if (cursor.getString(DBAdapter.COL_CNS_FACE1) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Symmetrical")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)).equals("Symmetrical")){
                 rg.check(R.id.radio_CnsA2_4Symmetrical);
-            } else if(cursor.getString(DBAdapter.COL_CNS_FACE1).equals("Asymmetrical")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1)).equals("Asymmetrical")){
                 rg.check(R.id.radio_CnsA2_4Asymmetrical);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_5);
-            if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMBS)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Equal")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMBS)).equals("Equal")){
                 rg.check(R.id.radio_CnsA2_5Equal);
-            } else if(cursor.getString(DBAdapter.COL_CNS_UPPER_LIMBS).equals("Unequal")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMBS)).equals("Unequal")){
                 rg.check(R.id.radio_CnsA2_5Unequal);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgCnsA2_6);
-            if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS) == null){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS)) == null){
                 rg.clearCheck();
-            } else if (cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Equal")){
+            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS)).equals("Equal")){
                 rg.check(R.id.radio_CnsA2_6Equal);
-            } else if(cursor.getString(DBAdapter.COL_CNS_LOWER_LIMBS).equals("Unequal")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS)).equals("Unequal")){
                 rg.check(R.id.radio_CnsA2_6Unequal);
             } else{
                 rg.clearCheck();

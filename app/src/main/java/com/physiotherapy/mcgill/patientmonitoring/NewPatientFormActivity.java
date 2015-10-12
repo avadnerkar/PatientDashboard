@@ -56,15 +56,15 @@ public class NewPatientFormActivity extends ActionBarActivity {
 
 
             editText = (EditText) findViewById(R.id.edit_first_name);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_FIRSTNAME));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTNAME)));
 
             editText = (EditText) findViewById(R.id.edit_last_name);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_LASTNAME));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LASTNAME)));
 
             editText = (EditText) findViewById(R.id.edit_hospital_ID);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_HOSPITALID));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HOSPITALID)));
 
-            dateString = cursor.getString(MainActivity.myDb.COL_ADMISSIONDATE);
+            dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ADMISSIONDATE));
             form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
             try{
@@ -82,179 +82,179 @@ public class NewPatientFormActivity extends ActionBarActivity {
             datePicker.updateDate(year, month, day);
 
             editText = (EditText) findViewById(R.id.edit_patient_age);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_PATIENTAGE));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PATIENTAGE)));
 
             rg=(RadioGroup)findViewById(R.id.rgGender);
-            if (cursor.getString(MainActivity.myDb.COL_PATIENTGENDER).equals("Female")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PATIENTGENDER)).equals("Female")){
                 rg.check(R.id.radio_GenderFemale);
-            } else if(cursor.getString(MainActivity.myDb.COL_PATIENTGENDER).equals("Male")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PATIENTGENDER)).equals("Male")){
                 rg.check(R.id.radio_GenderMale);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFirstLanguage);
-            if (cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("French")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTLANGUAGE)).equals("French")){
                 rg.check(R.id.radio_FirstLanguageFrench);
-            } else if(cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("English")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTLANGUAGE)).equals("English")){
                 rg.check(R.id.radio_FirstLanguageEnglish);
-            } else if(cursor.getString(MainActivity.myDb.COL_FIRSTLANGUAGE).equals("Other")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTLANGUAGE)).equals("Other")){
                 rg.check(R.id.radio_FirstLanguageOther);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgStrokeType);
-            if (cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Ischemic")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STROKETYPE)).equals("Ischemic")){
                 rg.check(R.id.radio_strokeTypeIschemic);
-            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("Hemorrhagic")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STROKETYPE)).equals("Hemorrhagic")){
                 rg.check(R.id.radio_strokeTypeHemorrhagic);
-            } else if(cursor.getString(MainActivity.myDb.COL_STROKETYPE).equals("TIA")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STROKETYPE)).equals("TIA")){
                 rg.check(R.id.radio_strokeTypeTia);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgFirstStroke);
-            if (cursor.getString(MainActivity.myDb.COL_FIRSTSTROKE).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTSTROKE)).equals("Yes")){
                 rg.check(R.id.radio_firstStrokeYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_FIRSTSTROKE).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTSTROKE)).equals("No")){
                 rg.check(R.id.radio_firstStrokeNo);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgLesionSide);
-            if (cursor.getString(MainActivity.myDb.COL_LESIONSIDE).equals("Left")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LESIONSIDE)).equals("Left")){
                 rg.check(R.id.radio_LesionSideLeft);
-            } else if(cursor.getString(MainActivity.myDb.COL_LESIONSIDE).equals("Right")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LESIONSIDE)).equals("Right")){
                 rg.check(R.id.radio_LesionSideRight);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgHemiplegiaSide);
-            if (cursor.getString(MainActivity.myDb.COL_HEMIPLEGIASIDE).equals("Left")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEMIPLEGIASIDE)).equals("Left")){
                 rg.check(R.id.radio_HemiplegiaSideLeft);
-            } else if(cursor.getString(MainActivity.myDb.COL_HEMIPLEGIASIDE).equals("Right")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEMIPLEGIASIDE)).equals("Right")){
                 rg.check(R.id.radio_HemiplegiaSideRight);
-            } else if(cursor.getString(MainActivity.myDb.COL_HEMIPLEGIASIDE).equals("None")) {
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEMIPLEGIASIDE)).equals("None")) {
                 rg.check(R.id.radio_HemiplegiaSideNone);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgConsciousness);
-            if (cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Alert")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CONSCIOUSNESS)).equals("Alert")){
                 rg.check(R.id.radio_ConsciousnessAlert);
-            } else if(cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Drowsy")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CONSCIOUSNESS)).equals("Drowsy")){
                 rg.check(R.id.radio_ConsciousnessDrowsy);
-            } else if(cursor.getString(MainActivity.myDb.COL_CONSCIOUSNESS).equals("Normal")) {
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CONSCIOUSNESS)).equals("Normal")) {
                 rg.check(R.id.radio_ConsciousnessNormal);
             } else{
                 rg.clearCheck();
             }
 
             rg=(RadioGroup)findViewById(R.id.rgOrientation);
-            if (cursor.getString(MainActivity.myDb.COL_ORIENTATION).equals("Oriented")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ORIENTATION)).equals("Oriented")){
                 rg.check(R.id.radio_OrientationOriented);
-            } else if(cursor.getString(MainActivity.myDb.COL_ORIENTATION).equals("Disoriented")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ORIENTATION)).equals("Disoriented")){
                 rg.check(R.id.radio_OrientationDisoriented);
             } else{
                 rg.clearCheck();
             }
 
             editText = (EditText) findViewById(R.id.edit_language);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_LANGUAGE));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LANGUAGE)));
 
             rg=(RadioGroup)findViewById(R.id.rgVisual);
-            if (cursor.getString(MainActivity.myDb.COL_VISUAL).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_VISUAL)).equals("Yes")){
                 rg.check(R.id.radio_VisualYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_VISUAL).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_VISUAL)).equals("No")){
                 rg.check(R.id.radio_VisualNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgHearingAid);
-            if (cursor.getString(MainActivity.myDb.COL_HEARINGAID).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEARINGAID)).equals("Yes")){
                 rg.check(R.id.radio_HearingAidYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_HEARINGAID).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEARINGAID)).equals("No")){
                 rg.check(R.id.radio_HearingAidNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgHearingAssessed);
-            if (cursor.getString(MainActivity.myDb.COL_HEARINGASSESSED).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEARINGASSESSED)).equals("Yes")){
                 rg.check(R.id.radio_HearingAssessedYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_HEARINGASSESSED).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HEARINGASSESSED)).equals("No")){
                 rg.check(R.id.radio_HearingAssessedNo);
             } else{
                 rg.clearCheck();
             }
 
             editText = (EditText) findViewById(R.id.edit_aphasia);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_APHASIA));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_APHASIA)));
 
             rg=(RadioGroup)findViewById(R.id.rgPegAdmit);
-            if (cursor.getString(MainActivity.myDb.COL_PEGADMIT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PEGADMIT)).equals("Yes")){
                 rg.check(R.id.radio_PegAdmitYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_PEGADMIT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_PEGADMIT)).equals("No")){
                 rg.check(R.id.radio_PegAdmitNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgNgAdmit);
-            if (cursor.getString(MainActivity.myDb.COL_NGADMIT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NGADMIT)).equals("Yes")){
                 rg.check(R.id.radio_NgAdmitYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_NGADMIT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NGADMIT)).equals("No")){
                 rg.check(R.id.radio_NgAdmitNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgFoleyAdmit);
-            if (cursor.getString(MainActivity.myDb.COL_FOLEYADMIT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FOLEYADMIT)).equals("Yes")){
                 rg.check(R.id.radio_FoleyAdmitYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_FOLEYADMIT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FOLEYADMIT)).equals("No")){
                 rg.check(R.id.radio_FoleyAdmitNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgFallRisk);
-            if (cursor.getString(MainActivity.myDb.COL_FALLRISK).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FALLRISK)).equals("Yes")){
                 rg.check(R.id.radio_FallRiskYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_FALLRISK).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FALLRISK)).equals("No")){
                 rg.check(R.id.radio_FallRiskNo);
             } else{
                 rg.clearCheck();
             }
             rg=(RadioGroup)findViewById(R.id.rgMotivationAdmit);
-            if (cursor.getString(MainActivity.myDb.COL_MOTIVATIONADMIT).equals("Yes")){
+            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATIONADMIT)).equals("Yes")){
                 rg.check(R.id.radio_MotivationAdmitYes);
-            } else if(cursor.getString(MainActivity.myDb.COL_MOTIVATIONADMIT).equals("No")){
+            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOTIVATIONADMIT)).equals("No")){
                 rg.check(R.id.radio_MotivationAdmitNo);
             } else{
                 rg.clearCheck();
             }
 
             editText = (EditText) findViewById(R.id.edit_other);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_OTHER));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_OTHER)));
 
             editText = (EditText) findViewById(R.id.edit_cognition);
-            editText.setText(cursor.getString(MainActivity.myDb.COL_COGNITION));
+            editText.setText(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_COGNITION)));
 
-            dateString = cursor.getString(MainActivity.myDb.COL_FIRSTOT);
+            dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTOT));
             textView = (TextView) findViewById(R.id.textDateFirstOT);
             textView.setText(dateString);
 
-            dateString = cursor.getString(MainActivity.myDb.COL_FIRSTSWALLOW);
+            dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTSWALLOW));
             textView = (TextView) findViewById(R.id.textDateFirstSwallow);
             textView.setText(dateString);
 
-            dateString = cursor.getString(MainActivity.myDb.COL_FIRSTPT);
+            dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTPT));
             textView = (TextView) findViewById(R.id.textDateFirstPT);
             textView.setText(dateString);
 
-            dateString = cursor.getString(MainActivity.myDb.COL_FIRSTSLT);
+            dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTSLT));
             textView = (TextView) findViewById(R.id.textDateFirstSLT);
             textView.setText(dateString);
         } else{

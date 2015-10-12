@@ -54,9 +54,9 @@ public class ScoreGraphs extends ActionBarActivity {
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(DBAdapter.COL_BARTHEL).equals("-1") && !cursor.getString(DBAdapter.COL_BARTHEL).equals("-1.0")){
-                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
-                        barthel = Float.parseFloat(cursor.getString(DBAdapter.COL_BARTHEL));
+                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)).equals("-1.0")){
+                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
+                        barthel = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)));
                         dataPoint = new DataPoint(day,barthel);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -72,9 +72,9 @@ public class ScoreGraphs extends ActionBarActivity {
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(DBAdapter.COL_BERG).equals("-1") && !cursor.getString(DBAdapter.COL_BERG).equals("-1.0")){
-                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
-                        berg = Float.parseFloat(cursor.getString(DBAdapter.COL_BERG));
+                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)).equals("-1.0")){
+                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
+                        berg = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)));
                         dataPoint = new DataPoint(day,berg);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -90,9 +90,9 @@ public class ScoreGraphs extends ActionBarActivity {
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(DBAdapter.COL_CNS).equals("-1") && !cursor.getString(DBAdapter.COL_CNS).equals("-1.0") && !cursor.getString(DBAdapter.COL_CNS).equals("")){
-                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
-                        cns = Float.parseFloat(cursor.getString(DBAdapter.COL_CNS));
+                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("-1.0") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("")){
+                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
+                        cns = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)));
                         dataPoint = new DataPoint(day,cns);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -108,9 +108,9 @@ public class ScoreGraphs extends ActionBarActivity {
             if (cursor.moveToFirst()) {
                 do {
 
-                    if (!cursor.getString(DBAdapter.COL_NIHSS).equals("-1") && !cursor.getString(DBAdapter.COL_NIHSS).equals("-1.0") && !cursor.getString(DBAdapter.COL_NIHSS).equals("")){
-                        day = Integer.parseInt(cursor.getString(DBAdapter.COL_DAY));
-                        nihss = Float.parseFloat(cursor.getString(DBAdapter.COL_NIHSS));
+                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("-1.0") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("")){
+                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
+                        nihss = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)));
                         dataPoint = new DataPoint(day,nihss);
                         series.appendData(dataPoint,true,1000);
                     }

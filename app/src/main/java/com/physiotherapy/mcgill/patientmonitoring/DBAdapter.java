@@ -25,7 +25,6 @@ public class DBAdapter {
 
 	// Common fields Fields
 	public static final String KEY_ROWID = "_id";
-	public static final int COL_ROWID = 0;
 
 
 	// TODO: Setup your  patient fields here:
@@ -130,139 +129,12 @@ public class DBAdapter {
 	public static final String KEY_CNS_FACE2 = "CNSFace2";
 
 
-
 	//Scores
 	public static final String KEY_BARTHEL = "EstBarthelScore";
 	public static final String KEY_BERG = "EstBergScore";
 	public static final String KEY_CNS = "CnsScore";
 	public static final String KEY_NIHSS = "NihssScore";
 
-
-	// TODO: Setup your patient field numbers here (0 = KEY_ROWID, 1=...)
-	public static final int COL_FIRSTNAME = 1;
-	public static final int COL_LASTNAME = 2;
-	public static final int COL_HOSPITALID = 3;
-	public static final int COL_ADMISSIONDATE = 4;
-	public static final int COL_DISCHARGED = 5;
-	public static final int COL_DISCHARGEDATE = 6;
-	public static final int COL_PATIENTAGE = 7;
-	public static final int COL_PATIENTGENDER = 8;
-	public static final int COL_FIRSTLANGUAGE = 9;
-
-	public static final int COL_MOCASCORE = 10;
-	public static final int COL_CUSTOMSCORE = 11;
-	public static final int COL_CUSTOMMAX = 12;
-
-	public static final int COL_STROKETYPE = 13;
-	public static final int COL_FIRSTSTROKE = 14;
-	public static final int COL_LESIONSIDE = 15;
-	public static final int COL_HEMIPLEGIASIDE = 16;
-	public static final int COL_CONSCIOUSNESS = 17;
-	public static final int COL_ORIENTATION = 18;
-	public static final int COL_LANGUAGE = 19;
-	public static final int COL_VISUAL = 20;
-	public static final int COL_HEARINGAID = 21;
-	public static final int COL_HEARINGASSESSED = 22;
-	public static final int COL_APHASIA = 23;
-
-	public static final int COL_PEGADMIT = 24;
-	public static final int COL_NGADMIT = 25;
-	public static final int COL_FOLEYADMIT = 26;
-	public static final int COL_FALLRISK = 27;
-	public static final int COL_MOTIVATIONADMIT = 28;
-	public static final int COL_OTHER = 29;
-	public static final int COL_COGNITION = 30;
-
-	public static final int COL_FIRSTOT = 31;
-	public static final int COL_TOTALOT = 32;
-	public static final int COL_FIRSTSWALLOW = 33;
-	public static final int COL_FIRSTPT = 34;
-	public static final int COL_TOTALPT = 35;
-	public static final int COL_FIRSTSLT = 36;
-	public static final int COL_TOTALSLT = 37;
-
-	// TODO: Setup your data field numbers here (0 = KEY_ROWID, 1=...)
-	public static final int COL_PARENTID = 1;
-	public static final int COL_MRN = 2;
-	public static final int COL_DAY = 3;
-
-	//Nurse
-	public static final int COL_PEG = 4;
-	public static final int COL_NG = 5;
-	public static final int COL_O2 = 6;
-	public static final int COL_IV = 7;
-	public static final int COL_CPAP = 8;
-	public static final int COL_RESTRAINT = 9;
-	public static final int COL_BEDBARS = 10;
-	public static final int COL_BEHAVIOURAL = 11;
-	public static final int COL_CONFUSION = 12;
-	public static final int COL_BLADDER = 13;
-	public static final int COL_HOURS = 14;
-
-	//OT
-	public static final int COL_NEGLECT = 15;
-	public static final int COL_DIGITSPAN = 16;
-	public static final int COL_MMSE = 17;
-	public static final int COL_FOLLOWS = 18;
-	public static final int COL_VERBAL = 19;
-	public static final int COL_MOTIVATION = 20;
-	public static final int COL_MOOD = 21;
-	public static final int COL_PAIN = 22;
-	public static final int COL_FATIGUE = 23;
-	public static final int COL_SWALLOW = 24;
-	public static final int COL_FEEDING = 25;
-	public static final int COL_DRESSING = 26;
-	public static final int COL_KITCHEN = 27;
-
-	//PT
-	public static final int COL_LEFTARM = 28;
-	public static final int COL_RIGHTARM = 29;
-	public static final int COL_MOVEMENTBED = 30;
-	public static final int COL_LIESIT = 31;
-	public static final int COL_SITTING = 32;
-	public static final int COL_SITSTAND = 33;
-	public static final int COL_STAND = 34;
-	public static final int COL_LIFTSUNAFFECTED = 35;
-	public static final int COL_LIFTSAFFECTED = 36;
-	public static final int COL_WALKING = 37;
-
-	//CNS
-	public static final int COL_CNS_CONSCIOUSNESS = 40;
-	public static final int COL_CNS_ORIENTATION = 41;
-	public static final int COL_CNS_SPEECH = 42;
-	public static final int COL_CNS_FACE1 = 43;
-	public static final int COL_CNS_UPPER_LIMB_PROXIMAL = 44;
-	public static final int COL_CNS_UPPER_LIMB_DISTAL = 45;
-	public static final int COL_CNS_LOWER_LIMB_PROXIMAL = 46;
-	public static final int COL_CNS_LOWER_LIMB_DISTAL = 47;
-	public static final int COL_CNS_UPPER_LIMBS = 48;
-	public static final int COL_CNS_LOWER_LIMBS = 49;
-	public static final int COL_CNS_FACE2 = 50;
-
-	//Score
-	public static final int COL_BARTHEL = 38;
-	public static final int COL_BERG = 39;
-	public static final int COL_CNS = 51;
-	public static final int COL_NIHSS = 52;
-
-
-	// TODO: Set all keys for patient table
-	public static final String[] ALL_PATIENT_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_HOSPITALID, KEY_ADMISSIONDATE, KEY_DISCHARGED, KEY_DISCHARGEDATE, KEY_PATIENTAGE, KEY_PATIENTGENDER, KEY_FIRSTLANGUAGE,
-			KEY_MOCASCORE, KEY_CUSTOMSCORE, KEY_CUSTOMMAX,
-			KEY_STROKETYPE, KEY_FIRSTSTROKE, KEY_LESIONSIDE, KEY_HEMIPLEGIASIDE, KEY_CONSCIOUSNESS, KEY_ORIENTATION, KEY_LANGUAGE, KEY_VISUAL, KEY_HEARINGAID, KEY_HEARINGASSESSED, KEY_APHASIA,
-			KEY_PEGADMIT, KEY_NGADMIT, KEY_FOLEYADMIT, KEY_FALLRISK, KEY_MOTIVATIONADMIT, KEY_OTHER, KEY_COGNITION,
-			KEY_FIRSTOT, KEY_TOTALOT, KEY_FIRSTSWALLOW, KEY_FIRSTPT, KEY_TOTALPT, KEY_FIRSTSLT, KEY_TOTALSLT};
-
-	//TODO: Set all keys for data table
-	public static final String[] ALL_DATA_KEYS = new String[] {KEY_ROWID, KEY_PARENTID, KEY_MRN, KEY_DAY,
-			KEY_PEG, KEY_NG, KEY_O2, KEY_IV, KEY_CPAP, KEY_RESTRAINT, KEY_BEDBARS, KEY_BEHAVIOURAL, KEY_CONFUSION, KEY_BLADDER, KEY_HOURS,
-			KEY_NEGLECT, KEY_DIGITSPAN, KEY_MMSE, KEY_FOLLOWS, KEY_VERBAL, KEY_MOTIVATION, KEY_MOOD, KEY_PAIN, KEY_FATIGUE, KEY_SWALLOW, KEY_FEEDING, KEY_DRESSING, KEY_KITCHEN,
-			KEY_LEFTARM, KEY_RIGHTARM, KEY_MOVEMENTBED, KEY_LIESIT, KEY_SITTING, KEY_SITSTAND, KEY_STAND, KEY_LIFTSUNAFFECTED, KEY_LIFTSAFFECTED, KEY_WALKING,
-			KEY_BARTHEL, KEY_BERG,
-			KEY_CNS_CONSCIOUSNESS, KEY_CNS_ORIENTATION, KEY_CNS_SPEECH, KEY_CNS_FACE1, KEY_CNS_UPPER_LIMB_PROXIMAL, KEY_CNS_UPPER_LIMB_DISTAL, KEY_CNS_LOWER_LIMB_PROXIMAL, KEY_CNS_LOWER_LIMB_DISTAL, KEY_CNS_UPPER_LIMBS, KEY_CNS_LOWER_LIMBS, KEY_CNS_FACE2,
-			KEY_CNS, KEY_NIHSS
-
-	};
 	
 	// DB info: its name, and the tables we are using
 	public static final String DATABASE_NAME = "PatientMonitoringDb";
@@ -510,15 +382,17 @@ public class DBAdapter {
 		Cursor c =  db.rawQuery(deleteQuery, null);
 		if (c != null) {
 			c.moveToFirst();
+			c.close();
 		}
-		c.close();
+
 
 		deleteQuery = "DELETE FROM " + DATA_TABLE + " WHERE " + KEY_PARENTID + " = " + currentPatientId;
 		c =  db.rawQuery(deleteQuery, null);
 		if (c != null) {
 			c.moveToFirst();
+			c.close();
 		}
-		c.close();
+
 	}
 	
 	public void deleteAllPatients() {
@@ -544,7 +418,7 @@ public class DBAdapter {
 	// Return all data in the database.
 	public Cursor getAllRowPatients() {
 		String where = null;
-		Cursor c = 	db.query(true, PATIENT_TABLE, ALL_PATIENT_KEYS,
+		Cursor c = 	db.query(true, PATIENT_TABLE, null,
 				where, null, null, null, null, null);
 		if (c != null) {
 			c.moveToFirst();
@@ -555,7 +429,7 @@ public class DBAdapter {
 	// Get a specific row (by rowId)
 	public Cursor getRowPatient(long rowId) {
 		String where = KEY_ROWID + "=" + rowId;
-		Cursor c = 	db.query(true, PATIENT_TABLE, ALL_PATIENT_KEYS,
+		Cursor c = 	db.query(true, PATIENT_TABLE, null,
 						where, null, null, null, null, null);
 		if (c != null) {
 			c.moveToFirst();
@@ -742,7 +616,7 @@ public class DBAdapter {
 	// Return all data in the database.
 	public Cursor getAllRowData() {
 		String where = null;
-		Cursor c = 	db.query(true, DATA_TABLE, ALL_DATA_KEYS,
+		Cursor c = 	db.query(true, DATA_TABLE, null,
 				where, null, null, null, null, null);
 		if (c != null) {
 			c.moveToFirst();
@@ -857,7 +731,8 @@ public class DBAdapter {
 	}
 
 	public Cursor getAllPatientDataSorted(int patientId){
-		Cursor c = db.query(DATA_TABLE, ALL_DATA_KEYS, null, null, null, null, KEY_DAY+" ASC");
+		String where = KEY_PARENTID + "=" + patientId;
+		Cursor c = db.query(DATA_TABLE, null, where, null, null, null, KEY_DAY+" ASC");
 		if (c != null) {
 			c.moveToFirst();
 		}
