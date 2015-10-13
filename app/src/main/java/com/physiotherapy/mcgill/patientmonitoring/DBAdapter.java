@@ -719,6 +719,14 @@ public class DBAdapter {
 
 	}
 
+
+	public boolean updateFieldData(int parentId, int day, String key, String value){
+		String where = KEY_PARENTID + "= ? AND " + KEY_DAY + "= ?";
+		ContentValues newValues = new ContentValues();
+		newValues.put(key, value);
+		return db.update(DATA_TABLE, newValues, where, new String[]{String.valueOf(parentId), String.valueOf(day)}) != 0;
+	}
+
 	// Return all data for a patient in the database.
 	public Cursor getAllPatientData(int patientId) {
 		String selectQuery = "SELECT * FROM " + DATA_TABLE + " dt WHERE dt." + KEY_PARENTID + " = " + patientId;
@@ -732,13 +740,22 @@ public class DBAdapter {
 
 	public Cursor getAllPatientDataSorted(int patientId){
 		String where = KEY_PARENTID + "=" + patientId;
-		Cursor c = db.query(DATA_TABLE, null, where, null, null, null, KEY_DAY+" ASC");
+		Cursor c = db.query(DATA_TABLE, null, where, null, null, null, KEY_DAY + " ASC");
 		if (c != null) {
 			c.moveToFirst();
 		}
 		return c;
 	}
 
+
+	public Cursor getDataField(int patientId, int day, String key){
+		String where = KEY_PARENTID + "= ? AND " + KEY_DAY + "= ?";
+		Cursor c = db.query(DATA_TABLE, new String[]{key}, where, new String[]{String.valueOf(patientId), String.valueOf(day)}, null, null, null);
+		if (c != null){
+			c.moveToFirst();
+		}
+		return c;
+	}
 
 	
 	/////////////////////////////////////////////////////////////////////

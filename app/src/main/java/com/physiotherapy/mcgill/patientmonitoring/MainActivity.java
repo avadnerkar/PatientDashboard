@@ -232,6 +232,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void updateDayView(){
         TextView textView = (TextView) findViewById(R.id.dayNumber);
         textView.setText("Day " + currentDay);
+        PtFragment.ptAdapter.notifyDataSetChanged();
 
     }
 
@@ -549,8 +550,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         nurseLayout.setVisibility(View.INVISIBLE);
         LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
         otLayout.setVisibility(View.INVISIBLE);
-        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
-        ptLayout.setVisibility(View.INVISIBLE);
+//        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+//        ptLayout.setVisibility(View.INVISIBLE);
         LinearLayout cnsLayout = (LinearLayout) findViewById(R.id.cnsLinearLayout);
         cnsLayout.setVisibility(View.INVISIBLE);
 
@@ -663,8 +664,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         nurseLayout.setVisibility(View.VISIBLE);
                         LinearLayout otLayout = (LinearLayout) findViewById(R.id.otLinearLayout);
                         otLayout.setVisibility(View.VISIBLE);
-                        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
-                        ptLayout.setVisibility(View.VISIBLE);
+//                        LinearLayout ptLayout = (LinearLayout) findViewById(R.id.ptLinearLayout);
+//                        ptLayout.setVisibility(View.VISIBLE);
                         LinearLayout cnsLayout = (LinearLayout) findViewById(R.id.cnsLinearLayout);
                         cnsLayout.setVisibility(View.VISIBLE);
 
@@ -1131,115 +1132,115 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
 
         //PT
-        rg=(RadioGroup)findViewById(R.id.rgLeftArm);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentLeftArm = (String) btn.getText();
-        } else {
+//        rg=(RadioGroup)findViewById(R.id.rgLeftArm);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentLeftArm = (String) btn.getText();
+//        } else {
             currentLeftArm = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgRightArm);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentRightArm = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgRightArm);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentRightArm = (String) btn.getText();
+//        } else {
             currentRightArm = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgMovementBed);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentMovementBed = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgMovementBed);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentMovementBed = (String) btn.getText();
+//        } else {
             currentMovementBed = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgLieSit);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentLieSit = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgLieSit);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentLieSit = (String) btn.getText();
+//        } else {
             currentLieSit = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgSitting);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentSitting = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgSitting);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentSitting = (String) btn.getText();
+//        } else {
             currentSitting = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgSitStand);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentSitStand = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgSitStand);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentSitStand = (String) btn.getText();
+//        } else {
             currentSitStand = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgStand);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentStand = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgStand);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentStand = (String) btn.getText();
+//        } else {
             currentStand = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentLiftsUnaffected = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentLiftsUnaffected = (String) btn.getText();
+//        } else {
             currentLiftsUnaffected = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentLiftsAffected = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentLiftsAffected = (String) btn.getText();
+//        } else {
             currentLiftsAffected = "";
-        }
-
-        rg=(RadioGroup)findViewById(R.id.rgWalking);
-        id = rg.getCheckedRadioButtonId();
-        if (id!=-1) {
-            radioButton = rg.findViewById(id);
-            radioId = rg.indexOfChild(radioButton);
-            btn = (RadioButton) rg.getChildAt(radioId);
-            currentWalking = (String) btn.getText();
-        } else {
+//        }
+//
+//        rg=(RadioGroup)findViewById(R.id.rgWalking);
+//        id = rg.getCheckedRadioButtonId();
+//        if (id!=-1) {
+//            radioButton = rg.findViewById(id);
+//            radioId = rg.indexOfChild(radioButton);
+//            btn = (RadioButton) rg.getChildAt(radioId);
+//            currentWalking = (String) btn.getText();
+//        } else {
             currentWalking = "";
-        }
+//        }
 
         currentBarthel = "placeholder";
         currentBerg = "placeholder";
@@ -1700,115 +1701,115 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             //PT
 
-            rg=(RadioGroup)findViewById(R.id.rgLeftArm);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("None")){
-                rg.check(R.id.radio_LeftArmNone);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Partial")){
-                rg.check(R.id.radio_LeftArmPartial);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Full")){
-                rg.check(R.id.radio_LeftArmFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgRightArm);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("None")){
-                rg.check(R.id.radio_RightArmNone);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Partial")){
-                rg.check(R.id.radio_RightArmPartial);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Full")){
-                rg.check(R.id.radio_RightArmFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgMovementBed);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("None")){
-                rg.check(R.id.radio_MovementBedNone);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Partial")){
-                rg.check(R.id.radio_MovementBedPartial);
-            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Full")){
-                rg.check(R.id.radio_MovementBedFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgLieSit);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("None")){
-                rg.check(R.id.radio_LieSitNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Partial")){
-                rg.check(R.id.radio_LieSitPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Full")){
-                rg.check(R.id.radio_LieSitFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgSitting);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("None")){
-                rg.check(R.id.radio_SittingNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Partial")){
-                rg.check(R.id.radio_SittingPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Full")){
-                rg.check(R.id.radio_SittingFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgSitStand);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("None")){
-                rg.check(R.id.radio_SitStandNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Partial")){
-                rg.check(R.id.radio_SitStandPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Full")){
-                rg.check(R.id.radio_SitStandFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgStand);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("None")){
-                rg.check(R.id.radio_StandNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Partial")){
-                rg.check(R.id.radio_StandPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Full")){
-                rg.check(R.id.radio_StandFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("None")){
-                rg.check(R.id.radio_LiftsUnaffectedNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Partial")){
-                rg.check(R.id.radio_LiftsUnaffectedPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Full")){
-                rg.check(R.id.radio_LiftsUnaffectedFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("None")){
-                rg.check(R.id.radio_LiftsAffectedNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Partial")){
-                rg.check(R.id.radio_LiftsAffectedPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Full")){
-                rg.check(R.id.radio_LiftsAffectedFull);
-            } else{
-                rg.clearCheck();
-            }
-
-            rg=(RadioGroup)findViewById(R.id.rgWalking);
-            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("None")){
-                rg.check(R.id.radio_WalkingNone);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Partial")){
-                rg.check(R.id.radio_WalkingPartial);
-            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Full")){
-                rg.check(R.id.radio_WalkingFull);
-            } else{
-                rg.clearCheck();
-            }
+//            rg=(RadioGroup)findViewById(R.id.rgLeftArm);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("None")){
+//                rg.check(R.id.radio_LeftArmNone);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Partial")){
+//                rg.check(R.id.radio_LeftArmPartial);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LEFTARM)).equals("Full")){
+//                rg.check(R.id.radio_LeftArmFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgRightArm);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("None")){
+//                rg.check(R.id.radio_RightArmNone);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Partial")){
+//                rg.check(R.id.radio_RightArmPartial);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_RIGHTARM)).equals("Full")){
+//                rg.check(R.id.radio_RightArmFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgMovementBed);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("None")){
+//                rg.check(R.id.radio_MovementBedNone);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Partial")){
+//                rg.check(R.id.radio_MovementBedPartial);
+//            } else if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_MOVEMENTBED)).equals("Full")){
+//                rg.check(R.id.radio_MovementBedFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLieSit);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("None")){
+//                rg.check(R.id.radio_LieSitNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Partial")){
+//                rg.check(R.id.radio_LieSitPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIESIT)).equals("Full")){
+//                rg.check(R.id.radio_LieSitFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgSitting);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("None")){
+//                rg.check(R.id.radio_SittingNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Partial")){
+//                rg.check(R.id.radio_SittingPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING)).equals("Full")){
+//                rg.check(R.id.radio_SittingFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgSitStand);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("None")){
+//                rg.check(R.id.radio_SitStandNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Partial")){
+//                rg.check(R.id.radio_SitStandPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND)).equals("Full")){
+//                rg.check(R.id.radio_SitStandFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgStand);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("None")){
+//                rg.check(R.id.radio_StandNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Partial")){
+//                rg.check(R.id.radio_StandPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND)).equals("Full")){
+//                rg.check(R.id.radio_StandFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("None")){
+//                rg.check(R.id.radio_LiftsUnaffectedNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Partial")){
+//                rg.check(R.id.radio_LiftsUnaffectedPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED)).equals("Full")){
+//                rg.check(R.id.radio_LiftsUnaffectedFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("None")){
+//                rg.check(R.id.radio_LiftsAffectedNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Partial")){
+//                rg.check(R.id.radio_LiftsAffectedPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED)).equals("Full")){
+//                rg.check(R.id.radio_LiftsAffectedFull);
+//            } else{
+//                rg.clearCheck();
+//            }
+//
+//            rg=(RadioGroup)findViewById(R.id.rgWalking);
+//            if (cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("None")){
+//                rg.check(R.id.radio_WalkingNone);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Partial")){
+//                rg.check(R.id.radio_WalkingPartial);
+//            } else if(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING)).equals("Full")){
+//                rg.check(R.id.radio_WalkingFull);
+//            } else{
+//                rg.clearCheck();
+//            }
 
 
 
@@ -2052,35 +2053,35 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
 
             //PT
-            rg=(RadioGroup)findViewById(R.id.rgLeftArm);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgRightArm);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgMovementBed);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgLieSit);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgSitting);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgSitStand);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgStand);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
-            rg.clearCheck();
-
-            rg=(RadioGroup)findViewById(R.id.rgWalking);
-            rg.clearCheck();
+//            rg=(RadioGroup)findViewById(R.id.rgLeftArm);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgRightArm);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgMovementBed);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLieSit);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgSitting);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgSitStand);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgStand);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLiftsUnaffected);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgLiftsAffected);
+//            rg.clearCheck();
+//
+//            rg=(RadioGroup)findViewById(R.id.rgWalking);
+//            rg.clearCheck();
 
 
 
@@ -2107,7 +2108,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         cursor.close();
 
-        scrollToTop();
+        //scrollToTop();
     }
 
     public static float[] calculateScores(int scoreDay, String selectedScoreType){

@@ -8,9 +8,13 @@ public class FormItem {
     public String dbKey;
     public String title;
     public enum CellType {
-        radio, numeric
+        RADIO, NUMERIC
     }
     public CellType cellType;
+    public enum Group {
+        NURSE, OT, PT, CNS
+    }
+    public Group group;
     public String[] options;
 
 
