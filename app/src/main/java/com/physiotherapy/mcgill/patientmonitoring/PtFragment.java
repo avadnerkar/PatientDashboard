@@ -24,9 +24,9 @@ public class PtFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.test_frag, container, false);
+        View v = inflater.inflate(R.layout.pt_frag, container, false);
 
-        ListView listView = (ListView) v.findViewById(R.id.test_list);
+        ListView listView = (ListView) v.findViewById(R.id.ptList);
 
         ptFormItems = new ArrayList<>();
         ptFormItems.add(new FormItem(getString(R.string.qLeftArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_LEFTARM));
@@ -47,9 +47,6 @@ public class PtFragment extends Fragment {
         ptAdapter = new FormListAdapter(getActivity(), ptFormItems);
 
         listView.setAdapter(ptAdapter);
-
-
-
 
 
         return v;

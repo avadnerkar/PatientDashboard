@@ -1,628 +1,633 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<ListView
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/scrollViewCns">
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/darker_gray"
-        android:id="@+id/cnsLinearLayout"
-        android:visibility="invisible">
-
-        <View
-            android:id="@+id/focus_thief"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-
-
-
-        <!-- Question block -->
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/MediumSeaGreen"
-            android:layout_margin="1dp">
-
-
-            <TextView
-                android:id="@+id/qCns1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qCns1"
-                android:layout_alignParentLeft="true"
-                android:padding="15dp"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgCns1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_below="@id/qCns1"
-                android:layout_margin="10dp">
-                <RadioButton android:id="@+id/radio_Cns1Alert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns1alert"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_Cns1Drowsy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns1drowsy"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </RelativeLayout>
-
-        <!-- End question block -->
-
-
-        <!-- Question block -->
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/MediumSeaGreen"
-            android:layout_margin="1dp">
-
-
-            <TextView
-                android:id="@+id/qCns2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qCns2"
-                android:layout_alignParentLeft="true"
-                android:padding="15dp"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgCns2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_below="@id/qCns2"
-                android:layout_margin="10dp">
-                <RadioButton android:id="@+id/radio_Cns2Oriented"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns2oriented"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_Cns2Disoriented"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns2disoriented"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </RelativeLayout>
-
-        <!-- End question block -->
-
-
-        <!-- Question block -->
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/MediumSeaGreen"
-            android:layout_margin="1dp">
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cnsList"
+    android:visibility="invisible"/>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/scrollViewCns">-->
+
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/darker_gray"-->
+        <!--android:id="@+id/cnsLinearLayout"-->
+        <!--android:visibility="invisible">-->
+
+        <!--<View-->
+            <!--android:id="@+id/focus_thief"-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true" />-->
+
+
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/MediumSeaGreen"-->
+            <!--android:layout_margin="1dp">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qCns1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qCns1"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:padding="15dp"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgCns1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_below="@id/qCns1"-->
+                <!--android:layout_margin="10dp">-->
+                <!--<RadioButton android:id="@+id/radio_Cns1Alert"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns1alert"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_Cns1Drowsy"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns1drowsy"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</RelativeLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/MediumSeaGreen"-->
+            <!--android:layout_margin="1dp">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qCns2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qCns2"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:padding="15dp"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgCns2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_below="@id/qCns2"-->
+                <!--android:layout_margin="10dp">-->
+                <!--<RadioButton android:id="@+id/radio_Cns2Oriented"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns2oriented"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_Cns2Disoriented"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns2disoriented"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</RelativeLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/MediumSeaGreen"-->
+            <!--android:layout_margin="1dp">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qCns3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qCns3"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:padding="15dp"/>-->
 
-            <TextView
-                android:id="@+id/qCns3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qCns3"
-                android:layout_alignParentLeft="true"
-                android:padding="15dp"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgCns3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:layout_below="@id/qCns3"
-                android:layout_margin="10dp">
-                <RadioButton android:id="@+id/radio_Cns2ReceptiveDeficit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns3receptiveDeficit"
-                    android:onClick="showA2"/>
-                <RadioButton android:id="@+id/radio_Cns3ExpressiveDeficit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns3expressiveDeficit"
-                    android:onClick="showA1"/>
-                <RadioButton android:id="@+id/radio_Cns3Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aCns3normal"
-                    android:onClick="showA1"/>
-            </RadioGroup>
-
-
-
-        </RelativeLayout>
-
-        <!-- End question block -->
-
-
-
-        <!-- Section A1 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/cnsA1"
-            android:visibility="gone">
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA1_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA1_4"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA1_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/qCnsA1_4"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA1_4NoWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_4noWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_4Weakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_4Weakness"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA1_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA1_5"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA1_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_below="@id/qCnsA1_5"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA1_5NoWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_noWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_5MildWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_mildWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_5SignificantWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_significantWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_5TotalWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_totalWeakness"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA1_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA1_6"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA1_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_below="@id/qCnsA1_6"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA1_6NoWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_noWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_6MildWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_mildWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_6SignificantWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_significantWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_6TotalWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_totalWeakness"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA1_7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA1_7"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA1_7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_below="@id/qCnsA1_7"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA1_7NoWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_noWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_7MildWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_mildWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_7SignificantWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_significantWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_7TotalWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_totalWeakness"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA1_8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA1_8"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA1_8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_below="@id/qCnsA1_8"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA1_8NoWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_noWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_8MildWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_mildWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_8SignificantWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_significantWeakness"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA1_8TotalWeakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA1_totalWeakness"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-        </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Section A2-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/cnsA2"
-            android:visibility="gone">
-
-
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA2_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA2_5"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA2_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/qCnsA2_5"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA2_5Equal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_equal"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA2_5Unequal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_unequal"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA2_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA2_6"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA2_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/qCnsA2_6"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA2_6Equal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_equal"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA2_6Unequal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_unequal"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-            <!-- Question block -->
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/MediumSeaGreen"
-                android:layout_margin="1dp">
-
-
-                <TextView
-                    android:id="@+id/qCnsA2_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="26sp"
-                    android:text="@string/qCnsA2_4"
-                    android:layout_alignParentLeft="true"
-                    android:padding="15dp"/>
-
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/rgCnsA2_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/qCnsA2_4"
-                    android:layout_margin="10dp">
-                    <RadioButton android:id="@+id/radio_CnsA2_4Symmetrical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_4symmetrical"
-                        android:onClick="switchSaveToggle"/>
-                    <RadioButton android:id="@+id/radio_CnsA2_4Asymmetrical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/aCnsA2_4asymmetrical"
-                        android:onClick="switchSaveToggle"/>
-                </RadioGroup>
-
-
-
-            </RelativeLayout>
-
-            <!-- End question block -->
-
-
-
-
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-</ScrollView>
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgCns3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_below="@id/qCns3"-->
+                <!--android:layout_margin="10dp">-->
+                <!--<RadioButton android:id="@+id/radio_Cns2ReceptiveDeficit"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns3receptiveDeficit"-->
+                    <!--android:onClick="showA2"/>-->
+                <!--<RadioButton android:id="@+id/radio_Cns3ExpressiveDeficit"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns3expressiveDeficit"-->
+                    <!--android:onClick="showA1"/>-->
+                <!--<RadioButton android:id="@+id/radio_Cns3Normal"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/aCns3normal"-->
+                    <!--android:onClick="showA1"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</RelativeLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash; Section A1 &ndash;&gt;-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:id="@+id/cnsA1"-->
+            <!--android:visibility="gone">-->
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA1_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA1_4"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA1_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/qCnsA1_4"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_4NoWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_4noWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_4Weakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_4Weakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA1_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA1_5"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA1_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_below="@id/qCnsA1_5"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_5NoWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_noWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_5MildWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_mildWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_5SignificantWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_significantWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_5TotalWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_totalWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA1_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA1_6"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA1_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_below="@id/qCnsA1_6"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_6NoWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_noWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_6MildWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_mildWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_6SignificantWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_significantWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_6TotalWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_totalWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA1_7"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA1_7"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA1_7"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_below="@id/qCnsA1_7"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_7NoWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_noWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_7MildWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_mildWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_7SignificantWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_significantWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_7TotalWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_totalWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA1_8"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA1_8"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA1_8"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_below="@id/qCnsA1_8"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_8NoWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_noWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_8MildWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_mildWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_8SignificantWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_significantWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA1_8TotalWeakness"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA1_totalWeakness"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+        <!--</LinearLayout>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--&lt;!&ndash; Section A2&ndash;&gt;-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:id="@+id/cnsA2"-->
+            <!--android:visibility="gone">-->
+
+
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA2_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA2_5"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA2_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/qCnsA2_5"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_5Equal"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_equal"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_5Unequal"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_unequal"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA2_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA2_6"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA2_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/qCnsA2_6"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_6Equal"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_equal"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_6Unequal"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_unequal"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+            <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/MediumSeaGreen"-->
+                <!--android:layout_margin="1dp">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/qCnsA2_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="26sp"-->
+                    <!--android:text="@string/qCnsA2_4"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:padding="15dp"/>-->
+
+                <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:id="@+id/rgCnsA2_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/qCnsA2_4"-->
+                    <!--android:layout_margin="10dp">-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_4Symmetrical"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_4symmetrical"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                    <!--<RadioButton android:id="@+id/radio_CnsA2_4Asymmetrical"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/aCnsA2_4asymmetrical"-->
+                        <!--android:onClick="switchSaveToggle"/>-->
+                <!--</RadioGroup>-->
+
+
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+
+
+
+
+        <!--</LinearLayout>-->
+
+
+
+    <!--</LinearLayout>-->
+
+<!--</ScrollView>-->

@@ -224,45 +224,45 @@ public class DBAdapter {
 			+ KEY_MRN + " text not null, "
 			+ KEY_DAY + " integer not null, "
 
-			+ KEY_PEG + " text not null, "
-			+ KEY_NG + " text not null, "
-			+ KEY_O2 + " text not null, "
-			+ KEY_IV + " text not null, "
-			+ KEY_CPAP + " text not null, "
-			+ KEY_RESTRAINT + " text not null, "
-			+ KEY_BEDBARS + " text not null, "
-			+ KEY_BEHAVIOURAL + " text not null, "
-			+ KEY_CONFUSION + " text not null, "
-			+ KEY_BLADDER + " text not null, "
-			+ KEY_HOURS + " text not null, "
+			+ KEY_PEG + " text, "
+			+ KEY_NG + " text, "
+			+ KEY_O2 + " text, "
+			+ KEY_IV + " text, "
+			+ KEY_CPAP + " text, "
+			+ KEY_RESTRAINT + " text, "
+			+ KEY_BEDBARS + " text, "
+			+ KEY_BEHAVIOURAL + " text, "
+			+ KEY_CONFUSION + " text, "
+			+ KEY_BLADDER + " text, "
+			+ KEY_HOURS + " text, "
 
-			+ KEY_NEGLECT + " text not null, "
-			+ KEY_DIGITSPAN + " text not null, "
-			+ KEY_MMSE + " text not null, "
-			+ KEY_FOLLOWS + " text not null, "
-			+ KEY_VERBAL + " text not null, "
-			+ KEY_MOTIVATION + " text not null, "
-			+ KEY_MOOD + " text not null, "
-			+ KEY_PAIN + " text not null, "
-			+ KEY_FATIGUE + " text not null, "
-			+ KEY_SWALLOW + " text not null, "
-			+ KEY_FEEDING + " text not null, "
-			+ KEY_DRESSING + " text not null, "
-			+ KEY_KITCHEN + " text not null, "
+			+ KEY_NEGLECT + " text, "
+			+ KEY_DIGITSPAN + " text, "
+			+ KEY_MMSE + " text, "
+			+ KEY_FOLLOWS + " text, "
+			+ KEY_VERBAL + " text, "
+			+ KEY_MOTIVATION + " text, "
+			+ KEY_MOOD + " text, "
+			+ KEY_PAIN + " text, "
+			+ KEY_FATIGUE + " text, "
+			+ KEY_SWALLOW + " text, "
+			+ KEY_FEEDING + " text, "
+			+ KEY_DRESSING + " text, "
+			+ KEY_KITCHEN + " text, "
 
-			+ KEY_LEFTARM + " text not null, "
-			+ KEY_RIGHTARM + " text not null, "
-			+ KEY_MOVEMENTBED + " text not null, "
-			+ KEY_LIESIT + " text not null, "
-			+ KEY_SITTING + " text not null, "
-			+ KEY_SITSTAND + " text not null, "
-			+ KEY_STAND + " text not null, "
-			+ KEY_LIFTSUNAFFECTED + " text not null, "
-			+ KEY_LIFTSAFFECTED + " text not null, "
-			+ KEY_WALKING + " text not null, "
+			+ KEY_LEFTARM + " text, "
+			+ KEY_RIGHTARM + " text, "
+			+ KEY_MOVEMENTBED + " text, "
+			+ KEY_LIESIT + " text, "
+			+ KEY_SITTING + " text, "
+			+ KEY_SITSTAND + " text, "
+			+ KEY_STAND + " text, "
+			+ KEY_LIFTSUNAFFECTED + " text, "
+			+ KEY_LIFTSAFFECTED + " text, "
+			+ KEY_WALKING + " text, "
 
-			+ KEY_BARTHEL + " text not null, "
-			+ KEY_BERG + " text not null, "
+			+ KEY_BARTHEL + " text, "
+			+ KEY_BERG + " text, "
 
 			+ KEY_CNS_CONSCIOUSNESS + " text, "
 			+ KEY_CNS_ORIENTATION + " text, "
@@ -596,6 +596,15 @@ public class DBAdapter {
 		return db.insert(DATA_TABLE, null, initialValues);
 	}
 
+	public long insertNewRow(int parentId, String mrnNumber, int day){
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_PARENTID, parentId);
+		initialValues.put(KEY_MRN, mrnNumber);
+		initialValues.put(KEY_DAY, day);
+
+		return db.insert(DATA_TABLE, null, initialValues);
+	}
+
 	// Delete a row from the database, by rowId (primary key)
 	public boolean deleteRowData(long rowId) {
 		String where = KEY_ROWID + "=" + rowId;
@@ -721,6 +730,13 @@ public class DBAdapter {
 
 
 	public boolean updateFieldData(int parentId, int day, String key, String value){
+
+		Cursor c = getDataField(parentId, day, key);
+
+		if (!c.moveToFirst()){
+			insertNewRow(parentId, MainActivity.currentMrn, day);
+		}
+		c.close();
 		String where = KEY_PARENTID + "= ? AND " + KEY_DAY + "= ?";
 		ContentValues newValues = new ContentValues();
 		newValues.put(key, value);

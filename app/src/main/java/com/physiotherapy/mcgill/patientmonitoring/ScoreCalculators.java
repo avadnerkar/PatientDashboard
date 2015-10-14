@@ -25,7 +25,7 @@ public class ScoreCalculators {
         int liftsUnaffectedInt = 0;
         boolean scoreToggle = true;
 
-
+        if (feedingString==null) return new float[]{-1};
         switch (feedingString) {
             case "None":
                 feedingInt = 0;
@@ -41,6 +41,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (dressingString==null) return new float[]{-1};
         switch (dressingString) {
             case "None":
                 dressingInt = 0;
@@ -56,6 +57,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (sitStandString==null) return new float[]{-1};
         switch (sitStandString) {
             case "None":
                 sitStandInt = 0;
@@ -71,6 +73,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (walkingString==null) return new float[]{-1};
         switch (walkingString) {
             case "None":
                 walkingInt = 0;
@@ -86,6 +89,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (bladderString==null) return new float[]{-1};
         switch (bladderString) {
             case "Foley":
                 bladderInt = 0;
@@ -104,6 +108,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (liftsAffectedString==null) return new float[]{-1};
         switch (liftsAffectedString) {
             case "None":
                 liftsAffectedInt = 0;
@@ -119,6 +124,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (liftsUnaffectedString==null) return new float[]{-1};
         switch (liftsUnaffectedString) {
             case "None":
                 liftsUnaffectedInt = 0;
@@ -175,6 +181,7 @@ public class ScoreCalculators {
         int sittingInt = 0;
         boolean scoreToggle = true;
 
+        if (liftsAffectedString==null) return new float[]{-1};
         switch (liftsAffectedString) {
             case "None":
                 liftsAffectedInt = 0;
@@ -190,6 +197,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (liftsUnaffectedString==null) return new float[]{-1};
         switch (liftsUnaffectedString) {
             case "None":
                 liftsUnaffectedInt = 0;
@@ -205,6 +213,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (sitStandString==null) return new float[]{-1};
         switch (sitStandString) {
             case "None":
                 sitStandInt = 0;
@@ -220,6 +229,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (standString==null) return new float[]{-1};
         switch (standString) {
             case "None":
                 standInt = 0;
@@ -235,6 +245,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (sittingString==null) return new float[]{-1};
         switch (sittingString) {
             case "None":
                 sittingInt = 0;
@@ -312,6 +323,7 @@ public class ScoreCalculators {
 
         //Doubling all values to store as integers
 
+        if (consciousness==null) return new float[]{-1};
         switch (consciousness) {
             case "Alert":
                 consciousnessInt = 6;
@@ -324,6 +336,7 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (orientation==null) return new float[]{-1};
         switch (orientation) {
             case "Oriented":
                 orientationInt = 2;
@@ -336,10 +349,12 @@ public class ScoreCalculators {
                 break;
         }
 
+        if (speech==null) return new float[]{-1};
         switch (speech) {
             case "Receptive deficit":
                 speechInt = 0;
 
+                if (face2==null) return new float[]{-1};
                 switch (face2) {
                     case "Symmetrical":
                         face2Int = 1;
@@ -353,6 +368,7 @@ public class ScoreCalculators {
                 }
 
 
+                if (upperLimbs==null) return new float[]{-1};
                 switch (upperLimbs) {
                     case "Equal":
                         upperLimbsInt = 3;
@@ -366,6 +382,7 @@ public class ScoreCalculators {
                 }
 
 
+                if (lowerLimbs==null) return new float[]{-1};
                 switch (lowerLimbs) {
                     case "Equal":
                         lowerLimbsInt = 3;
@@ -394,6 +411,7 @@ public class ScoreCalculators {
                     speechInt = 2;
                 }
 
+                if (face1==null) return new float[]{-1};
                 switch (face1) {
                     case "No weakness":
                         face1Int = 1;
@@ -406,6 +424,7 @@ public class ScoreCalculators {
                         break;
                 }
 
+                if (upperLimbProximal==null) return new float[]{-1};
                 switch (upperLimbProximal) {
                     case "No weakness":
                         upperLimbProximalInt = 3;
@@ -424,6 +443,7 @@ public class ScoreCalculators {
                         break;
                 }
 
+                if (upperLimbDistal==null) return new float[]{-1};
                 switch (upperLimbDistal) {
                     case "No weakness":
                         upperLimbDistalInt = 3;
@@ -442,6 +462,7 @@ public class ScoreCalculators {
                         break;
                 }
 
+                if (lowerLimbProximal==null) return new float[]{-1};
                 switch (lowerLimbProximal) {
                     case "No weakness":
                         lowerLimbProximalInt = 3;
@@ -460,6 +481,7 @@ public class ScoreCalculators {
                         break;
                 }
 
+                if (lowerLimbDistal==null) return new float[]{-1};
                 switch (lowerLimbDistal) {
                     case "No weakness":
                         lowerLimbDistalInt = 3;

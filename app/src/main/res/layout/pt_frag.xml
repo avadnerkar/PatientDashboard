@@ -1,525 +1,531 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<ListView
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/scrollViewPt">
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/darker_gray"
-        android:id="@+id/ptLinearLayout"
-        android:visibility="invisible">
-
-        <View
-            android:id="@+id/focus_thief"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qLeftArm"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qLeftArm"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgLeftArm"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_LeftArmNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LeftArmPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LeftArmFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qRightArm"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qRightArm"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgRightArm"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_RightArmNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_RightArmPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_RightArmFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qMovementBed"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qMovementBed"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgMovementBed"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_MovementBedNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_MovementBedPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_MovementBedFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qLieSit"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qLieSit"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgLieSit"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_LieSitNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LieSitPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LieSitFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qSitting"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qSitting"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgSitting"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_SittingNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_SittingPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_SittingFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qSitStand"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qSitStand"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgSitStand"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_SitStandNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_SitStandPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_SitStandFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qStand"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qStand"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgStand"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_StandNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_StandPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_StandFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qLiftsUnaffected"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qLiftsUnaffected"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgLiftsUnaffected"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_LiftsUnaffectedNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LiftsUnaffectedPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LiftsUnaffectedFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qLiftsAffected"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qLiftsAffected"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgLiftsAffected"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_LiftsAffectedNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LiftsAffectedPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_LiftsAffectedFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-        <!-- Question block -->
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_light"
-            android:orientation="vertical"
-            android:layout_margin="1dp"
-            android:weightSum="1">
-
-
-            <TextView
-                android:id="@+id/qWalking"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:textSize="26sp"
-                android:text="@string/qWalking"
-                android:layout_weight="0.5"/>
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rgWalking"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_WalkingNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_WalkingPartial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/partial"
-                    android:onClick="switchSaveToggle"/>
-                <RadioButton android:id="@+id/radio_WalkingFull"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/full"
-                    android:onClick="switchSaveToggle"/>
-            </RadioGroup>
-
-
-
-        </LinearLayout>
-
-        <!-- End question block -->
-
-    </LinearLayout>
-
-</ScrollView>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ptList"
+    android:visibility="invisible"/>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/scrollViewPt">-->
+
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/darker_gray"-->
+        <!--android:id="@+id/ptLinearLayout"-->
+        <!--android:visibility="invisible">-->
+
+        <!--<View-->
+            <!--android:id="@+id/focus_thief"-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true" />-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qLeftArm"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qLeftArm"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgLeftArm"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_LeftArmNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LeftArmPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LeftArmFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qRightArm"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qRightArm"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgRightArm"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_RightArmNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_RightArmPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_RightArmFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qMovementBed"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qMovementBed"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgMovementBed"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_MovementBedNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_MovementBedPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_MovementBedFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qLieSit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qLieSit"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgLieSit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_LieSitNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LieSitPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LieSitFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qSitting"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qSitting"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgSitting"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_SittingNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_SittingPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_SittingFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qSitStand"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qSitStand"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgSitStand"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_SitStandNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_SitStandPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_SitStandFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qStand"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qStand"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgStand"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_StandNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_StandPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_StandFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qLiftsUnaffected"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qLiftsUnaffected"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgLiftsUnaffected"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_LiftsUnaffectedNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LiftsUnaffectedPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LiftsUnaffectedFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qLiftsAffected"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qLiftsAffected"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgLiftsAffected"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_LiftsAffectedNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LiftsAffectedPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_LiftsAffectedFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Question block &ndash;&gt;-->
+
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="@android:color/holo_blue_light"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_margin="1dp"-->
+            <!--android:weightSum="1">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/qWalking"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="26sp"-->
+                <!--android:text="@string/qWalking"-->
+                <!--android:layout_weight="0.5"/>-->
+
+            <!--<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/rgWalking"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
+                <!--<RadioButton android:id="@+id/radio_WalkingNone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/none"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_WalkingPartial"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/partial"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+                <!--<RadioButton android:id="@+id/radio_WalkingFull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/full"-->
+                    <!--android:onClick="switchSaveToggle"/>-->
+            <!--</RadioGroup>-->
+
+
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash; End question block &ndash;&gt;-->
+
+    <!--</LinearLayout>-->
+
+<!--</ScrollView>-->

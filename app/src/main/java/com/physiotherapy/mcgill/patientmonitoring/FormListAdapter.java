@@ -2,10 +2,13 @@ package com.physiotherapy.mcgill.patientmonitoring;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -41,20 +44,60 @@ public class FormListAdapter extends ArrayAdapter<FormItem> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        View rowView;
+        View rowView = null;
         TextView textView;
+        Cursor cursor;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (items.get(position).cellType){
             case NUMERIC:
-            case RADIO:
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                rowView = inflater.inflate(R.layout.cell_option_numeric, parent, false);
+                textView = (TextView) rowView.findViewById(R.id.title);
+                textView.setText(items.get(position).title);
+                EditText editText = (EditText) rowView.findViewById(R.id.edit_numeric);
+                editText.setHint(items.get(position).options[0]);
 
+                cursor = MainActivity.myDb.getDataField(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey);
+
+                if (cursor.moveToFirst()){
+                    String text = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
+                    if (text !=null){
+                        editText.setText(text);
+                    } else {
+                        editText.setText("");
+                    }
+
+                } else {
+                    editText.setText("");
+                }
+
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, charSequence.toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+                cursor.close();
+
+                break;
+            case RADIO:
                 rowView = inflater.inflate(R.layout.cell_option_radio, parent, false);
                 textView = (TextView) rowView.findViewById(R.id.title);
                 textView.setText(items.get(position).title);
 
                 RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
 
-                if (items.get(position).options.length >2){
+                if (items.get(position).options.length >2 && items.get(position).options.length < 7){
                     rg.setOrientation(RadioGroup.VERTICAL);
                 } else {
                     rg.setOrientation(RadioGroup.HORIZONTAL);
@@ -69,15 +112,16 @@ public class FormListAdapter extends ArrayAdapter<FormItem> {
                         @Override
                         public void onClick(View view) {
                             MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, ((RadioButton) view).getText().toString());
+                            MainActivity.saveScores();
                         }
                     });
                 }
 
-                Cursor cursor = MainActivity.myDb.getDataField(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey);
+                cursor = MainActivity.myDb.getDataField(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey);
 
                 if (cursor.moveToFirst()){
                     String radioValue = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
-                    if (!radioValue.equals("")){
+                    if (radioValue != null && !radioValue.equals("")){
                         for (int i=0; i<items.get(position).options.length; i++){
                             String rbString = items.get(position).options[i];
                             if (rbString.equals(radioValue)){
@@ -92,42 +136,30 @@ public class FormListAdapter extends ArrayAdapter<FormItem> {
                     rg.clearCheck();
                 }
 
-//                rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(RadioGroup radioGroup, int j) {
-//                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, radioGroup.getCheckedRadioButtonId());
-//                    }
-//                });
-
-                RelativeLayout container = (RelativeLayout) rowView.findViewById(R.id.container);
-                switch (items.get(position).group){
-
-                    case NURSE:
-                        container.setBackgroundColor(context.getResources().getColor(R.color.White));
-                        break;
-                    case OT:
-                        container.setBackgroundColor(context.getResources().getColor(R.color.Salmon));
-                        break;
-                    case PT:
-                        container.setBackgroundColor(context.getResources().getColor(R.color.CornflowerBlue));
-                        break;
-                    case CNS:
-                        container.setBackgroundColor(context.getResources().getColor(R.color.MediumSeaGreen));
-                        break;
-                }
-
-                return rowView;
+                cursor.close();
+                break;
         }
 
-        return null;
-    }
+        RelativeLayout container = (RelativeLayout) rowView.findViewById(R.id.container);
+        switch (items.get(position).group){
 
-
-    public void updateValues(){
-        for (int i=0; i<items.size(); i++){
-
+            case NURSE:
+                container.setBackgroundColor(context.getResources().getColor(R.color.White));
+                break;
+            case OT:
+                container.setBackgroundColor(context.getResources().getColor(R.color.Salmon));
+                break;
+            case PT:
+                container.setBackgroundColor(context.getResources().getColor(R.color.CornflowerBlue));
+                break;
+            case CNS:
+                container.setBackgroundColor(context.getResources().getColor(R.color.MediumSeaGreen));
+                break;
         }
+
+        return rowView;
     }
+
 
 
 }
