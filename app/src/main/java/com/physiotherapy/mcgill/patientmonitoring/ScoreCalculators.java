@@ -6,13 +6,13 @@ import android.database.Cursor;
 public class ScoreCalculators {
 
     public static float[] barthelScore(Cursor cursor){
-        String feedingString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FEEDING));
-        String dressingString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DRESSING));
-        String sitStandString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND));
-        String walkingString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_WALKING));
-        String bladderString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BLADDER));
-        String liftsAffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED));
-        String liftsUnaffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED));
+        String feedingString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_FEEDING")));
+        String dressingString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_DRESSING")));
+        String sitStandString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_SITSTAND")));
+        String walkingString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_WALKING")));
+        String bladderString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_BLADDER")));
+        String liftsAffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_LIFTSAFFECTED")));
+        String liftsUnaffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_LIFTSUNAFFECTED")));
 
 
         int feedingInt = 0;
@@ -165,11 +165,11 @@ public class ScoreCalculators {
 
     public static float[] bergScore(Cursor cursor){
         //Berg score
-        String liftsAffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED));
-        String liftsUnaffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED));
-        String sitStandString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITSTAND));
-        String standString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND));
-        String sittingString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING));
+        String liftsAffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_LIFTSAFFECTED")));
+        String liftsUnaffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_LIFTSUNAFFECTED")));
+        String sitStandString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_SITSTAND")));
+        String standString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_STAND")));
+        String sittingString = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_SITTING")));
 
 
         int liftsAffectedInt = 0;
@@ -293,17 +293,17 @@ public class ScoreCalculators {
     public static float[] cnsScore(Cursor cursor){
         boolean scoreToggle = true;
 
-        String consciousness = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_CONSCIOUSNESS));
-        String orientation = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_ORIENTATION));
-        String speech = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_SPEECH));
-        String face1 = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE1));
-        String upperLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_PROXIMAL));
-        String upperLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMB_DISTAL));
-        String lowerLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_PROXIMAL));
-        String lowerLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMB_DISTAL));
-        String upperLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_UPPER_LIMBS));
-        String lowerLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS));
-        String face2 = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE2));
+        String consciousness = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_CONSCIOUSNESS")));
+        String orientation = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_ORIENTATION")));
+        String speech = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_SPEECH")));
+        String face1 = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_FACE1")));
+        String upperLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL")));
+        String upperLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMB_DISTAL")));
+        String lowerLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL")));
+        String lowerLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMB_DISTAL")));
+        String upperLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMBS")));
+        String lowerLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMBS")));
+        String face2 = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_FACE2")));
 
 
         int consciousnessInt = 0;

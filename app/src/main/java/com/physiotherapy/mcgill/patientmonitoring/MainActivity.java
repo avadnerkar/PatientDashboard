@@ -746,10 +746,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (c.moveToFirst()){
             do {
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.KEY_PARENTID)), c.getInt(c.getColumnIndex(DBAdapter.KEY_DAY)), DBAdapter.KEY_BARTHEL, String.valueOf(calculateScores(c, "Barthel")[0]));
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.KEY_PARENTID)), c.getInt(c.getColumnIndex(DBAdapter.KEY_DAY)), DBAdapter.KEY_BERG, String.valueOf(calculateScores(c, "Berg")[0]));
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.KEY_PARENTID)), c.getInt(c.getColumnIndex(DBAdapter.KEY_DAY)), DBAdapter.KEY_CNS, String.valueOf(calculateScores(c, "CNS")[0]));
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.KEY_PARENTID)), c.getInt(c.getColumnIndex(DBAdapter.KEY_DAY)), DBAdapter.KEY_NIHSS, String.valueOf(calculateScores(c, "NIHSS")[0]));
+                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_BARTHEL"), String.valueOf(calculateScores(c, "Barthel")[0]));
+                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_BERG"), String.valueOf(calculateScores(c, "Berg")[0]));
+                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_CNS"), String.valueOf(calculateScores(c, "CNS")[0]));
+                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_NIHSS"), String.valueOf(calculateScores(c, "NIHSS")[0]));
             } while (c.moveToNext());
         }
 

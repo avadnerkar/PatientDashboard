@@ -75,70 +75,71 @@ public class DBAdapter {
 
 	// TODO: Setup your data fields here:
 
+	public static Map<String, String> dataMap;
 
-	public static final String KEY_PARENTID = "ParentID";
-	public static final String KEY_MRN = "MRNnumber";
-	public static final String KEY_DAY = "Day";
-
-	//Nurse
-	public static final String KEY_PEG = "PEG";
-	public static final String KEY_NG = "NG";
-	public static final String KEY_O2 = "O2";
-	public static final String KEY_IV = "IV";
-	public static final String KEY_CPAP = "CPAP";
-	public static final String KEY_RESTRAINT = "Restraint";
-	public static final String KEY_BEDBARS = "BedBars";
-	public static final String KEY_BEHAVIOURAL = "BehaviouralIssue";
-	public static final String KEY_CONFUSION = "Confusion";
-	public static final String KEY_BLADDER = "BladderControl";
-	public static final String KEY_HOURS = "EstimatedHoursOutOfBed";
-
-	//OT
-	public static final String KEY_NEGLECT = "Neglect";
-	public static final String KEY_DIGITSPAN = "DigitSpan";
-	public static final String KEY_MMSE = "MMSE";
-	public static final String KEY_FOLLOWS = "FollowsCommands";
-	public static final String KEY_VERBAL = "VerbalCommunication";
-	public static final String KEY_MOTIVATION = "Motivation";
-	public static final String KEY_MOOD = "Mood";
-	public static final String KEY_PAIN = "Pain";
-	public static final String KEY_FATIGUE = "Fatigue";
-	public static final String KEY_SWALLOW = "Swallow";
-	public static final String KEY_FEEDING = "Feeding";
-	public static final String KEY_DRESSING = "Dressing";
-	public static final String KEY_KITCHEN = "Kitchen";
-
-	//PT
-	public static final String KEY_LEFTARM = "LeftArmMovement";
-	public static final String KEY_RIGHTARM = "RightArmMovement";
-	public static final String KEY_MOVEMENTBED = "MovementInBed";
-	public static final String KEY_LIESIT = "LieToSit";
-	public static final String KEY_SITTING = "SittingUnsupported";
-	public static final String KEY_SITSTAND = "SitToStand";
-	public static final String KEY_STAND = "StandUnsupported";
-	public static final String KEY_LIFTSUNAFFECTED = "LiftsUnaffectedLegStanding";
-	public static final String KEY_LIFTSAFFECTED = "LiftsAffectedLegStanding";
-	public static final String KEY_WALKING = "Walking";
-
-	//CNS
-	public static final String KEY_CNS_CONSCIOUSNESS = "CnsConsciousness";
-	public static final String KEY_CNS_ORIENTATION = "CnsOrientation";
-	public static final String KEY_CNS_SPEECH = "CnsSpeech";
-	public static final String KEY_CNS_FACE1 = "CnsFace1";
-	public static final String KEY_CNS_UPPER_LIMB_PROXIMAL = "CnsUpperLimbProximal";
-	public static final String KEY_CNS_UPPER_LIMB_DISTAL = "CnsUpperLimbDistal";
-	public static final String KEY_CNS_LOWER_LIMB_PROXIMAL = "CnsLowerLimbProximal";
-	public static final String KEY_CNS_LOWER_LIMB_DISTAL = "CnsLowerLimbDistal";
-	public static final String KEY_CNS_UPPER_LIMBS = "CnsUpperLimbs";
-	public static final String KEY_CNS_LOWER_LIMBS = "CnsLowerLimbs";
-	public static final String KEY_CNS_FACE2 = "CNSFace2";
-
-
-	//Scores
-	public static final String KEY_BARTHEL = "EstBarthelScore";
-	public static final String KEY_BERG = "EstBergScore";
-	public static final String KEY_CNS = "CnsScore";
-	public static final String KEY_NIHSS = "NihssScore";
+//	public static final String KEY_PARENTID = "ParentID";
+//	public static final String KEY_MRN = "MRNnumber";
+//	public static final String KEY_DAY = "Day";
+//
+//	//Nurse
+//	public static final String KEY_PEG = "PEG";
+//	public static final String KEY_NG = "NG";
+//	public static final String KEY_O2 = "O2";
+//	public static final String KEY_IV = "IV";
+//	public static final String KEY_CPAP = "CPAP";
+//	public static final String KEY_RESTRAINT = "Restraint";
+//	public static final String KEY_BEDBARS = "BedBars";
+//	public static final String KEY_BEHAVIOURAL = "BehaviouralIssue";
+//	public static final String KEY_CONFUSION = "Confusion";
+//	public static final String KEY_BLADDER = "BladderControl";
+//	public static final String KEY_HOURS = "EstimatedHoursOutOfBed";
+//
+//	//OT
+//	public static final String KEY_NEGLECT = "Neglect";
+//	public static final String KEY_DIGITSPAN = "DigitSpan";
+//	public static final String KEY_MMSE = "MMSE";
+//	public static final String KEY_FOLLOWS = "FollowsCommands";
+//	public static final String KEY_VERBAL = "VerbalCommunication";
+//	public static final String KEY_MOTIVATION = "Motivation";
+//	public static final String KEY_MOOD = "Mood";
+//	public static final String KEY_PAIN = "Pain";
+//	public static final String KEY_FATIGUE = "Fatigue";
+//	public static final String KEY_SWALLOW = "Swallow";
+//	public static final String KEY_FEEDING = "Feeding";
+//	public static final String KEY_DRESSING = "Dressing";
+//	public static final String KEY_KITCHEN = "Kitchen";
+//
+//	//PT
+//	public static final String KEY_LEFTARM = "LeftArmMovement";
+//	public static final String KEY_RIGHTARM = "RightArmMovement";
+//	public static final String KEY_MOVEMENTBED = "MovementInBed";
+//	public static final String KEY_LIESIT = "LieToSit";
+//	public static final String KEY_SITTING = "SittingUnsupported";
+//	public static final String KEY_SITSTAND = "SitToStand";
+//	public static final String KEY_STAND = "StandUnsupported";
+//	public static final String KEY_LIFTSUNAFFECTED = "LiftsUnaffectedLegStanding";
+//	public static final String KEY_LIFTSAFFECTED = "LiftsAffectedLegStanding";
+//	public static final String KEY_WALKING = "Walking";
+//
+//	//CNS
+//	public static final String KEY_CNS_CONSCIOUSNESS = "CnsConsciousness";
+//	public static final String KEY_CNS_ORIENTATION = "CnsOrientation";
+//	public static final String KEY_CNS_SPEECH = "CnsSpeech";
+//	public static final String KEY_CNS_FACE1 = "CnsFace1";
+//	public static final String KEY_CNS_UPPER_LIMB_PROXIMAL = "CnsUpperLimbProximal";
+//	public static final String KEY_CNS_UPPER_LIMB_DISTAL = "CnsUpperLimbDistal";
+//	public static final String KEY_CNS_LOWER_LIMB_PROXIMAL = "CnsLowerLimbProximal";
+//	public static final String KEY_CNS_LOWER_LIMB_DISTAL = "CnsLowerLimbDistal";
+//	public static final String KEY_CNS_UPPER_LIMBS = "CnsUpperLimbs";
+//	public static final String KEY_CNS_LOWER_LIMBS = "CnsLowerLimbs";
+//	public static final String KEY_CNS_FACE2 = "CnsFace2";
+//
+//
+//	//Scores
+//	public static final String KEY_BARTHEL = "EstBarthelScore";
+//	public static final String KEY_BERG = "EstBergScore";
+//	public static final String KEY_CNS = "CnsScore";
+//	public static final String KEY_NIHSS = "NihssScore";
 
 	
 	// DB info: its name, and the tables we are using
@@ -147,7 +148,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 22;
+	public static final int DATABASE_VERSION = 23;
 
 
 	//Table Create Statements
@@ -211,81 +212,83 @@ public class DBAdapter {
 			// Rest  of creation:
 			+ ");";
 
-	private static final String DATA_CREATE_SQL =
-			"create table " + DATA_TABLE
-					+ " (" + KEY_ROWID + " integer primary key autoincrement, "
+//	private static final String DATA_CREATE_SQL =
+//			"create table " + DATA_TABLE
+//					+ " (" + KEY_ROWID + " integer primary key autoincrement, "
+//
+//			/*
+//			 * CHANGE 2:
+//			 */
+//			// TODO: Place your fields here!
+//			// + KEY_{...} + " {type} not null"
+//			//	- Key is the column name you created above.
+//			//	- {type} is one of: text, integer, real, blob
+//			//		(http://www.sqlite.org/datatype3.html)
+//			//  - "not null" means it is a required field (must be given a value).
+//			// NOTE: All must be comma separated (end of line!) Last one must have NO comma!
+//			+ KEY_PARENTID + " integer not null, "
+//			+ KEY_MRN + " text not null, "
+//			+ KEY_DAY + " integer not null, "
+//
+//			+ KEY_PEG + " text, "
+//			+ KEY_NG + " text, "
+//			+ KEY_O2 + " text, "
+//			+ KEY_IV + " text, "
+//			+ KEY_CPAP + " text, "
+//			+ KEY_RESTRAINT + " text, "
+//			+ KEY_BEDBARS + " text, "
+//			+ KEY_BEHAVIOURAL + " text, "
+//			+ KEY_CONFUSION + " text, "
+//			+ KEY_BLADDER + " text, "
+//			+ KEY_HOURS + " text, "
+//
+//			+ KEY_NEGLECT + " text, "
+//			+ KEY_DIGITSPAN + " text, "
+//			+ KEY_MMSE + " text, "
+//			+ KEY_FOLLOWS + " text, "
+//			+ KEY_VERBAL + " text, "
+//			+ KEY_MOTIVATION + " text, "
+//			+ KEY_MOOD + " text, "
+//			+ KEY_PAIN + " text, "
+//			+ KEY_FATIGUE + " text, "
+//			+ KEY_SWALLOW + " text, "
+//			+ KEY_FEEDING + " text, "
+//			+ KEY_DRESSING + " text, "
+//			+ KEY_KITCHEN + " text, "
+//
+//			+ KEY_LEFTARM + " text, "
+//			+ KEY_RIGHTARM + " text, "
+//			+ KEY_MOVEMENTBED + " text, "
+//			+ KEY_LIESIT + " text, "
+//			+ KEY_SITTING + " text, "
+//			+ KEY_SITSTAND + " text, "
+//			+ KEY_STAND + " text, "
+//			+ KEY_LIFTSUNAFFECTED + " text, "
+//			+ KEY_LIFTSAFFECTED + " text, "
+//			+ KEY_WALKING + " text, "
+//
+//			+ KEY_BARTHEL + " text, "
+//			+ KEY_BERG + " text, "
+//
+//			+ KEY_CNS_CONSCIOUSNESS + " text, "
+//			+ KEY_CNS_ORIENTATION + " text, "
+//			+ KEY_CNS_SPEECH + " text, "
+//			+ KEY_CNS_FACE1 + " text, "
+//			+ KEY_CNS_UPPER_LIMB_PROXIMAL + " text, "
+//			+ KEY_CNS_UPPER_LIMB_DISTAL + " text, "
+//			+ KEY_CNS_LOWER_LIMB_PROXIMAL + " text, "
+//			+ KEY_CNS_LOWER_LIMB_DISTAL + " text, "
+//			+ KEY_CNS_UPPER_LIMBS + " text, "
+//			+ KEY_CNS_LOWER_LIMBS + " text, "
+//			+ KEY_CNS_FACE2 + " text, "
+//
+//			+ KEY_CNS + " text, "
+//			+ KEY_NIHSS + " text"
+//
+//					// Rest  of creation:
+//			+ ");";
 
-			/*
-			 * CHANGE 2:
-			 */
-			// TODO: Place your fields here!
-			// + KEY_{...} + " {type} not null"
-			//	- Key is the column name you created above.
-			//	- {type} is one of: text, integer, real, blob
-			//		(http://www.sqlite.org/datatype3.html)
-			//  - "not null" means it is a required field (must be given a value).
-			// NOTE: All must be comma separated (end of line!) Last one must have NO comma!
-			+ KEY_PARENTID + " integer not null, "
-			+ KEY_MRN + " text not null, "
-			+ KEY_DAY + " integer not null, "
-
-			+ KEY_PEG + " text, "
-			+ KEY_NG + " text, "
-			+ KEY_O2 + " text, "
-			+ KEY_IV + " text, "
-			+ KEY_CPAP + " text, "
-			+ KEY_RESTRAINT + " text, "
-			+ KEY_BEDBARS + " text, "
-			+ KEY_BEHAVIOURAL + " text, "
-			+ KEY_CONFUSION + " text, "
-			+ KEY_BLADDER + " text, "
-			+ KEY_HOURS + " text, "
-
-			+ KEY_NEGLECT + " text, "
-			+ KEY_DIGITSPAN + " text, "
-			+ KEY_MMSE + " text, "
-			+ KEY_FOLLOWS + " text, "
-			+ KEY_VERBAL + " text, "
-			+ KEY_MOTIVATION + " text, "
-			+ KEY_MOOD + " text, "
-			+ KEY_PAIN + " text, "
-			+ KEY_FATIGUE + " text, "
-			+ KEY_SWALLOW + " text, "
-			+ KEY_FEEDING + " text, "
-			+ KEY_DRESSING + " text, "
-			+ KEY_KITCHEN + " text, "
-
-			+ KEY_LEFTARM + " text, "
-			+ KEY_RIGHTARM + " text, "
-			+ KEY_MOVEMENTBED + " text, "
-			+ KEY_LIESIT + " text, "
-			+ KEY_SITTING + " text, "
-			+ KEY_SITSTAND + " text, "
-			+ KEY_STAND + " text, "
-			+ KEY_LIFTSUNAFFECTED + " text, "
-			+ KEY_LIFTSAFFECTED + " text, "
-			+ KEY_WALKING + " text, "
-
-			+ KEY_BARTHEL + " text, "
-			+ KEY_BERG + " text, "
-
-			+ KEY_CNS_CONSCIOUSNESS + " text, "
-			+ KEY_CNS_ORIENTATION + " text, "
-			+ KEY_CNS_SPEECH + " text, "
-			+ KEY_CNS_FACE1 + " text, "
-			+ KEY_CNS_UPPER_LIMB_PROXIMAL + " text, "
-			+ KEY_CNS_UPPER_LIMB_DISTAL + " text, "
-			+ KEY_CNS_LOWER_LIMB_PROXIMAL + " text, "
-			+ KEY_CNS_LOWER_LIMB_DISTAL + " text, "
-			+ KEY_CNS_UPPER_LIMBS + " text, "
-			+ KEY_CNS_LOWER_LIMBS + " text, "
-			+ KEY_CNS_FACE2 + " text, "
-
-			+ KEY_CNS + " text, "
-			+ KEY_NIHSS + " text"
-
-					// Rest  of creation:
-			+ ");";
+	private static String DATA_CREATE_SQL;
 	
 	// Context of application who uses us.
 	private final Context context;
@@ -304,8 +307,81 @@ public class DBAdapter {
 	
 	// Open the database connection.
 	public DBAdapter open() {
+
+		dataMap = new LinkedHashMap<>();
+		dataMap.put("KEY_PARENTID", "ParentID");
+		dataMap.put("KEY_MRN", "MRNnumber");
+		dataMap.put("KEY_DAY", "Day");
+
+		dataMap.put("KEY_PEG", "PEG");
+		dataMap.put("KEY_NG", "NG");
+		dataMap.put("KEY_O2", "O2");
+		dataMap.put("KEY_IV", "IV");
+		dataMap.put("KEY_CPAP", "CPAP");
+		dataMap.put("KEY_RESTRAINT", "Restraint");
+		dataMap.put("KEY_BEDBARS", "BedBars");
+		dataMap.put("KEY_BEHAVIOURAL", "BehaviouralIssue");
+		dataMap.put("KEY_CONFUSION", "Confusion");
+		dataMap.put("KEY_BLADDER", "BladderControl");
+		dataMap.put("KEY_HOURS", "EstimatedHoursOutOfBed");
+
+		dataMap.put("KEY_NEGLECT", "Neglect");
+		dataMap.put("KEY_DIGITSPAN", "DigitSpan");
+		dataMap.put("KEY_MMSE", "MMSE");
+		dataMap.put("KEY_FOLLOWS", "FollowsCommands");
+		dataMap.put("KEY_VERBAL", "VerbalCommunication");
+		dataMap.put("KEY_MOTIVATION", "Motivation");
+		dataMap.put("KEY_MOOD", "Mood");
+		dataMap.put("KEY_PAIN", "Pain");
+		dataMap.put("KEY_FATIGUE", "Fatigue");
+		dataMap.put("KEY_SWALLOW", "Swallow");
+		dataMap.put("KEY_FEEDING", "Feeding");
+		dataMap.put("KEY_DRESSING", "Dressing");
+		dataMap.put("KEY_KITCHEN", "Kitchen");
+
+		dataMap.put("KEY_LEFTARM", "LeftArmMovement");
+		dataMap.put("KEY_RIGHTARM", "RightArmMovement");
+		dataMap.put("KEY_MOVEMENTBED", "MovementInBed");
+		dataMap.put("KEY_LIESIT", "LieToSit");
+		dataMap.put("KEY_SITTING", "SittingUnsupported");
+		dataMap.put("KEY_SITSTAND", "SitToStand");
+		dataMap.put("KEY_STAND", "StandUnsupported");
+		dataMap.put("KEY_LIFTSUNAFFECTED", "LiftsUnaffectedLegStanding");
+		dataMap.put("KEY_LIFTSAFFECTED", "LiftsAffectedLegStanding");
+		dataMap.put("KEY_WALKING", "Walking");
+
+		dataMap.put("KEY_CNS_CONSCIOUSNESS", "CnsConsciousness");
+		dataMap.put("KEY_CNS_ORIENTATION", "CnsOrientation");
+		dataMap.put("KEY_CNS_SPEECH", "CnsSpeech");
+		dataMap.put("KEY_CNS_FACE1", "CnsFace1");
+		dataMap.put("KEY_CNS_UPPER_LIMB_PROXIMAL", "CnsUpperLimbProximal");
+		dataMap.put("KEY_CNS_UPPER_LIMB_DISTAL", "CnsUpperLimbDistal");
+		dataMap.put("KEY_CNS_LOWER_LIMB_PROXIMAL", "CnsLowerLimbProximal");
+		dataMap.put("KEY_CNS_LOWER_LIMB_DISTAL", "CnsLowerLimbDistal");
+		dataMap.put("KEY_CNS_UPPER_LIMBS", "CnsUpperLimbs");
+		dataMap.put("KEY_CNS_LOWER_LIMBS", "CnsLowerLimbs");
+		dataMap.put("KEY_CNS_FACE2", "CnsFace2");
+
+		dataMap.put("KEY_BARTHEL", "EstBarthelScore");
+		dataMap.put("KEY_BERG", "EstBergScore");
+		dataMap.put("KEY_CNS", "CnsScore");
+		dataMap.put("KEY_NIHSS", "NihssScore");
+
+		generateCreateDataString();
+
 		db = myDBHelper.getWritableDatabase();
+
 		return this;
+	}
+
+	private void generateCreateDataString(){
+		DATA_CREATE_SQL = "create table " + DATA_TABLE + " (" + KEY_ROWID + " integer primary key autoincrement, ";
+
+		for (String key : dataMap.keySet()){
+			DATA_CREATE_SQL = DATA_CREATE_SQL + dataMap.get(key) + " text, ";
+		}
+		DATA_CREATE_SQL = DATA_CREATE_SQL.substring(0, DATA_CREATE_SQL.length()-2); //Trim last comma
+		DATA_CREATE_SQL = DATA_CREATE_SQL + ");";
 	}
 	
 	// Close the database connection.
@@ -391,7 +467,7 @@ public class DBAdapter {
 		}
 
 
-		deleteQuery = "DELETE FROM " + DATA_TABLE + " WHERE " + KEY_PARENTID + " = " + currentPatientId;
+		deleteQuery = "DELETE FROM " + DATA_TABLE + " WHERE " + dataMap.get("KEY_PARENTID") + " = " + currentPatientId;
 		c =  db.rawQuery(deleteQuery, null);
 		if (c != null) {
 			c.moveToFirst();
@@ -526,9 +602,9 @@ public class DBAdapter {
 
 	public long insertNewRow(int parentId, String mrnNumber, int day){
 		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_PARENTID, parentId);
-		initialValues.put(KEY_MRN, mrnNumber);
-		initialValues.put(KEY_DAY, day);
+		initialValues.put(dataMap.get("KEY_PARENTID"), parentId);
+		initialValues.put(dataMap.get("KEY_MRN"), mrnNumber);
+		initialValues.put(dataMap.get("KEY_DAY"), day);
 
 		return db.insert(DATA_TABLE, null, initialValues);
 	}
@@ -553,7 +629,7 @@ public class DBAdapter {
 
 	// Get a specific row (by rowId)
 	public Cursor getRowData(int patientId, int currentDay) {
-		String selectQuery = "SELECT * FROM " + DATA_TABLE + " dt WHERE dt." + KEY_PARENTID + " = " + patientId + " AND dt." + KEY_DAY + " = " + currentDay;
+		String selectQuery = "SELECT * FROM " + DATA_TABLE + " dt WHERE dt." + dataMap.get("KEY_PARENTID") + " = " + patientId + " AND dt." + dataMap.get("KEY_DAY") + " = " + currentDay;
 
 		Cursor c = 	db.rawQuery(selectQuery, null);
 		if (c != null) {
@@ -572,7 +648,7 @@ public class DBAdapter {
 			insertNewRow(parentId, MainActivity.currentMrn, day);
 		}
 		c.close();
-		String where = KEY_PARENTID + "= ? AND " + KEY_DAY + "= ?";
+		String where = dataMap.get("KEY_PARENTID") + "= ? AND " + dataMap.get("KEY_DAY") + "= ?";
 		ContentValues newValues = new ContentValues();
 		newValues.put(key, value);
 		return db.update(DATA_TABLE, newValues, where, new String[]{String.valueOf(parentId), String.valueOf(day)}) != 0;
@@ -580,8 +656,8 @@ public class DBAdapter {
 
 
 	public Cursor getAllPatientDataSorted(int patientId){
-		String where = KEY_PARENTID + "=" + patientId;
-		Cursor c = db.query(DATA_TABLE, null, where, null, null, null, KEY_DAY + " ASC");
+		String where = dataMap.get("KEY_PARENTID") + "=" + patientId;
+		Cursor c = db.query(DATA_TABLE, null, where, null, null, null, dataMap.get("KEY_DAY") + " ASC");
 		if (c != null) {
 			c.moveToFirst();
 		}
@@ -590,7 +666,7 @@ public class DBAdapter {
 
 
 	public Cursor getDataField(int patientId, int day, String key){
-		String where = KEY_PARENTID + "= ? AND " + KEY_DAY + "= ?";
+		String where = dataMap.get("KEY_PARENTID") + "= ? AND " + dataMap.get("KEY_DAY") + "= ?";
 		Cursor c = db.query(DATA_TABLE, new String[]{key}, where, new String[]{String.valueOf(patientId), String.valueOf(day)}, null, null, null);
 		if (c != null){
 			c.moveToFirst();

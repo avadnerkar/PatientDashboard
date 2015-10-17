@@ -29,16 +29,16 @@ public class PtFragment extends Fragment {
         ListView listView = (ListView) v.findViewById(R.id.ptList);
 
         ptFormItems = new ArrayList<>();
-        ptFormItems.add(new FormItem(getString(R.string.qLeftArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_LEFTARM));
-        ptFormItems.add(new FormItem(getString(R.string.qRightArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_RIGHTARM));
-        ptFormItems.add(new FormItem(getString(R.string.qMovementBed), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_MOVEMENTBED));
-        ptFormItems.add(new FormItem(getString(R.string.qLieSit), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_LIESIT));
-        ptFormItems.add(new FormItem(getString(R.string.qSitting), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_SITTING));
-        ptFormItems.add(new FormItem(getString(R.string.qSitStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_SITSTAND));
-        ptFormItems.add(new FormItem(getString(R.string.qStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_STAND));
-        ptFormItems.add(new FormItem(getString(R.string.qLiftsUnaffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_LIFTSUNAFFECTED));
-        ptFormItems.add(new FormItem(getString(R.string.qLiftsAffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_LIFTSAFFECTED));
-        ptFormItems.add(new FormItem(getString(R.string.qWalking), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.KEY_WALKING));
+        ptFormItems.add(new FormItem(getString(R.string.qLeftArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LEFTARM")));
+        ptFormItems.add(new FormItem(getString(R.string.qRightArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_RIGHTARM")));
+        ptFormItems.add(new FormItem(getString(R.string.qMovementBed), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_MOVEMENTBED")));
+        ptFormItems.add(new FormItem(getString(R.string.qLieSit), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIESIT")));
+        ptFormItems.add(new FormItem(getString(R.string.qSitting), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITTING")));
+        ptFormItems.add(new FormItem(getString(R.string.qSitStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITSTAND")));
+        ptFormItems.add(new FormItem(getString(R.string.qStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_STAND")));
+        ptFormItems.add(new FormItem(getString(R.string.qLiftsUnaffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSUNAFFECTED")));
+        ptFormItems.add(new FormItem(getString(R.string.qLiftsAffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSAFFECTED")));
+        ptFormItems.add(new FormItem(getString(R.string.qWalking), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_WALKING")));
 
         for (FormItem item : ptFormItems){
             item.group = FormItem.Group.PT;
