@@ -1,5 +1,6 @@
 package com.physiotherapy.mcgill.patientmonitoring;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -107,7 +108,9 @@ public class ScoreHistory extends ActionBarActivity {
         RadioButton btn = (RadioButton) rg.getChildAt(radioId);
         String selectedScoreType = (String) btn.getText();
 
-        float[] scoreArray = MainActivity.calculateScores(scoreDay, selectedScoreType);
+        Cursor cursor = MainActivity.myDb.getRowData(MainActivity.currentPatientId, scoreDay);
+        float[] scoreArray = MainActivity.calculateScores(cursor, selectedScoreType);
+        cursor.close();
 
         if (selectedScoreType.equals("Barthel")){
             if (scoreArray[0] == -1){
@@ -177,10 +180,6 @@ public class ScoreHistory extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

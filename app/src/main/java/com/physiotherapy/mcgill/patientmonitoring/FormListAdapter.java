@@ -112,7 +112,6 @@ public class FormListAdapter extends ArrayAdapter<FormItem> {
                         @Override
                         public void onClick(View view) {
                             MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, ((RadioButton) view).getText().toString());
-                            MainActivity.saveScores();
                         }
                     });
                 }

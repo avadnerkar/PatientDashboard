@@ -53,10 +53,9 @@ public class ScoreGraphs extends ActionBarActivity {
             float barthel;
             if (cursor.moveToFirst()) {
                 do {
-
-                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)).equals("-1.0")){
-                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
-                        barthel = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BARTHEL)));
+                    barthel = ScoreCalculators.barthelScore(cursor)[0];
+                    if (barthel != -1){
+                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_DAY));
                         dataPoint = new DataPoint(day,barthel);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -71,10 +70,9 @@ public class ScoreGraphs extends ActionBarActivity {
             float berg;
             if (cursor.moveToFirst()) {
                 do {
-
-                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)).equals("-1.0")){
-                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
-                        berg = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_BERG)));
+                    berg = ScoreCalculators.bergScore(cursor)[0];
+                    if (berg != -1){
+                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_DAY));
                         dataPoint = new DataPoint(day,berg);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -89,10 +87,9 @@ public class ScoreGraphs extends ActionBarActivity {
             float cns;
             if (cursor.moveToFirst()) {
                 do {
-
-                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("-1.0") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)).equals("")){
-                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
-                        cns = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS)));
+                    cns = ScoreCalculators.cnsScore(cursor)[0];
+                    if (cns != -1){
+                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_DAY));
                         dataPoint = new DataPoint(day,cns);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -107,10 +104,9 @@ public class ScoreGraphs extends ActionBarActivity {
             float nihss;
             if (cursor.moveToFirst()) {
                 do {
-
-                    if (!cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("-1") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("-1.0") && !cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)).equals("")){
-                        day = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DAY)));
-                        nihss = Float.parseFloat(cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_NIHSS)));
+                    nihss = ScoreCalculators.nihssScore(cursor)[0];
+                    if (nihss != -1){
+                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_DAY));
                         dataPoint = new DataPoint(day,nihss);
                         series.appendData(dataPoint,true,1000);
                     }
@@ -158,10 +154,6 @@ public class ScoreGraphs extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

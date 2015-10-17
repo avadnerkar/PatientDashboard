@@ -5,7 +5,7 @@
         app:showAsAction="always" />
     <item android:id="@+id/patient_list" android:title="@string/patient_list" android:icon="@drawable/ic_action_database"
         app:showAsAction="always" />
-    <item android:id="@+id/data_save" android:title="@string/data_save" android:icon="@drawable/ic_action_save"
+    <item android:id="@+id/action_score_graphs" android:title="@string/action_score_graphs" android:icon="@drawable/ic_action_bargraph"
         app:showAsAction="always" />
     <item android:id="@+id/action_update_patient" android:title="@string/action_update_patient"
         android:orderInCategory="100" app:showAsAction="never" />
@@ -13,8 +13,7 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_score_report" android:title="@string/action_score_report"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_score_graphs" android:title="@string/action_score_graphs"
-        android:orderInCategory="100" app:showAsAction="never" />
+
     <item android:id="@+id/action_export_csv" android:title="@string/action_export_csv"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/clear" android:title="@string/clear"

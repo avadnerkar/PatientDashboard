@@ -14,7 +14,6 @@ public class ScoreCalculators {
         String liftsAffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSAFFECTED));
         String liftsUnaffectedString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LIFTSUNAFFECTED));
 
-        cursor.close();
 
         int feedingInt = 0;
         int dressingInt = 0;
@@ -172,7 +171,6 @@ public class ScoreCalculators {
         String standString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_STAND));
         String sittingString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_SITTING));
 
-        cursor.close();
 
         int liftsAffectedInt = 0;
         int liftsUnaffectedInt = 0;
@@ -307,7 +305,6 @@ public class ScoreCalculators {
         String lowerLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_LOWER_LIMBS));
         String face2 = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CNS_FACE2));
 
-        cursor.close();
 
         int consciousnessInt = 0;
         int orientationInt = 0;
@@ -520,7 +517,7 @@ public class ScoreCalculators {
     public static float[] nihssScore(Cursor cursor){
         float cns = cnsScore(cursor)[0];
 
-        cursor.close();
+
 
         float score;
         if (cns == -1){

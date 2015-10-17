@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 // \test change for git
 // TO USE:
 // Change the package (at top) to match your project.
@@ -71,6 +74,8 @@ public class DBAdapter {
 	public static final String KEY_TOTALSLT = "TotalSLTSessions";
 
 	// TODO: Setup your data fields here:
+
+
 	public static final String KEY_PARENTID = "ParentID";
 	public static final String KEY_MRN = "MRNnumber";
 	public static final String KEY_DAY = "Day";
@@ -517,84 +522,7 @@ public class DBAdapter {
 	//	Data methods:
 	/////////////////////////////////////////////////////////////////////
 
-	// Add a new set of values to the database.
-	public long insertRowData(int parentId, String mrnNumber, int day,
-							  String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
-							  String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
-							  String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
-							  String barthel, String berg,
-							  String cnsConsciousness, String cnsOrientation, String cnsSpeech, String cnsFace1, String cnsUpperLimbProximal, String cnsUpperLimbDistal, String cnsLowerLimbProximal, String cnsLowerLimbDistal, String cnsUpperLimbs, String cnsLowerLimbs, String cnsFace2,
-							  String cnsScore, String nihssScore) {
-		/*
-		 * CHANGE 3:
-		 */
-		// TODO: Update data in the row with new fields.
-		// TODO: Also change the function's arguments to be what you need!
-		// Create row's data:
-		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_PARENTID, parentId);
-		initialValues.put(KEY_MRN, mrnNumber);
-		initialValues.put(KEY_DAY, day);
 
-		initialValues.put(KEY_PEG, peg);
-		initialValues.put(KEY_NG, ng);
-		initialValues.put(KEY_O2, o2);
-		initialValues.put(KEY_IV, iv);
-		initialValues.put(KEY_CPAP, cpap);
-		initialValues.put(KEY_RESTRAINT, restraint);
-		initialValues.put(KEY_BEDBARS, bedbars);
-		initialValues.put(KEY_BEHAVIOURAL, behavioural);
-		initialValues.put(KEY_CONFUSION, confusion);
-		initialValues.put(KEY_BLADDER, bladder);
-		initialValues.put(KEY_HOURS, hours);
-
-		initialValues.put(KEY_NEGLECT, neglect);
-		initialValues.put(KEY_DIGITSPAN, digitspan);
-		initialValues.put(KEY_MMSE, mmse);
-		initialValues.put(KEY_FOLLOWS, follows);
-		initialValues.put(KEY_VERBAL, verbal);
-		initialValues.put(KEY_MOTIVATION, motivation);
-		initialValues.put(KEY_MOOD, mood);
-		initialValues.put(KEY_PAIN, pain);
-		initialValues.put(KEY_FATIGUE, fatigue);
-		initialValues.put(KEY_SWALLOW, swallow);
-		initialValues.put(KEY_FEEDING, feeding);
-		initialValues.put(KEY_DRESSING, dressing);
-		initialValues.put(KEY_KITCHEN, kitchen);
-
-		initialValues.put(KEY_LEFTARM, leftarm);
-		initialValues.put(KEY_RIGHTARM, rightarm);
-		initialValues.put(KEY_MOVEMENTBED, movementbed);
-		initialValues.put(KEY_LIESIT, liesit);
-		initialValues.put(KEY_SITTING, sitting);
-		initialValues.put(KEY_SITSTAND, sitstand);
-		initialValues.put(KEY_STAND, stand);
-		initialValues.put(KEY_LIFTSUNAFFECTED, liftsunaffected);
-		initialValues.put(KEY_LIFTSAFFECTED, liftsaffected);
-		initialValues.put(KEY_WALKING, walking);
-
-		initialValues.put(KEY_BARTHEL, barthel);
-		initialValues.put(KEY_BERG, berg);
-
-		initialValues.put(KEY_CNS_CONSCIOUSNESS, cnsConsciousness);
-		initialValues.put(KEY_CNS_ORIENTATION, cnsOrientation);
-		initialValues.put(KEY_CNS_SPEECH, cnsSpeech);
-		initialValues.put(KEY_CNS_FACE1, cnsFace1);
-		initialValues.put(KEY_CNS_UPPER_LIMB_PROXIMAL, cnsUpperLimbProximal);
-		initialValues.put(KEY_CNS_UPPER_LIMB_DISTAL, cnsUpperLimbDistal);
-		initialValues.put(KEY_CNS_LOWER_LIMB_PROXIMAL, cnsLowerLimbProximal);
-		initialValues.put(KEY_CNS_LOWER_LIMB_DISTAL, cnsLowerLimbDistal);
-		initialValues.put(KEY_CNS_UPPER_LIMBS, cnsUpperLimbs);
-		initialValues.put(KEY_CNS_LOWER_LIMBS, cnsLowerLimbs);
-		initialValues.put(KEY_CNS_FACE2, cnsFace2);
-
-		initialValues.put(KEY_CNS, cnsScore);
-		initialValues.put(KEY_NIHSS, nihssScore);
-
-
-		// Insert it into the database.
-		return db.insert(DATA_TABLE, null, initialValues);
-	}
 
 	public long insertNewRow(int parentId, String mrnNumber, int day){
 		ContentValues initialValues = new ContentValues();
@@ -611,16 +539,6 @@ public class DBAdapter {
 		return db.delete(DATA_TABLE, where, null) != 0;
 	}
 
-	public void deleteAllData() {
-		Cursor c = getAllRowData();
-		long rowId = c.getColumnIndexOrThrow(KEY_ROWID);
-		if (c.moveToFirst()) {
-			do {
-				deleteRowData(c.getLong((int) rowId));
-			} while (c.moveToNext());
-		}
-		c.close();
-	}
 
 	// Return all data in the database.
 	public Cursor getAllRowData() {
@@ -644,89 +562,6 @@ public class DBAdapter {
 		return c;
 	}
 
-	// Change an existing row to be equal to new data.
-	public Cursor updateRowData(int parentId, int day,
-								String peg, String ng, String o2, String iv, String cpap, String restraint, String bedbars, String behavioural, String confusion, String bladder, String hours,
-								String neglect, String digitspan, String mmse, String follows, String verbal, String motivation, String mood, String pain, String fatigue, String swallow, String feeding, String dressing, String kitchen,
-								String leftarm, String rightarm, String movementbed, String liesit, String sitting, String sitstand, String stand, String liftsunaffected, String liftsaffected, String walking,
-								String barthel, String berg,
-								String cnsConsciousness, String cnsOrientation, String cnsSpeech, String cnsFace1, String cnsUpperLimbProximal, String cnsUpperLimbDistal, String cnsLowerLimbProximal, String cnsLowerLimbDistal, String cnsUpperLimbs, String cnsLowerLimbs, String cnsFace2,
-								String cnsScore, String nihssScore) {
-
-		/*
-		 * CHANGE 4:
-		 */
-		// TODO: Update data in the row with new fields.
-		// TODO: Also change the function's arguments to be what you need!
-
-
-		String updateQuery = "UPDATE " + DATA_TABLE + " SET " +
-				KEY_PEG + " = '" + peg + "', " +
-				KEY_NG + " = '" + ng + "', " +
-				KEY_O2 + " = '" + o2 + "', " +
-				KEY_IV + " = '" + iv + "', " +
-				KEY_CPAP + " = '" + cpap + "', " +
-				KEY_RESTRAINT + " = '" + restraint + "', " +
-				KEY_BEDBARS + " = '" + bedbars + "', " +
-				KEY_BEHAVIOURAL + " = '" + behavioural + "', " +
-				KEY_CONFUSION + " = '" + confusion + "', " +
-				KEY_BLADDER + " = '" + bladder + "', " +
-				KEY_HOURS + " = '" + hours + "', " +
-
-				KEY_NEGLECT + " = '" + neglect + "', " +
-				KEY_DIGITSPAN + " = '" + digitspan + "', " +
-				KEY_MMSE + " = '" + mmse + "', " +
-				KEY_FOLLOWS + " = '" + follows + "', " +
-				KEY_VERBAL + " = '" + verbal + "', " +
-				KEY_MOTIVATION + " = '" + motivation + "', " +
-				KEY_MOOD + " = '" + mood + "', " +
-				KEY_PAIN + " = '" + pain + "', " +
-				KEY_FATIGUE + " = '" + fatigue + "', " +
-				KEY_SWALLOW + " = '" + swallow + "', " +
-				KEY_FEEDING + " = '" + feeding + "', " +
-				KEY_DRESSING + " = '" + dressing + "', " +
-				KEY_KITCHEN + " = '" + kitchen + "', " +
-
-				KEY_LEFTARM + " = '" + leftarm + "', " +
-				KEY_RIGHTARM + " = '" + rightarm + "', " +
-				KEY_MOVEMENTBED + " = '" + movementbed + "', " +
-				KEY_LIESIT + " = '" + liesit + "', " +
-				KEY_SITTING + " = '" + sitting + "', " +
-				KEY_SITSTAND + " = '" + sitstand + "', " +
-				KEY_STAND + " = '" + stand + "', " +
-				KEY_LIFTSUNAFFECTED + " = '" + liftsunaffected + "', " +
-				KEY_LIFTSAFFECTED + " = '" + liftsaffected + "', " +
-				KEY_WALKING + " = '" + walking + "', " +
-
-				KEY_BARTHEL + " = '" + barthel + "', " +
-				KEY_BERG + " = '" + berg + "', " +
-
-				KEY_CNS_CONSCIOUSNESS + " = '" + cnsConsciousness + "', " +
-				KEY_CNS_ORIENTATION + " = '" + cnsOrientation + "', " +
-				KEY_CNS_SPEECH + " = '" + cnsSpeech + "', " +
-				KEY_CNS_FACE1 + " = '" + cnsFace1 + "', " +
-				KEY_CNS_UPPER_LIMB_PROXIMAL + " = '" + cnsUpperLimbProximal + "', " +
-				KEY_CNS_UPPER_LIMB_DISTAL + " = '" + cnsUpperLimbDistal + "', " +
-				KEY_CNS_LOWER_LIMB_PROXIMAL + " = '" + cnsLowerLimbProximal + "', " +
-				KEY_CNS_LOWER_LIMB_DISTAL + " = '" + cnsLowerLimbDistal + "', " +
-				KEY_CNS_UPPER_LIMBS + " = '" + cnsUpperLimbs + "', " +
-				KEY_CNS_LOWER_LIMBS + " = '" + cnsLowerLimbs + "', " +
-				KEY_CNS_FACE2 + " = '" + cnsFace2 + "', " +
-
-				KEY_CNS + " = '" + cnsScore + "', " +
-				KEY_NIHSS + " = '" + nihssScore +
-				"' WHERE " + KEY_PARENTID + " = " + parentId + " AND " + KEY_DAY + " = " + day;
-
-		// Insert it into the database.
-		//return db.update(DATA_TABLE, newValues, where, null) != 0;
-		Cursor c =  db.rawQuery(updateQuery, null);
-		if (c != null) {
-			c.moveToFirst();
-		}
-		return c;
-
-
-	}
 
 
 	public boolean updateFieldData(int parentId, int day, String key, String value){
@@ -743,16 +578,6 @@ public class DBAdapter {
 		return db.update(DATA_TABLE, newValues, where, new String[]{String.valueOf(parentId), String.valueOf(day)}) != 0;
 	}
 
-	// Return all data for a patient in the database.
-	public Cursor getAllPatientData(int patientId) {
-		String selectQuery = "SELECT * FROM " + DATA_TABLE + " dt WHERE dt." + KEY_PARENTID + " = " + patientId;
-
-		Cursor c = 	db.rawQuery(selectQuery, null);
-		if (c != null) {
-			c.moveToFirst();
-		}
-		return c;
-	}
 
 	public Cursor getAllPatientDataSorted(int patientId){
 		String where = KEY_PARENTID + "=" + patientId;
