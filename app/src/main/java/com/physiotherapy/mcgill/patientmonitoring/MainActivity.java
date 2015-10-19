@@ -163,7 +163,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             String discharged = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DISCHARGED));
 
-            if (discharged.equals("Yes")){
+            if (discharged !=null && discharged.equals("Yes")){
                 currentDay = 1;
             } else {
                 String dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ADMISSIONDATE));
@@ -580,7 +580,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public void run(){
             clearPatientSelection();
 
-            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+            currentPatientId = (int) myDb.insertNewPatient();
+            Intent intent = new Intent(MainActivity.this, PatientFormActivity.class);
             startActivity(intent);
         }
     };
@@ -603,8 +604,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     Runnable updatePatientRunnable = new Runnable(){
         public void run(){
-            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
+//            startActivity(intent);
         }
     };
 

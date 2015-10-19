@@ -18,8 +18,8 @@ public class NurseFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    public static ArrayList<FormItem> nurseFormItems;
-    public static FormListAdapter nurseAdapter;
+    public static ArrayList<DailyItem> nurseDailyItems;
+    public static DailyListAdapter nurseAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,24 +27,24 @@ public class NurseFragment extends Fragment {
 
         ListView listView = (ListView) v.findViewById(R.id.nurseList);
 
-        nurseFormItems = new ArrayList<>();
-        nurseFormItems.add(new FormItem(getString(R.string.qPeg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_PEG")));
-        nurseFormItems.add(new FormItem(getString(R.string.qNg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_NG")));
-        nurseFormItems.add(new FormItem(getString(R.string.qO2), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_O2")));
-        nurseFormItems.add(new FormItem(getString(R.string.qIv), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_IV")));
-        nurseFormItems.add(new FormItem(getString(R.string.qCpap), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CPAP")));
-        nurseFormItems.add(new FormItem(getString(R.string.qRestraint), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_RESTRAINT")));
-        nurseFormItems.add(new FormItem(getString(R.string.qBedbars), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEDBARS")));
-        nurseFormItems.add(new FormItem(getString(R.string.qBehavioural), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEHAVIOURAL")));
-        nurseFormItems.add(new FormItem(getString(R.string.qConfusion), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CONFUSION")));
-        nurseFormItems.add(new FormItem(getString(R.string.qBladder), FormItem.CellType.RADIO, new String[]{getString(R.string.foley), getString(R.string.diaper), getString(R.string.bedpan), getString(R.string.toilet)}, DBAdapter.dataMap.get("KEY_BLADDER")));
-        nurseFormItems.add(new FormItem(getString(R.string.qHours), FormItem.CellType.NUMERIC, new String[]{getString(R.string.hoursHint)}, DBAdapter.dataMap.get("KEY_HOURS")));
+        nurseDailyItems = new ArrayList<>();
+        nurseDailyItems.add(new DailyItem(getString(R.string.qPeg), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_PEG")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qNg), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_NG")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qO2), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_O2")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qIv), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_IV")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qCpap), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CPAP")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qRestraint), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_RESTRAINT")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qBedbars), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEDBARS")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qBehavioural), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEHAVIOURAL")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qConfusion), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CONFUSION")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qBladder), DailyItem.CellType.RADIO, new String[]{getString(R.string.foley), getString(R.string.diaper), getString(R.string.bedpan), getString(R.string.toilet)}, DBAdapter.dataMap.get("KEY_BLADDER")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qHours), DailyItem.CellType.NUMERIC, new String[]{getString(R.string.hoursHint)}, DBAdapter.dataMap.get("KEY_HOURS")));
 
-        for (FormItem item : nurseFormItems){
-            item.group = FormItem.Group.NURSE;
+        for (DailyItem item : nurseDailyItems){
+            item.group = DailyItem.Group.NURSE;
         }
 
-        nurseAdapter = new FormListAdapter(getActivity(), nurseFormItems);
+        nurseAdapter = new DailyListAdapter(getActivity(), nurseDailyItems);
 
         listView.setAdapter(nurseAdapter);
 

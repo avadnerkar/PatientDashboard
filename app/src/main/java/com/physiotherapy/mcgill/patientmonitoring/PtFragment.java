@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Abhishek on 6/05/2015.
@@ -19,8 +18,8 @@ public class PtFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    public static ArrayList<FormItem> ptFormItems;
-    public static FormListAdapter ptAdapter;
+    public static ArrayList<DailyItem> ptDailyItems;
+    public static DailyListAdapter ptAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,23 +27,23 @@ public class PtFragment extends Fragment {
 
         ListView listView = (ListView) v.findViewById(R.id.ptList);
 
-        ptFormItems = new ArrayList<>();
-        ptFormItems.add(new FormItem(getString(R.string.qLeftArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LEFTARM")));
-        ptFormItems.add(new FormItem(getString(R.string.qRightArm), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_RIGHTARM")));
-        ptFormItems.add(new FormItem(getString(R.string.qMovementBed), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_MOVEMENTBED")));
-        ptFormItems.add(new FormItem(getString(R.string.qLieSit), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIESIT")));
-        ptFormItems.add(new FormItem(getString(R.string.qSitting), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITTING")));
-        ptFormItems.add(new FormItem(getString(R.string.qSitStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITSTAND")));
-        ptFormItems.add(new FormItem(getString(R.string.qStand), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_STAND")));
-        ptFormItems.add(new FormItem(getString(R.string.qLiftsUnaffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSUNAFFECTED")));
-        ptFormItems.add(new FormItem(getString(R.string.qLiftsAffected), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSAFFECTED")));
-        ptFormItems.add(new FormItem(getString(R.string.qWalking), FormItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_WALKING")));
+        ptDailyItems = new ArrayList<>();
+        ptDailyItems.add(new DailyItem(getString(R.string.qLeftArm), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LEFTARM")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qRightArm), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_RIGHTARM")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qMovementBed), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_MOVEMENTBED")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qLieSit), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIESIT")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qSitting), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITTING")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qSitStand), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_SITSTAND")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qStand), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_STAND")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qLiftsUnaffected), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSUNAFFECTED")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qLiftsAffected), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_LIFTSAFFECTED")));
+        ptDailyItems.add(new DailyItem(getString(R.string.qWalking), DailyItem.CellType.RADIO, new String[]{getString(R.string.none), getString(R.string.partial), getString(R.string.full)}, DBAdapter.dataMap.get("KEY_WALKING")));
 
-        for (FormItem item : ptFormItems){
-            item.group = FormItem.Group.PT;
+        for (DailyItem item : ptDailyItems){
+            item.group = DailyItem.Group.PT;
         }
 
-        ptAdapter = new FormListAdapter(getActivity(), ptFormItems);
+        ptAdapter = new DailyListAdapter(getActivity(), ptDailyItems);
 
         listView.setAdapter(ptAdapter);
 
