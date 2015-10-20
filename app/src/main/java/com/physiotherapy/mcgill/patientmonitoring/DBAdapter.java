@@ -35,47 +35,6 @@ public class DBAdapter {
 
 	public static Map<String, String> patientMap;
 
-	public static final String KEY_FIRSTNAME = "FirstName";
-	public static final String KEY_LASTNAME = "LastName";
-	public static final String KEY_HOSPITALID = "MRN";
-	public static final String KEY_ADMISSIONDATE = "AdmissionDate";
-	public static final String KEY_DISCHARGED = "Discharged";
-	public static final String KEY_DISCHARGEDATE = "DischargeDate";
-	public static final String KEY_PATIENTAGE = "PatientAge";
-	public static final String KEY_PATIENTGENDER = "PatientGender";
-	public static final String KEY_FIRSTLANGUAGE = "FirstLanguage";
-
-	public static final String KEY_MOCASCORE = "MOCAscore";
-	public static final String KEY_CUSTOMSCORE = "CustomScore";
-	public static final String KEY_CUSTOMMAX = "CustomMaxScore";
-
-	public static final String KEY_STROKETYPE = "StrokeType";
-	public static final String KEY_FIRSTSTROKE = "FirstStroke";
-	public static final String KEY_LESIONSIDE = "LesionSide";
-	public static final String KEY_HEMIPLEGIASIDE = "HemiplegiaSide";
-	public static final String KEY_CONSCIOUSNESS = "Consciousness";
-	public static final String KEY_ORIENTATION = "Orientation";
-	public static final String KEY_LANGUAGE = "Language";
-	public static final String KEY_VISUAL = "VisualImpairment";
-	public static final String KEY_HEARINGAID = "HearingAid";
-	public static final String KEY_HEARINGASSESSED = "HearingAssessed";
-	public static final String KEY_APHASIA = "Aphasia";
-
-	public static final String KEY_PEGADMIT = "PegAdmission";
-	public static final String KEY_NGADMIT = "NgAdmission";
-	public static final String KEY_FOLEYADMIT = "FoleyAdmission";
-	public static final String KEY_FALLRISK = "FallRisk";
-	public static final String KEY_MOTIVATIONADMIT = "MotivationAdmission";
-	public static final String KEY_OTHER = "OtherHistory";
-	public static final String KEY_COGNITION = "Cognition";
-
-	public static final String KEY_FIRSTOT = "FirstOTAssessment";
-	public static final String KEY_TOTALOT = "TotalOTSessions";
-	public static final String KEY_FIRSTSWALLOW = "FirstSwallowAssessment";
-	public static final String KEY_FIRSTPT = "FirstPTAssessment";
-	public static final String KEY_TOTALPT = "TotalPTSessions";
-	public static final String KEY_FIRSTSLT = "FirstSLTAssessment";
-	public static final String KEY_TOTALSLT = "TotalSLTSessions";
 
 	// TODO: Setup your data fields here:
 	public static Map<String, String> dataMap;
@@ -253,65 +212,7 @@ public class DBAdapter {
 	/////////////////////////////////////////////////////////////////////
 	//	Patient methods:
 	/////////////////////////////////////////////////////////////////////
-	
-	// Add a new set of values to the database.
-	public long insertRowPatient(String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender, String firstLanguage,
-								 String mocaScore, String customScore, String customMax,
-								 String strokeType, String firstStroke, String lesionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
-								 String peg, String ng, String foley, String fallRisk, String motivation, String otherHistory, String cognition,
-								 String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
-		/*
-		 * CHANGE 3:
-		 */		
-		// TODO: Update data in the row with new fields.
-		// TODO: Also change the function's arguments to be what you need!
-		// Create row's data:
-		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_FIRSTNAME, firstName);
-		initialValues.put(KEY_LASTNAME, lastName);
-		initialValues.put(KEY_HOSPITALID, hospitalId);
-		initialValues.put(KEY_ADMISSIONDATE, admissionDate);
-		initialValues.put(KEY_DISCHARGED, discharged);
-		initialValues.put(KEY_DISCHARGEDATE, dischargeDate);
-		initialValues.put(KEY_PATIENTAGE, patientAge);
-		initialValues.put(KEY_PATIENTGENDER, patientGender);
-		initialValues.put(KEY_FIRSTLANGUAGE, firstLanguage);
 
-		initialValues.put(KEY_MOCASCORE, mocaScore);
-		initialValues.put(KEY_CUSTOMSCORE, customScore);
-		initialValues.put(KEY_CUSTOMMAX, customMax);
-
-		initialValues.put(KEY_STROKETYPE, strokeType);
-		initialValues.put(KEY_FIRSTSTROKE, firstStroke);
-		initialValues.put(KEY_LESIONSIDE, lesionSide);
-		initialValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
-		initialValues.put(KEY_CONSCIOUSNESS, consciousness);
-		initialValues.put(KEY_ORIENTATION, orientation);
-		initialValues.put(KEY_LANGUAGE, language);
-		initialValues.put(KEY_VISUAL, visualImpairment);
-		initialValues.put(KEY_HEARINGAID, hearingAid);
-		initialValues.put(KEY_HEARINGASSESSED, hearingAssessed);
-		initialValues.put(KEY_APHASIA, aphasia);
-
-		initialValues.put(KEY_PEGADMIT, peg);
-		initialValues.put(KEY_NGADMIT, ng);
-		initialValues.put(KEY_FOLEYADMIT, foley);
-		initialValues.put(KEY_FALLRISK, fallRisk);
-		initialValues.put(KEY_MOTIVATIONADMIT, motivation);
-		initialValues.put(KEY_OTHER, otherHistory);
-		initialValues.put(KEY_COGNITION, cognition);
-
-		initialValues.put(KEY_FIRSTOT, dateFirstOT);
-		initialValues.put(KEY_TOTALOT, totalOT);
-		initialValues.put(KEY_FIRSTSWALLOW, dateFirstSwallow);
-		initialValues.put(KEY_FIRSTPT, dateFirstPT);
-		initialValues.put(KEY_TOTALPT, totalPT);
-		initialValues.put(KEY_FIRSTSLT, dateFirstSLT);
-		initialValues.put(KEY_TOTALSLT, totalSLT);
-		
-		// Insert it into the database.
-		return db.insert(PATIENT_TABLE, null, initialValues);
-	}
 
     public long insertNewPatient(){
 
@@ -410,80 +311,7 @@ public class DBAdapter {
 		return db.update(PATIENT_TABLE, newValues, where, new String[]{String.valueOf(rowId)}) != 0;
 	}
 
-	// Change an existing row to be equal to new data.
-	public boolean updateRowPatient(long rowId, String firstName, String lastName, String hospitalId, String admissionDate, String discharged, String dischargeDate, String patientAge, String patientGender, String firstLanguage,
-									String mocaScore, String customScore, String customMax,
-									String strokeType, String firstStroke, String lesionSide, String hemiplegiaSide, String consciousness, String orientation, String language, String visualImpairment, String hearingAid, String hearingAssessed, String aphasia,
-									String peg, String ng, String foley, String fallRisk, String motivation, String otherHistory, String cognition,
-									String dateFirstOT, String totalOT, String dateFirstSwallow, String dateFirstPT, String totalPT, String dateFirstSLT, String totalSLT) {
-		String where = KEY_ROWID + "=" + rowId;
 
-		/*
-		 * CHANGE 4:
-		 */
-		// TODO: Update data in the row with new fields.
-		// TODO: Also change the function's arguments to be what you need!
-		// Create row's data:
-		ContentValues newValues = new ContentValues();
-		newValues.put(KEY_FIRSTNAME, firstName);
-		newValues.put(KEY_LASTNAME, lastName);
-		newValues.put(KEY_HOSPITALID, hospitalId);
-		newValues.put(KEY_ADMISSIONDATE, admissionDate);
-		newValues.put(KEY_DISCHARGED, discharged);
-		newValues.put(KEY_DISCHARGEDATE, dischargeDate);
-		newValues.put(KEY_PATIENTAGE, patientAge);
-		newValues.put(KEY_PATIENTGENDER, patientGender);
-		newValues.put(KEY_FIRSTLANGUAGE, firstLanguage);
-
-		newValues.put(KEY_MOCASCORE, mocaScore);
-		newValues.put(KEY_CUSTOMSCORE, customScore);
-		newValues.put(KEY_CUSTOMMAX, customMax);
-
-		newValues.put(KEY_STROKETYPE, strokeType);
-		newValues.put(KEY_FIRSTSTROKE, firstStroke);
-		newValues.put(KEY_LESIONSIDE, lesionSide);
-		newValues.put(KEY_HEMIPLEGIASIDE, hemiplegiaSide);
-		newValues.put(KEY_CONSCIOUSNESS, consciousness);
-		newValues.put(KEY_ORIENTATION, orientation);
-		newValues.put(KEY_LANGUAGE, language);
-		newValues.put(KEY_VISUAL, visualImpairment);
-		newValues.put(KEY_HEARINGAID, hearingAid);
-		newValues.put(KEY_HEARINGASSESSED, hearingAssessed);
-		newValues.put(KEY_APHASIA, aphasia);
-
-		newValues.put(KEY_PEGADMIT, peg);
-		newValues.put(KEY_NGADMIT, ng);
-		newValues.put(KEY_FOLEYADMIT, foley);
-		newValues.put(KEY_FALLRISK, fallRisk);
-		newValues.put(KEY_MOTIVATIONADMIT, motivation);
-		newValues.put(KEY_OTHER, otherHistory);
-		newValues.put(KEY_COGNITION, cognition);
-
-		newValues.put(KEY_FIRSTOT, dateFirstOT);
-		newValues.put(KEY_TOTALOT, totalOT);
-		newValues.put(KEY_FIRSTSWALLOW, dateFirstSwallow);
-		newValues.put(KEY_FIRSTPT, dateFirstPT);
-		newValues.put(KEY_TOTALPT, totalPT);
-		newValues.put(KEY_FIRSTSLT, dateFirstSLT);
-		newValues.put(KEY_TOTALSLT, totalSLT);
-		
-		// Insert it into the database.
-		return db.update(PATIENT_TABLE, newValues, where, null) != 0;
-	}
-
-
-	public Cursor dischargeRowPatient(int rowId, String dischargeDate, String mocaScore, String customScore, String customMax, String totalOT, String totalPT, String totalSLT){
-		String dischargedString = "Yes";
-		String updateQuery = "UPDATE " + PATIENT_TABLE + " SET " + KEY_DISCHARGED + " = ?, " + KEY_DISCHARGEDATE + " = ?, "
-				+ KEY_MOCASCORE + " = ?, " + KEY_CUSTOMSCORE + " = ?, " + KEY_CUSTOMMAX + " = ?, "
-				+ KEY_TOTALOT + " = ?, " + KEY_TOTALPT + " = ?, " + KEY_TOTALSLT + " = ? WHERE " + KEY_ROWID + " = " + rowId;
-
-		Cursor c =  db.rawQuery(updateQuery, new String[]{dischargedString,dischargeDate,mocaScore,customScore,customMax,totalOT,totalPT,totalSLT});
-		if (c != null) {
-			c.moveToFirst();
-		}
-		return c;
-	}
 
 	/////////////////////////////////////////////////////////////////////
 	//	Data methods:

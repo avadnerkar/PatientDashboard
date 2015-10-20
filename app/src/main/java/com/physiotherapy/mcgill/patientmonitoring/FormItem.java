@@ -8,7 +8,7 @@ public class FormItem {
     public String dbKey;
     public String title;
     public enum CellType {
-        RADIO, NUMERIC, TEXT, DATEPICKER, DATEPICKERDIALOG
+        RADIO, NUMERIC, TEXT, DATEPICKER, DATEPICKERDIALOG, SCORE
     }
     public CellType cellType;
     public enum Group {
@@ -16,6 +16,7 @@ public class FormItem {
     }
     public Group group;
     public String[] options;
+    public Object misc;
 
 
     public FormItem(String title, CellType cellType, String[] options, String dbKey){

@@ -214,6 +214,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">PatientFormActivity</string>
+    <string name="title_activity_discharge">DischargeActivity</string>
 
 
 

@@ -161,12 +161,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (currentPatientId != -1){
             Cursor cursor = myDb.getRowPatient(currentPatientId);
 
-            String discharged = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_DISCHARGED));
+            String discharged = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_DISCHARGED")));
 
             if (discharged !=null && discharged.equals("Yes")){
                 currentDay = 1;
             } else {
-                String dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ADMISSIONDATE));
+                String dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
                 SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
                 Date admissionDate = today;
@@ -520,9 +520,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             do {
                 // Process the data:
                 int id = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_ROWID));
-                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_HOSPITALID));
-                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_FIRSTNAME));
-                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_LASTNAME));
+                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN")));
+                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME")));
+                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME")));
                 IDarray[cursor.getPosition()] = id;
                 MRNarray[cursor.getPosition()] = mrn;
                 patientListString[cursor.getPosition()] = mrn + " " + firstName + " " + lastName;
@@ -604,14 +604,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     Runnable updatePatientRunnable = new Runnable(){
         public void run(){
-//            Intent intent = new Intent(MainActivity.this, NewPatientFormActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, PatientFormActivity.class);
+            startActivity(intent);
         }
     };
 
     Runnable dischargePatientRunnable = new Runnable(){
         public void run(){
-            Intent intent = new Intent(MainActivity.this, DischargePatientForm.class);
+            Intent intent = new Intent(MainActivity.this, DischargeFormActivity.class);
             startActivity(intent);
         }
     };

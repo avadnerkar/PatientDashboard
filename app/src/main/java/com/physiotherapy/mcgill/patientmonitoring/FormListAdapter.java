@@ -256,6 +256,99 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
                 });
 
                 break;
+
+            case SCORE:
+                rowView = inflater.inflate(R.layout.cell_form_score, parent, false);
+                textView = (TextView) rowView.findViewById(R.id.title);
+                textView.setText(items.get(position).title);
+
+                EditText score = (EditText) rowView.findViewById(R.id.score);
+                EditText total = (EditText) rowView.findViewById(R.id.total);
+
+                if (items.get(position).misc instanceof Integer){
+                    total.setEnabled(false);
+                    total.setText(String.valueOf(items.get(position).misc));
+                }
+
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, items.get(position).dbKey);
+
+                if (cursor.moveToFirst()){
+                    String text = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
+                    if (text !=null){
+                        score.setText(text);
+                    } else {
+                        score.setText("");
+                    }
+
+                } else {
+                    score.setText("");
+                }
+
+                score.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+                        Thread thread = new Thread(){
+                            @Override
+                            public void run() {
+                                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, items.get(position).dbKey, charSequence.toString());
+                            }
+                        };
+                        thread.start();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+                if (items.get(position).misc instanceof String){
+
+                    cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, (String) items.get(position).misc);
+                    if (cursor.moveToFirst()){
+                        String text = cursor.getString(cursor.getColumnIndex((String) items.get(position).misc));
+                        if (text !=null){
+                            total.setText(text);
+                        } else {
+                            total.setText("");
+                        }
+
+                    } else {
+                        total.setText("");
+                    }
+
+                    total.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+                            Thread thread = new Thread(){
+                                @Override
+                                public void run() {
+                                    MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, (String) items.get(position).misc, charSequence.toString());
+                                }
+                            };
+                            thread.start();
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+                }
+
+
+                break;
+
         }
 
 
