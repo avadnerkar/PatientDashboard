@@ -6,7 +6,7 @@
     <string name="title_section1">Nurse</string>
     <string name="title_section2">OT/SLP</string>
     <string name="title_section3">PT</string>
-    <string name="title_section4">CNS</string>
+    <string name="title_section4">Physician</string>
     <string name="patient_new">New patient</string>
     <string name="patient_list">Select patient</string>
     <string name="patient_save">Save</string>
@@ -210,11 +210,20 @@
     <string name="aCnsA2_equal">Equal</string>
     <string name="aCnsA2_unequal">Unequal</string>
 
+    <string name="charlson">Charlson</string>
+    <string name="comorbidity">Co-morbidity</string>
+    <string name="rankin">Rankin</string>
+    <string name="cns">CNS</string>
+    <string name="nihss">NIHSS</string>
+    <string name="toast">Toast</string>
 
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">PatientFormActivity</string>
     <string name="title_activity_discharge">DischargeActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 

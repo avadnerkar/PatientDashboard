@@ -196,7 +196,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
 
     public void notifyAdapters(){
-        CnsFragment.cnsAdapter.notifyDataSetChanged();
+        PhysicianFragment.adapter.notifyDataSetChanged();
         PtFragment.ptAdapter.notifyDataSetChanged();
         OtFragment.otAdapter.notifyDataSetChanged();
         NurseFragment.nurseAdapter.notifyDataSetChanged();
@@ -432,8 +432,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         otLayout.setVisibility(View.INVISIBLE);
         ListView ptLayout = (ListView) findViewById(R.id.ptList);
         ptLayout.setVisibility(View.INVISIBLE);
-        ListView cnsLayout = (ListView) findViewById(R.id.cnsList);
-        cnsLayout.setVisibility(View.INVISIBLE);
+        ListView physicianLayout = (ListView) findViewById(R.id.physicianList);
+        physicianLayout.setVisibility(View.INVISIBLE);
 
         invalidateOptionsMenu();
 
@@ -475,7 +475,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 case 0: return NurseFragment.newInstance(position + 1);
                 case 1: return OtFragment.newInstance(position + 1);
                 case 2: return PtFragment.newInstance(position + 1);
-                case 3: return CnsFragment.newInstance(position + 1);
+                case 3: return PhysicianFragment.newInstance(position + 1);
                 default: return NurseFragment.newInstance(position + 1);
             }
 
@@ -545,8 +545,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         otLayout.setVisibility(View.VISIBLE);
                         ListView ptLayout = (ListView) findViewById(R.id.ptList);
                         ptLayout.setVisibility(View.VISIBLE);
-                        ListView cnsLayout = (ListView) findViewById(R.id.cnsList);
-                        cnsLayout.setVisibility(View.VISIBLE);
+                        ListView physicianLayout = (ListView) findViewById(R.id.physicianList);
+                        physicianLayout.setVisibility(View.VISIBLE);
 
                         invalidateOptionsMenu();
 
