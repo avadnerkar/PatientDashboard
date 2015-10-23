@@ -2,6 +2,8 @@ package com.physiotherapy.mcgill.patientmonitoring;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -58,6 +61,9 @@ public class PhysicianFragment extends Fragment {
                 } else if (items.get(i).equals(getString(R.string.rankin))){
 
                 } else if (items.get(i).equals(getString(R.string.cns))){
+
+                    Intent intent = new Intent(getActivity(), CnsActivity.class);
+                    startActivity(intent);
 
                 } else if (items.get(i).equals(getString(R.string.nihss))){
 
@@ -119,6 +125,35 @@ public class PhysicianFragment extends Fragment {
             rowView = inflater.inflate(R.layout.cell_form_selection, parent, false);
             textView = (TextView) rowView.findViewById(R.id.title);
             textView.setText(items.get(position));
+
+            TextView scoreTextView = (TextView) rowView.findViewById(R.id.score);
+
+            Cursor cursor = MainActivity.myDb.getRowPatient(MainActivity.currentPatientId);
+
+            if (cursor.moveToFirst()){
+                String score = null;
+                if (items.get(position).equals(getString(R.string.charlson))){
+
+                } else if (items.get(position).equals(getString(R.string.comorbidity))){
+
+                } else if (items.get(position).equals(getString(R.string.rankin))){
+
+                } else if (items.get(position).equals(getString(R.string.cns))){
+                    score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS")));
+                } else if (items.get(position).equals(getString(R.string.nihss))){
+                    score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_NIHSS")));
+                } else if (items.get(position).equals(getString(R.string.toast))){
+
+                }
+
+                if (score != null && !score.equals("-1.0")){
+                    scoreTextView.setText(score);
+                } else {
+                    scoreTextView.setText("N/A");
+                }
+            } else {
+                scoreTextView.setText("N/A");
+            }
 
 
             return rowView;

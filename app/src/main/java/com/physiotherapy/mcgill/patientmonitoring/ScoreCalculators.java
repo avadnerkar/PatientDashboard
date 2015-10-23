@@ -293,17 +293,17 @@ public class ScoreCalculators {
     public static float[] cnsScore(Cursor cursor){
         boolean scoreToggle = true;
 
-        String consciousness = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_CONSCIOUSNESS")));
-        String orientation = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_ORIENTATION")));
-        String speech = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_SPEECH")));
-        String face1 = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_FACE1")));
-        String upperLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL")));
-        String upperLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMB_DISTAL")));
-        String lowerLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL")));
-        String lowerLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMB_DISTAL")));
-        String upperLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_UPPER_LIMBS")));
-        String lowerLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_LOWER_LIMBS")));
-        String face2 = cursor.getString(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_CNS_FACE2")));
+        String consciousness = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_CONSCIOUSNESS")));
+        String orientation = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_ORIENTATION")));
+        String speech = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_SPEECH")));
+        String face1 = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_FACE1")));
+        String upperLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL")));
+        String upperLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_DISTAL")));
+        String lowerLimbProximal = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL")));
+        String lowerLimbDistal = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_DISTAL")));
+        String upperLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMBS")));
+        String lowerLimbs = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMBS")));
+        String face2 = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS_FACE2")));
 
 
         int consciousnessInt = 0;

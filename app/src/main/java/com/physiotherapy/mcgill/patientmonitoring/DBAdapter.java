@@ -46,7 +46,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 24;
+	public static final int DATABASE_VERSION = 26;
 
 
 	//Table Create Statements
@@ -86,6 +86,8 @@ public class DBAdapter {
 		patientMap.put("KEY_MOCASCORE","MOCAscore");
 		patientMap.put("KEY_CUSTOMSCORE","CustomScore");
 		patientMap.put("KEY_CUSTOMMAX","CustomMaxScore");
+		patientMap.put("KEY_CNS", "CnsScore");
+		patientMap.put("KEY_NIHSS", "NihssScore");
 
 		patientMap.put("KEY_STROKETYPE","StrokeType");
 		patientMap.put("KEY_FIRSTSTROKE","FirstStroke");
@@ -114,6 +116,18 @@ public class DBAdapter {
 		patientMap.put("KEY_TOTALPT","TotalPTSessions");
 		patientMap.put("KEY_FIRSTSLT","FirstSLTAssessment");
 		patientMap.put("KEY_TOTALSLT","TotalSLTSessions");
+
+		patientMap.put("KEY_CNS_CONSCIOUSNESS", "CnsConsciousness");
+		patientMap.put("KEY_CNS_ORIENTATION", "CnsOrientation");
+		patientMap.put("KEY_CNS_SPEECH", "CnsSpeech");
+		patientMap.put("KEY_CNS_FACE1", "CnsFace1");
+		patientMap.put("KEY_CNS_UPPER_LIMB_PROXIMAL", "CnsUpperLimbProximal");
+		patientMap.put("KEY_CNS_UPPER_LIMB_DISTAL", "CnsUpperLimbDistal");
+		patientMap.put("KEY_CNS_LOWER_LIMB_PROXIMAL", "CnsLowerLimbProximal");
+		patientMap.put("KEY_CNS_LOWER_LIMB_DISTAL", "CnsLowerLimbDistal");
+		patientMap.put("KEY_CNS_UPPER_LIMBS", "CnsUpperLimbs");
+		patientMap.put("KEY_CNS_LOWER_LIMBS", "CnsLowerLimbs");
+		patientMap.put("KEY_CNS_FACE2", "CnsFace2");
 
 		dataMap = new LinkedHashMap<>();
 		dataMap.put("KEY_PARENTID", "ParentID");
@@ -157,22 +171,8 @@ public class DBAdapter {
 		dataMap.put("KEY_LIFTSAFFECTED", "LiftsAffectedLegStanding");
 		dataMap.put("KEY_WALKING", "Walking");
 
-		dataMap.put("KEY_CNS_CONSCIOUSNESS", "CnsConsciousness");
-		dataMap.put("KEY_CNS_ORIENTATION", "CnsOrientation");
-		dataMap.put("KEY_CNS_SPEECH", "CnsSpeech");
-		dataMap.put("KEY_CNS_FACE1", "CnsFace1");
-		dataMap.put("KEY_CNS_UPPER_LIMB_PROXIMAL", "CnsUpperLimbProximal");
-		dataMap.put("KEY_CNS_UPPER_LIMB_DISTAL", "CnsUpperLimbDistal");
-		dataMap.put("KEY_CNS_LOWER_LIMB_PROXIMAL", "CnsLowerLimbProximal");
-		dataMap.put("KEY_CNS_LOWER_LIMB_DISTAL", "CnsLowerLimbDistal");
-		dataMap.put("KEY_CNS_UPPER_LIMBS", "CnsUpperLimbs");
-		dataMap.put("KEY_CNS_LOWER_LIMBS", "CnsLowerLimbs");
-		dataMap.put("KEY_CNS_FACE2", "CnsFace2");
-
 		dataMap.put("KEY_BARTHEL", "EstBarthelScore");
 		dataMap.put("KEY_BERG", "EstBergScore");
-		dataMap.put("KEY_CNS", "CnsScore");
-		dataMap.put("KEY_NIHSS", "NihssScore");
 
 		generateCreatePatientString();
 		generateCreateDataString();

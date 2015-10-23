@@ -43,7 +43,11 @@
         <activity
             android:name=".DischargeFormActivity"
             android:label="@string/title_activity_discharge"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".CnsActivity"
+            android:label="@string/title_activity_cns" >
         </activity>
     </application>
 

@@ -446,6 +446,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+
+        LinearLayout toolbar = (LinearLayout) findViewById(R.id.toolbar);
+        if (tab.getPosition() == 3){
+            toolbar.setVisibility(View.GONE);
+        } else {
+            toolbar.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
