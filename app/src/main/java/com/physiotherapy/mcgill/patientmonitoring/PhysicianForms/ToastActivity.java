@@ -1,9 +1,11 @@
 package com.physiotherapy.mcgill.patientmonitoring.PhysicianForms;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,8 +21,7 @@ import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankinActivity extends ActionBarActivity {
-
+public class ToastActivity extends ActionBarActivity {
 
     private ArrayList<String> items;
     public static ListAdapter adapter;
@@ -29,18 +30,16 @@ public class RankinActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rankin);
+        setContentView(R.layout.activity_toast);
 
         listView = (ListView) findViewById(R.id.list);
 
         items = new ArrayList<>();
-        items.add("0");
         items.add("1");
         items.add("2");
         items.add("3");
         items.add("4");
         items.add("5");
-        items.add("6");
 
         adapter = new ListAdapter(this, items);
         listView.setAdapter(adapter);
@@ -48,7 +47,7 @@ public class RankinActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_RANKIN"), items.get(i));
+                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_TOAST"), items.get(i));
                 PhysicianFragment.adapter.notifyDataSetChanged();
                 finish();
             }
@@ -95,33 +94,26 @@ public class RankinActivity extends ActionBarActivity {
             score.setText(items.get(position));
 
             switch (items.get(position)) {
-                case "0":
-                    description.setText(getString(R.string.rankin0));
-                    break;
                 case "1":
-                    description.setText(getString(R.string.rankin1));
+                    description.setText(getString(R.string.toast1));
                     break;
                 case "2":
-                    description.setText(getString(R.string.rankin2));
+                    description.setText(getString(R.string.toast2));
                     break;
                 case "3":
-                    description.setText(getString(R.string.rankin3));
+                    description.setText(getString(R.string.toast3));
                     break;
                 case "4":
-                    description.setText(getString(R.string.rankin4));
+                    description.setText(getString(R.string.toast4));
                     break;
                 case "5":
-                    description.setText(getString(R.string.rankin5));
-                    break;
-                case "6":
-                    description.setText(getString(R.string.rankin6));
+                    description.setText(getString(R.string.toast5));
                     break;
 
             }
-
-
 
             return convertView;
         }
     }
 }
+

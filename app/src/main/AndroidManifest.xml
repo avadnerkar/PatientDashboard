@@ -61,6 +61,10 @@
             android:name=".PhysicianForms.RankinActivity"
             android:label="@string/title_activity_rankin" >
         </activity>
+        <activity
+            android:name=".PhysicianForms.ToastActivity"
+            android:label="@string/title_activity_toast" >
+        </activity>
     </application>
 
 </manifest>

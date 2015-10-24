@@ -48,7 +48,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 28;
+	public static final int DATABASE_VERSION = 29;
 
 
 	//Table Create Statements
@@ -92,6 +92,7 @@ public class DBAdapter {
 		patientMap.put("KEY_NIHSS", "NihssScore");
 		patientMap.put("KEY_CHARLSON", "CharlsonScore");
 		patientMap.put("KEY_RANKIN", "RankinScore");
+		patientMap.put("KEY_TOAST", "Toast");
 
 		patientMap.put("KEY_STROKETYPE","StrokeType");
 		patientMap.put("KEY_FIRSTSTROKE","FirstStroke");

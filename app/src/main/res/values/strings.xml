@@ -260,6 +260,13 @@
     <string name="rankin6">Dead</string>
 
 
+    <string name="toastTitle">Classification of subtype of acute ischemic stroke (TOAST)</string>
+    <string name="toast1">Large-artery atherosclerosis</string>
+    <string name="toast2">Cardio embolism</string>
+    <string name="toast3">Small-vessel occlusion</string>
+    <string name="toast4">Stroke of other determined etiology</string>
+    <string name="toast5">Stroke of undetermined etiology</string>
+
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">New Patient</string>
     <string name="title_activity_discharge">Discharge Patient</string>
@@ -270,6 +277,7 @@
     <string name="title_activity_charlson">Charlson Questionnaire</string>
     <string name="title_activity_form_template">FormTemplate</string>
     <string name="title_activity_rankin">Modified Rankin Scale</string>
+    <string name="title_activity_toast">TOAST</string>
 
 
 

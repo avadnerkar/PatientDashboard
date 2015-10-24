@@ -13,10 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CharlsonActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.RankinActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.ToastActivity;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 
@@ -73,6 +75,9 @@ public class PhysicianFragment extends Fragment {
                 } else if (items.get(i).equals(getString(R.string.nihss))){
 
                 } else if (items.get(i).equals(getString(R.string.toast))){
+
+                    Intent intent = new Intent(getActivity(), ToastActivity.class);
+                    startActivity(intent);
 
                 }
             }
@@ -146,7 +151,7 @@ public class PhysicianFragment extends Fragment {
                 } else if (items.get(position).equals(getString(R.string.nihss))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_NIHSS")));
                 } else if (items.get(position).equals(getString(R.string.toast))){
-
+                    score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_TOAST")));
                 }
 
                 if (score != null && !score.equals("-1.0")){
