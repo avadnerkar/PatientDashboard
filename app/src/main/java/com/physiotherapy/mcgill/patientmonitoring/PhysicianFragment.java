@@ -42,7 +42,6 @@ public class PhysicianFragment extends Fragment {
 
         items = new ArrayList<>();
         items.add(getString(R.string.charlson));
-        items.add(getString(R.string.comorbidity));
         items.add(getString(R.string.rankin));
         items.add(getString(R.string.cns));
         items.add(getString(R.string.nihss));
@@ -55,8 +54,6 @@ public class PhysicianFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (items.get(i).equals(getString(R.string.charlson))){
-
-                } else if (items.get(i).equals(getString(R.string.comorbidity))){
 
                 } else if (items.get(i).equals(getString(R.string.rankin))){
 
@@ -133,8 +130,6 @@ public class PhysicianFragment extends Fragment {
             if (cursor.moveToFirst()){
                 String score = null;
                 if (items.get(position).equals(getString(R.string.charlson))){
-
-                } else if (items.get(position).equals(getString(R.string.comorbidity))){
 
                 } else if (items.get(position).equals(getString(R.string.rankin))){
 

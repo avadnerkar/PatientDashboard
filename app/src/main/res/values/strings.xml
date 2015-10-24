@@ -215,8 +215,42 @@
     <string name="comorbidity">Co-morbidity</string>
     <string name="rankin">Rankin</string>
     <string name="cns">CNS</string>
-    <string name="nihss">NIHSS</string>
+    <string name="nihss">NIHSS (estimated from CNS)</string>
     <string name="toast">Toast</string>
+
+
+    <string name="charlsonCancer">Cancer</string>
+    <string name="charlsonLiver">Liver</string>
+    <string name="charlsonDiabetes">Diabetes</string>
+    <string name="charlsonCerebrovascular">Cerebrovascular</string>
+    <string name="charlsonAmi">AMI</string>
+    <string name="charlsonChf">CHF</string>
+    <string name="charlsonPvd">PVD</string>
+    <string name="charlsonDementia">Dementia</string>
+    <string name="charlsonCopd">COPD</string>
+    <string name="charlsonRheumatologic">Rheumatologic</string>
+    <string name="charlsonDigestive">Digestive</string>
+    <string name="charlsonRenal">Renal</string>
+    <string name="charlsonHiv">HIV</string>
+
+    <string name="charlsonMetastaticCancer">Metastatic Cancer</string>
+    <string name="charlsonPrimaryCancer">Primary Cancer</string>
+    <string name="charlsonLiverDisease">Moderate/Severe Liver Disease</string>
+    <string name="charlsonMildLiverDisease">Mild Liver Disease</string>
+    <string name="charlsonDiabetesChronic">Diabetes with Chronic Complication</string>
+    <string name="charlsonHemi">Hemi or Paraplegia (use this if second stroke)</string>
+    <string name="charlsonCvd">Cerebrovascular Disease</string>
+    <string name="charlsonAmiOption">Acute Myocardial Infarction</string>
+    <string name="charlsonChfOption">Congestive Heart Failure</string>
+    <string name="charlsonPvdOption">Peripheral Vascular Disease</string>
+    <string name="charlsonDementiaOption">Dementia</string>
+    <string name="charlsonCopdOption">COPD / Other respiratory disease</string>
+    <string name="charlsonRheumatologicOption">Rheumatologic Disease</string>
+    <string name="charlsonDigestiveUlcer">Digestive Ulcer</string>
+    <string name="charlsonRenalDisease">Renal Disease</string>
+    <string name="charlsonHivInfection">HIV Infection</string>
+
+
 
 
     <string name="hello_world">Hello world!</string>
@@ -226,6 +260,8 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_cns">CnsActivity</string>
+    <string name="title_activity_charlson">CharlsonActivity</string>
+    <string name="title_activity_form_template">FormTemplate</string>
 
 
 

@@ -49,6 +49,14 @@
             android:name=".CnsActivity"
             android:label="@string/title_activity_cns" >
         </activity>
+        <activity
+            android:name=".CharlsonActivity"
+            android:label="@string/title_activity_charlson" >
+        </activity>
+        <activity
+            android:name=".FormTemplate"
+            android:label="@string/title_activity_form_template" >
+        </activity>
     </application>
 
 </manifest>

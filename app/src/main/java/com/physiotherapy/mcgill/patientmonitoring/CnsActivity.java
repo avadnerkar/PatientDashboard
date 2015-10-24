@@ -28,13 +28,14 @@ public class CnsActivity extends ActionBarActivity {
     }
     private ArrayList<ItemType> items;
     public static ListAdapter adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cns);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
 
         items = new ArrayList<>();
         items.add(ItemType.CONSCIOUSNESS);
@@ -83,20 +84,34 @@ public class CnsActivity extends ActionBarActivity {
             MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_CONSCIOUSNESS"), null);
             MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_ORIENTATION"), null);
             MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_SPEECH"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_FACE1"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_DISTAL"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_DISTAL"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMBS"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMBS"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_FACE2"), null);
-            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS"), null);
-
+            clearSectionA1();
+            clearSectionA2();
+            clearTotal();
             adapter.notifyDataSetChanged();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearSectionA1(){
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_FACE1"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_DISTAL"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_DISTAL"), null);
+
+    }
+
+    private void clearSectionA2(){
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMBS"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMBS"), null);
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS_FACE2"), null);
+
+    }
+
+    private void clearTotal(){
+        MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CNS"), null);
+
     }
 
 
@@ -107,15 +122,23 @@ public class CnsActivity extends ActionBarActivity {
      * *****************************************************************************************
      */
 
+    private enum SectionView{
+        A1,
+        A2,
+        NONE
+    }
+
     public class ListAdapter extends ArrayAdapter<ItemType> {
         private Context context;
         private List<ItemType> items;
+        private SectionView sectionView;
 
         public ListAdapter(Context context, List<ItemType> items){
             super(context, R.layout.cell_form_selection, items);
             this.context = context;
             this.items = items;
         }
+
 
         //******************************* Array adapter methods ***********************************//
         @Override
@@ -137,7 +160,7 @@ public class CnsActivity extends ActionBarActivity {
             rowView = inflater.inflate(R.layout.cell_daily_radio, parent, false);
             title = (TextView) rowView.findViewById(R.id.title);
 
-            ItemType itemType = items.get(position);
+            final ItemType itemType = items.get(position);
             String[] options = null;
             String dbKey = null;
             switch (itemType){
@@ -161,47 +184,79 @@ public class CnsActivity extends ActionBarActivity {
                     title.setText(getString(R.string.qCnsA1_4));
                     options = new String[]{getString(R.string.aCnsA1_4noWeakness), getString(R.string.aCnsA1_4Weakness)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_FACE1");
+                    if (sectionView != SectionView.A1){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case UPPERLIMBPROXIMAL:
                     title.setText(getString(R.string.qCnsA1_5));
                     options = new String[]{getString(R.string.aCnsA1_noWeakness), getString(R.string.aCnsA1_mildWeakness), getString(R.string.aCnsA1_significantWeakness), getString(R.string.aCnsA1_totalWeakness)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_PROXIMAL");
+                    if (sectionView != SectionView.A1){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case UPPERLIMBDISTAL:
                     title.setText(getString(R.string.qCnsA1_6));
                     options = new String[]{getString(R.string.aCnsA1_noWeakness), getString(R.string.aCnsA1_mildWeakness), getString(R.string.aCnsA1_significantWeakness), getString(R.string.aCnsA1_totalWeakness)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMB_DISTAL");
+                    if (sectionView != SectionView.A1){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case LOWERLIMBPROXIMAL:
                     title.setText(getString(R.string.qCnsA1_7));
                     options = new String[]{getString(R.string.aCnsA1_noWeakness), getString(R.string.aCnsA1_mildWeakness), getString(R.string.aCnsA1_significantWeakness), getString(R.string.aCnsA1_totalWeakness)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_PROXIMAL");
+                    if (sectionView != SectionView.A1){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case LOWERLIMBDISTAL:
                     title.setText(getString(R.string.qCnsA1_8));
                     options = new String[]{getString(R.string.aCnsA1_noWeakness), getString(R.string.aCnsA1_mildWeakness), getString(R.string.aCnsA1_significantWeakness), getString(R.string.aCnsA1_totalWeakness)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMB_DISTAL");
+                    if (sectionView != SectionView.A1){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case UPPERLIMBS:
                     title.setText(getString(R.string.qCnsA2_5));
                     options = new String[]{getString(R.string.aCnsA2_equal), getString(R.string.aCnsA2_unequal)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_UPPER_LIMBS");
+                    if (sectionView != SectionView.A2){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case LOWERLIMBS:
                     title.setText(getString(R.string.qCnsA2_6));
                     options = new String[]{getString(R.string.aCnsA2_equal), getString(R.string.aCnsA2_unequal)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_LOWER_LIMBS");
+                    if (sectionView != SectionView.A2){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
                 case FACE2:
                     title.setText(getString(R.string.qCnsA2_4));
                     options = new String[]{getString(R.string.aCnsA2_4symmetrical), getString(R.string.aCnsA2_4asymmetrical)};
                     dbKey = DBAdapter.patientMap.get("KEY_CNS_FACE2");
+                    if (sectionView != SectionView.A2){
+                        rowView = inflater.inflate(R.layout.cell_null, parent, false);
+                        return rowView;
+                    }
                     break;
             }
 
             final String dbkeyFinal = dbKey;
 
-            RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
+            final RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
             if (options.length >2 && options.length < 7){
                 rg.setOrientation(RadioGroup.VERTICAL);
             } else {
@@ -223,6 +278,22 @@ public class CnsActivity extends ActionBarActivity {
                             }
                         };
                         thread.start();
+                        if (itemType == ItemType.SPEECH) {
+                            int i = rg.indexOfChild(view);
+                            switch (i) {
+                                case 0:
+                                    sectionView = SectionView.A2;
+                                    break;
+                                case 1:
+                                case 2:
+                                    sectionView = SectionView.A1;
+                                    break;
+                            }
+                            clearSectionA1();
+                            clearSectionA2();
+                            clearTotal();
+                            ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
+                        }
 
                     }
                 });
@@ -237,14 +308,34 @@ public class CnsActivity extends ActionBarActivity {
                         String rbString = options[i];
                         if (rbString.equals(radioValue)){
                             ((RadioButton)rg.getChildAt(i)).setChecked(true);
+                            if (itemType==ItemType.SPEECH){
+                                switch (i){
+                                    case 0:
+                                        sectionView = SectionView.A2;
+                                        break;
+                                    case 1:
+                                    case 2:
+                                        sectionView = SectionView.A1;
+                                        break;
+                                }
+                                ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
+                            }
                         }
                     }
                 } else {
                     rg.clearCheck();
+                    if (itemType==ItemType.SPEECH){
+                        sectionView = SectionView.NONE;
+                        ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
+                    }
                 }
 
             } else {
                 rg.clearCheck();
+                if (itemType==ItemType.SPEECH){
+                    sectionView = SectionView.NONE;
+                    ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
+                }
             }
 
             cursor.close();
