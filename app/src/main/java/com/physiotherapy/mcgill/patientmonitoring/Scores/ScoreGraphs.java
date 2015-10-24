@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Scores;
 
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +14,9 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
 
 public class ScoreGraphs extends ActionBarActivity {

@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.PatientForms;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

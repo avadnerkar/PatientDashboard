@@ -1,25 +1,26 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.MainGroup;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CharlsonActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
+import com.physiotherapy.mcgill.patientmonitoring.R;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 /**

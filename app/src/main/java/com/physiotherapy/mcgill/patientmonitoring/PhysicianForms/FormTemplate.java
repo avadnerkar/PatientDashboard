@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.PhysicianForms;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Scores;
 
 import android.database.Cursor;
+
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
 
 public class ScoreCalculators {

@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Scores;
 
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
 
 
 public class ScoreHistory extends ActionBarActivity {

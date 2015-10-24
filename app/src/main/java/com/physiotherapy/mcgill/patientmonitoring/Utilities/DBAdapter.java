@@ -1,7 +1,7 @@
 // ------------------------------------ DBADapter.java ---------------------------------------------
 
 // TODO: Change the package to match your project.
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Utilities;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
 
 import java.util.Calendar;
 import java.util.LinkedHashMap;

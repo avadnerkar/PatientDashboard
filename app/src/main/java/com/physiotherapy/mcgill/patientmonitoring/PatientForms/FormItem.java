@@ -1,24 +1,25 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.PatientForms;
 
 /**
- * Created by Abhishek Vadnerkar on 15-10-12.
+ * Created by Abhishek Vadnerkar on 15-10-17.
  */
-public class DailyItem {
+public class FormItem {
 
     public String dbKey;
     public String title;
     public enum CellType {
-        RADIO, NUMERIC
+        RADIO, NUMERIC, TEXT, DATEPICKER, DATEPICKERDIALOG, SCORE
     }
     public CellType cellType;
     public enum Group {
-        NURSE, OT, PT, CNS
+        REGISTER, DISCHARGE
     }
     public Group group;
     public String[] options;
+    public Object misc;
 
 
-    public DailyItem(String title, CellType cellType, String[] options, String dbKey){
+    public FormItem(String title, CellType cellType, String[] options, String dbKey){
         this.title = title;
         this.cellType = cellType;
         this.options = options;

@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.MainGroup;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,21 +26,24 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opencsv.CSVWriter;
-
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.ActivityIndicator;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
+import com.physiotherapy.mcgill.patientmonitoring.PatientForms.DischargeFormActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PatientForms.PatientFormActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
+import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreCalculators;
+import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreGraphs;
+import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreHistory;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {

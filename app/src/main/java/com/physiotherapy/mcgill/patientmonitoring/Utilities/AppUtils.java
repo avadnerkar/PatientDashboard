@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Utilities;
 
 /**
  * Created by alexandrehuot on 15-10-17.

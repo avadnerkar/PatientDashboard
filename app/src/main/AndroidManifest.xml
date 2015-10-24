@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".MainGroup.MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" >
             <intent-filter>
@@ -20,41 +20,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScoreHistory"
+            android:name=".Scores.ScoreHistory"
             android:label="@string/title_activity_score_history"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainGroup.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.physiotherapy.mcgill.patientmonitoring.MainActivity" />
+                android:value=".MainGroup.MainActivity" />
         </activity>
         <activity
-            android:name=".ScoreGraphs"
+            android:name=".Scores.ScoreGraphs"
             android:label="@string/title_activity_score_graphs"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainGroup.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.physiotherapy.mcgill.patientmonitoring.MainActivity" />
+                android:value=".MainGroup.MainActivity" />
         </activity>
         <activity
-            android:name=".PatientFormActivity"
+            android:name=".PatientForms.PatientFormActivity"
             android:label="@string/title_activity_patient_form"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".DischargeFormActivity"
+            android:name=".PatientForms.DischargeFormActivity"
             android:label="@string/title_activity_discharge"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".CnsActivity"
+            android:name=".PhysicianForms.CnsActivity"
             android:label="@string/title_activity_cns" >
         </activity>
         <activity
-            android:name=".CharlsonActivity"
+            android:name=".PhysicianForms.CharlsonActivity"
             android:label="@string/title_activity_charlson" >
         </activity>
         <activity
-            android:name=".FormTemplate"
+            android:name=".PhysicianForms.FormTemplate"
             android:label="@string/title_activity_form_template" >
         </activity>
     </application>

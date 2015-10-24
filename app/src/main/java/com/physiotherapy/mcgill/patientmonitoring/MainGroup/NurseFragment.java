@@ -1,4 +1,4 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.MainGroup;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
+import com.physiotherapy.mcgill.patientmonitoring.R;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,11 @@
-package com.physiotherapy.mcgill.patientmonitoring;
+package com.physiotherapy.mcgill.patientmonitoring.Utilities;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.physiotherapy.mcgill.patientmonitoring.R;
 
 /**
  * Created by alexandrehuot on 15-10-17.
