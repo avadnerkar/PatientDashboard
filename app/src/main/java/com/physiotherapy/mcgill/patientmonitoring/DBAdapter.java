@@ -46,7 +46,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 26;
+	public static final int DATABASE_VERSION = 27;
 
 
 	//Table Create Statements
@@ -88,6 +88,7 @@ public class DBAdapter {
 		patientMap.put("KEY_CUSTOMMAX","CustomMaxScore");
 		patientMap.put("KEY_CNS", "CnsScore");
 		patientMap.put("KEY_NIHSS", "NihssScore");
+		patientMap.put("KEY_CHARLSON", "CharlsonScore");
 
 		patientMap.put("KEY_STROKETYPE","StrokeType");
 		patientMap.put("KEY_FIRSTSTROKE","FirstStroke");
@@ -128,6 +129,20 @@ public class DBAdapter {
 		patientMap.put("KEY_CNS_UPPER_LIMBS", "CnsUpperLimbs");
 		patientMap.put("KEY_CNS_LOWER_LIMBS", "CnsLowerLimbs");
 		patientMap.put("KEY_CNS_FACE2", "CnsFace2");
+
+		patientMap.put("KEY_CHARLSON_CANCER", "CharlsonCancer");
+		patientMap.put("KEY_CHARLSON_LIVER", "CharlsonLiver");
+		patientMap.put("KEY_CHARLSON_DIABETES", "CharlsonDiabetes");
+		patientMap.put("KEY_CHARLSON_CVD", "CharlsonCVD");
+		patientMap.put("KEY_CHARLSON_AMI", "CharlsonAMI");
+		patientMap.put("KEY_CHARLSON_CHF", "CharlsonCHF");
+		patientMap.put("KEY_CHARLSON_PVD", "CharlsonPVD");
+		patientMap.put("KEY_CHARLSON_DEMENTIA", "CharlsonDementia");
+		patientMap.put("KEY_CHARLSON_COPD", "CharlsonCOPD");
+		patientMap.put("KEY_CHARLSON_RHEUMATOLOGIC", "CharlsonRheumatologic");
+		patientMap.put("KEY_CHARLSON_DIGESTIVE", "CharlsonDigestive");
+		patientMap.put("KEY_CHARLSON_RENAL", "CharlsonRenal");
+		patientMap.put("KEY_CHARLSON_HIV", "CharlsonHIV");
 
 		dataMap = new LinkedHashMap<>();
 		dataMap.put("KEY_PARENTID", "ParentID");

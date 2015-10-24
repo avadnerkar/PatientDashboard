@@ -529,4 +529,10 @@ public class ScoreCalculators {
         return new float[]{score};
     }
 
+
+
+    public static float[] charlsonScore(Cursor cursor){
+        return new float[]{-1};
+    }
+
 }

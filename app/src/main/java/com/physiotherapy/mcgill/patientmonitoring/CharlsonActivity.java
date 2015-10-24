@@ -31,11 +31,24 @@ public class CharlsonActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cns);
+        setContentView(R.layout.activity_charlson);
 
         listView = (ListView) findViewById(R.id.list);
 
         items = new ArrayList<>();
+        items.add(ItemType.CANCER);
+        items.add(ItemType.LIVER);
+        items.add(ItemType.DIABETES);
+        items.add(ItemType.CVD);
+        items.add(ItemType.AMI);
+        items.add(ItemType.CHF);
+        items.add(ItemType.PVD);
+        items.add(ItemType.DEMENTIA);
+        items.add(ItemType.COPD);
+        items.add(ItemType.RHEUMATOLOGICAL);
+        items.add(ItemType.DIGESTIVE);
+        items.add(ItemType.RENAL);
+        items.add(ItemType.HIV);
 
 
         adapter = new ListAdapter(this, items);
@@ -59,8 +72,27 @@ public class CharlsonActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
+            Cursor cursor = MainActivity.myDb.getRowPatient(MainActivity.currentPatientId);
+            float charlsonScore = ScoreCalculators.charlsonScore(cursor)[0];
+            cursor.close();
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON"), String.valueOf(charlsonScore));
+            PhysicianFragment.adapter.notifyDataSetChanged();
+            finish();
             return true;
         } else if (id == R.id.action_delete){
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_CANCER"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_LIVER"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_DIABETES"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_CVD"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_AMI"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_CHF"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_PVD"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_DEMENTIA"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_COPD"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_RHEUMATOLOGIC"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_DIGESTIVE"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_RENAL"), null);
+            MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON_HIV"), null);
 
             adapter.notifyDataSetChanged();
         }
@@ -108,31 +140,69 @@ public class CharlsonActivity extends ActionBarActivity {
 
 
                 case CANCER:
-                    title.setText(getString(R.string.));
+                    title.setText(getString(R.string.charlsonCancer));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_CANCER");
+                    options = new String[]{getString(R.string.charlsonMetastaticCancer), getString(R.string.charlsonPrimaryCancer), getString(R.string.none)};
                     break;
                 case LIVER:
+                    title.setText(getString(R.string.charlsonLiver));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_LIVER");
+                    options = new String[]{getString(R.string.charlsonLiverDisease), getString(R.string.charlsonMildLiverDisease), getString(R.string.none)};
                     break;
                 case DIABETES:
+                    title.setText(getString(R.string.charlsonDiabetes));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_DIABETES");
+                    options = new String[]{getString(R.string.charlsonDiabetesChronic), getString(R.string.charlsonDiabetes), getString(R.string.none)};
                     break;
                 case CVD:
+                    title.setText(getString(R.string.charlsonCerebrovascular));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_CVD");
+                    options = new String[]{getString(R.string.charlsonHemi), getString(R.string.charlsonCvd), getString(R.string.none)};
                     break;
                 case AMI:
+                    title.setText(getString(R.string.charlsonAmi));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_AMI");
+                    options = new String[]{getString(R.string.charlsonAmiOption), getString(R.string.none)};
                     break;
                 case CHF:
+                    title.setText(getString(R.string.charlsonChf));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_CHF");
+                    options = new String[]{getString(R.string.charlsonChfOption), getString(R.string.none)};
                     break;
                 case PVD:
+                    title.setText(getString(R.string.charlsonPvd));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_PVD");
+                    options = new String[]{getString(R.string.charlsonPvdOption), getString(R.string.none)};
                     break;
                 case DEMENTIA:
+                    title.setText(getString(R.string.charlsonDementia));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_DEMENTIA");
+                    options = new String[]{getString(R.string.charlsonDementiaOption), getString(R.string.none)};
                     break;
                 case COPD:
+                    title.setText(getString(R.string.charlsonCopd));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_COPD");
+                    options = new String[]{getString(R.string.charlsonCopdOption), getString(R.string.none)};
                     break;
                 case RHEUMATOLOGICAL:
+                    title.setText(getString(R.string.charlsonRheumatologic));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_RHEUMATOLOGIC");
+                    options = new String[]{getString(R.string.charlsonRheumatologicOption), getString(R.string.none)};
                     break;
                 case DIGESTIVE:
+                    title.setText(getString(R.string.charlsonDigestive));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_DIGESTIVE");
+                    options = new String[]{getString(R.string.charlsonDigestiveUlcer), getString(R.string.none)};
                     break;
                 case RENAL:
+                    title.setText(getString(R.string.charlsonRenal));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_RENAL");
+                    options = new String[]{getString(R.string.charlsonRenalDisease), getString(R.string.none)};
                     break;
                 case HIV:
+                    title.setText(getString(R.string.charlsonHiv));
+                    dbKey = DBAdapter.patientMap.get("KEY_CHARLSON_HIV");
+                    options = new String[]{getString(R.string.charlsonHivInfection), getString(R.string.none)};
                     break;
             }
 

@@ -55,6 +55,9 @@ public class PhysicianFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (items.get(i).equals(getString(R.string.charlson))){
 
+                    Intent intent = new Intent(getActivity(), CharlsonActivity.class);
+                    startActivity(intent);
+
                 } else if (items.get(i).equals(getString(R.string.rankin))){
 
                 } else if (items.get(i).equals(getString(R.string.cns))){
@@ -130,7 +133,7 @@ public class PhysicianFragment extends Fragment {
             if (cursor.moveToFirst()){
                 String score = null;
                 if (items.get(position).equals(getString(R.string.charlson))){
-
+                    score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON")));
                 } else if (items.get(position).equals(getString(R.string.rankin))){
 
                 } else if (items.get(position).equals(getString(R.string.cns))){
