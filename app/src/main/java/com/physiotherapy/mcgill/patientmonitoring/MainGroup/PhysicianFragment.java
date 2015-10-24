@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CharlsonActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.RankinActivity;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 
@@ -60,6 +61,9 @@ public class PhysicianFragment extends Fragment {
                     startActivity(intent);
 
                 } else if (items.get(i).equals(getString(R.string.rankin))){
+
+                    Intent intent = new Intent(getActivity(), RankinActivity.class);
+                    startActivity(intent);
 
                 } else if (items.get(i).equals(getString(R.string.cns))){
 
@@ -136,7 +140,7 @@ public class PhysicianFragment extends Fragment {
                 if (items.get(position).equals(getString(R.string.charlson))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON")));
                 } else if (items.get(position).equals(getString(R.string.rankin))){
-
+                    score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_RANKIN")));
                 } else if (items.get(position).equals(getString(R.string.cns))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS")));
                 } else if (items.get(position).equals(getString(R.string.nihss))){

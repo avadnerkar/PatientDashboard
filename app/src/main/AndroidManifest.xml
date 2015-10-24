@@ -57,6 +57,10 @@
             android:name=".PhysicianForms.FormTemplate"
             android:label="@string/title_activity_form_template" >
         </activity>
+        <activity
+            android:name=".PhysicianForms.RankinActivity"
+            android:label="@string/title_activity_rankin" >
+        </activity>
     </application>
 
 </manifest>

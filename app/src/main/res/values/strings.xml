@@ -251,6 +251,13 @@
     <string name="charlsonHivInfection">HIV Infection</string>
 
 
+    <string name="rankin0">No symptoms at all</string>
+    <string name="rankin1">No significant disability despite symptoms; able to carry out all usual duties and activities</string>
+    <string name="rankin2">Slight disability; unable to carry out all previous activities, but able to look after own affairs without assistance</string>
+    <string name="rankin3">Moderate disability; requiring some help, but able to walk without assistance</string>
+    <string name="rankin4">Moderately severe disability; unable to walk without assistance and unable to attend to own bodily needs without assistance</string>
+    <string name="rankin5">Severe disability; bedridden, incontinent and requiring constant nursing care and attention</string>
+    <string name="rankin6">Dead</string>
 
 
     <string name="hello_world">Hello world!</string>
@@ -262,6 +269,7 @@
     <string name="title_activity_cns">CNS Questionnaire</string>
     <string name="title_activity_charlson">Charlson Questionnaire</string>
     <string name="title_activity_form_template">FormTemplate</string>
+    <string name="title_activity_rankin">Modified Rankin Scale</string>
 
 
 
