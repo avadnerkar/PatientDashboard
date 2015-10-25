@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CharlsonActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.ComplicationsActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.RankinActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.ToastActivity;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
@@ -50,6 +51,7 @@ public class PhysicianFragment extends Fragment {
         items.add(getString(R.string.cns));
         items.add(getString(R.string.nihss));
         items.add(getString(R.string.toast));
+        items.add(getString(R.string.complications));
 
         adapter = new ListAdapter(getActivity(), items);
         listView.setAdapter(adapter);
@@ -78,7 +80,10 @@ public class PhysicianFragment extends Fragment {
 
                     Intent intent = new Intent(getActivity(), ToastActivity.class);
                     startActivity(intent);
+                } else if (items.get(i).equals(getString(R.string.complications))){
 
+                    Intent intent = new Intent(getActivity(), ComplicationsActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -152,6 +157,8 @@ public class PhysicianFragment extends Fragment {
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_NIHSS")));
                 } else if (items.get(position).equals(getString(R.string.toast))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_TOAST")));
+                } else if (items.get(position).equals(getString(R.string.complications))){
+                    score = "";
                 }
 
                 if (score != null && !score.equals("-1.0")){

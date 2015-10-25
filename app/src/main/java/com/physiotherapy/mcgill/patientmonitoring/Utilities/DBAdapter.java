@@ -48,7 +48,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 30;
+	public static final int DATABASE_VERSION = 31;
 
 
 	//Table Create Statements
@@ -144,6 +144,17 @@ public class DBAdapter {
 		patientMap.put("KEY_CHARLSON_DIGESTIVE", "CharlsonDigestive");
 		patientMap.put("KEY_CHARLSON_RENAL", "CharlsonRenal");
 		patientMap.put("KEY_CHARLSON_HIV", "CharlsonHIV");
+
+		patientMap.put("KEY_COMPLICATIONS_SEPSIS", "Sepsis");
+		patientMap.put("KEY_COMPLICATIONS_CEREBRALEDEMA", "CerebralEdema");
+		patientMap.put("KEY_COMPLICATIONS_FALL", "Fall");
+		patientMap.put("KEY_COMPLICATIONS_ICH", "ICH");
+		patientMap.put("KEY_COMPLICATIONS_CHF", "CHF");
+		patientMap.put("KEY_COMPLICATIONS_ARRHYTHMIA", "Arrhythmia");
+		patientMap.put("KEY_COMPLICATIONS_AFIB", "Afib_de_novo");
+		patientMap.put("KEY_COMPLICATIONS_DELIRIUM", "Delirium");
+		patientMap.put("KEY_COMPLICATIONS_UTI", "UTI");
+		patientMap.put("KEY_COMPLICATIONS_PNEUMONIA", "Pneumonia");
 
 		dataMap = new LinkedHashMap<>();
 		dataMap.put("KEY_PARENTID", "ParentID");

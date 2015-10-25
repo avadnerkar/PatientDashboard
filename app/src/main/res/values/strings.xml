@@ -275,6 +275,19 @@
     <string name="dischargePlanningRepatriation">Repatriation</string>
     <string name="dischargePlanningPassedAway">Passed away</string>
 
+    <string name="complications">Major medical complications</string>
+    <string name="complicationsSepsis">Sepsis</string>
+    <string name="complicationsCerebralEdema">Cerebral Edema</string>
+    <string name="complicationsFall">Fall</string>
+    <string name="complicationsICH">ICH</string>
+    <string name="complicationsCHF">CHF</string>
+    <string name="complicationsArrhythmia">Arrhythmia</string>
+    <string name="complicationsAfib">Afib (de novo)</string>
+    <string name="complicationsDelirium">Delirium</string>
+    <string name="complicationsUti">UTI</string>
+    <string name="complicationsPneumonia">Pneumonia</string>
+
+
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">New Patient</string>
     <string name="title_activity_discharge">Discharge Patient</string>
@@ -286,6 +299,7 @@
     <string name="title_activity_form_template">FormTemplate</string>
     <string name="title_activity_rankin">Modified Rankin Scale</string>
     <string name="title_activity_toast">TOAST</string>
+    <string name="title_activity_complications">Complications</string>
 
 
 
