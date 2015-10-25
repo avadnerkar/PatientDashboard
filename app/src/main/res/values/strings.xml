@@ -267,6 +267,14 @@
     <string name="toast4">Stroke of other determined etiology</string>
     <string name="toast5">Stroke of undetermined etiology</string>
 
+
+    <string name="dischargePlanning">Discharge planning</string>
+    <string name="dischargePlanningHome">Home</string>
+    <string name="dischargePlanningRehab">Rehabilitation center</string>
+    <string name="dischargePlanningLongTerm">Long-term care</string>
+    <string name="dischargePlanningRepatriation">Repatriation</string>
+    <string name="dischargePlanningPassedAway">Passed away</string>
+
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">New Patient</string>
     <string name="title_activity_discharge">Discharge Patient</string>

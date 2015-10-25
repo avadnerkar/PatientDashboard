@@ -31,6 +31,7 @@ public class DischargeFormActivity extends ActionBarActivity {
         dischargeFormItems.add(new FormItem(getString(R.string.text_custom), FormItem.CellType.SCORE, new String[]{""}, DBAdapter.patientMap.get("KEY_CUSTOMSCORE")));
         dischargeFormItems.get(dischargeFormItems.size()-1).misc = DBAdapter.patientMap.get("KEY_CUSTOMMAX");
         dischargeFormItems.add(new FormItem(getString(R.string.text_discharge), FormItem.CellType.DATEPICKER, null, DBAdapter.patientMap.get("KEY_DISCHARGEDATE")));
+        dischargeFormItems.add(new FormItem(getString(R.string.dischargePlanning), FormItem.CellType.RADIO, new String[]{getString(R.string.dischargePlanningHome), getString(R.string.dischargePlanningRehab), getString(R.string.dischargePlanningLongTerm), getString(R.string.dischargePlanningRepatriation), getString(R.string.dischargePlanningPassedAway)}, DBAdapter.patientMap.get("KEY_DISCHARGEPLANNING")));
         dischargeFormItems.add(new FormItem(getString(R.string.totalOT), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_TOTALOT")));
         dischargeFormItems.add(new FormItem(getString(R.string.totalPT), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_TOTALPT")));
         dischargeFormItems.add(new FormItem(getString(R.string.totalSLT), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_TOTALSLT")));

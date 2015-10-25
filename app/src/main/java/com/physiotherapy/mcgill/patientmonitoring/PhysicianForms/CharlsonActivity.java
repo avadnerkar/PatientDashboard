@@ -79,7 +79,7 @@ public class CharlsonActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
             Cursor cursor = MainActivity.myDb.getRowPatient(MainActivity.currentPatientId);
-            float charlsonScore = ScoreCalculators.charlsonScore(cursor)[0];
+            float charlsonScore = ScoreCalculators.charlsonScore(cursor, this)[0];
             cursor.close();
             MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_CHARLSON"), String.valueOf(charlsonScore));
             PhysicianFragment.adapter.notifyDataSetChanged();

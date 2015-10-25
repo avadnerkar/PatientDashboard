@@ -1,7 +1,10 @@
 package com.physiotherapy.mcgill.patientmonitoring.Scores;
 
+import android.content.Context;
 import android.database.Cursor;
 
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.R;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
 
@@ -533,8 +536,137 @@ public class ScoreCalculators {
 
 
 
-    public static float[] charlsonScore(Cursor cursor){
-        return new float[]{-1};
+    public static float[] charlsonScore(Cursor cursor, Context context){
+
+        String cancer = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_CANCER")));
+        String liver = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_LIVER")));
+        String diabetes = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_DIABETES")));
+        String cvd = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_CVD")));
+        String ami = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_AMI")));
+        String chf = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_CHF")));
+        String pvd = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_PVD")));
+        String dementia = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_DEMENTIA")));
+        String copd = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_COPD")));
+        String rheumatologic = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_RHEUMATOLOGIC")));
+        String digestive = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_DIGESTIVE")));
+        String renal = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_RENAL")));
+        String hiv = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON_HIV")));
+
+        float charlson = 0;
+
+
+        if (cancer==null) return new float[]{-1};
+        if (cancer.equals(context.getString(R.string.charlsonMetastaticCancer))){
+            charlson = charlson + 6;
+        } else if (cancer.equals(context.getString(R.string.charlsonCancer))){
+            charlson = charlson + 2;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (liver==null) return new float[]{-1};
+        if (liver.equals(context.getString(R.string.charlsonLiverDisease))){
+            charlson = charlson + 3;
+        } else if (liver.equals(context.getString(R.string.charlsonMildLiverDisease))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (diabetes==null) return new float[]{-1};
+        if (diabetes.equals(context.getString(R.string.charlsonDiabetesChronic))){
+            charlson = charlson + 2;
+        } else if (diabetes.equals(context.getString(R.string.charlsonDiabetes))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (cvd==null) return new float[]{-1};
+        if (cvd.equals(context.getString(R.string.charlsonHemi))){
+            charlson = charlson + 2;
+        } else if (cvd.equals(context.getString(R.string.charlsonCvd))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (ami==null) return new float[]{-1};
+        if (ami.equals(context.getString(R.string.charlsonAmiOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (chf==null) return new float[]{-1};
+        if (chf.equals(context.getString(R.string.charlsonChfOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (pvd==null) return new float[]{-1};
+        if (pvd.equals(context.getString(R.string.charlsonPvdOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (dementia==null) return new float[]{-1};
+        if (dementia.equals(context.getString(R.string.charlsonDementiaOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (copd==null) return new float[]{-1};
+        if (copd.equals(context.getString(R.string.charlsonCopdOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (rheumatologic==null) return new float[]{-1};
+        if (rheumatologic.equals(context.getString(R.string.charlsonRheumatologicOption))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (digestive==null) return new float[]{-1};
+        if (digestive.equals(context.getString(R.string.charlsonDigestiveUlcer))){
+            charlson = charlson + 1;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (renal==null) return new float[]{-1};
+        if (renal.equals(context.getString(R.string.charlsonRenalDisease))){
+            charlson = charlson + 2;
+        } else {
+            charlson = charlson + 0;
+        }
+
+
+        if (hiv==null) return new float[]{-1};
+        if (hiv.equals(context.getString(R.string.charlsonHivInfection))){
+            charlson = charlson + 6;
+        } else {
+            charlson = charlson + 0;
+        }
+
+        return new float[]{charlson};
     }
 
 }

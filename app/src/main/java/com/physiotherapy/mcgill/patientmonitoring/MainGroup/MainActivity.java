@@ -530,9 +530,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             do {
                 // Process the data:
                 int id = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_ROWID));
-                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN")));
-                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME")));
-                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME")));
+                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN"))) : "";
+                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) : "";
+                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) : "";
                 IDarray[cursor.getPosition()] = id;
                 MRNarray[cursor.getPosition()] = mrn;
                 patientListString[cursor.getPosition()] = mrn + " " + firstName + " " + lastName;

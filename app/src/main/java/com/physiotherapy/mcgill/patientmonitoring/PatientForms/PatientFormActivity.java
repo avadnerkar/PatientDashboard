@@ -37,22 +37,17 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.first_stroke), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FIRSTSTROKE")));
         patientFormItems.add(new FormItem(getString(R.string.lesion_side), FormItem.CellType.RADIO, new String[]{getString(R.string.left), getString(R.string.right)}, DBAdapter.patientMap.get("KEY_LESIONSIDE")));
         patientFormItems.add(new FormItem(getString(R.string.hemiplegia_side), FormItem.CellType.RADIO, new String[]{getString(R.string.left), getString(R.string.none), getString(R.string.right)}, DBAdapter.patientMap.get("KEY_HEMIPLEGIASIDE")));
-        patientFormItems.add(new FormItem(getString(R.string.consciousness), FormItem.CellType.RADIO, new String[]{getString(R.string.alert), getString(R.string.drowsy), getString(R.string.normal)}, DBAdapter.patientMap.get("KEY_CONSCIOUSNESS")));
+        patientFormItems.add(new FormItem(getString(R.string.consciousness), FormItem.CellType.RADIO, new String[]{getString(R.string.alert), getString(R.string.drowsy)}, DBAdapter.patientMap.get("KEY_CONSCIOUSNESS")));
         patientFormItems.add(new FormItem(getString(R.string.orientation), FormItem.CellType.RADIO, new String[]{getString(R.string.oriented), getString(R.string.disoriented)}, DBAdapter.patientMap.get("KEY_ORIENTATION")));
-        patientFormItems.add(new FormItem(getString(R.string.language), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_LANGUAGE")));
         patientFormItems.add(new FormItem(getString(R.string.visual), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_VISUAL")));
         patientFormItems.add(new FormItem(getString(R.string.hearing_aid), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_HEARINGAID")));
         patientFormItems.add(new FormItem(getString(R.string.hearing_assessed), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_HEARINGASSESSED")));
-        patientFormItems.add(new FormItem(getString(R.string.aphasia), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_APHASIA")));
+        patientFormItems.add(new FormItem(getString(R.string.aphasia), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_APHASIA")));
 
         patientFormItems.add(new FormItem(getString(R.string.qPeg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_PEGADMIT")));
         patientFormItems.add(new FormItem(getString(R.string.qNg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_NGADMIT")));
         patientFormItems.add(new FormItem(getString(R.string.foley), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FOLEYADMIT")));
         patientFormItems.add(new FormItem(getString(R.string.fall_risk), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FALLRISK")));
-        patientFormItems.add(new FormItem(getString(R.string.qMotivation), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_MOTIVATIONADMIT")));
-
-        patientFormItems.add(new FormItem(getString(R.string.other), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_OTHER")));
-        patientFormItems.add(new FormItem(getString(R.string.cognition), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_COGNITION")));
 
         patientFormItems.add(new FormItem(getString(R.string.dateFirstOT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTOT")));
         patientFormItems.add(new FormItem(getString(R.string.dateFirstSwallow), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTSWALLOW")));

@@ -48,7 +48,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 29;
+	public static final int DATABASE_VERSION = 30;
 
 
 	//Table Create Statements
@@ -81,6 +81,7 @@ public class DBAdapter {
 		patientMap.put("KEY_ADMISSIONDATE","AdmissionDate");
 		patientMap.put("KEY_DISCHARGED","Discharged");
 		patientMap.put("KEY_DISCHARGEDATE","DischargeDate");
+		patientMap.put("KEY_DISCHARGEPLANNING", "DischargePlanning");
 		patientMap.put("KEY_PATIENTAGE","PatientAge");
 		patientMap.put("KEY_PATIENTGENDER","PatientGender");
 		patientMap.put("KEY_FIRSTLANGUAGE","FirstLanguage");
@@ -100,7 +101,6 @@ public class DBAdapter {
 		patientMap.put("KEY_HEMIPLEGIASIDE","HemiplegiaSide");
 		patientMap.put("KEY_CONSCIOUSNESS","Consciousness");
 		patientMap.put("KEY_ORIENTATION","Orientation");
-		patientMap.put("KEY_LANGUAGE","Language");
 		patientMap.put("KEY_VISUAL","VisualImpairment");
 		patientMap.put("KEY_HEARINGAID","HearingAid");
 		patientMap.put("KEY_HEARINGASSESSED","HearingAssessed");
@@ -110,9 +110,6 @@ public class DBAdapter {
 		patientMap.put("KEY_NGADMIT","NgAdmission");
 		patientMap.put("KEY_FOLEYADMIT","FoleyAdmission");
 		patientMap.put("KEY_FALLRISK","FallRisk");
-		patientMap.put("KEY_MOTIVATIONADMIT","MotivationAdmission");
-		patientMap.put("KEY_OTHER","OtherHistory");
-		patientMap.put("KEY_COGNITION","Cognition");
 
 		patientMap.put("KEY_FIRSTOT","FirstOTAssessment");
 		patientMap.put("KEY_TOTALOT","TotalOTSessions");
