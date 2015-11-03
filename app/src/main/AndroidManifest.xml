@@ -69,6 +69,10 @@
             android:name=".PhysicianForms.ComplicationsActivity"
             android:label="@string/title_activity_complications" >
         </activity>
+        <activity
+            android:name=".MainGroup.SelectPatientActivity"
+            android:label="@string/title_activity_select_patient" >
+        </activity>
     </application>
 
 </manifest>

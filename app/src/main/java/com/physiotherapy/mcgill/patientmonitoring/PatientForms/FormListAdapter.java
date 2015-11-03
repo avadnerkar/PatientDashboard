@@ -2,6 +2,7 @@ package com.physiotherapy.mcgill.patientmonitoring.PatientForms;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.text.Editable;
 import android.text.InputType;
@@ -18,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 
 import java.text.SimpleDateFormat;
@@ -349,6 +351,24 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
                     });
                 }
 
+
+                break;
+
+            case BUTTON:
+
+                rowView = inflater.inflate(R.layout.cell_form_button, parent, false);
+
+                Button cnsButton = (Button) rowView.findViewById(R.id.button);
+
+                cnsButton.setText(items.get(position).title);
+
+                cnsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, CnsActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
 
                 break;
 

@@ -43,7 +43,6 @@ import com.physiotherapy.mcgill.patientmonitoring.PatientForms.PatientFormActivi
 import com.physiotherapy.mcgill.patientmonitoring.R;
 import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreCalculators;
 import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreGraphs;
-import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreHistory;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -65,12 +64,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public static DBAdapter myDb;
     public int currentPatientIndex;
     public static int currentPatientId;
-    public static int currentDay;
     public static String currentMrn;
+    public static int currentDay;
     public String[] patientListString;
     public int elapsedDays;
     public boolean saveToggle;
     public static Context context;
+    public static ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +78,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         setContentView(R.layout.activity_main);
         openDB();
         currentPatientId = -1;
+        currentMrn = null;
         saveToggle = true;
 
         context = this;
 
         // Set up the action bar.
-        final ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Indigo)));
         actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Indigo)));
@@ -149,6 +150,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+
+        if (currentPatientId == -1){
+
+        } else {
+            ListView nurseLayout = (ListView) findViewById(R.id.nurseList);
+            nurseLayout.setVisibility(View.VISIBLE);
+            ListView otLayout = (ListView) findViewById(R.id.otList);
+            otLayout.setVisibility(View.VISIBLE);
+            ListView ptLayout = (ListView) findViewById(R.id.ptList);
+            ptLayout.setVisibility(View.VISIBLE);
+            ListView physicianLayout = (ListView) findViewById(R.id.physicianList);
+            physicianLayout.setVisibility(View.VISIBLE);
+            getCurrentDay();
+            updateDayView();
+        }
+
     }
 
     @Override
@@ -191,8 +208,34 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     public void updateDayView(){
+
         TextView textView = (TextView) findViewById(R.id.dayNumber);
-        textView.setText("Day " + currentDay);
+        Cursor cursor = myDb.getPatientField(currentPatientId, DBAdapter.patientMap.get("KEY_ADMISSIONDATE"));
+        String dateHint;
+        if (cursor.moveToFirst()){
+            String dateString = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
+
+            SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Calendar calendar = Calendar.getInstance();
+            try{
+                calendar.setTime(form.parse(dateString));
+            } catch (java.text.ParseException e){
+                e.printStackTrace();
+            }
+
+            calendar.add(Calendar.DATE, currentDay-1);
+            SimpleDateFormat form2 = new SimpleDateFormat("EEE dd MMM", Locale.US);
+
+            dateHint = form2.format(calendar.getTime());
+            textView.setText("Day " + currentDay + " (" + dateHint + ")");
+
+
+        } else {
+            textView.setText("Day " + currentDay);
+
+        }
+
+
         notifyAdapters();
 
     }
@@ -229,14 +272,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             menu.findItem(R.id.action_discharge).setVisible(false);
             menu.findItem(R.id.action_update_patient).setVisible(false);
             menu.findItem(R.id.clear).setVisible(false);
-            menu.findItem(R.id.action_score_report).setVisible(false);
             menu.findItem(R.id.action_score_graphs).setVisible(false);
         }
         else{
             menu.findItem(R.id.action_discharge).setVisible(true);
             menu.findItem(R.id.action_update_patient).setVisible(true);
             menu.findItem(R.id.clear).setVisible(true);
-            menu.findItem(R.id.action_score_report).setVisible(true);
             menu.findItem(R.id.action_score_graphs).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -273,7 +314,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             String value = input.getText().toString();
-                            if (value.equals("1379")){
+                            if (value.equals("1379")) {
                                 myDb.deleteAllPatients();
                                 clearPatientSelection();
                                 //loadPatientData();
@@ -282,7 +323,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(context, toastMessage, duration);
                                 toast.show();
-                            } else{
+                            } else {
                                 Context context = getApplicationContext();
                                 CharSequence toastMessage = "Incorrect PIN";
                                 int duration = Toast.LENGTH_SHORT;
@@ -388,11 +429,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             return true;
         }
 
-        if (item.getItemId() == R.id.action_score_report) {
-            scoreReportRunnable.run();
-            return true;
-        }
-
         if (item.getItemId() == R.id.action_score_graphs) {
             scoreGraphsRunnable.run();
             return true;
@@ -414,7 +450,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         if (id == R.id.patient_list) {
-            showPatientList();
+            //showPatientList();
+            Intent intent = new Intent(this, SelectPatientActivity.class);
+            startActivity(intent);
 
             return true;
         }
@@ -425,7 +463,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
 
     public void clearPatientSelection(){
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.app_name);
         currentDay = 1;
         currentPatientId = -1;
@@ -524,7 +562,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         patientListString = new String[cursor.getCount()];
         final int[] IDarray = new int[cursor.getCount()];
-        final String[] MRNarray = new String[cursor.getCount()];
 
         if (cursor.moveToFirst()) {
             do {
@@ -534,7 +571,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) : "";
                 String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) : "";
                 IDarray[cursor.getPosition()] = id;
-                MRNarray[cursor.getPosition()] = mrn;
                 patientListString[cursor.getPosition()] = mrn + " " + firstName + " " + lastName;
 
             } while(cursor.moveToNext());
@@ -544,10 +580,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         currentPatientIndex = which;
-                        ActionBar actionBar = getSupportActionBar();
+                        actionBar = getSupportActionBar();
                         actionBar.setTitle(patientListString[which]);
                         currentPatientId = IDarray[which];
-                        currentMrn = MRNarray[which];
 
                         ListView nurseLayout = (ListView) findViewById(R.id.nurseList);
                         nurseLayout.setVisibility(View.VISIBLE);
@@ -566,6 +601,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     }
                 }
         );
+
 
         builder.show();
 
@@ -592,14 +628,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             currentPatientId = (int) myDb.insertNewPatient();
             Intent intent = new Intent(MainActivity.this, PatientFormActivity.class);
-            startActivity(intent);
-        }
-    };
-
-    Runnable scoreReportRunnable = new Runnable(){
-        public void run(){
-
-            Intent intent = new Intent(MainActivity.this, ScoreHistory.class);
             startActivity(intent);
         }
     };
@@ -759,8 +787,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             do {
                 myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_BARTHEL"), String.valueOf(calculateScores(c, "Barthel")[0]));
                 myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_BERG"), String.valueOf(calculateScores(c, "Berg")[0]));
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_CNS"), String.valueOf(calculateScores(c, "CNS")[0]));
-                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_NIHSS"), String.valueOf(calculateScores(c, "NIHSS")[0]));
+//                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_CNS"), String.valueOf(calculateScores(c, "CNS")[0]));
+//                myDb.updateFieldData(c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_PARENTID"))), c.getInt(c.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY"))), DBAdapter.dataMap.get("KEY_NIHSS"), String.valueOf(calculateScores(c, "NIHSS")[0]));
             } while (c.moveToNext());
         }
 
@@ -779,13 +807,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             case "Berg":
                 return ScoreCalculators.bergScore(cursor);
 
-            case "CNS":
-
-                return ScoreCalculators.cnsScore(cursor);
-
-            case "NIHSS":
-
-                return ScoreCalculators.nihssScore(cursor);
+//            case "CNS":
+//
+//                return ScoreCalculators.cnsScore(cursor);
+//
+//            case "NIHSS":
+//
+//                return ScoreCalculators.nihssScore(cursor);
 
             default:
 

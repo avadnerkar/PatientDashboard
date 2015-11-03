@@ -11,9 +11,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_discharge" android:title="@string/action_discharge"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_score_report" android:title="@string/action_score_report"
-        android:orderInCategory="100" app:showAsAction="never" />
-
     <item android:id="@+id/action_export_csv" android:title="@string/action_export_csv"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/clear" android:title="@string/clear"

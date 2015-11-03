@@ -28,7 +28,6 @@ public class ScoreGraphs extends ActionBarActivity {
 
         plotGraphs();
 
-
     }
 
     public void plotGraphs(){
@@ -84,44 +83,7 @@ public class ScoreGraphs extends ActionBarActivity {
             }
             viewport.setMinY(0);
             viewport.setMaxY(60);
-        } else if (selectedScoreType.equals("CNS")){
-            renderer.setVerticalAxisTitle("CNS");
-
-            float cns;
-            if (cursor.moveToFirst()) {
-                do {
-                    cns = ScoreCalculators.cnsScore(cursor)[0];
-                    if (cns != -1){
-                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY")));
-                        dataPoint = new DataPoint(day,cns);
-                        series.appendData(dataPoint,true,1000);
-                    }
-
-                } while(cursor.moveToNext());
-            }
-            viewport.setMinY(0);
-            viewport.setMaxY(11.5);
-        } else if (selectedScoreType.equals("NIHSS")){
-            renderer.setVerticalAxisTitle("NIHSS");
-
-            float nihss;
-            if (cursor.moveToFirst()) {
-                do {
-                    nihss = ScoreCalculators.nihssScore(cursor)[0];
-                    if (nihss != -1){
-                        day = cursor.getInt(cursor.getColumnIndex(DBAdapter.dataMap.get("KEY_DAY")));
-                        dataPoint = new DataPoint(day,nihss);
-                        series.appendData(dataPoint,true,1000);
-                    }
-
-                } while(cursor.moveToNext());
-            }
-            viewport.setMinY(0);
-            viewport.setMaxY(23);
         }
-
-
-
         cursor.close();
 
         graphView.addSeries(series);
@@ -132,14 +94,6 @@ public class ScoreGraphs extends ActionBarActivity {
     }
 
     public void selectBerg(View view){
-        plotGraphs();
-    }
-
-    public void selectCns(View view){
-        plotGraphs();
-    }
-
-    public void selectNihss(View view){
         plotGraphs();
     }
 

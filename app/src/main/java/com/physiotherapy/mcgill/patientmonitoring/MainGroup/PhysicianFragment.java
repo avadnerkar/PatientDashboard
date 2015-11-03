@@ -71,8 +71,6 @@ public class PhysicianFragment extends Fragment {
 
                 } else if (items.get(i).equals(getString(R.string.cns))){
 
-                    Intent intent = new Intent(getActivity(), CnsActivity.class);
-                    startActivity(intent);
 
                 } else if (items.get(i).equals(getString(R.string.nihss))){
 

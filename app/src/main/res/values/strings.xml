@@ -214,9 +214,10 @@
     <string name="charlson">Charlson</string>
     <string name="comorbidity">Co-morbidity</string>
     <string name="rankin">Rankin</string>
-    <string name="cns">CNS</string>
+    <string name="cns">CNS (filled at admission)</string>
     <string name="nihss">NIHSS (estimated from CNS)</string>
-    <string name="toast">Toast</string>
+    <string name="toast">TOAST</string>
+    <string name="openCnsForm">Open CNS form</string>
 
 
     <string name="charlsonCancer">Cancer</string>
@@ -300,6 +301,7 @@
     <string name="title_activity_rankin">Modified Rankin Scale</string>
     <string name="title_activity_toast">TOAST</string>
     <string name="title_activity_complications">Complications</string>
+    <string name="title_activity_select_patient">SelectPatientActivity</string>
 
 
 

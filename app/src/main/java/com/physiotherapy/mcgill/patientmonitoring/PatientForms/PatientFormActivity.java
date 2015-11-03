@@ -31,9 +31,11 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.select_admission_date), FormItem.CellType.DATEPICKER, null, DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_age), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_PATIENTAGE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_gender), FormItem.CellType.RADIO, new String[]{getString(R.string.female), getString(R.string.male)}, DBAdapter.patientMap.get("KEY_PATIENTGENDER")));
-        patientFormItems.add(new FormItem(getString(R.string.first_language), FormItem.CellType.RADIO, new String[]{getString(R.string.french), getString(R.string.english), getString(R.string.other)}, DBAdapter.patientMap.get("KEY_FIRSTLANGUAGE")));
+        patientFormItems.add(new FormItem(getString(R.string.first_language), FormItem.CellType.RADIO, new String[]{getString(R.string.french), getString(R.string.english), getString(R.string.otherAnswer)}, DBAdapter.patientMap.get("KEY_FIRSTLANGUAGE")));
 
         patientFormItems.add(new FormItem(getString(R.string.stroke_type), FormItem.CellType.RADIO, new String[]{getString(R.string.ischemic), getString(R.string.hemorrhagic), getString(R.string.tia)}, DBAdapter.patientMap.get("KEY_STROKETYPE")));
+        patientFormItems.add(new FormItem(getString(R.string.openCnsForm), FormItem.CellType.BUTTON, null, null));
+
         patientFormItems.add(new FormItem(getString(R.string.first_stroke), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FIRSTSTROKE")));
         patientFormItems.add(new FormItem(getString(R.string.lesion_side), FormItem.CellType.RADIO, new String[]{getString(R.string.left), getString(R.string.right)}, DBAdapter.patientMap.get("KEY_LESIONSIDE")));
         patientFormItems.add(new FormItem(getString(R.string.hemiplegia_side), FormItem.CellType.RADIO, new String[]{getString(R.string.left), getString(R.string.none), getString(R.string.right)}, DBAdapter.patientMap.get("KEY_HEMIPLEGIASIDE")));
