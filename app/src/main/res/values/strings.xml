@@ -148,7 +148,7 @@
     <!-- CNS strings -->
     <string name="qCns1">Consciousness </string>
     <string name="qCns2">Orientation</string>
-    <string name="qCns3">Speech</string>
+    <string name="qCns3">Aphasia</string>
     <string name="qCnsA1_4">Face</string>
     <string name="qCnsA1_5">Upper Limb (proximal)</string>
     <string name="qCnsA1_6">Upper Limb (distal)</string>
@@ -301,7 +301,7 @@
     <string name="title_activity_rankin">Modified Rankin Scale</string>
     <string name="title_activity_toast">TOAST</string>
     <string name="title_activity_complications">Complications</string>
-    <string name="title_activity_select_patient">SelectPatientActivity</string>
+    <string name="title_activity_select_patient">Select Patient</string>
 
 
 

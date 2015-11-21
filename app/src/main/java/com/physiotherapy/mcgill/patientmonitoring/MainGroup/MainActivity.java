@@ -229,6 +229,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             dateHint = form2.format(calendar.getTime());
             textView.setText("Day " + currentDay + " (" + dateHint + ")");
 
+            if (calendar.get(Calendar.DAY_OF_WEEK)==1 || calendar.get(Calendar.DAY_OF_WEEK)==7){
+                textView.setTextColor(getResources().getColor(R.color.Green));
+            } else {
+                textView.setTextColor(getResources().getColor(R.color.White));
+            }
+
 
         } else {
             textView.setText("Day " + currentDay);

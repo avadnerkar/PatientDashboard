@@ -14,18 +14,47 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.ComplicationsActivity;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SelectPatientActivity extends ActionBarActivity {
 
-    private ArrayList<String> items;
+    private ArrayList<Patient> items;
     public static ListAdapter adapter;
     private ListView listView;
-    private boolean[] DischargeArray;
+    //private boolean[] DischargeArray;
+
+    public class Patient {
+        public boolean discharged;
+        public int id;
+        public String mrn;
+        public String title;
+
+        public Patient(String title, int id, String mrn, boolean discharged){
+            this.title = title;
+            this.id = id;
+            this.mrn = mrn;
+            this.discharged = discharged;
+        }
+    }
+
+    public class DischargeComparator implements Comparator<Patient>{
+
+        @Override
+        public int compare(Patient o1, Patient o2) {
+            if (o1.discharged == o2.discharged){
+                return 0;
+            } else {
+                return o1.discharged? -1:1;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +66,9 @@ public class SelectPatientActivity extends ActionBarActivity {
         Cursor cursor = MainActivity.myDb.getAllRowPatients();
 
         items = new ArrayList<>();
-        final int[] IDarray = new int[cursor.getCount()];
-        final String[] MrnArray = new String[cursor.getCount()];
-        DischargeArray = new boolean[cursor.getCount()];
+        //final int[] IDarray = new int[cursor.getCount()];
+        //final String[] MrnArray = new String[cursor.getCount()];
+        //DischargeArray = new boolean[cursor.getCount()];
 
         if (cursor.moveToFirst()) {
             do {
@@ -54,14 +83,15 @@ public class SelectPatientActivity extends ActionBarActivity {
                 } else {
                     discharged = false;
                 }
-                IDarray[cursor.getPosition()] = id;
-                MrnArray[cursor.getPosition()] = mrn;
-                DischargeArray[cursor.getPosition()] = discharged;
-                items.add(mrn + " " + firstName + " " + lastName);
+                //IDarray[cursor.getPosition()] = id;
+                //MrnArray[cursor.getPosition()] = mrn;
+                //DischargeArray[cursor.getPosition()] = discharged;
+                items.add(new Patient(mrn + " " + firstName + " " + lastName, id, mrn, discharged));
 
             } while(cursor.moveToNext());
         }
 
+        Collections.sort(items, new DischargeComparator());
 
         adapter = new ListAdapter(this, items);
         listView.setAdapter(adapter);
@@ -69,9 +99,9 @@ public class SelectPatientActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MainActivity.currentPatientId = IDarray[i];
-                MainActivity.actionBar.setTitle(items.get(i));
-                MainActivity.currentMrn = MrnArray[i];
+                MainActivity.currentPatientId = items.get(i).id;
+                MainActivity.actionBar.setTitle(items.get(i).title);
+                MainActivity.currentMrn = items.get(i).mrn;
                 finish();
             }
         });
@@ -79,11 +109,11 @@ public class SelectPatientActivity extends ActionBarActivity {
     }
 
 
-    public class ListAdapter extends ArrayAdapter<String> {
+    public class ListAdapter extends ArrayAdapter<Patient> {
         private Context context;
-        private List<String> items;
+        private List<Patient> items;
 
-        public ListAdapter(Context context, List<String> items){
+        public ListAdapter(Context context, List<Patient> items){
             super(context, R.layout.cell_rankin, items);
             this.context = context;
             this.items = items;
@@ -110,11 +140,11 @@ public class SelectPatientActivity extends ActionBarActivity {
             }
 
             TextView title = (TextView) convertView.findViewById(R.id.title);
-            title.setText(items.get(position));
+            title.setText(items.get(position).title);
 
             TextView description = (TextView) convertView.findViewById(R.id.description);
 
-            if (DischargeArray[position]){
+            if (items.get(position).discharged){
                 description.setTextColor(getResources().getColor(R.color.Red));
                 description.setText("Discharged");
             } else {

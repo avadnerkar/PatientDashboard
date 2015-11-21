@@ -111,6 +111,9 @@ public class DBAdapter {
 		patientMap.put("KEY_FOLEYADMIT","FoleyAdmission");
 		patientMap.put("KEY_FALLRISK","FallRisk");
 
+		patientMap.put("KEY_INTERVENTIONLEVEL","LevelOfIntervention");
+		patientMap.put("KEY_DEPRESSED","Depressed");
+
 		patientMap.put("KEY_FIRSTOT","FirstOTAssessment");
 		patientMap.put("KEY_TOTALOT","TotalOTSessions");
 		patientMap.put("KEY_FIRSTSWALLOW","FirstSwallowAssessment");
@@ -447,11 +450,16 @@ public class DBAdapter {
 					+ " to " + newVersion + ", attempting to keep old data");
 			
 			// Destroy old database:
-			_db.execSQL("DROP TABLE IF EXISTS " + PATIENT_TABLE);
-			_db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE);
+			//_db.execSQL("DROP TABLE IF EXISTS " + PATIENT_TABLE);
+			//_db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE);
 
 			//If column adding is needed:
-			//_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + KEY_CNS_CONSCIOUSNESS + " text");
+
+//			if (oldVersion < 32){
+//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + patientMap.get("KEY_INTERVENTIONLEVEL") + " text");
+//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + patientMap.get("KEY_DEPRESSED") + " text");
+//			}
+
 
 			
 			// Recreate new database:

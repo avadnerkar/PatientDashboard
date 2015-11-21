@@ -7,13 +7,17 @@ import android.database.Cursor;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -371,6 +375,78 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
                 });
 
                 break;
+
+            case CHECKBOX:
+                rowView = inflater.inflate(R.layout.cell_form_checkbox, parent, false);
+
+                textView = (TextView) rowView.findViewById(R.id.title);
+                textView.setText(items.get(position).title);
+
+                final LinearLayout cg = (LinearLayout) rowView.findViewById(R.id.checkGroup);
+
+                if (items.get(position).options.length >2 && items.get(position).options.length < 7){
+                    cg.setOrientation(RadioGroup.VERTICAL);
+                } else {
+                    cg.setOrientation(RadioGroup.HORIZONTAL);
+                }
+
+                for (int i=0; i<items.get(position).options.length; i++){
+                    CheckBox cb = new CheckBox(context);
+                    cb.setText(items.get(position).options[i]);
+                    cg.addView(cb);
+
+
+                    cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            Thread thread = new Thread() {
+                                @Override
+                                public void run() {
+                                    String answer = "";
+                                    for (int i = 0; i < cg.getChildCount(); i++) {
+                                        CheckBox cb = (CheckBox) cg.getChildAt(i);
+                                        if (cb.isChecked()) {
+                                            answer = answer + cb.getText().toString();
+                                        }
+                                    }
+
+                                    MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, items.get(position).dbKey, answer);
+                                }
+                            };
+                            thread.start();
+                        }
+                    });
+
+                }
+
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, items.get(position).dbKey);
+
+                if (cursor.moveToFirst()){
+                    String answer = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
+
+                    if (answer != null){
+                        for (int i =0; i<cg.getChildCount(); i++){
+                            if (answer.contains(items.get(position).options[i])){
+                                ((CheckBox) cg.getChildAt(i)).setChecked(true);
+                            } else {
+                                ((CheckBox) cg.getChildAt(i)).setChecked(false);
+                            }
+                        }
+                    } else {
+                        for (int i=0; i<cg.getChildCount(); i++){
+                            CheckBox box = (CheckBox) cg.getChildAt(i);
+                            box.setChecked(false);
+                        }
+                    }
+
+                } else {
+                    for (int i=0; i<cg.getChildCount(); i++){
+                        CheckBox box = (CheckBox) cg.getChildAt(i);
+                        box.setChecked(false);
+                    }
+                }
+
+                cursor.close();
 
         }
 

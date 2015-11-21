@@ -31,7 +31,7 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.select_admission_date), FormItem.CellType.DATEPICKER, null, DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_age), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_PATIENTAGE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_gender), FormItem.CellType.RADIO, new String[]{getString(R.string.female), getString(R.string.male)}, DBAdapter.patientMap.get("KEY_PATIENTGENDER")));
-        patientFormItems.add(new FormItem(getString(R.string.first_language), FormItem.CellType.RADIO, new String[]{getString(R.string.french), getString(R.string.english), getString(R.string.otherAnswer)}, DBAdapter.patientMap.get("KEY_FIRSTLANGUAGE")));
+        patientFormItems.add(new FormItem(getString(R.string.first_language), FormItem.CellType.CHECKBOX, new String[]{getString(R.string.french), getString(R.string.english), getString(R.string.otherAnswer)}, DBAdapter.patientMap.get("KEY_FIRSTLANGUAGE")));
 
         patientFormItems.add(new FormItem(getString(R.string.stroke_type), FormItem.CellType.RADIO, new String[]{getString(R.string.ischemic), getString(R.string.hemorrhagic), getString(R.string.tia)}, DBAdapter.patientMap.get("KEY_STROKETYPE")));
         patientFormItems.add(new FormItem(getString(R.string.openCnsForm), FormItem.CellType.BUTTON, null, null));
@@ -44,7 +44,7 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.visual), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_VISUAL")));
         patientFormItems.add(new FormItem(getString(R.string.hearing_aid), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_HEARINGAID")));
         patientFormItems.add(new FormItem(getString(R.string.hearing_assessed), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_HEARINGASSESSED")));
-        patientFormItems.add(new FormItem(getString(R.string.aphasia), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_APHASIA")));
+        patientFormItems.add(new FormItem(getString(R.string.aphasia), FormItem.CellType.RADIO, new String[]{getString(R.string.aCns3receptiveDeficit), getString(R.string.aCns3expressiveDeficit), getString(R.string.aCns3normal)}, DBAdapter.patientMap.get("KEY_APHASIA")));
 
         patientFormItems.add(new FormItem(getString(R.string.qPeg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_PEGADMIT")));
         patientFormItems.add(new FormItem(getString(R.string.qNg), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_NGADMIT")));
