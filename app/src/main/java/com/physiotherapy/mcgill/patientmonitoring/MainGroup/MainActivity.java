@@ -694,8 +694,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
                     saveScores();
 
-                    Cursor c = myDb.getAllRowData();
+                    List<String> dataKeys = new ArrayList<>(DBAdapter.dataMap.values());
+                    Cursor c = myDb.getAllRowDataOrdered(dataKeys.toArray(new String[dataKeys.size()]));
                     writer.writeNext(c.getColumnNames());
+
                     if (c.moveToFirst()){
                         do {
                             List<String> list = new ArrayList<>();
@@ -732,7 +734,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 try {
                     CSVWriter writer = new CSVWriter(new FileWriter(filename), '\t');
                     writer.writeNext(new String[]{"sep=\t"});
-                    Cursor c = myDb.getAllRowPatients();
+
+                    List<String> patientKeys = new ArrayList<>(DBAdapter.patientMap.values());
+                    Cursor c = myDb.getAllRowPatientsOrdered(patientKeys.toArray(new String[patientKeys.size()]));
                     writer.writeNext(c.getColumnNames());
                     if (c.moveToFirst()){
                         do {

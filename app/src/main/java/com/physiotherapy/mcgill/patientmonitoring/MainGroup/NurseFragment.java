@@ -40,8 +40,11 @@ public class NurseFragment extends Fragment {
         nurseDailyItems.add(new DailyItem(getString(R.string.qBedbars), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEDBARS")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qBehavioural), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEHAVIOURAL")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qConfusion), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CONFUSION")));
-        nurseDailyItems.add(new DailyItem(getString(R.string.qBladder), DailyItem.CellType.RADIO, new String[]{getString(R.string.foley), getString(R.string.diaper), getString(R.string.bedpan), getString(R.string.toilet)}, DBAdapter.dataMap.get("KEY_BLADDER")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qBladder), DailyItem.CellType.RADIO, new String[]{getString(R.string.foley), getString(R.string.condom), getString(R.string.diaper), getString(R.string.bedpan), getString(R.string.toilet)}, DBAdapter.dataMap.get("KEY_BLADDER")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qHours), DailyItem.CellType.NUMERIC, new String[]{getString(R.string.hoursHint)}, DBAdapter.dataMap.get("KEY_HOURS")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qSleepApnea), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_SLEEPAPNEA")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qLongTermCare), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_LONGTERMCARE")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qFallOccurrence), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_FALLOCCURRENCE")));
 
         for (DailyItem item : nurseDailyItems){
             item.group = DailyItem.Group.NURSE;

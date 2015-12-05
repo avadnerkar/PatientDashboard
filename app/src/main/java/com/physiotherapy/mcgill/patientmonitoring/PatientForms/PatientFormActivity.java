@@ -1,11 +1,13 @@
 package com.physiotherapy.mcgill.patientmonitoring.PatientForms;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 
@@ -51,6 +53,9 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.foley), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FOLEYADMIT")));
         patientFormItems.add(new FormItem(getString(R.string.fall_risk), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FALLRISK")));
 
+        patientFormItems.add(new FormItem(getString(R.string.levelOfIntervention), FormItem.CellType.RADIO, new String[]{"1", "2", "3", "4"}, DBAdapter.patientMap.get("KEY_INTERVENTIONLEVEL")));
+        patientFormItems.add(new FormItem(getString(R.string.depressed), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_DEPRESSED")));
+
         patientFormItems.add(new FormItem(getString(R.string.dateFirstOT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTOT")));
         patientFormItems.add(new FormItem(getString(R.string.dateFirstSwallow), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTSWALLOW")));
         patientFormItems.add(new FormItem(getString(R.string.dateFirstPT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTPT")));
@@ -80,6 +85,22 @@ public class PatientFormActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.patient_save) {
+
+            Cursor cursor = MainActivity.myDb.getRowPatient(MainActivity.currentPatientId);
+
+            if (cursor.moveToFirst()){
+                String mrn = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_MRN"))) : "";
+                String firstName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_FIRSTNAME"))) : "";
+                String lastName = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) != null ? cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_LASTNAME"))) : "";
+
+                MainActivity.actionBar.setTitle(mrn + " " + firstName + " " + lastName);
+                MainActivity.currentMrn = mrn;
+
+            }
+
+
+
+
             finish();
             return true;
         }

@@ -48,7 +48,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 31;
+	public static final int DATABASE_VERSION = 35;
 
 
 	//Table Create Statements
@@ -75,6 +75,7 @@ public class DBAdapter {
 	public DBAdapter open() {
 
 		patientMap = new LinkedHashMap<>();
+		patientMap.put("KEY_ROWID", KEY_ROWID);
 		patientMap.put("KEY_FIRSTNAME","FirstName");
 		patientMap.put("KEY_LASTNAME","LastName");
 		patientMap.put("KEY_MRN","MRN");
@@ -160,6 +161,7 @@ public class DBAdapter {
 		patientMap.put("KEY_COMPLICATIONS_PNEUMONIA", "Pneumonia");
 
 		dataMap = new LinkedHashMap<>();
+		dataMap.put("KEY_ROWID", KEY_ROWID);
 		dataMap.put("KEY_PARENTID", "ParentID");
 		dataMap.put("KEY_MRN", "MRNnumber");
 		dataMap.put("KEY_DAY", "Day");
@@ -175,6 +177,9 @@ public class DBAdapter {
 		dataMap.put("KEY_CONFUSION", "Confusion");
 		dataMap.put("KEY_BLADDER", "BladderControl");
 		dataMap.put("KEY_HOURS", "EstimatedHoursOutOfBed");
+		dataMap.put("KEY_SLEEPAPNEA", "SleepApnea");
+		dataMap.put("KEY_LONGTERMCARE", "LongTermCareDeclared");
+		dataMap.put("KEY_FALLOCCURRENCE", "FallOccurrence");
 
 		dataMap.put("KEY_NEGLECT", "Neglect");
 		dataMap.put("KEY_DIGITSPAN", "DigitSpan");
@@ -216,8 +221,12 @@ public class DBAdapter {
 	private void generateCreatePatientString(){
 		PATIENT_CREATE_SQL = "create table " + PATIENT_TABLE + " (" + KEY_ROWID + " integer primary key autoincrement, ";
 
+		int index = 0;
 		for (String key : patientMap.keySet()){
-			PATIENT_CREATE_SQL = PATIENT_CREATE_SQL + patientMap.get(key) + " text, ";
+			if (index>0){
+				PATIENT_CREATE_SQL = PATIENT_CREATE_SQL + patientMap.get(key) + " text, ";
+			}
+			index++;
 		}
 
 		PATIENT_CREATE_SQL = PATIENT_CREATE_SQL.substring(0, PATIENT_CREATE_SQL.length()-2); //Trim last comma
@@ -227,8 +236,12 @@ public class DBAdapter {
 	private void generateCreateDataString(){
 		DATA_CREATE_SQL = "create table " + DATA_TABLE + " (" + KEY_ROWID + " integer primary key autoincrement, ";
 
+		int index = 0;
 		for (String key : dataMap.keySet()){
-			DATA_CREATE_SQL = DATA_CREATE_SQL + dataMap.get(key) + " text, ";
+			if (index>0){
+				DATA_CREATE_SQL = DATA_CREATE_SQL + dataMap.get(key) + " text, ";
+			}
+			index++;
 		}
 		DATA_CREATE_SQL = DATA_CREATE_SQL.substring(0, DATA_CREATE_SQL.length()-2); //Trim last comma
 		DATA_CREATE_SQL = DATA_CREATE_SQL + ");";
@@ -313,6 +326,15 @@ public class DBAdapter {
 		return c;
 	}
 
+	public Cursor getAllRowPatientsOrdered(String[] keys){
+		String where = null;
+		Cursor c = db.query(true, PATIENT_TABLE, keys, where, null, null, null, null, null);
+		if (c !=null){
+			c.moveToFirst();
+		}
+		return c;
+	}
+
 	// Get a specific row (by rowId)
 	public Cursor getRowPatient(long rowId) {
 		String where = KEY_ROWID + "=" + rowId;
@@ -332,6 +354,8 @@ public class DBAdapter {
 		}
 		return c;
 	}
+
+
 
 	public boolean updateFieldPatient(int rowId, String key, String value){
 
@@ -371,6 +395,15 @@ public class DBAdapter {
 		Cursor c = 	db.query(true, DATA_TABLE, null,
 				where, null, null, null, null, null);
 		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
+	}
+
+	public Cursor getAllRowDataOrdered(String[] keys){
+		String where = null;
+		Cursor c = db.query(true, DATA_TABLE, keys, where, null, null, null, null, null);
+		if (c !=null){
 			c.moveToFirst();
 		}
 		return c;
@@ -455,15 +488,22 @@ public class DBAdapter {
 
 			//If column adding is needed:
 
-//			if (oldVersion < 32){
-//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + patientMap.get("KEY_INTERVENTIONLEVEL") + " text");
-//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + patientMap.get("KEY_DEPRESSED") + " text");
-//			}
+			if (oldVersion < 33){
+				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_INTERVENTIONLEVEL") + " text");
+				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_DEPRESSED") + " text");
+			}
+
+			if (oldVersion < 34){
+				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_SLEEPAPNEA") + " text");
+				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_LONGTERMCARE") + " text");
+				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_FALLOCCURRENCE") + " text");
+
+			}
 
 
-			
+
 			// Recreate new database:
-			onCreate(_db);
+			//onCreate(_db);
 		}
 	}
 }

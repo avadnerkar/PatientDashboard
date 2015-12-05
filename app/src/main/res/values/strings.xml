@@ -45,6 +45,8 @@
     <string name="fall_risk">Fall risk</string>
     <string name="other">Other history</string>
     <string name="cognition">Cognition</string>
+    <string name="levelOfIntervention">Level of intervention</string>
+    <string name="depressed">Depressed</string>
     <string name="dateFirstOT">Date of first OT assessment</string>
     <string name="dateFirstSwallow">Date of first Swallowing assessment</string>
     <string name="dateFirstPT">Date of first PT assessment</string>
@@ -106,15 +108,17 @@
     <string name="qNg">NG tube</string>
     <string name="qO2">O2</string>
     <string name="qIv">Venous line</string>
-    <string name="qCpap">CPAP</string>
+    <string name="qCpap">CPAP/Vent/Trach</string>
     <string name="qRestraint">Restraint</string>
     <string name="qBedbars">Bed bars</string>
     <string name="qBehavioural">Behavioural issue</string>
     <string name="qConfusion">Confusion</string>
     <string name="qBladder">Bladder</string>
-    <string name="qHours">Hours out of bed (day shift)</string>
+    <string name="qHours">Hours out of bed</string>
     <string name="hoursHint">Enter number of hours</string>
-
+    <string name="qSleepApnea">Sleep Apnea</string>
+    <string name="qLongTermCare">Long term care declared</string>
+    <string name="qFallOccurrence">Fall occurrence</string>
 
     <!-- OT strings -->
     <string name="qNeglect">Neglect</string>
@@ -190,8 +194,11 @@
     <string name="otherAnswer">Other</string>
     <string name="foley">Foley</string>
     <string name="diaper">Diaper</string>
-    <string name="bedpan">Bedpan</string>
+    <string name="condom">Condom</string>
+    <string name="bedpan">Bedpan/Urinal</string>
     <string name="toilet">Toilet</string>
+    <string name="vent">Vent</string>
+    <string name="trach">Trach</string>
 
     <string name="aCns1alert">Alert</string>
     <string name="aCns1drowsy">Drowsy</string>
