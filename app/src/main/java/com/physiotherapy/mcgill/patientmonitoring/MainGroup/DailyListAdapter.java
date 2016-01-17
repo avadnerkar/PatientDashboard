@@ -15,8 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.physiotherapy.mcgill.patientmonitoring.R;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 public class DailyListAdapter extends ArrayAdapter<DailyItem> {
@@ -102,7 +106,7 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
                 textView = (TextView) rowView.findViewById(R.id.title);
                 textView.setText(items.get(position).title);
 
-                RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
+                final RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
 
                 if (items.get(position).options.length >2 && items.get(position).options.length < 7){
                     rg.setOrientation(RadioGroup.VERTICAL);
@@ -123,6 +127,34 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
                                 @Override
                                 public void run() {
                                     MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, ((RadioButton) view).getText().toString());
+
+                                    if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_LONGTERMCARE"))){
+                                        Calendar c = Calendar.getInstance();
+
+                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                        String formattedDate = df.format(c.getTime());
+                                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, DBAdapter.dataMap.get("KEY_LONGTERMCARE_DECLARED"), formattedDate);
+
+                                    }
+
+                                    if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_DSIE"))){
+                                        Calendar c = Calendar.getInstance();
+
+                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                        String formattedDate = df.format(c.getTime());
+                                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, DBAdapter.dataMap.get("KEY_DSIE_DECLARED"), formattedDate);
+
+                                    }
+
+                                    if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION"))){
+                                        Calendar c = Calendar.getInstance();
+
+                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                        String formattedDate = df.format(c.getTime());
+                                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, DBAdapter.dataMap.get("KEY_REPATRIATION_DECLARED"), formattedDate);
+
+                                    }
+
                                 }
                             };
                             thread.start();
@@ -142,9 +174,36 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
                                 ((RadioButton)rg.getChildAt(i)).setChecked(true);
                             }
                         }
+                    } else if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_LONGTERMCARE")) ||
+                            items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_DSIE")) ||
+                            items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION"))){
+
+                        ((RadioButton)rg.getChildAt(1)).setChecked(true);
+
+                        Thread thread = new Thread(){
+                            @Override
+                            public void run() {
+                                MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, ((RadioButton)rg.getChildAt(1)).getText().toString());
+                            }
+                        };
+                        thread.start();
+
                     } else {
                         rg.clearCheck();
                     }
+
+                } else if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_LONGTERMCARE")) ||
+                        items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_DSIE")) ||
+                        items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION"))){
+
+                    ((RadioButton)rg.getChildAt(1)).setChecked(true);
+                    Thread thread = new Thread(){
+                        @Override
+                        public void run() {
+                            MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, items.get(position).dbKey, ((RadioButton)rg.getChildAt(1)).getText().toString());
+                        }
+                    };
+                    thread.start();
 
                 } else {
                     rg.clearCheck();

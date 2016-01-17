@@ -104,7 +104,7 @@
 
 
     <!-- Nurse strings -->
-    <string name="qPeg">PEG/RIG</string>
+    <string name="qPeg">PEG/REG/NG tube</string>
     <string name="qNg">NG tube</string>
     <string name="qO2">O2</string>
     <string name="qIv">Venous line</string>
@@ -119,6 +119,8 @@
     <string name="qSleepApnea">Sleep Apnea</string>
     <string name="qLongTermCare">Long term care declared</string>
     <string name="qFallOccurrence">Fall occurrence</string>
+    <string name="qDSIE">DSIE sent</string>
+    <string name="qRepatriation">Repatriation declared</string>
 
     <!-- OT strings -->
     <string name="qNeglect">Neglect</string>
@@ -184,7 +186,8 @@
     <string name="oriented">Oriented</string>
     <string name="disoriented">Disoriented</string>
     <string name="ischemic">Ischemic</string>
-    <string name="hemorrhagic">Hemorrhagic</string>
+    <string name="hemorrhagic_ich">Hemorrhagic - ICH</string>
+    <string name="hemorrhagic_sah">Hemorrhagic - SAH</string>
     <string name="tia">TIA</string>
     <string name="alert">Alert</string>
     <string name="drowsy">Drowsy</string>
@@ -193,6 +196,7 @@
     <string name="english">English</string>
     <string name="otherAnswer">Other</string>
     <string name="foley">Foley</string>
+    <string name="ic">I/C</string>
     <string name="diaper">Diaper</string>
     <string name="condom">Condom</string>
     <string name="bedpan">Bedpan/Urinal</string>
@@ -278,6 +282,9 @@
 
     <string name="dischargePlanning">Discharge planning</string>
     <string name="dischargePlanningHome">Home</string>
+    <string name="dischargePlanningHomeCLSC">Home + CLSC</string>
+    <string name="dischargePlanningHomeOutpatientRehab">Home + Outpatient Rehab</string>
+    <string name="dischargePlanningHomeOutpatientRehabCLSC">Home + Outpatient Rehab + CLSC</string>
     <string name="dischargePlanningRehab">Rehabilitation center</string>
     <string name="dischargePlanningLongTerm">Long-term care</string>
     <string name="dischargePlanningRepatriation">Repatriation</string>
@@ -295,6 +302,13 @@
     <string name="complicationsUti">UTI</string>
     <string name="complicationsPneumonia">Pneumonia</string>
 
+    <string name="provenance">Provenance</string>
+    <string name="provenance_recover_area">Recovery area</string>
+    <string name="provenance_rvh">RVH emergency</string>
+    <string name="provenance_mgh">MGH emergency</string>
+    <string name="provenance_outside_hospital">Outside hospital</string>
+    <string name="provenance_ltc">LTC</string>
+    <string name="provenance_home">Home</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_patient_form">New Patient</string>
@@ -309,7 +323,8 @@
     <string name="title_activity_toast">TOAST</string>
     <string name="title_activity_complications">Complications</string>
     <string name="title_activity_select_patient">Select Patient</string>
-
+    <string name="diffuse">Diffuse</string>
+    <string name="both">Both</string>
 
 
 </resources>

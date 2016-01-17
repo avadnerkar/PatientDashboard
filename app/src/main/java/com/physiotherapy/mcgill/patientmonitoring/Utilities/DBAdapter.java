@@ -12,8 +12,10 @@ import android.util.Log;
 
 import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 // \test change for git
@@ -48,7 +50,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 35;
+	public static final int DATABASE_VERSION = 42;
 
 
 	//Table Create Statements
@@ -107,13 +109,16 @@ public class DBAdapter {
 		patientMap.put("KEY_HEARINGASSESSED","HearingAssessed");
 		patientMap.put("KEY_APHASIA","Aphasia");
 
-		patientMap.put("KEY_PEGADMIT","PegAdmission");
-		patientMap.put("KEY_NGADMIT","NgAdmission");
-		patientMap.put("KEY_FOLEYADMIT","FoleyAdmission");
+		//patientMap.put("KEY_PEGADMIT","PegAdmission");
+		//patientMap.put("KEY_NGADMIT","NgAdmission");
+		//patientMap.put("KEY_FOLEYADMIT","FoleyAdmission");
 		patientMap.put("KEY_FALLRISK","FallRisk");
 
 		patientMap.put("KEY_INTERVENTIONLEVEL","LevelOfIntervention");
 		patientMap.put("KEY_DEPRESSED","Depressed");
+
+		patientMap.put("KEY_PROVENANCE","Provenance");
+		patientMap.put("KEY_PROVENANCE_OTHER","ProvenanceOther");
 
 		patientMap.put("KEY_FIRSTOT","FirstOTAssessment");
 		patientMap.put("KEY_TOTALOT","TotalOTSessions");
@@ -167,7 +172,7 @@ public class DBAdapter {
 		dataMap.put("KEY_DAY", "Day");
 
 		dataMap.put("KEY_PEG", "PEG");
-		dataMap.put("KEY_NG", "NG");
+		//dataMap.put("KEY_NG", "NG");
 		dataMap.put("KEY_O2", "O2");
 		dataMap.put("KEY_IV", "IV");
 		dataMap.put("KEY_CPAP", "CPAP");
@@ -178,8 +183,13 @@ public class DBAdapter {
 		dataMap.put("KEY_BLADDER", "BladderControl");
 		dataMap.put("KEY_HOURS", "EstimatedHoursOutOfBed");
 		dataMap.put("KEY_SLEEPAPNEA", "SleepApnea");
-		dataMap.put("KEY_LONGTERMCARE", "LongTermCareDeclared");
 		dataMap.put("KEY_FALLOCCURRENCE", "FallOccurrence");
+		dataMap.put("KEY_LONGTERMCARE", "LongTermCareDeclared");
+		dataMap.put("KEY_LONGTERMCARE_DECLARED", "LongTermCareDeclarationDate");
+		dataMap.put("KEY_DSIE","DSIEsent");
+		dataMap.put("KEY_DSIE_DECLARED","DSIEsentDate");
+		dataMap.put("KEY_REPATRIATION","RepatriationDeclared");
+		dataMap.put("KEY_REPATRIATION_DECLARED","RepatriationDeclarationDate");
 
 		dataMap.put("KEY_NEGLECT", "Neglect");
 		dataMap.put("KEY_DIGITSPAN", "DigitSpan");
@@ -488,17 +498,54 @@ public class DBAdapter {
 
 			//If column adding is needed:
 
-			if (oldVersion < 33){
-				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_INTERVENTIONLEVEL") + " text");
-				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_DEPRESSED") + " text");
+//			if (oldVersion < 33){
+//				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_INTERVENTIONLEVEL") + " text");
+//				_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + patientMap.get("KEY_DEPRESSED") + " text");
+//			}
+//
+//			if (oldVersion < 34){
+//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_SLEEPAPNEA") + " text");
+//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_LONGTERMCARE") + " text");
+//				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_FALLOCCURRENCE") + " text");
+//
+//			}
+
+
+			Cursor c = 	_db.query(true, PATIENT_TABLE, null, null, null, null, null, null, null);
+			if (c != null) {
+				c.moveToFirst();
 			}
 
-			if (oldVersion < 34){
-				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_SLEEPAPNEA") + " text");
-				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_LONGTERMCARE") + " text");
-				_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + dataMap.get("KEY_FALLOCCURRENCE") + " text");
+			String[] columnNames = c.getColumnNames();
+			List<String> columnList = Arrays.asList(columnNames);
 
+			for (String value : patientMap.values()){
+				if (!columnList.contains(value)){
+					Log.d("DEBUG","Adding column " + value);
+					_db.execSQL("ALTER TABLE " + PATIENT_TABLE + " ADD COLUMN " + value + " text");
+				}
 			}
+
+			c.close();
+
+
+			c = _db.query(true, DATA_TABLE, null, null, null, null, null, null, null);
+			if (c != null) {
+				c.moveToFirst();
+			}
+
+			columnNames = c.getColumnNames();
+			columnList = Arrays.asList(columnNames);
+
+			for (String value : dataMap.values()){
+				if (!columnList.contains(value)){
+					Log.d("DEBUG","Adding column " + value);
+					_db.execSQL("ALTER TABLE " + DATA_TABLE + " ADD COLUMN " + value + " text");
+				}
+			}
+
+			c.close();
+
 
 
 

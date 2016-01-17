@@ -51,7 +51,7 @@ public class SelectPatientActivity extends ActionBarActivity {
             if (o1.discharged == o2.discharged){
                 return 0;
             } else {
-                return o1.discharged? -1:1;
+                return o1.discharged? 1:-1;
             }
         }
     }

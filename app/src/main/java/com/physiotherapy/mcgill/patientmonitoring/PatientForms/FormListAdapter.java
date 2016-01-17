@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
 import com.physiotherapy.mcgill.patientmonitoring.R;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
 
                 RadioGroup rg = (RadioGroup) rowView.findViewById(R.id.rg);
 
-                if (items.get(position).options.length >2 && items.get(position).options.length < 7){
+                if (items.get(position).options.length >2 && items.get(position).options.length != 7){
                     rg.setOrientation(RadioGroup.VERTICAL);
                 } else {
                     rg.setOrientation(RadioGroup.HORIZONTAL);
@@ -119,6 +120,108 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
                 }
 
                 cursor.close();
+                break;
+            case RADIO_PROVENANCE:
+
+                rowView = inflater.inflate(R.layout.cell_form_radio_provenance, parent, false);
+                textView = (TextView) rowView.findViewById(R.id.title);
+                textView.setText(items.get(position).title);
+
+                RadioGroup rg_provenance = (RadioGroup) rowView.findViewById(R.id.rg);
+
+                if (items.get(position).options.length >2 && items.get(position).options.length < 7){
+                    rg_provenance.setOrientation(RadioGroup.VERTICAL);
+                } else {
+                    rg_provenance.setOrientation(RadioGroup.HORIZONTAL);
+                }
+
+                for (int i=0; i<items.get(position).options.length; i++){
+                    RadioButton rb = new RadioButton(context);
+                    rb.setText(items.get(position).options[i]);
+                    rg_provenance.addView(rb);
+
+                    rb.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(final View view) {
+                            Thread thread = new Thread(){
+                                @Override
+                                public void run() {
+
+                                    MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, items.get(position).dbKey, ((RadioButton) view).getText().toString());
+                                }
+                            };
+                            thread.start();
+
+                        }
+                    });
+                }
+
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, items.get(position).dbKey);
+
+                if (cursor.moveToFirst()){
+                    String radioValue = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
+                    if (radioValue != null && !radioValue.equals("")){
+                        for (int i=0; i<items.get(position).options.length; i++){
+                            String rbString = items.get(position).options[i];
+                            if (rbString.equals(radioValue)){
+                                ((RadioButton)rg_provenance.getChildAt(i)).setChecked(true);
+                            }
+                        }
+                    } else {
+                        rg_provenance.clearCheck();
+                    }
+
+                } else {
+                    rg_provenance.clearCheck();
+                }
+
+                cursor.close();
+
+                EditText editProvenance = (EditText) rowView.findViewById(R.id.edit_provenance);
+                editProvenance.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_PROVENANCE_OTHER"));
+
+                if (cursor.moveToFirst()){
+                    String text = cursor.getString(0);
+                    if (text !=null){
+                        editProvenance.setText(text);
+                    } else {
+                        editProvenance.setText("");
+                    }
+
+                } else {
+                    editProvenance.setText("");
+                }
+
+                editProvenance.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+                        Thread thread = new Thread(){
+                            @Override
+                            public void run() {
+                                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_PROVENANCE_OTHER"), charSequence.toString());
+                            }
+                        };
+                        thread.start();
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+                cursor.close();
+
                 break;
             case TEXT:
             case NUMERIC:
@@ -230,6 +333,16 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
                 textView.setText(items.get(position).title);
 
                 final TextView dateText = (TextView) rowView.findViewById(R.id.text_date);
+
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, items.get(position).dbKey);
+                if (cursor.moveToFirst()){
+                    String dateString = cursor.getString(cursor.getColumnIndex(items.get(position).dbKey));
+
+                    if (dateString != null){
+                        dateText.setText(dateString);
+                    }
+                }
+
 
                 Button button = (Button) rowView.findViewById(R.id.button);
                 button.setOnClickListener(new View.OnClickListener() {
