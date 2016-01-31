@@ -36,6 +36,7 @@ public class NurseFragment extends Fragment {
         nurseDailyItems.add(new DailyItem(getString(R.string.qO2), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_O2")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qIv), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_IV")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qCpap), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_CPAP")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qEvd), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_EVD")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qSleepApnea), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_SLEEPAPNEA")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qRestraint), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_RESTRAINT")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qBedbars), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_BEDBARS")));

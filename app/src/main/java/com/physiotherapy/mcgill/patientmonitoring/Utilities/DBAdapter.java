@@ -50,7 +50,7 @@ public class DBAdapter {
 	public static final String DATA_TABLE = "dataTable";
 
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 42;
+	public static final int DATABASE_VERSION = 43;
 
 
 	//Table Create Statements
@@ -85,6 +85,7 @@ public class DBAdapter {
 		patientMap.put("KEY_DISCHARGED","Discharged");
 		patientMap.put("KEY_DISCHARGEDATE","DischargeDate");
 		patientMap.put("KEY_DISCHARGEPLANNING", "DischargePlanning");
+		patientMap.put("KEY_DISCHARGEINTERVENTIONLEVEL", "DischargeInterventionLevel");
 		patientMap.put("KEY_PATIENTAGE","PatientAge");
 		patientMap.put("KEY_PATIENTGENDER","PatientGender");
 		patientMap.put("KEY_FIRSTLANGUAGE","FirstLanguage");
@@ -176,6 +177,7 @@ public class DBAdapter {
 		dataMap.put("KEY_O2", "O2");
 		dataMap.put("KEY_IV", "IV");
 		dataMap.put("KEY_CPAP", "CPAP");
+		dataMap.put("KEY_EVD", "EVD_LD");
 		dataMap.put("KEY_RESTRAINT", "Restraint");
 		dataMap.put("KEY_BEDBARS", "BedBars");
 		dataMap.put("KEY_BEHAVIOURAL", "BehaviouralIssue");

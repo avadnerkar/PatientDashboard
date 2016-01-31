@@ -104,11 +104,12 @@
 
 
     <!-- Nurse strings -->
-    <string name="qPeg">PEG/REG/NG tube</string>
+    <string name="qPeg">PEG/RIG/NG tube</string>
     <string name="qNg">NG tube</string>
     <string name="qO2">O2</string>
     <string name="qIv">Venous line</string>
     <string name="qCpap">CPAP/Vent/Trach</string>
+    <string name="qEvd">EVD/LD</string>
     <string name="qRestraint">Restraint</string>
     <string name="qBedbars">Bed bars</string>
     <string name="qBehavioural">Behavioural issue</string>
@@ -303,7 +304,7 @@
     <string name="complicationsPneumonia">Pneumonia</string>
 
     <string name="provenance">Provenance</string>
-    <string name="provenance_recover_area">Recovery area</string>
+    <string name="provenance_receiving_area">Receiving area</string>
     <string name="provenance_rvh">RVH emergency</string>
     <string name="provenance_mgh">MGH emergency</string>
     <string name="provenance_outside_hospital">Outside hospital</string>
