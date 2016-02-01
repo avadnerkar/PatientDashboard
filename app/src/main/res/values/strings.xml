@@ -315,7 +315,7 @@
     <string name="title_activity_patient_form">New Patient</string>
     <string name="title_activity_discharge">Discharge Patient</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_cns">CNS Questionnaire</string>
     <string name="title_activity_charlson">Charlson Questionnaire</string>
@@ -326,6 +326,9 @@
     <string name="title_activity_select_patient">Select Patient</string>
     <string name="diffuse">Diffuse</string>
     <string name="both">Both</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="action_connect_dropbox">Connect Dropbox</string>
+    <string name="dropbox_key">8cwzjacfuij89jk</string>
 
 
 </resources>

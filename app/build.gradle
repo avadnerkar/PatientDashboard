@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 22
     buildToolsVersion "21.1.2"
 
     defaultConfig {
@@ -24,5 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:support-v4:22.0.0'
     compile files('libs/opencsv-3.3.jar')
+    compile files('libs/dropbox-core-sdk-2.0-beta-5.jar')
+    compile files('libs/jackson-core-2.6.1.jar')
     compile 'com.jjoe64:graphview:4.0.1'
 }

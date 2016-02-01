@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dropbox.core.android.Auth;
 import com.opencsv.CSVWriter;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.ActivityIndicator;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
@@ -43,9 +45,10 @@ import com.physiotherapy.mcgill.patientmonitoring.PatientForms.PatientFormActivi
 import com.physiotherapy.mcgill.patientmonitoring.R;
 import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreCalculators;
 import com.physiotherapy.mcgill.patientmonitoring.Scores.ScoreGraphs;
+import com.physiotherapy.mcgill.patientmonitoring.Utilities.DropboxActivity;
 
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class MainActivity extends DropboxActivity implements ActionBar.TabListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -151,6 +154,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onResume();
         invalidateOptionsMenu();
 
+
+
         if (currentPatientId == -1){
 
         } else {
@@ -206,6 +211,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             cursor.close();
         }
     }
+
+    @Override
+    protected void loadData() {
+
+        Log.d("Debug","Dropbox success");
+
+        if (hasToken()){
+            Log.d("Debug","Has token");
+
+        } else {
+            Log.d("Debug","Doesn't have token");
+        }
+    }
+
+
 
     public void updateDayView(){
 
@@ -452,6 +472,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (item.getItemId() == R.id.action_export_csv) {
             exportRunnable.run();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_connect_dropbox) {
+            Auth.startOAuth2Authentication(this, getString(R.string.dropbox_key));
             return true;
         }
 

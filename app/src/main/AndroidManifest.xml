@@ -5,16 +5,18 @@
     android:versionName="34">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/CustomActionBarTheme">
         <activity
             android:name=".MainGroup.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +26,7 @@
         <activity
             android:name=".Scores.ScoreHistory"
             android:label="@string/title_activity_score_history"
-            android:parentActivityName=".MainGroup.MainActivity" >
+            android:parentActivityName=".MainGroup.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainGroup.MainActivity" />
@@ -32,7 +34,7 @@
         <activity
             android:name=".Scores.ScoreGraphs"
             android:label="@string/title_activity_score_graphs"
-            android:parentActivityName=".MainGroup.MainActivity" >
+            android:parentActivityName=".MainGroup.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainGroup.MainActivity" />
@@ -40,40 +42,47 @@
         <activity
             android:name=".PatientForms.PatientFormActivity"
             android:label="@string/title_activity_patient_form"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".PatientForms.DischargeFormActivity"
             android:label="@string/title_activity_discharge"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".PhysicianForms.CnsActivity"
-            android:label="@string/title_activity_cns" >
-        </activity>
+            android:label="@string/title_activity_cns"></activity>
         <activity
             android:name=".PhysicianForms.CharlsonActivity"
-            android:label="@string/title_activity_charlson" >
-        </activity>
+            android:label="@string/title_activity_charlson"></activity>
         <activity
             android:name=".PhysicianForms.FormTemplate"
-            android:label="@string/title_activity_form_template" >
-        </activity>
+            android:label="@string/title_activity_form_template"></activity>
         <activity
             android:name=".PhysicianForms.RankinActivity"
-            android:label="@string/title_activity_rankin" >
-        </activity>
+            android:label="@string/title_activity_rankin"></activity>
         <activity
             android:name=".PhysicianForms.ToastActivity"
-            android:label="@string/title_activity_toast" >
-        </activity>
+            android:label="@string/title_activity_toast"></activity>
         <activity
             android:name=".PhysicianForms.ComplicationsActivity"
-            android:label="@string/title_activity_complications" >
-        </activity>
+            android:label="@string/title_activity_complications"></activity>
         <activity
             android:name=".MainGroup.SelectPatientActivity"
-            android:label="@string/title_activity_select_patient" >
+            android:label="@string/title_activity_select_patient"></activity>
+
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask" >
+            <intent-filter>
+
+                <!-- Change this to be db- followed by your app key -->
+                <data android:scheme="db-8cwzjacfuij89jk" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
