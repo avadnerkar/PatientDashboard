@@ -30,7 +30,7 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.first_name), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTNAME")));
         patientFormItems.add(new FormItem(getString(R.string.last_name), FormItem.CellType.TEXT, new String[]{""}, DBAdapter.patientMap.get("KEY_LASTNAME")));
         patientFormItems.add(new FormItem(getString(R.string.patient_ID), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_MRN")));
-        patientFormItems.add(new FormItem(getString(R.string.select_admission_date), FormItem.CellType.DATEPICKER, null, DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
+        patientFormItems.add(new FormItem(getString(R.string.select_admission_date), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_ADMISSIONDATE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_age), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_PATIENTAGE")));
         patientFormItems.add(new FormItem(getString(R.string.patient_gender), FormItem.CellType.RADIO, new String[]{getString(R.string.female), getString(R.string.male)}, DBAdapter.patientMap.get("KEY_PATIENTGENDER")));
         patientFormItems.add(new FormItem(getString(R.string.first_language), FormItem.CellType.CHECKBOX, new String[]{getString(R.string.french), getString(R.string.english), getString(R.string.otherAnswer)}, DBAdapter.patientMap.get("KEY_FIRSTLANGUAGE")));
@@ -99,9 +99,6 @@ public class PatientFormActivity extends ActionBarActivity {
                 MainActivity.currentMrn = mrn;
 
             }
-
-
-
 
             finish();
             return true;

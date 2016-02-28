@@ -30,7 +30,7 @@ public class DischargeFormActivity extends ActionBarActivity {
         dischargeFormItems.get(dischargeFormItems.size()-1).misc = 30;
         dischargeFormItems.add(new FormItem(getString(R.string.text_custom), FormItem.CellType.SCORE, new String[]{""}, DBAdapter.patientMap.get("KEY_CUSTOMSCORE")));
         dischargeFormItems.get(dischargeFormItems.size()-1).misc = DBAdapter.patientMap.get("KEY_CUSTOMMAX");
-        dischargeFormItems.add(new FormItem(getString(R.string.text_discharge), FormItem.CellType.DATEPICKER, null, DBAdapter.patientMap.get("KEY_DISCHARGEDATE")));
+        dischargeFormItems.add(new FormItem(getString(R.string.text_discharge), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_DISCHARGEDATE")));
         dischargeFormItems.add(new FormItem(getString(R.string.dischargePlanning), FormItem.CellType.RADIO, new String[]{getString(R.string.dischargePlanningHome), getString(R.string.dischargePlanningHomeCLSC), getString(R.string.dischargePlanningHomeOutpatientRehab), getString(R.string.dischargePlanningHomeOutpatientRehabCLSC), getString(R.string.dischargePlanningRehab), getString(R.string.dischargePlanningLongTerm), getString(R.string.dischargePlanningRepatriation), getString(R.string.dischargePlanningPassedAway)}, DBAdapter.patientMap.get("KEY_DISCHARGEPLANNING")));
         dischargeFormItems.add(new FormItem(getString(R.string.levelOfIntervention), FormItem.CellType.RADIO, new String[]{"1", "2", "3", "4"}, DBAdapter.patientMap.get("KEY_DISCHARGEINTERVENTIONLEVEL")));
         dischargeFormItems.add(new FormItem(getString(R.string.totalOT), FormItem.CellType.NUMERIC, new String[]{""}, DBAdapter.patientMap.get("KEY_TOTALOT")));
