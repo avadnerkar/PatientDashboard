@@ -1,6 +1,7 @@
 package com.physiotherapy.mcgill.patientmonitoring.PhysicianForms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -31,6 +32,18 @@ public class RankinActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rankin);
 
+        Intent intent = getIntent();
+        boolean isDischarge = intent.getBooleanExtra("isDischarge", false);
+
+        String dbKey;
+        if (isDischarge){
+            dbKey = "KEY_RANKINDISCHARGE";
+        } else {
+            dbKey = "KEY_RANKIN";
+        }
+
+        final String dbKeyFinal = dbKey;
+
         listView = (ListView) findViewById(R.id.list);
 
         items = new ArrayList<>();
@@ -48,7 +61,7 @@ public class RankinActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get("KEY_RANKIN"), items.get(i));
+                MainActivity.myDb.updateFieldPatient(MainActivity.currentPatientId, DBAdapter.patientMap.get(dbKeyFinal), items.get(i));
                 PhysicianFragment.adapter.notifyDataSetChanged();
                 finish();
             }

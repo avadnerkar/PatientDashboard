@@ -8,8 +8,8 @@ android {
         applicationId "com.physiotherapy.mcgill.patientmonitoring"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 44
-        versionName "1.44"
+        versionCode 47
+        versionName "1.47"
     }
     buildTypes {
         release {

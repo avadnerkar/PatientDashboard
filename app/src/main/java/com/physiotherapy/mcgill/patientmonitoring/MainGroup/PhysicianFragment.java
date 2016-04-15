@@ -47,7 +47,7 @@ public class PhysicianFragment extends Fragment {
 
         items = new ArrayList<>();
         items.add(getString(R.string.charlson));
-        items.add(getString(R.string.rankin));
+        items.add(getString(R.string.rankin_admission));
         items.add(getString(R.string.cns));
         items.add(getString(R.string.nihss));
         items.add(getString(R.string.toast));
@@ -64,10 +64,10 @@ public class PhysicianFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), CharlsonActivity.class);
                     startActivity(intent);
 
-                } else if (items.get(i).equals(getString(R.string.rankin))){
+                } else if (items.get(i).equals(getString(R.string.rankin_admission))){
 
-                    Intent intent = new Intent(getActivity(), RankinActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(getActivity(), RankinActivity.class);
+                    //startActivity(intent);
 
                 } else if (items.get(i).equals(getString(R.string.cns))){
 
@@ -147,7 +147,7 @@ public class PhysicianFragment extends Fragment {
                 String score = null;
                 if (items.get(position).equals(getString(R.string.charlson))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CHARLSON")));
-                } else if (items.get(position).equals(getString(R.string.rankin))){
+                } else if (items.get(position).equals(getString(R.string.rankin_admission))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_RANKIN")));
                 } else if (items.get(position).equals(getString(R.string.cns))){
                     score = cursor.getString(cursor.getColumnIndex(DBAdapter.patientMap.get("KEY_CNS")));

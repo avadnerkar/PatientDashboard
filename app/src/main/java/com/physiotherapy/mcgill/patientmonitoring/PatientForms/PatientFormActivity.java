@@ -37,6 +37,10 @@ public class PatientFormActivity extends ActionBarActivity {
 
         patientFormItems.add(new FormItem(getString(R.string.stroke_type), FormItem.CellType.RADIO, new String[]{getString(R.string.tia), getString(R.string.ischemic), getString(R.string.hemorrhagic_ich), getString(R.string.hemorrhagic_sah)}, DBAdapter.patientMap.get("KEY_STROKETYPE")));
         patientFormItems.add(new FormItem(getString(R.string.openCnsForm), FormItem.CellType.BUTTON, null, null));
+        patientFormItems.add(new FormItem(getString(R.string.cns), FormItem.CellType.INFORMATION, null, DBAdapter.patientMap.get("KEY_CNS")));
+        patientFormItems.add(new FormItem(getString(R.string.nihss), FormItem.CellType.INFORMATION, null, DBAdapter.patientMap.get("KEY_NIHSS")));
+        patientFormItems.add(new FormItem(getString(R.string.openRankinForm), FormItem.CellType.BUTTON, null, null));
+        patientFormItems.add(new FormItem(getString(R.string.rankin), FormItem.CellType.INFORMATION, null, DBAdapter.patientMap.get("KEY_RANKIN")));
 
         patientFormItems.add(new FormItem(getString(R.string.first_stroke), FormItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.patientMap.get("KEY_FIRSTSTROKE")));
         patientFormItems.add(new FormItem(getString(R.string.lesion_side), FormItem.CellType.RADIO, new String[]{getString(R.string.diffuse), getString(R.string.right), getString(R.string.left), getString(R.string.both)}, DBAdapter.patientMap.get("KEY_LESIONSIDE")));
@@ -61,7 +65,7 @@ public class PatientFormActivity extends ActionBarActivity {
         patientFormItems.add(new FormItem(getString(R.string.dateFirstOT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTOT")));
         patientFormItems.add(new FormItem(getString(R.string.dateFirstSwallow), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTSWALLOW")));
         patientFormItems.add(new FormItem(getString(R.string.dateFirstPT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTPT")));
-        patientFormItems.add(new FormItem(getString(R.string.dateFirstSLT), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTSLT")));
+        patientFormItems.add(new FormItem(getString(R.string.dateFirstSLP), FormItem.CellType.DATEPICKERDIALOG, new String[]{""}, DBAdapter.patientMap.get("KEY_FIRSTSLT")));
 
         for (FormItem item : patientFormItems){
             item.group = FormItem.Group.REGISTER;
@@ -69,6 +73,12 @@ public class PatientFormActivity extends ActionBarActivity {
 
         adapter = new FormListAdapter(this, patientFormItems);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

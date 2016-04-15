@@ -24,6 +24,8 @@ import android.widget.TextView;
 
 import com.physiotherapy.mcgill.patientmonitoring.MainGroup.MainActivity;
 import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.CnsActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.ComplicationsActivity;
+import com.physiotherapy.mcgill.patientmonitoring.PhysicianForms.RankinActivity;
 import com.physiotherapy.mcgill.patientmonitoring.R;
 import com.physiotherapy.mcgill.patientmonitoring.Utilities.DBAdapter;
 
@@ -475,17 +477,50 @@ public class FormListAdapter extends ArrayAdapter<FormItem>{
 
                 rowView = inflater.inflate(R.layout.cell_form_button, parent, false);
 
-                Button cnsButton = (Button) rowView.findViewById(R.id.button);
+                Button physicianButton = (Button) rowView.findViewById(R.id.button);
 
-                cnsButton.setText(items.get(position).title);
+                physicianButton.setText(items.get(position).title);
 
-                cnsButton.setOnClickListener(new View.OnClickListener() {
+                physicianButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(context, CnsActivity.class);
-                        context.startActivity(intent);
+
+                        if (items.get(position).title.equals(context.getString(R.string.openCnsForm))){
+                            Intent intent = new Intent(context, CnsActivity.class);
+                            context.startActivity(intent);
+                        } else if (items.get(position).title.equals(context.getString(R.string.openRankinForm))){
+                            Intent intent = new Intent(context, RankinActivity.class);
+                            if (items.get(position).options != null && items.get(position).options[0].equals("discharge")){
+                                intent.putExtra("isDischarge",true);
+                            }
+
+                            context.startActivity(intent);
+                        } else if (items.get(position).title.equals(context.getString(R.string.openComplicationsForm))){
+                            Intent intent = new Intent(context, ComplicationsActivity.class);
+                            context.startActivity(intent);
+                        }
                     }
                 });
+
+                break;
+
+            case INFORMATION:
+
+                rowView = inflater.inflate(R.layout.cell_form_information, parent, false);
+                textView = (TextView) rowView.findViewById(R.id.title);
+                textView.setText(items.get(position).title);
+
+                TextView information = (TextView) rowView.findViewById(R.id.information);
+                cursor = MainActivity.myDb.getPatientField(MainActivity.currentPatientId, items.get(position).dbKey);
+
+                if (cursor.moveToFirst()){
+                    String infoString = cursor.getString(0);
+                    if (infoString != null && !infoString.equals("-1.0")){
+                        information.setText(infoString);
+                    } else {
+                        information.setText("N/A");
+                    }
+                }
 
                 break;
 

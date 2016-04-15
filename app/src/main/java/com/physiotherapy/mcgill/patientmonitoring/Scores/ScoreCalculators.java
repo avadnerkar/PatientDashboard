@@ -101,7 +101,13 @@ public class ScoreCalculators {
             case "Diaper":
                 bladderInt = 0;
                 break;
-            case "Bedpan":
+            case "I/C":
+                bladderInt = 0;
+                break;
+            case "Condom":
+                bladderInt = 0;
+                break;
+            case "Bedpan/Urinal":
                 bladderInt = 1;
                 break;
             case "Toilet":

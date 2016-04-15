@@ -48,6 +48,8 @@ public class NurseFragment extends Fragment {
         nurseDailyItems.add(new DailyItem(getString(R.string.qLongTermCare), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_LONGTERMCARE")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qDSIE), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_DSIE")));
         nurseDailyItems.add(new DailyItem(getString(R.string.qRepatriation), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_REPATRIATION")));
+        nurseDailyItems.add(new DailyItem(getString(R.string.qMedicalClearance), DailyItem.CellType.RADIO, new String[]{getString(R.string.yes), getString(R.string.no)}, DBAdapter.dataMap.get("KEY_MEDICAL_CLEARANCE")));
+
 
         for (DailyItem item : nurseDailyItems){
             item.group = DailyItem.Group.NURSE;

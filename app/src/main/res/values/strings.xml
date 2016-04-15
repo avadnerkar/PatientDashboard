@@ -50,7 +50,7 @@
     <string name="dateFirstOT">Date of first OT assessment</string>
     <string name="dateFirstSwallow">Date of first Swallowing assessment</string>
     <string name="dateFirstPT">Date of first PT assessment</string>
-    <string name="dateFirstSLT">Date of first SLT assessment</string>
+    <string name="dateFirstSLP">Date of first SLP assessment</string>
     <string name="select_date">Select</string>
 
 
@@ -60,7 +60,7 @@
     <string name="text_discharge">Select date of discharge</string>
     <string name="totalOT">Total OT sessions received</string>
     <string name="totalPT">Total PT sessions received</string>
-    <string name="totalSLT">Total SLT sessions received</string>
+    <string name="totalSLP">Total SLP sessions received</string>
     <string name="text_moca">MOCA</string>
     <string name="text_score">Score:</string>
     <string name="text_out_of">Out of:</string>
@@ -226,6 +226,7 @@
     <string name="charlson">Charlson</string>
     <string name="comorbidity">Co-morbidity</string>
     <string name="rankin">Rankin</string>
+    <string name="rankin_admission">Rankin (filled at admission)</string>
     <string name="cns">CNS (filled at admission)</string>
     <string name="nihss">NIHSS (estimated from CNS)</string>
     <string name="toast">TOAST</string>
@@ -326,6 +327,9 @@
     <string name="title_activity_select_patient">Select Patient</string>
     <string name="diffuse">Diffuse</string>
     <string name="both">Both</string>
+    <string name="openRankinForm">Open Rankin form</string>
+    <string name="openComplicationsForm">Open complications form</string>
+    <string name="qMedicalClearance">Medical clearance declared</string>
 
 
 </resources>

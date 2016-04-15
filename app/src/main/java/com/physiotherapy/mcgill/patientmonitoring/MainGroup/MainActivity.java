@@ -623,7 +623,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     Runnable incrementRunnable = new Runnable(){
         public void run(){
-            currentDay = Math.min(99, currentDay + 1);
+            currentDay = Math.min(999, currentDay + 1);
             updateDayView();
         }
     };

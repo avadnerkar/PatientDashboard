@@ -155,6 +155,15 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
 
                                     }
 
+                                    if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_MEDICAL_CLEARANCE"))){
+                                        Calendar c = Calendar.getInstance();
+
+                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                        String formattedDate = df.format(c.getTime());
+                                        MainActivity.myDb.updateFieldData(MainActivity.currentPatientId, MainActivity.currentDay, DBAdapter.dataMap.get("KEY_MEDICAL_CLEARANCE_DECLARED"), formattedDate);
+
+                                    }
+
                                 }
                             };
                             thread.start();
@@ -176,7 +185,8 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
                         }
                     } else if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_LONGTERMCARE")) ||
                             items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_DSIE")) ||
-                            items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION"))){
+                            items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION")) ||
+                            items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_MEDICAL_CLEARANCE"))){
 
                         ((RadioButton)rg.getChildAt(1)).setChecked(true);
 
@@ -194,7 +204,8 @@ public class DailyListAdapter extends ArrayAdapter<DailyItem> {
 
                 } else if (items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_LONGTERMCARE")) ||
                         items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_DSIE")) ||
-                        items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION"))){
+                        items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_REPATRIATION")) ||
+                        items.get(position).dbKey.equals(DBAdapter.dataMap.get("KEY_MEDICAL_CLEARANCE_DECLARED"))){
 
                     ((RadioButton)rg.getChildAt(1)).setChecked(true);
                     Thread thread = new Thread(){
